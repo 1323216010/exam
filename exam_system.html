@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自测系统</title>
+    <link rel="stylesheet" href="css/common.css?v=20260223B">
+    <link rel="stylesheet" href="css/pages.css?v=20260223B">
+    <link rel="stylesheet" href="css/exam.css?v=20260223B">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 id="exam-header-title">自测系统</h2>
+                <div class="exam-name" id="exam-header-name">请加载试题文件</div>
+            </div>
+
+            <div class="question-nav" id="question-nav">
+                <!-- 题目导航将在这里动态生成 -->
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="progress-info">
+                    <span>已答 <strong id="answered-count">0</strong> / <span id="total-count">0</span></span>
+                    <span id="time-display">00:00</span>
+                </div>
+                <button class="btn btn-submit" id="submit-btn">提交答卷</button>
+                <button class="btn btn-secondary" id="restart-btn" style="display: none;">重新开始</button>
+                <button class="btn btn-secondary" id="settings-btn" style="margin-top: 10px;">⚙️ 设置</button>
+            </div>
+        </div>
+
+        <!--主内容区 -->
+        <div class="main-content">
+            <!-- 模式选择 -->
+            <div class="mode-selection" id="mode-selection">
+                <div class="mode-header">
+                    <h1>练习系统</h1>
+                    <p class="mode-subtitle">选择一种练习模式开始学习</p>
+                </div>
+                
+                <div class="mode-cards">
+                    <div class="mode-card" data-mode="upload">
+                        <div class="mode-icon">📁</div>
+                        <div class="mode-title">上传试卷</div>
+                        <div class="mode-desc">上传本地JSON试卷文件进行练习</div>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="exam-list">
+                        <div class="mode-icon">📝</div>
+                        <div class="mode-title">试卷模拟</div>
+                        <div class="mode-desc">选择历年真题完整试卷进行模拟考试</div>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="practice">
+                        <div class="mode-icon">📚</div>
+                        <div class="mode-title">题库练习</div>
+                        <div class="mode-desc">加载所有题目进行刷题练习</div>
+                    </div>
+                    
+                    <div class="mode-card" data-mode="custom">
+                        <div class="mode-icon">🎯</div>
+                        <div class="mode-title">自定义组卷</div>
+                        <div class="mode-desc">按条件筛选题目自定义组卷</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文件上传 -->
+            <div class="upload-container hidden" id="upload-container">
+                <button class="btn-back" id="btn-back-upload">← 返回</button>
+                <div class="upload-box">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-title">选择试题文件</div>
+                    <div class="upload-subtitle">支持 JSON 格式的试题文件</div>
+                    <input type="file" id="file-input" accept=".json">
+                    <label for="file-input" class="btn-upload">📁 浏览文件</label>
+                </div>
+            </div>
+
+            <!-- 试卷列表 -->
+            <div class="exam-list-container hidden" id="exam-list-container">
+                <button class="btn-back" id="btn-back-exam-list">← 返回</button>
+                <div class="exam-list-header">
+                    <h2>📝 选择试卷进行模拟考试</h2>
+                    <div class="exam-list-info">共 <span id="exam-count">0</span> 套试卷</div>
+                </div>
+                <div class="exam-list-filters">
+                    <select id="subject-filter">
+                        <option value="">全部科目</option>
+                    </select>
+                </div>
+                <div class="exam-list-grid" id="exam-list-grid">
+                    <!-- 试卷卡片动态生成 -->
+                </div>
+            </div>
+
+            <!-- 题库练习配置 -->
+            <div class="practice-config-container hidden" id="practice-config-container">
+                <button class="btn-back" id="btn-back-practice">← 返回</button>
+                <div class="practice-config-header">
+                    <h2>📚 题库练习设置</h2>
+                    <div class="practice-info">加载所有历年真题进行练习</div>
+                </div>
+                <div class="practice-config-options">
+                    <div class="config-group">
+                        <label>科目筛选：</label>
+                        <select id="practice-subject-filter">
+                            <option value="">全部科目</option>
+                        </select>
+                    </div>
+                    <div class="config-group">
+                        <label class="config-label">
+                            <input type="checkbox" id="random-order" checked>
+                            随机顺序
+                        </label>
+                        <label class="config-label">
+                            <input type="checkbox" id="show-answer-immediately">
+                            答完立即显示答案
+                        </label>
+                    </div>
+                    <div class="config-group">
+                        <label>题量限制：</label>
+                        <input type="number" id="question-limit" placeholder="全部" min="1" style="width: 120px;">
+                    </div>
+                </div>
+                <button class="btn-primary" id="btn-start-practice">开始练习</button>
+            </div>
+
+            <!-- 自定义组卷 -->
+            <div class="custom-exam-container hidden" id="custom-exam-container">
+                <button class="btn-back" id="btn-back-custom">← 返回</button>
+                <div class="custom-exam-header">
+                    <h2>🎯 自定义组卷</h2>
+                    <div class="custom-info">根据条件筛选题目组成试卷</div>
+                </div>
+                
+                <div class="custom-exam-config">
+                    <div class="config-section">
+                        <h3>选择试卷</h3>
+                        <div class="exam-list-filters">
+                            <select id="custom-subject-filter">
+                                <option value="">全部科目</option>
+                            </select>
+                        </div>
+                        <div class="exam-checkbox-grid" id="exam-checkbox-grid">
+                            <!-- 试卷复选框动态生成 -->
+                        </div>
+                        <div class="quick-select">
+                            <button class="btn-secondary" id="btn-select-all">全选</button>
+                            <button class="btn-secondary" id="btn-select-none">全不选</button>
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h3>题型和数量</h3>
+                        <div class="type-count-hint">设置每种题型要抽取的题目数量（不输入则不选，输入 -1 表示全选）</div>
+                        <div id="question-type-filters" class="question-type-grid">
+                            <!-- 题型配置动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h3>其他选项</h3>
+                        <label class="config-label">
+                            <input type="checkbox" id="custom-random" checked>
+                            随机顺序
+                        </label>
+                        <label class="config-label">
+                            <input type="checkbox" id="custom-deduplicate" checked>
+                            去除重复题目
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" id="btn-start-custom">生成试卷并开始</button>
+            </div>
+
+            <!-- 答题界面 -->
+            <div id="exam-interface" class="hidden">
+                <div class="main-header">
+                    <div class="exam-title" id="exam-title">考试标题</div>
+                    <div class="exam-subtitle" id="exam-subtitle">考试信息</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>答题进度</span>
+                            <span id="progress-text">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-container" id="question-container">
+                    <!-- 题目内容 -->
+                </div>
+            </div>
+
+            <!-- 结果页面 -->
+            <div class="result-container" id="result-container">
+                <div class="result-icon">🎉</div>
+                <div class="result-title">答题完成！</div>
+                <div class="result-score" id="result-score">0</div>
+                <div class="result-total">总分 <span id="total-score">0</span> 分</div>
+
+                <!-- 有主观题时的统计 -->
+                <div class="result-stats" id="has-subjective" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-correct">0</div>
+                        <div class="stat-label">客观题答对</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="objective-total">0</span> 题</div>
+                        <div class="stat-label">客观题总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-accuracy">0%</div>
+                        <div class="stat-label">客观题正确率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="subjective-score">0%</div>
+                        <div class="stat-label">主观题平均得分率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="subjective-total">0</span> 题</div>
+                        <div class="stat-label">主观题总数</div>
+                    </div>
+                </div>
+
+                <!-- 没有主观题时的统计 -->
+                <div class="result-stats" id="no-subjective" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-correct-2">0</div>
+                        <div class="stat-label">答对题数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="objective-total-2">0</span> 题</div>
+                        <div class="stat-label">题目总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-accuracy-2">0%</div>
+                        <div class="stat-label">正确率</div>
+                    </div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="btn btn-submit" id="review-btn">查看详情</button>
+                    <button class="btn btn-secondary" id="restart-result-btn">重新开始</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置对话框 -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ 系统设置</h3>
+                <button class="modal-close" id="close-settings">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="api-url-input">API URL</label>
+                    <div class="input-hint">AI 评分服务的完整 API 地址</div>
+                    <input type="text" id="api-url-input" placeholder="https://proxy-hazel-theta-17.vercel.app/qwen/chat/completions">
+                </div>
+                <div class="setting-item">
+                    <label for="api-key-input">API Key</label>
+                    <div class="input-hint">用于 AI 评分主观题（通义千问）</div>
+                    <input type="password" id="api-key-input" placeholder="请输入你的 API Key">
+                </div>
+                <div class="setting-item">
+                    <label for="api-model-input">模型名称</label>
+                    <div class="input-hint">AI 模型名称（如 qwen3.5-plus）</div>
+                    <input type="text" id="api-model-input" placeholder="qwen3.5-plus">
+                </div>
+                <div class="setting-item">
+                    <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试连接</button>
+                    <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-settings">取消</button>
+                <button class="btn btn-submit" id="save-settings">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js?v=20260223B"></script>
+</body>
+</html>
