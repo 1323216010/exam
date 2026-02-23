@@ -58,7 +58,6 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0;
-    transition: all 0.3s;
 }
 
 .mobile-menu-btn:active {
@@ -71,7 +70,6 @@ body {
     height: 2.5px;
     background: #059669;
     border-radius: 2px;
-    transition: all 0.3s;
     margin: 3px 0;
 }
 
@@ -98,7 +96,6 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 99;
     opacity: 0;
-    transition: opacity 0.3s;
 }
 
 .mobile-overlay.show {
@@ -114,7 +111,6 @@ body {
     display: flex;
     flex-direction: column;
     z-index: 100;
-    transition: transform 0.3s;
 }
 
 .sidebar-header {
@@ -189,7 +185,6 @@ body {
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
     background: white;
     color: #374151;
 }
@@ -197,7 +192,6 @@ body {
 .question-item:hover {
     border-color: #10B981;
     background: #ECFDF5;
-    transform: scale(1.05);
 }
 
 .question-item.current {
@@ -248,7 +242,6 @@ body {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
     display: inline-block;
     text-align: center;
 }
@@ -266,8 +259,8 @@ body {
 }
 
 .btn-submit:hover:not(:disabled) {
-    transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    filter: brightness(1.05);
 }
 
 .btn-secondary {
@@ -278,7 +271,6 @@ body {
     font-size: 13px;
     color: #374151;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
 .btn-secondary:hover {
@@ -296,13 +288,12 @@ body {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    filter: brightness(1.05);
 }
 
 .btn-back {
@@ -314,7 +305,6 @@ body {
     font-weight: 600;
     color: #059669;
     cursor: pointer;
-    transition: all 0.3s;
     margin-bottom: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: inline-flex;
@@ -324,7 +314,6 @@ body {
 
 .btn-back:hover {
     background: white;
-    transform: translateX(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: #10B981;
 }
@@ -353,7 +342,6 @@ body {
     height: 100%;
     background: linear-gradient(90deg, #10B981 0%, #06B6D4 100%);
     border-radius: 10px;
-    transition: width 0.3s;
     width: 0;
 }
 
@@ -367,7 +355,6 @@ select {
     border: 1px solid #D1D5DB;
     border-radius: 8px;
     font-size: 14px;
-    transition: border-color 0.2s;
 }
 
 input[type="text"]:focus,
@@ -449,7 +436,6 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    transition: background 0.2s;
 }
 
 .modal-close:hover {
@@ -488,7 +474,6 @@ input[type="checkbox"] {
     border: 1px solid #D1D5DB;
     border-radius: 8px;
     font-size: 14px;
-    transition: border-color 0.2s;
 }
 
 .setting-item input:focus {
@@ -616,14 +601,6 @@ input[type="checkbox"] {
         padding: 12px 14px;
         margin: 10px 0;
         border-width: 2px;
-    }
-
-    .option:hover {
-        transform: translateX(0);
-    }
-
-    .option:active {
-        transform: scale(0.98);
     }
 
     .option input[type="radio"],

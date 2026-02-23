@@ -120,7 +120,6 @@
     border: 2px solid #E5E7EB;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     background: white;
@@ -137,13 +136,11 @@
     background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
     border-radius: 10px 0 0 10px;
     opacity: 0;
-    transition: opacity 0.2s;
 }
 
 .option:hover {
     border-color: #10B981;
     background: #F0FDF4;
-    transform: translateX(2px);
 }
 
 .option:hover::before {
@@ -220,7 +217,6 @@
     font-size: 15px;
     font-family: inherit;
     resize: vertical;
-    transition: border-color 0.3s;
     line-height: 1.6;
 }
 
@@ -241,18 +237,6 @@
 
 .answer-section.show {
     display: block;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .answer-label {
@@ -286,7 +270,6 @@
 
 .ai-grading-section.show {
     display: block;
-    animation: slideDown 0.3s ease;
 }
 
 .ai-grading-header {
@@ -352,7 +335,6 @@
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
 }
 
 .btn-prev {
@@ -370,8 +352,8 @@
 }
 
 .btn-next:hover:not(:disabled) {
-    transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    filter: brightness(1.05);
 }
 
 .btn-nav:disabled {
@@ -387,7 +369,6 @@
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s;
 }
 
 .btn-show-answer:hover {
@@ -408,18 +389,6 @@
 
 .result-container.show {
     display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: scale(0.95); 
-    }
-    to { 
-        opacity: 1; 
-        transform: scale(1); 
-    }
 }
 
 .result-icon {
