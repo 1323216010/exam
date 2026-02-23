@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自测系统</title>
-    <link rel="stylesheet" href="css/common.css?v=20260223B">
-    <link rel="stylesheet" href="css/pages.css?v=20260223B">
-    <link rel="stylesheet" href="css/exam.css?v=20260223B">
+    <link rel="stylesheet" href="css/common.css?v=20260223C">
+    <link rel="stylesheet" href="css/pages.css?v=20260223C">
+    <link rel="stylesheet" href="css/exam.css?v=20260223C">
 </head>
 <body>
     <div class="app-container">
@@ -34,6 +34,13 @@
 
         <!--主内容区 -->
         <div class="main-content">
+            <!-- 移动端汉堡菜单按钮 -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <!-- 模式选择 -->
             <div class="mode-selection" id="mode-selection">
                 <div class="mode-header">
@@ -254,6 +261,9 @@
         </div>
     </div>
 
+    <!-- 移动端遮罩层 -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
     <!-- 设置对话框 -->
     <div class="modal" id="settings-modal">
         <div class="modal-content">
@@ -289,6 +299,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/main.js?v=20260223B"></script>
+    <script type="module" src="js/main.js?v=20260223C"></script>
 </body>
 </html>

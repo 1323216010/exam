@@ -40,6 +40,72 @@ body {
     display: none !important;
 }
 
+/* ==================== 移动端菜单按钮 ==================== */
+.mobile-menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: 44px;
+    height: 44px;
+    background: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    transition: all 0.3s;
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #059669;
+    border-radius: 2px;
+    transition: all 0.3s;
+    margin: 3px 0;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ==================== 移动端遮罩层 ==================== */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mobile-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
 /* ==================== 侧边栏样式 ==================== */
 .sidebar {
     width: 280px;
@@ -440,23 +506,43 @@ input[type="checkbox"] {
 
 /* ==================== 响应式布局 ==================== */
 @media (max-width: 768px) {
+    /* 侧边栏移动端适配 */
     .sidebar {
         position: fixed;
         left: 0;
         top: 0;
         height: 100vh;
+        width: 280px;
         transform: translateX(-100%);
+        z-index: 1000;
     }
 
     .sidebar.show {
         transform: translateX(0);
     }
 
-    .question-grid {
-        grid-template-columns: repeat(4, 1fr);
+    /* 显示汉堡菜单按钮（仅在答题界面和结果页面） */
+    body:not(.mode-selection-active) .mobile-menu-btn {
+        display: flex !important;
     }
 
-    .main-header,
+    /* 题目导航网格 */
+    .question-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .question-nav-item {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    /* 答题界面适配 */
+    .main-header {
+        padding: 70px 20px 20px 20px; /* 为汉堡按钮留出空间 */
+    }
+
     .question-container {
         padding: 20px;
     }
@@ -465,20 +551,146 @@ input[type="checkbox"] {
         padding: 20px;
     }
 
+    .exam-title {
+        font-size: 18px;
+    }
+
+    .exam-subtitle {
+        font-size: 13px;
+    }
+
+    /* 题目显示优化 */
+    .question-number {
+        min-width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .question-content {
+        font-size: 15px;
+    }
+
+    /* 选项优化 - 增加触摸面积 */
+    .option {
+        min-height: 44px;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+    }
+
+    /* 按钮优化 - 增加触摸面积 */
+    .btn,
+    .btn-nav,
+    .btn-primary,
+    .btn-secondary,
+    .btn-submit {
+        min-height: 44px;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-nav,
+    .btn-show-answer {
+        width: 100%;
+    }
+
+    /* 结果页面适配 */
     #has-subjective,
     #no-subjective {
         grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .result-icon {
+        font-size: 64px;
+    }
+
+    .result-title {
+        font-size: 22px;
+    }
+
+    .result-score {
+        font-size: 52px;
+    }
+
+    /* 模式选择页面 */
+    .mode-selection {
+        padding: 20px;
+    }
+
+    .mode-header h1 {
+        font-size: 28px;
+    }
+
+    .mode-subtitle {
+        font-size: 16px;
+    }
+
+    .mode-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .mode-card {
+        padding: 30px 25px;
+    }
+
+    /* 上传页面 */
+    .upload-container {
+        padding: 20px;
     }
 
     .upload-box {
         padding: 40px 30px;
     }
 
-    .mode-cards {
-        grid-template-columns: 1fr;
+    /* 试卷列表 */
+    .exam-list-container {
+        padding: 20px;
     }
 
     .exam-list-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* 配置页面 */
+    .practice-config-container,
+    .custom-exam-container {
+        padding: 20px;
+    }
+
+    .custom-exam-config {
+        gap: 20px;
+    }
+
+    .exam-checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-type-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 返回按钮 */
+    .btn-back {
+        margin-bottom: 15px;
+    }
+
+    /* 文本区域 */
+    .textarea-answer {
+        min-height: 120px;
+        font-size: 15px;
+    }
+
+    /* 设置对话框 */
+    .modal-content {
+        width: 95%;
+        max-width: none;
+        margin: 10px;
     }
 }

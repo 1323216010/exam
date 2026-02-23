@@ -7,6 +7,51 @@ import { shuffleArray, Timer } from './utils.js';
 // 计时器实例
 let timer = null;
 
+// ==================== 移动端侧边栏控制 ====================
+function toggleMobileSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    
+    sidebar.classList.toggle('show');
+    overlay.classList.toggle('show');
+    menuBtn.classList.toggle('active');
+}
+
+function closeMobileSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    
+    sidebar.classList.remove('show');
+    overlay.classList.remove('show');
+    menuBtn.classList.remove('active');
+}
+
+function updateMobileMenuVisibility() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const examInterface = document.getElementById('exam-interface');
+    const resultContainer = document.getElementById('result-container');
+    const modeSelection = document.getElementById('mode-selection');
+    
+    // 只在答题界面或结果页面显示菜单按钮
+    const shouldShow = !examInterface.classList.contains('hidden') || 
+                      resultContainer.classList.contains('show');
+    
+    if (shouldShow && window.innerWidth <= 768) {
+        menuBtn.style.display = 'flex';
+    } else {
+        menuBtn.style.display = 'none';
+    }
+    
+    // 更新 body 类名用于 CSS 控制
+    if (!modeSelection.classList.contains('hidden')) {
+        document.body.classList.add('mode-selection-active');
+    } else {
+        document.body.classList.remove('mode-selection-active');
+    }
+}
+
 // ==================== 文件上传处理 ====================
 function handleFileUpload(e) {
     const file = e.target.files[0];
@@ -48,6 +93,9 @@ function initExam() {
     document.getElementById('exam-interface').classList.remove('hidden');
     document.getElementById('sidebar').classList.remove('hidden');
     document.getElementById('restart-btn').style.display = 'none';
+
+    // 更新移动端菜单显示
+    updateMobileMenuVisibility();
 
     // 更新标题信息
     if (state.examData.exam_info) {
@@ -513,6 +561,10 @@ async function calculateResults() {
     document.getElementById('exam-interface').classList.add('hidden');
     document.getElementById('result-container').classList.add('show');
 
+    // 更新移动端菜单显示
+    updateMobileMenuVisibility();
+    closeMobileSidebar();
+
     // 重新启用提交按钮
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = false;
@@ -624,6 +676,8 @@ function handleReview() {
     document.getElementById('restart-btn').style.display = 'inline-block';
     document.getElementById('submit-btn').style.display = 'none';
     showQuestion(0);
+    updateMobileMenuVisibility();
+    closeMobileSidebar();
 }
 
 function restartExam() {
@@ -797,6 +851,10 @@ function backToModeSelection() {
     // 重置状态
     resetState();
     stopTimer();
+    
+    // 更新移动端菜单显示和关闭侧边栏
+    updateMobileMenuVisibility();
+    closeMobileSidebar();
     
     // 清空侧边栏
     document.getElementById('question-nav').innerHTML = '';
@@ -1220,6 +1278,25 @@ async function initializeApp() {
     
     // 文件上传
     document.getElementById('file-input').addEventListener('change', handleFileUpload);
+    
+    // 移动端菜单控制
+    document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileSidebar);
+    document.getElementById('mobile-overlay').addEventListener('click', closeMobileSidebar);
+    
+    // 点击题目导航后在移动端自动关闭侧边栏
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.question-nav-item') && window.innerWidth <= 768) {
+            setTimeout(closeMobileSidebar, 300);
+        }
+    });
+    
+    // 窗口大小改变时更新菜单显示
+    window.addEventListener('resize', function() {
+        updateMobileMenuVisibility();
+        if (window.innerWidth > 768) {
+            closeMobileSidebar();
+        }
+    });
     
     // 模式选择
     document.querySelectorAll('.mode-card[data-mode]').forEach(card => {
