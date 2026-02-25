@@ -7,6 +7,12 @@ import { shuffleArray, Timer } from './utils.js';
 // 计时器实例
 let timer = null;
 
+// 从路径中提取文件名（不含扩展名）
+function getFilenameFromPath(path) {
+    const filename = path.split('/').pop(); // 获取最后一部分
+    return filename.replace('.json', ''); // 移除 .json 扩展名
+}
+
 // ==================== 移动端侧边栏控制 ====================
 function toggleMobileSidebar() {
     const sidebar = document.getElementById('sidebar');
@@ -98,15 +104,9 @@ function initExam() {
     updateMobileMenuVisibility();
 
     // 更新标题信息
-    if (state.examData.exam_info) {
-        const info = state.examData.exam_info;
-        document.getElementById('exam-header-title').textContent = info.subject || '自学考试';
-        document.getElementById('exam-header-name').textContent = 
-            `${info.code ? '(' + info.code + ')' : ''} ${info.date || ''}`.trim();
-        document.getElementById('exam-title').textContent = info.title || '考试标题';
-        document.getElementById('exam-subtitle').textContent = 
-            `${info.subject || ''} ${info.code ? '(课程代码: ' + info.code + ')' : ''} - ${info.date || ''}`;
-    }
+    const filename = state.examData.filename || state.examData.exam_info?.title || '考试';
+    document.getElementById('exam-header-title').textContent = filename;
+    document.getElementById('exam-header-name').textContent = '';
 
     document.getElementById('total-count').textContent = state.examData.questions.length;
 
@@ -191,13 +191,6 @@ function updateNavStatus() {
                !(Array.isArray(answer) && answer.length === 0);
     }).length;
     document.getElementById('answered-count').textContent = answeredCount;
-
-    // 更新进度
-    if (state.examData && state.examData.questions) {
-        const progress = (answeredCount / state.examData.questions.length) * 100;
-        document.getElementById('progress-fill').style.width = progress + '%';
-        document.getElementById('progress-text').textContent = Math.round(progress) + '%';
-    }
 }
 
 function jumpToQuestion(index) {
@@ -860,8 +853,6 @@ function backToModeSelection() {
     document.getElementById('question-nav').innerHTML = '';
     document.getElementById('answered-count').textContent = '0';
     document.getElementById('total-count').textContent = '0';
-    document.getElementById('progress-fill').style.width = '0%';
-    document.getElementById('progress-text').textContent = '0%';
 }
 
 // ==================== 试卷列表 ====================
@@ -897,14 +888,15 @@ function filterExamList() {
     filtered.forEach((exam, index) => {
         const card = document.createElement('div');
         card.className = 'exam-card';
+        const filename = getFilenameFromPath(exam.path);
         card.addEventListener('click', () => {
-            const url = `${window.location.pathname}?exam=${encodeURIComponent(exam.file)}`;
+            const url = `${window.location.pathname}?exam=${encodeURIComponent(exam.path)}&filename=${encodeURIComponent(filename)}`;
             window.open(url, '_blank');
         });
         
         card.innerHTML = `
             <div class="exam-card-header">
-                <div class="exam-card-title">${exam.filename}</div>
+                <div class="exam-card-title">${filename}</div>
             </div>
             <div class="exam-card-info">
                 <span>📁 ${exam.subject}</span>
@@ -915,12 +907,16 @@ function filterExamList() {
     });
 }
 
-async function startExam(filePath) {
+async function startExam(filePath, filename = null) {
     try {
         const response = await fetch(filePath);
         if (!response.ok) throw new Error('无法加载试卷文件');
         
         state.examData = await response.json();
+        // 保存 filename
+        if (filename) {
+            state.examData.filename = filename;
+        }
         initExam();
     } catch (error) {
         alert('加载试卷失败：' + error.message);
@@ -963,18 +959,19 @@ async function loadAllQuestions(subjectFilter = null) {
         }
         
         try {
-            const response = await fetch(exam.file);
+            const response = await fetch(exam.path);
             if (!response.ok) continue;
             
             const data = await response.json();
             if (data.questions && Array.isArray(data.questions)) {
+                const filename = getFilenameFromPath(exam.path);
                 data.questions.forEach(q => {
-                    q.source = exam.filename;
+                    q.source = filename;
                     allQuestions.push(q);
                 });
             }
         } catch (error) {
-            console.error(`加载 ${exam.file} 失败:`, error);
+            console.error(`加载 ${exam.path} 失败:`, error);
         }
     }
     
@@ -1017,9 +1014,10 @@ function filterCustomExamList() {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-checkbox-item';
+        const filename = getFilenameFromPath(exam.path);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="exam-checkbox">
-            <span>${exam.filename}</span>
+            <span>${filename}</span>
         `;
         checkboxGrid.appendChild(item);
     });
@@ -1101,7 +1099,8 @@ async function handleURLParams() {
     // 单个试卷模式
     if (params.has('exam')) {
         const examPath = params.get('exam');
-        await startExam(examPath);
+        const filename = params.get('filename');
+        await startExam(examPath, filename);
         return;
     }
     
@@ -1129,11 +1128,11 @@ async function handleURLParams() {
             }
             
             const subjectText = subject ? subject : '全部科目';
+            const title = `题库练习 - ${subjectText} (${questions.length}题)`;
             state.examData = {
+                filename: title,
                 exam_info: {
-                    title: '题库练习模式',
-                    subject: subjectText,
-                    date: `共 ${questions.length} 题`
+                    title: title
                 },
                 questions: questions
             };
@@ -1158,13 +1157,14 @@ async function handleURLParams() {
             for (const index of selectedIndices) {
                 const exam = EXAM_LIST[index];
                 try {
-                    const response = await fetch(exam.file);
+                    const response = await fetch(exam.path);
                     if (!response.ok) continue;
                     
                     const data = await response.json();
                     if (data.questions && Array.isArray(data.questions)) {
+                        const filename = getFilenameFromPath(exam.path);
                         data.questions.forEach(q => {
-                            q.source = exam.filename;
+                            q.source = filename;
                             allQuestions.push(q);
                         });
                     }
@@ -1231,12 +1231,12 @@ async function handleURLParams() {
             const statsText = Object.entries(typeStats)
                 .map(([type, count]) => `${type}${count}题`)
                 .join('、');
+            const title = `自定义组卷 (${finalQuestions.length}题)`;
             
             state.examData = {
+                filename: title,
                 exam_info: {
-                    title: '自定义组卷',
-                    subject: statsText,
-                    date: `共 ${finalQuestions.length} 题`
+                    title: title
                 },
                 questions: finalQuestions
             };
@@ -1273,8 +1273,6 @@ async function initializeApp() {
     document.getElementById('question-nav').innerHTML = '';
     document.getElementById('answered-count').textContent = '0';
     document.getElementById('total-count').textContent = '0';
-    document.getElementById('progress-fill').style.width = '0%';
-    document.getElementById('progress-text').textContent = '0%';
     
     // 文件上传
     document.getElementById('file-input').addEventListener('change', handleFileUpload);
