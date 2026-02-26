@@ -227,17 +227,27 @@ function startPracticeMode() {
     const questionLimit = document.getElementById('question-limit').value;
     const subject = document.getElementById('practice-subject-filter').value;
     
+    // 获取选中的题型
+    const selectedTypes = Array.from(document.querySelectorAll('.practice-type-checkbox:checked'))
+        .map(cb => cb.value);
+    
+    if (selectedTypes.length === 0) {
+        alert('请至少选择一种题型');
+        return;
+    }
+    
     const params = new URLSearchParams();
     params.set('mode', 'practice');
     params.set('random', randomOrder);
     if (questionLimit) params.set('limit', questionLimit);
     if (subject) params.set('subject', subject);
+    if (selectedTypes.length > 0) params.set('types', selectedTypes.join(','));
     
     const url = `exam.html?${params.toString()}`;
     window.open(url, '_blank');
 }
 
-function initPracticeSubjectFilter() {
+async function initPracticeSubjectFilter() {
     const subjectFilter = document.getElementById('practice-subject-filter');
     const subjects = [...new Set(EXAM_LIST.map(e => e.subject))].sort();
     
@@ -245,6 +255,32 @@ function initPracticeSubjectFilter() {
     subjects.forEach(subject => {
         subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
     });
+    
+    // 加载题型选择
+    await loadPracticeQuestionTypes();
+}
+
+async function loadPracticeQuestionTypes() {
+    try {
+        const response = await fetch(EXAM_LIST[0].path);
+        const data = await response.json();
+        
+        const types = [...new Set(data.questions.map(q => q.question_type))];
+        const typeFilters = document.getElementById('practice-type-filters');
+        
+        typeFilters.innerHTML = '';
+        types.forEach(type => {
+            const item = document.createElement('label');
+            item.className = 'config-label';
+            item.innerHTML = `
+                <input type="checkbox" value="${type}" class="practice-type-checkbox" checked>
+                <span>${type}</span>
+            `;
+            typeFilters.appendChild(item);
+        });
+    } catch (error) {
+        console.error('加载题型失败:', error);
+    }
 }
 
 // ==================== 自定义组卷 ====================
@@ -511,6 +547,20 @@ async function initializeApp() {
     const btnStartPractice = document.getElementById('btn-start-practice');
     if (btnStartPractice) {
         btnStartPractice.addEventListener('click', startPracticeMode);
+    }
+    
+    // 练习模式题型全选/全不选
+    const btnSelectAllTypes = document.getElementById('btn-select-all-types');
+    const btnSelectNoneTypes = document.getElementById('btn-select-none-types');
+    if (btnSelectAllTypes) {
+        btnSelectAllTypes.addEventListener('click', () => {
+            document.querySelectorAll('.practice-type-checkbox').forEach(cb => cb.checked = true);
+        });
+    }
+    if (btnSelectNoneTypes) {
+        btnSelectNoneTypes.addEventListener('click', () => {
+            document.querySelectorAll('.practice-type-checkbox').forEach(cb => cb.checked = false);
+        });
     }
     
     // 自定义组卷按钮

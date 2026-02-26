@@ -439,9 +439,15 @@ async function handleURLParams() {
         const randomOrder = params.get('random') === 'true';
         const limit = params.get('limit');
         const subject = params.get('subject');
+        const types = params.get('types') ? params.get('types').split(',') : null;
         
         try {
-            const allQuestions = await loadAllQuestions(subject);
+            let allQuestions = await loadAllQuestions(subject);
+            
+            // 按题型筛选
+            if (types && types.length > 0) {
+                allQuestions = allQuestions.filter(q => types.includes(q.question_type));
+            }
             
             if (allQuestions.length === 0) {
                 showLoadError('没有可用的题目');
@@ -458,7 +464,8 @@ async function handleURLParams() {
             }
             
             const subjectText = subject ? subject : '全部科目';
-            const title = `题库练习 - ${subjectText} (${questions.length}题)`;
+            const typeText = types && types.length > 0 ? ` - ${types.join('、')}` : '';
+            const title = `题库练习 - ${subjectText}${typeText} (${questions.length}题)`;
             state.examData = {
                 filename: title,
                 exam_info: {
