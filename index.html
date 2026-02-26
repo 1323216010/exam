@@ -89,17 +89,55 @@
 
             <!-- 试卷列表 -->
             <div class="exam-list-container hidden" id="exam-list-container">
-                <button class="btn-back" id="btn-back-exam-list">← 返回</button>
-                <div class="exam-list-header">
-                    <h2>📝 选择试卷进行模拟考试</h2>
-                    <div class="exam-list-info">共 <span id="exam-count">0</span> 套试卷</div>
+                <div class="page-title-section">
+                    <button class="btn-back" id="btn-back-exam-list">← 返回</button>
+                    <h1>📝 选择试卷进行模拟考试 <span class="title-count">共 <span id="exam-count">0</span> 套试卷</span></h1>
                 </div>
-                <div class="exam-list-filters">
-                    <select id="subject-filter">
-                        <option value="">全部科目</option>
-                    </select>
+                
+                <div class="exam-list-toolbar">
+                    <div class="exam-list-filters">
+                        <div class="filter-item">
+                            <label>🔍 搜索</label>
+                            <input type="text" id="exam-search" placeholder="搜索试卷名称...">
+                        </div>
+                        <div class="filter-item">
+                            <label>📚 科目</label>
+                            <select id="subject-filter">
+                                <option value="">全部科目</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>📊 排序</label>
+                            <select id="sort-filter">
+                                <option value="name-asc">名称 A-Z</option>
+                                <option value="name-desc">名称 Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="view-switcher">
+                        <button class="view-btn active" data-view="grid" title="网格视图">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </button>
+                        <button class="view-btn" data-view="list" title="列表视图">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="exam-list-grid" id="exam-list-grid">
+                
+                <div class="exam-list-grid view-grid" id="exam-list-grid">
                     <!-- 试卷卡片动态生成 -->
                 </div>
             </div>

@@ -860,6 +860,8 @@ function renderExamList() {
     const grid = document.getElementById('exam-list-grid');
     const examCount = document.getElementById('exam-count');
     const subjectFilter = document.getElementById('subject-filter');
+    const searchInput = document.getElementById('exam-search');
+    const sortFilter = document.getElementById('sort-filter');
     
     examCount.textContent = EXAM_LIST.length;
     
@@ -870,25 +872,72 @@ function renderExamList() {
         subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
     });
     
+    // 绑定筛选事件
+    subjectFilter.addEventListener('change', filterExamList);
+    sortFilter.addEventListener('change', filterExamList);
+    searchInput.addEventListener('input', filterExamList);
+    
+    // 绑定视图切换
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const view = btn.dataset.view;
+            grid.classList.remove('view-grid', 'view-list');
+            grid.classList.add(`view-${view}`);
+        });
+    });
+    
     filterExamList();
 }
 
 function filterExamList() {
     const grid = document.getElementById('exam-list-grid');
     const subjectFilter = document.getElementById('subject-filter').value;
+    const searchInput = document.getElementById('exam-search').value.toLowerCase();
+    const sortFilter = document.getElementById('sort-filter').value;
     
     let filtered = EXAM_LIST;
     
+    // 科目筛选
     if (subjectFilter) {
         filtered = filtered.filter(e => e.subject === subjectFilter);
     }
     
+    // 搜索筛选
+    if (searchInput) {
+        filtered = filtered.filter(e => {
+            const filename = getFilenameFromPath(e.path).toLowerCase();
+            return filename.includes(searchInput);
+        });
+    }
+    
+    // 排序
+    filtered.sort((a, b) => {
+        const nameA = getFilenameFromPath(a.path);
+        const nameB = getFilenameFromPath(b.path);
+        
+        if (sortFilter === 'name-asc') {
+            return nameA.localeCompare(nameB);
+        } else if (sortFilter === 'name-desc') {
+            return nameB.localeCompare(nameA);
+        }
+        return 0;
+    });
+    
     grid.innerHTML = '';
+    
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #9CA3AF; font-size: 16px;">🔍 没有找到符合条件的试卷</div>';
+        return;
+    }
     
     filtered.forEach((exam, index) => {
         const card = document.createElement('div');
         card.className = 'exam-card';
         const filename = getFilenameFromPath(exam.path);
+        
         card.addEventListener('click', () => {
             const url = `${window.location.pathname}?exam=${encodeURIComponent(exam.path)}&filename=${encodeURIComponent(filename)}`;
             window.open(url, '_blank');
@@ -897,14 +946,93 @@ function filterExamList() {
         card.innerHTML = `
             <div class="exam-card-header">
                 <div class="exam-card-title">${filename}</div>
+                <div class="exam-card-meta" data-exam-info>
+                    <!-- exam_info 字段将在这里动态生成 -->
+                </div>
             </div>
-            <div class="exam-card-info">
-                <span>📁 ${exam.subject}</span>
+            <div class="exam-card-footer">
+                <div class="exam-card-question-count" data-question-count>
+                    <span class="count-icon">📝</span>
+                    <span class="count-text">题目加载中...</span>
+                </div>
             </div>
         `;
         
         grid.appendChild(card);
+        
+        // 异步加载试卷详情
+        loadExamDetails(exam.path, card);
     });
+}
+
+// 异步加载试卷详情
+async function loadExamDetails(path, card) {
+    try {
+        const response = await fetch(path);
+        if (!response.ok) return;
+        
+        const data = await response.json();
+        const questionCount = data.questions ? data.questions.length : 0;
+        
+        // 更新题目数量
+        const countElement = card.querySelector('[data-question-count] .count-text');
+        if (countElement) {
+            countElement.textContent = `共 ${questionCount} 题`;
+        }
+        
+        // 动态生成 exam_info 标签
+        if (data.exam_info && typeof data.exam_info === 'object') {
+            const metaContainer = card.querySelector('[data-exam-info]');
+            if (metaContainer) {
+                metaContainer.innerHTML = '';
+                
+                // 预定义常见字段的样式（可选，用于美化显示）
+                const fieldStyles = {
+                    'code': { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
+                    'date': { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
+                    'subject': { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
+                    'title': { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
+                };
+                
+                // 默认样式（用于未预定义的字段）
+                const defaultStyle = { 
+                    bg: 'linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%)', 
+                    color: '#4B5563' 
+                };
+                
+                // 颜色数组，用于为不同字段分配不同颜色
+                const colorSchemes = [
+                    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
+                    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
+                    { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
+                    { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
+                    { bg: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)', color: '#7C3AED' },
+                ];
+                
+                // 遍历所有字段并生成标签
+                let colorIndex = 0;
+                Object.entries(data.exam_info).forEach(([key, value]) => {
+                    // 跳过空值
+                    if (value == null || value === '') return;
+                    
+                    // 获取样式（优先使用预定义，否则循环使用颜色数组）
+                    const style = fieldStyles[key] || colorSchemes[colorIndex % colorSchemes.length];
+                    if (!fieldStyles[key]) colorIndex++;
+                    
+                    const badge = document.createElement('span');
+                    badge.className = 'exam-info-badge';
+                    badge.style.background = style.bg;
+                    badge.style.color = style.color;
+                    badge.textContent = value;
+                    
+                    metaContainer.appendChild(badge);
+                });
+            }
+        }
+    } catch (error) {
+        // 加载失败静默处理
+        console.error('Failed to load exam details:', error);
+    }
 }
 
 async function startExam(filePath, filename = null) {
