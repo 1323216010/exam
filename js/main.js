@@ -700,20 +700,27 @@ function showAiTypingIndicator() {
     typingDiv.appendChild(contentDiv);
     messagesContainer.appendChild(typingDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    return contentDiv;
 }
 
 function hideAiTypingIndicator() {
     const indicator = document.getElementById('aiTypingIndicator');
-    if (indicator) indicator.remove();
+    if (!indicator) return;
+    
+    if (indicator.querySelector('.typing-indicator')) {
+        indicator.remove();
+    } else {
+        indicator.removeAttribute('id');
+    }
 }
 
 async function sendAiExplanation(question, questionIndex) {
     const userAnswer = state.userAnswers[questionIndex];
     
-    showAiTypingIndicator();
+    const contentDiv = showAiTypingIndicator();
     
     try {
-        const contentDiv = addAiMessage('assistant', '', true);
         let fullText = '';
         
         await generateAiExplanationStream(question, userAnswer, contentDiv, (text) => {
@@ -773,7 +780,7 @@ async function sendAiChatMessage() {
     sendBtn.disabled = true;
     
     // 显示打字指示器
-    showAiTypingIndicator();
+    const contentDiv = showAiTypingIndicator();
     
     try {
         const apiKey = getApiKey();
@@ -796,7 +803,6 @@ async function sendAiChatMessage() {
             }))
         ];
         
-        const contentDiv = addAiMessage('assistant', '', true);
         let fullText = '';
         let lastRenderTime = 0;
         const RENDER_THROTTLE = 150;
@@ -994,7 +1000,7 @@ async function retryAiMessage(button) {
         const userContent = lastUserMessage.content;
         
         // 显示打字指示器
-        showAiTypingIndicator();
+        const contentDiv = showAiTypingIndicator();
         
         try {
             const apiKey = getApiKey();
@@ -1015,7 +1021,6 @@ async function retryAiMessage(button) {
                 }))
             ];
             
-            const contentDiv = addAiMessage('assistant', '', true);
             let fullText = '';
             let lastRenderTime = 0;
             const RENDER_THROTTLE = 150;
