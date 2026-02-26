@@ -480,7 +480,38 @@ async function generateAiExplanationStream(question, userAnswer, contentEl, onUp
         : '未作答';
     const referenceAnswerText = question.answer || '未提供参考答案';
 
-    const prompt = `请以简洁清晰的方式给出题目解析，包含：\n1) 正确答案结论\n2) 关键思路/依据\n3) 常见误区（如有）\n\n题目：${question.content}\n\n选项：\n${optionsText}\n\n参考答案：${referenceAnswerText}\n\n我的作答：${userAnswerText}`;
+    // 根据题目类型构建不同的 prompt
+    let prompt;
+    if (question.options) {
+        // 选择题
+        prompt = `请以简洁清晰的方式给出题目解析，包含：
+1) 正确答案结论
+2) 关键思路/依据
+3) 常见误区（如有）
+
+题目：${question.content}
+
+选项：
+${optionsText}
+
+参考答案：${referenceAnswerText}
+
+我的作答：${userAnswerText}`;
+    } else {
+        // 主观题
+        prompt = `请以简洁清晰的方式给出题目解析，包含：
+1) 答题要点分析
+2) 关键知识点
+3) 参考答案要点
+
+题目：${question.content}
+
+参考答案：
+${referenceAnswerText}
+
+我的作答：
+${userAnswerText || '未作答'}`;
+    }
 
     const response = await fetch(apiUrl, {
         method: 'POST',
