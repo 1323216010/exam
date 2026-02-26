@@ -1,5 +1,11 @@
 // 工具函数
 
+// 从路径中提取文件名（不含扩展名）
+export function getFilenameFromPath(path) {
+    const filename = path.split('/').pop();
+    return filename.replace('.json', '');
+}
+
 // 数组随机排序（Fisher-Yates 算法）
 export function shuffleArray(array) {
     const result = [...array];

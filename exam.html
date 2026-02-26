@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自测系统 - 答题</title>
+    <!-- Vditor for Markdown rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/index.min.js"></script>
+    <link rel="stylesheet" href="css/common.css?v=20260226">
+    <link rel="stylesheet" href="css/exam.css?v=20260226">
+    <link rel="stylesheet" href="css/ai-chat.css?v=20260226">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar hidden" id="sidebar">
+            <div class="sidebar-header">
+                <h2 id="exam-header-title">自测系统</h2>
+                <div class="exam-name" id="exam-header-name"></div>
+            </div>
+
+            <div class="question-nav" id="question-nav">
+                <!-- 题目导航将在这里动态生成 -->
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="progress-info">
+                    <span>已答 <strong id="answered-count">0</strong> / <span id="total-count">0</span></span>
+                    <span id="time-display">00:00</span>
+                </div>
+                <button class="btn btn-submit" id="submit-btn">提交答卷</button>
+                <button class="btn btn-secondary" id="restart-btn" style="display: none;">重新开始</button>
+                <button class="btn btn-text" id="clear-ai-chats-btn" title="清空所有题目的 AI 聊天记录">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    清空聊天记录
+                </button>
+                <button class="btn btn-text" id="exam-settings-btn" title="系统设置">⚙️ 设置</button>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 移动端汉堡菜单按钮 -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- 加载提示 -->
+            <div id="exam-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: #6B7280; gap: 16px; font-size: 16px;">
+                <div style="font-size: 48px;">📝</div>
+                <div>正在加载试题...</div>
+            </div>
+
+            <!-- 答题布局：包含答题界面和 AI 面板 -->
+            <div class="exam-layout hidden" id="exam-layout">
+                <!-- 答题界面 -->
+                <div id="exam-interface" class="exam-section">
+                    <div class="question-container" id="question-container">
+                        <!-- 题目内容 -->
+                    </div>
+                </div>
+
+                <!-- AI 聊天侧边栏 -->
+                <aside class="ai-chat-panel collapsed" id="aiChatPanel">
+                    <!-- 拖拽调节宽度的分割条 -->
+                    <div class="layout-resizer" id="layoutResizer" title="拖动调节面板宽度"></div>
+                    
+                    <div class="ai-chat-header">
+                        <div class="ai-chat-title">
+                            <span class="ai-icon">🤖</span>
+                            <h3>AI 解析助手 <span class="ai-subtitle" id="aiSubtitle">· 未选中题目</span></h3>
+                        </div>
+                        <button class="btn-icon" id="closeAiPanel" title="关闭面板">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="ai-chat-messages" id="aiChatMessages">
+                        <!-- 聊天消息将在这里动态生成 -->
+                    </div>
+                    
+                    <div class="ai-chat-input-area">
+                        <div class="ai-input-wrapper">
+                            <textarea 
+                                id="aiChatInput" 
+                                class="ai-chat-input" 
+                                placeholder="继续提问..."
+                                rows="1"></textarea>
+                            <button class="ai-send-btn" id="aiChatSendBtn" disabled>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- 结果页面 -->
+            <div class="result-container" id="result-container">
+                <div class="result-icon">🎉</div>
+                <div class="result-title">答题完成！</div>
+                <div class="result-score" id="result-score">0</div>
+                <div class="result-total">总分 <span id="total-score">0</span> 分</div>
+
+                <!-- 有主观题时的统计 -->
+                <div class="result-stats" id="has-subjective" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-correct">0</div>
+                        <div class="stat-label">客观题答对</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="objective-total">0</span> 题</div>
+                        <div class="stat-label">客观题总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-accuracy">0%</div>
+                        <div class="stat-label">客观题正确率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="subjective-score">0%</div>
+                        <div class="stat-label">主观题平均得分率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="subjective-total">0</span> 题</div>
+                        <div class="stat-label">主观题总数</div>
+                    </div>
+                </div>
+
+                <!-- 没有主观题时的统计 -->
+                <div class="result-stats" id="no-subjective" style="display: none;">
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-correct-2">0</div>
+                        <div class="stat-label">答对题数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value"><span id="objective-total-2">0</span> 题</div>
+                        <div class="stat-label">题目总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="objective-accuracy-2">0%</div>
+                        <div class="stat-label">正确率</div>
+                    </div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="btn btn-submit" id="review-btn">查看详情</button>
+                    <button class="btn btn-secondary" id="restart-result-btn">重新开始</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移动端遮罩层 -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- 设置对话框 -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ 系统设置</h3>
+                <button class="modal-close" id="close-settings">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="api-url-input">API URL</label>
+                    <div class="input-hint">AI 评分服务的完整 API 地址</div>
+                    <input type="text" id="api-url-input" placeholder="https://proxy-hazel-theta-17.vercel.app/qwen/chat/completions">
+                </div>
+                <div class="setting-item">
+                    <label for="api-key-input">API Key</label>
+                    <div class="input-hint">用于 AI 评分主观题（通义千问）</div>
+                    <input type="password" id="api-key-input" placeholder="请输入你的 API Key">
+                </div>
+                <div class="setting-item">
+                    <label for="api-model-input">模型名称</label>
+                    <div class="input-hint">AI 模型名称（如 qwen3.5-plus）</div>
+                    <input type="text" id="api-model-input" placeholder="qwen3.5-plus">
+                </div>
+                <div class="setting-item">
+                    <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试连接</button>
+                    <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-settings">取消</button>
+                <button class="btn btn-submit" id="save-settings">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/exam.js?v=20260226"></script>
+</body>
+</html>
