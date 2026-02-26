@@ -2,7 +2,7 @@
 const API_KEY_STORAGE_KEY = 'exam_system_api_key';
 const API_URL_STORAGE_KEY = 'exam_system_api_url';
 const API_MODEL_STORAGE_KEY = 'exam_system_api_model';
-const DEFAULT_API_URL = 'https://proxy-hazel-theta-17.vercel.app/qwen/chat/completions';
+const DEFAULT_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
 const DEFAULT_API_MODEL = 'qwen3.5-plus';
 
 export function getApiKey() {

@@ -3,9 +3,69 @@ import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
 import { getApiKey, saveApiKey, getApiUrl, saveApiUrl, getApiModel, saveApiModel, DEFAULT_API_URL, DEFAULT_API_MODEL } from './api.js';
 import { shuffleArray, Timer } from './utils.js';
+import { initChatDB, saveChatRecord, loadChatRecord, loadAllChatRecords, clearAllChatRecords } from './aiChatStorage.js';
 
 // 计时器实例
 let timer = null;
+
+// AI 面板宽度调节相关
+let isResizing = false;
+let lastAiPanelWidth = 450;
+
+// Vditor 配置（与 chat_embed 保持一致）
+let vditorRenderToken = 0;
+const vditorOptions = {
+    mode: 'light',
+    cdn: 'https://cdn.jsdelivr.net/npm/vditor@3.10.7',
+    markdown: {
+        toc: false,
+        mark: true,
+        footnotes: true,
+        autoSpace: true
+    },
+    math: {
+        engine: 'KaTeX',
+        inlineDigit: true,
+        macros: {}
+    },
+    theme: {
+        current: 'light',
+        path: 'https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/css/content-theme'
+    },
+    hljs: {
+        style: 'github',
+        enable: true
+    },
+    speech: {
+        enable: false
+    }
+};
+
+function renderMarkdownWithVditor(targetElement, markdownText) {
+    if (!targetElement) return;
+    if (typeof Vditor === 'undefined' || !Vditor.preview) {
+        console.error('Vditor 未加载，降级为纯文本');
+        targetElement.textContent = markdownText || '';
+        return;
+    }
+
+    const normalized = normalizeMathDelimiters(markdownText || '');
+    const renderId = ++vditorRenderToken;
+    Vditor.preview(targetElement, normalized, vditorOptions).then(() => {
+        targetElement.dataset.renderId = String(renderId);
+    }).catch(err => {
+        console.error('Markdown 渲染错误:', err);
+        targetElement.textContent = markdownText || '';
+    });
+}
+
+// 兼容 \[ \] 和 \( \) 公式分隔符，将其转换为 KaTeX/Vditor 更友好的 $$ 与 $
+function normalizeMathDelimiters(text) {
+    if (!text) return text;
+    text = text.replace(/\\\[\s*([\s\S]*?)\s*\\\]/g, (_, expr) => `$$${expr}$$`);
+    text = text.replace(/\\\(\s*([\s\S]*?)\s*\\\)/g, (_, expr) => `$${expr}$`);
+    return text;
+}
 
 // 从路径中提取文件名（不含扩展名）
 function getFilenameFromPath(path) {
@@ -36,12 +96,12 @@ function closeMobileSidebar() {
 
 function updateMobileMenuVisibility() {
     const menuBtn = document.getElementById('mobile-menu-btn');
-    const examInterface = document.getElementById('exam-interface');
+    const examLayout = document.getElementById('exam-layout');
     const resultContainer = document.getElementById('result-container');
     const modeSelection = document.getElementById('mode-selection');
     
     // 只在答题界面或结果页面显示菜单按钮
-    const shouldShow = !examInterface.classList.contains('hidden') || 
+    const shouldShow = !examLayout.classList.contains('hidden') || 
                       resultContainer.classList.contains('show');
     
     if (shouldShow && window.innerWidth <= 768) {
@@ -76,7 +136,7 @@ function handleFileUpload(e) {
 }
 
 // ==================== 考试初始化 ====================
-function initExam() {
+async function initExam() {
     if (!state.examData || !state.examData.questions || state.examData.questions.length === 0) {
         alert('试题文件格式不正确或没有题目');
         return;
@@ -85,9 +145,19 @@ function initExam() {
     // 重置状态
     state.userAnswers = {};
     state.aiGradingDetails = {};
+    state.aiExplainDetails = {};
     state.currentQuestionIndex = 0;
     state.showingResults = false;
     state.startTime = new Date();
+
+    // 从 IndexedDB 加载聊天记录
+    try {
+        const savedChats = await loadAllChatRecords(state.examData);
+        state.aiExplainDetails = savedChats || {};
+    } catch (error) {
+        console.error('加载聊天记录失败:', error);
+        state.aiExplainDetails = {};
+    }
 
     // 隐藏所有页面，只显示答题界面和侧边栏
     document.getElementById('mode-selection').classList.add('hidden');
@@ -96,7 +166,7 @@ function initExam() {
     document.getElementById('practice-config-container').classList.add('hidden');
     document.getElementById('custom-exam-container').classList.add('hidden');
     document.getElementById('result-container').classList.remove('show');
-    document.getElementById('exam-interface').classList.remove('hidden');
+    document.getElementById('exam-layout').classList.remove('hidden');
     document.getElementById('sidebar').classList.remove('hidden');
     document.getElementById('restart-btn').style.display = 'none';
 
@@ -203,6 +273,10 @@ function jumpToQuestion(index) {
 function showQuestion(index) {
     if (!state.examData) return;
 
+    // 检查 AI 聊天面板是否打开
+    const aiPanel = document.getElementById('aiChatPanel');
+    const isPanelOpen = aiPanel && !aiPanel.classList.contains('collapsed');
+
     state.currentQuestionIndex = index;
     const question = state.examData.questions[index];
     const container = document.getElementById('question-container');
@@ -275,6 +349,19 @@ function showQuestion(index) {
         `;
     }
 
+    // AI 解析区域（按需显示）
+    const explainState = state.aiExplainDetails[index];
+    const explainShow = explainState?.show;
+    html += `
+        <div class="ai-explain-section ${explainShow ? 'show' : ''}" id="ai-explain-${index}">
+            <div class="ai-explain-header">
+                <span class="ai-explain-label">🧠 AI 解析</span>
+                <span class="ai-explain-status" id="ai-explain-status-${index}"></span>
+            </div>
+            <div class="ai-explain-content" id="ai-explain-content-${index}"></div>
+        </div>
+    `;
+
     // AI评分详情（仅主观题且已评分时显示）
     if (!question.options && state.aiGradingDetails[index] && state.showingResults) {
         const detail = state.aiGradingDetails[index];
@@ -309,10 +396,16 @@ function showQuestion(index) {
         <div class="navigation-buttons">
             <button class="btn-nav btn-prev" id="btn-prev" 
                 ${index === 0 ? 'disabled' : ''}>← 上一题</button>
-            <button class="btn-show-answer" id="btn-show-answer" 
-                ${!question.answer ? 'style="display:none"' : ''}>
-                ${state.showingResults ? '已显示答案' : '显示答案'}
-            </button>
+            <div class="nav-center-actions">
+                <button class="btn-show-answer" id="btn-show-answer" 
+                    ${!question.answer ? 'style="display:none"' : ''}>
+                    ${state.showingResults ? '已显示答案' : '显示答案'}
+                </button>
+                <button class="btn-ai-explain" id="btn-ai-explain" 
+                    ${!question.answer ? 'style="display:none"' : ''}>
+                    AI 解析
+                </button>
+            </div>
             <button class="btn-nav btn-next" id="btn-next" 
                 ${index === state.examData.questions.length - 1 ? 'disabled' : ''}>下一题 →</button>
         </div>
@@ -358,7 +451,657 @@ function showQuestion(index) {
         }
     });
 
+    document.getElementById('btn-ai-explain')?.addEventListener('click', async function() {
+        openAiChatPanel(question, index);
+    });
+
     updateNavStatus();
+    
+    // 如果 AI 聊天面板是打开状态，自动切换到新题目的聊天记录
+    if (isPanelOpen) {
+        openAiChatPanel(question, index);
+    }
+}
+
+async function generateAiExplanationStream(question, userAnswer, contentEl, onUpdate) {
+    const apiKey = getApiKey();
+    if (!apiKey) {
+        throw new Error('未设置 API Key');
+    }
+
+    const apiUrl = getApiUrl();
+    const apiModel = getApiModel();
+
+    const optionsText = question.options
+        ? Object.entries(question.options).map(([k, v]) => `${k}. ${v}`).join('\n')
+        : '';
+    const userAnswerText = userAnswer
+        ? (Array.isArray(userAnswer) ? userAnswer.join(', ') : userAnswer)
+        : '未作答';
+    const referenceAnswerText = question.answer || '未提供参考答案';
+
+    const prompt = `请以简洁清晰的方式给出题目解析，包含：\n1) 正确答案结论\n2) 关键思路/依据\n3) 常见误区（如有）\n\n题目：${question.content}\n\n选项：\n${optionsText}\n\n参考答案：${referenceAnswerText}\n\n我的作答：${userAnswerText}`;
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+            model: apiModel,
+            messages: [
+                {
+                    role: 'system',
+                    content: '你是专业的考试解析老师，输出清晰、简洁的解析，可以使用 Markdown 格式化输出。'
+                },
+                {
+                    role: 'user',
+                    content: prompt
+                }
+            ],
+            temperature: 0.3,
+            max_tokens: 800,
+            stream: true
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API 返回错误: ${response.status} ${response.statusText}${errorText ? ` - ${errorText}` : ''}`);
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let fullText = '';
+    let lastRenderTime = 0;
+    const RENDER_THROTTLE = 150; // 限制渲染频率为每150ms一次
+
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n').filter(line => line.trim().startsWith('data:'));
+
+        for (const line of lines) {
+            const data = line.replace(/^data:\s*/, '').trim();
+            if (data === '[DONE]') continue;
+            if (!data) continue;
+
+            try {
+                const parsed = JSON.parse(data);
+                const content = parsed?.choices?.[0]?.delta?.content;
+                if (content) {
+                    fullText += content;
+                    
+                    // 节流渲染：只在距离上次渲染超过150ms时才更新
+                    const now = Date.now();
+                    if (now - lastRenderTime > RENDER_THROTTLE) {
+                        try {
+                            renderMarkdownWithVditor(contentEl, fullText);
+                        } catch (renderError) {
+                            console.error('渲染错误:', renderError);
+                            contentEl.textContent = fullText;
+                        }
+                        lastRenderTime = now;
+                        
+                        // 自动滚动到解析区域
+                        contentEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                    
+                    if (onUpdate) onUpdate(fullText);
+                }
+            } catch (e) {
+                console.warn('解析流式数据失败:', e, data);
+            }
+        }
+    }
+
+    // 最终渲染完整的 Markdown
+    try {
+        renderMarkdownWithVditor(contentEl, fullText);
+    } catch (renderError) {
+        console.error('最终渲染错误:', renderError);
+        contentEl.textContent = fullText;
+    }
+
+    if (!fullText) {
+        throw new Error('API 未返回任何内容');
+    }
+
+    return fullText.trim();
+}
+
+// ==================== AI 聊天侧边栏 ====================
+let currentAiQuestion = null;
+let currentAiQuestionIndex = null;
+
+function openAiChatPanel(question, questionIndex) {
+    const panel = document.getElementById('aiChatPanel');
+    const subtitle = document.getElementById('aiSubtitle');
+    const messagesContainer = document.getElementById('aiChatMessages');
+    
+    currentAiQuestion = question;
+    currentAiQuestionIndex = questionIndex;
+    
+    // 更新副标题
+    subtitle.textContent = `第 ${questionIndex + 1} 题 - ${question.question_type}`;
+    
+    // 清空聊天框内容
+    messagesContainer.innerHTML = `
+        <div class="ai-welcome">
+            <div class="welcome-icon">💡</div>
+            <h3>智能解析就绪</h3>
+            <p>正在加载解析...</p>
+        </div>
+    `;
+    
+    // 打开面板
+    panel.classList.remove('collapsed');
+    
+    // 如果是新题目或者没有缓存，自动发起解析
+    const existing = state.aiExplainDetails[questionIndex];
+    if (!existing?.content) {
+        setTimeout(() => {
+            sendAiExplanation(question, questionIndex);
+        }, 300);
+    } else {
+        // 显示缓存的对话历史
+        displayCachedConversation(questionIndex);
+    }
+}
+
+function displayCachedConversation(questionIndex) {
+    const messagesContainer = document.getElementById('aiChatMessages');
+    const existing = state.aiExplainDetails[questionIndex];
+    
+    if (!existing?.messages) return;
+    
+    messagesContainer.innerHTML = '';
+    existing.messages.forEach(msg => {
+        addAiMessage(msg.role, msg.content, msg.role === 'assistant');
+    });
+    
+    // 启用输入框
+    document.getElementById('aiChatSendBtn').disabled = false;
+}
+
+function addAiMessage(role, content, isMarkdown = false) {
+    const messagesContainer = document.getElementById('aiChatMessages');
+    
+    // 移除欢迎界面
+    const welcome = messagesContainer.querySelector('.ai-welcome');
+    if (welcome) welcome.remove();
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${role}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'ai-message-content';
+    
+    if (role === 'assistant' && isMarkdown) {
+        renderMarkdownWithVditor(contentDiv, content);
+    } else {
+        contentDiv.textContent = content;
+    }
+    
+    messageDiv.appendChild(contentDiv);
+    
+    // 为 AI 回复添加操作按钮（复制和重新生成）
+    if (role === 'assistant' && content) {
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'ai-message-actions';
+        actionsDiv.innerHTML = `
+            <button class="ai-action-btn ai-copy-btn" title="复制回复">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+            </button>
+            <button class="ai-action-btn ai-retry-btn" title="重新生成">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+            </button>
+        `;
+        messageDiv.appendChild(actionsDiv);
+        
+        // 存储原始内容用于复制
+        messageDiv.dataset.content = content;
+    }
+    
+    messagesContainer.appendChild(messageDiv);
+    
+    // 滚动到底部
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    return contentDiv;
+}
+
+function showAiTypingIndicator() {
+    const messagesContainer = document.getElementById('aiChatMessages');
+    
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'ai-message assistant';
+    typingDiv.id = 'aiTypingIndicator';
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'ai-message-content';
+    contentDiv.innerHTML = `
+        <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+    `;
+    
+    typingDiv.appendChild(contentDiv);
+    messagesContainer.appendChild(typingDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function hideAiTypingIndicator() {
+    const indicator = document.getElementById('aiTypingIndicator');
+    if (indicator) indicator.remove();
+}
+
+async function sendAiExplanation(question, questionIndex) {
+    const userAnswer = state.userAnswers[questionIndex];
+    
+    showAiTypingIndicator();
+    
+    try {
+        const contentDiv = addAiMessage('assistant', '', true);
+        let fullText = '';
+        
+        await generateAiExplanationStream(question, userAnswer, contentDiv, (text) => {
+            fullText = text;
+        });
+        
+        hideAiTypingIndicator();
+        
+        // 保存到缓存
+        if (!state.aiExplainDetails[questionIndex]) {
+            state.aiExplainDetails[questionIndex] = { messages: [] };
+        }
+        state.aiExplainDetails[questionIndex].content = fullText;
+        state.aiExplainDetails[questionIndex].messages = [
+            { role: 'assistant', content: fullText }
+        ];
+        
+        // 保存到 IndexedDB
+        try {
+            await saveChatRecord(state.examData, questionIndex, 
+                state.aiExplainDetails[questionIndex].messages, fullText);
+        } catch (error) {
+            console.error('保存聊天记录失败:', error);
+        }
+        
+        // 启用输入框
+        document.getElementById('aiChatSendBtn').disabled = false;
+        
+    } catch (error) {
+        hideAiTypingIndicator();
+        addAiMessage('assistant', `解析失败：${error.message}`, false);
+    }
+}
+
+async function sendAiChatMessage() {
+    const input = document.getElementById('aiChatInput');
+    const sendBtn = document.getElementById('aiChatSendBtn');
+    const userMessage = input.value.trim();
+    
+    if (!userMessage || !currentAiQuestion) return;
+    
+    // 添加用户消息
+    addAiMessage('user', userMessage, false);
+    
+    // 保存用户消息到缓存
+    if (!state.aiExplainDetails[currentAiQuestionIndex].messages) {
+        state.aiExplainDetails[currentAiQuestionIndex].messages = [];
+    }
+    state.aiExplainDetails[currentAiQuestionIndex].messages.push({
+        role: 'user',
+        content: userMessage
+    });
+    
+    // 清空输入框
+    input.value = '';
+    input.style.height = 'auto';
+    sendBtn.disabled = true;
+    
+    // 显示打字指示器
+    showAiTypingIndicator();
+    
+    try {
+        const apiKey = getApiKey();
+        if (!apiKey) {
+            throw new Error('未设置 API Key');
+        }
+        
+        const apiUrl = getApiUrl();
+        const apiModel = getApiModel();
+        
+        // 构建对话历史
+        const messages = [
+            {
+                role: 'system',
+                content: '你是专业的考试解析老师，可以回答关于题目的各种问题，使用 Markdown 格式化输出。'
+            },
+            ...state.aiExplainDetails[currentAiQuestionIndex].messages.map(m => ({
+                role: m.role,
+                content: m.content
+            }))
+        ];
+        
+        const contentDiv = addAiMessage('assistant', '', true);
+        let fullText = '';
+        let lastRenderTime = 0;
+        const RENDER_THROTTLE = 150;
+        
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: apiModel,
+                messages: messages,
+                temperature: 0.3,
+                max_tokens: 800,
+                stream: true
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`API 返回错误: ${response.status}`);
+        }
+        
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split('\n').filter(line => line.trim().startsWith('data:'));
+            
+            for (const line of lines) {
+                const data = line.replace(/^data:\s*/, '').trim();
+                if (data === '[DONE]') continue;
+                if (!data) continue;
+                
+                try {
+                    const parsed = JSON.parse(data);
+                    const content = parsed?.choices?.[0]?.delta?.content;
+                    if (content) {
+                        fullText += content;
+                        
+                        const now = Date.now();
+                        if (now - lastRenderTime > RENDER_THROTTLE) {
+                            try {
+                                renderMarkdownWithVditor(contentDiv, fullText);
+                            } catch (renderError) {
+                                contentDiv.textContent = fullText;
+                            }
+                            lastRenderTime = now;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('解析流式数据失败:', e);
+                }
+            }
+        }
+        
+        // 最终渲染
+        try {
+            renderMarkdownWithVditor(contentDiv, fullText);
+        } catch (renderError) {
+            contentDiv.textContent = fullText;
+        }
+        
+        hideAiTypingIndicator();
+        
+        // 保存 AI 回复到缓存
+        state.aiExplainDetails[currentAiQuestionIndex].messages.push({
+            role: 'assistant',
+            content: fullText
+        });
+        
+        // 保存到 IndexedDB
+        try {
+            await saveChatRecord(state.examData, currentAiQuestionIndex, 
+                state.aiExplainDetails[currentAiQuestionIndex].messages, fullText);
+        } catch (error) {
+            console.error('保存聊天记录失败:', error);
+        }
+        
+    } catch (error) {
+        hideAiTypingIndicator();
+        addAiMessage('assistant', `发送失败：${error.message}`, false);
+    } finally {
+        sendBtn.disabled = false;
+    }
+}
+
+// ==================== AI 消息操作：复制和重新生成 ====================
+
+// 复制消息内容到剪贴板
+function copyAiMessage(button) {
+    const messageDiv = button.closest('.ai-message');
+    const content = messageDiv.dataset.content;
+    
+    if (!content) {
+        alert('没有可复制的内容');
+        return;
+    }
+    
+    copyToClipboard(content).then(() => {
+        const svg = button.querySelector('svg');
+        const originalSvg = svg.outerHTML;
+        
+        // 替换为勾选图标
+        svg.outerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        button.classList.add('success');
+        button.title = '已复制';
+        
+        setTimeout(() => {
+            const btn = button;
+            if (btn && btn.querySelector) {
+                const currentSvg = btn.querySelector('svg');
+                if (currentSvg) currentSvg.outerHTML = originalSvg;
+                btn.classList.remove('success');
+                btn.title = '复制回复';
+            }
+        }, 2000);
+    }).catch(err => {
+        alert('复制失败: ' + err.message);
+    });
+}
+
+// 兼容性剪贴板复制函数
+function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+    }
+    
+    return new Promise((resolve, reject) => {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.opacity = '0';
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            if (successful) {
+                resolve();
+            } else {
+                reject(new Error('复制失败'));
+            }
+        } catch (err) {
+            document.body.removeChild(textArea);
+            reject(err);
+        }
+    });
+}
+
+// 重新生成 AI 回复
+async function retryAiMessage(button) {
+    const messageDiv = button.closest('.ai-message');
+    const messagesContainer = document.getElementById('aiChatMessages');
+    const messages = Array.from(messagesContainer.querySelectorAll('.ai-message'));
+    const messageIndex = messages.indexOf(messageDiv);
+    
+    if (messageIndex === 0) {
+        alert('找不到对应的用户消息');
+        return;
+    }
+    
+    // 找到对应的用户消息
+    const userMessageDiv = messages[messageIndex - 1];
+    if (!userMessageDiv || !userMessageDiv.classList.contains('user')) {
+        alert('找不到对应的用户消息');
+        return;
+    }
+    
+    // 删除这条 AI 消息及之后的所有消息
+    for (let i = messages.length - 1; i >= messageIndex; i--) {
+        messages[i].remove();
+    }
+    
+    // 从缓存中删除对应的 AI 回复及后续消息
+    const messagesInCache = state.aiExplainDetails[currentAiQuestionIndex]?.messages || [];
+    const cacheIndexToRemove = messageIndex - 1; // -1 因为第一条是初始解析
+    if (cacheIndexToRemove >= 0 && cacheIndexToRemove < messagesInCache.length) {
+        messagesInCache.splice(cacheIndexToRemove, messagesInCache.length - cacheIndexToRemove);
+    }
+    
+    // 获取最后一条用户消息
+    const lastUserMessage = messagesInCache[messagesInCache.length - 1];
+    if (lastUserMessage && lastUserMessage.role === 'user') {
+        // 重新发送消息
+        const userContent = lastUserMessage.content;
+        
+        // 显示打字指示器
+        showAiTypingIndicator();
+        
+        try {
+            const apiKey = getApiKey();
+            if (!apiKey) throw new Error('未设置 API Key');
+            
+            const apiUrl = getApiUrl();
+            const apiModel = getApiModel();
+            
+            // 构建对话历史
+            const chatMessages = [
+                {
+                    role: 'system',
+                    content: '你是专业的考试解析老师，可以回答关于题目的各种问题，使用 Markdown 格式化输出。'
+                },
+                ...messagesInCache.map(m => ({
+                    role: m.role,
+                    content: m.content
+                }))
+            ];
+            
+            const contentDiv = addAiMessage('assistant', '', true);
+            let fullText = '';
+            let lastRenderTime = 0;
+            const RENDER_THROTTLE = 150;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: apiModel,
+                    messages: chatMessages,
+                    temperature: 0.3,
+                    max_tokens: 800,
+                    stream: true
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API 返回错误: ${response.status}`);
+            }
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n').filter(line => line.trim().startsWith('data:'));
+                
+                for (const line of lines) {
+                    const data = line.replace(/^data:\s*/, '').trim();
+                    if (data === '[DONE]') continue;
+                    if (!data) continue;
+                    
+                    try {
+                        const parsed = JSON.parse(data);
+                        const content = parsed?.choices?.[0]?.delta?.content;
+                        if (content) {
+                            fullText += content;
+                            
+                            const now = Date.now();
+                            if (now - lastRenderTime > RENDER_THROTTLE) {
+                                try {
+                                    renderMarkdownWithVditor(contentDiv, fullText);
+                                } catch (renderError) {
+                                    contentDiv.textContent = fullText;
+                                }
+                                lastRenderTime = now;
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('解析流式数据失败:', e);
+                    }
+                }
+            }
+            
+            // 最终渲染
+            try {
+                renderMarkdownWithVditor(contentDiv, fullText);
+            } catch (renderError) {
+                contentDiv.textContent = fullText;
+            }
+            
+            hideAiTypingIndicator();
+            
+            // 保存新的 AI 回复
+            messagesInCache.push({
+                role: 'assistant',
+                content: fullText
+            });
+            
+            // 保存到 IndexedDB
+            await saveChatRecord(state.examData, currentAiQuestionIndex, 
+                messagesInCache, fullText);
+                
+        } catch (error) {
+            hideAiTypingIndicator();
+            addAiMessage('assistant', `重新生成失败：${error.message}`, false);
+        }
+    } else {
+        alert('无法找到用户消息内容');
+    }
 }
 
 function selectOption(questionIndex, option, isMultiple) {
@@ -551,7 +1294,7 @@ async function calculateResults() {
         document.getElementById('no-subjective').style.display = 'grid';
     }
 
-    document.getElementById('exam-interface').classList.add('hidden');
+    document.getElementById('exam-layout').classList.add('hidden');
     document.getElementById('result-container').classList.add('show');
 
     // 更新移动端菜单显示
@@ -665,7 +1408,7 @@ async function gradeSubjectiveQuestion(questionContent, referenceAnswer, userAns
 function handleReview() {
     state.showingResults = true;
     document.getElementById('result-container').classList.remove('show');
-    document.getElementById('exam-interface').classList.remove('hidden');
+    document.getElementById('exam-layout').classList.remove('hidden');
     document.getElementById('restart-btn').style.display = 'inline-block';
     document.getElementById('submit-btn').style.display = 'none';
     showQuestion(0);
@@ -834,7 +1577,7 @@ function backToModeSelection() {
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
     document.getElementById('custom-exam-container').classList.add('hidden');
-    document.getElementById('exam-interface').classList.add('hidden');
+    document.getElementById('exam-layout').classList.add('hidden');
     document.getElementById('result-container').classList.remove('show');
     document.getElementById('sidebar').classList.add('hidden');
     
@@ -1394,7 +2137,7 @@ async function initializeApp() {
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
     document.getElementById('custom-exam-container').classList.add('hidden');
-    document.getElementById('exam-interface').classList.add('hidden');
+    document.getElementById('exam-layout').classList.add('hidden');
     document.getElementById('result-container').classList.remove('show');
     
     // 初始化侧边栏
@@ -1474,13 +2217,156 @@ async function initializeApp() {
     if (btnSelectNone) btnSelectNone.addEventListener('click', selectNoneExams);
     if (btnStartCustom) btnStartCustom.addEventListener('click', startCustomExam);
     
+    // AI 聊天面板控制
+    document.getElementById('closeAiPanel')?.addEventListener('click', () => {
+        document.getElementById('aiChatPanel').classList.add('collapsed');
+    });
+    
+    // AI 消息操作按钮事件委托
+    document.getElementById('aiChatMessages')?.addEventListener('click', (e) => {
+        const copyBtn = e.target.closest('.ai-copy-btn');
+        const retryBtn = e.target.closest('.ai-retry-btn');
+        
+        if (copyBtn) {
+            copyAiMessage(copyBtn);
+        } else if (retryBtn) {
+            retryAiMessage(retryBtn);
+        }
+    });
+    
+    // AI 面板宽度调节
+    const layoutResizer = document.querySelector('.layout-resizer');
+    const aiPanel = document.getElementById('aiChatPanel');
+    
+    if (layoutResizer && aiPanel) {
+        // 从 localStorage 加载保存的宽度
+        const savedWidth = localStorage.getItem('aiPanelWidth');
+        if (savedWidth) {
+            lastAiPanelWidth = parseInt(savedWidth);
+            document.documentElement.style.setProperty('--ai-panel-width', `${lastAiPanelWidth}px`);
+        }
+        
+        layoutResizer.addEventListener('mousedown', (e) => {
+            // 如果面板是折叠的，不允许拖拽
+            if (aiPanel.classList.contains('collapsed')) return;
+            
+            isResizing = true;
+            document.body.classList.add('resizing');
+            document.body.style.cursor = 'ew-resize';
+            document.body.style.userSelect = 'none';
+            aiPanel.classList.add('resizing');
+            
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+            
+            // 计算新的宽度（从右边界往左计算）
+            const containerWidth = document.documentElement.clientWidth;
+            const newWidth = containerWidth - e.clientX;
+            
+            // 限制宽度范围: 300px 至 containerWidth - 400px（确保左侧至少有 400px）
+            const minWidth = 300;
+            const maxWidth = Math.max(containerWidth - 400, minWidth);
+            const clampedWidth = Math.min(Math.max(newWidth, minWidth), maxWidth);
+            
+            lastAiPanelWidth = clampedWidth;
+            document.documentElement.style.setProperty('--ai-panel-width', `${clampedWidth}px`);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (isResizing) {
+                isResizing = false;
+                document.body.classList.remove('resizing');
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+                aiPanel.classList.remove('resizing');
+                
+                // 保存宽度到 localStorage
+                localStorage.setItem('aiPanelWidth', lastAiPanelWidth);
+            }
+        });
+    }
+    
+    // AI 聊天输入框
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatSendBtn = document.getElementById('aiChatSendBtn');
+    
+    if (aiChatInput) {
+        aiChatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+            aiChatSendBtn.disabled = !this.value.trim();
+        });
+        
+        aiChatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (this.value.trim()) {
+                    sendAiChatMessage();
+                }
+            }
+        });
+    }
+    
+    if (aiChatSendBtn) {
+        aiChatSendBtn.addEventListener('click', sendAiChatMessage);
+    }
+    
+    // 清空 AI 聊天记录
+    const clearAiChatsBtn = document.getElementById('clear-ai-chats-btn');
+    if (clearAiChatsBtn) {
+        clearAiChatsBtn.addEventListener('click', async () => {
+            if (!state.examData) {
+                alert('请先加载试卷');
+                return;
+            }
+            
+            const confirmed = confirm('确定要清空当前试卷的所有 AI 聊天记录吗？此操作不可恢复。');
+            if (!confirmed) return;
+            
+            try {
+                // 清空 IndexedDB
+                const deletedCount = await clearAllChatRecords(state.examData);
+                
+                // 清空内存中的记录
+                state.aiExplainDetails = {};
+                
+                // 如果 AI 面板打开，关闭它并清空消息
+                const aiPanel = document.getElementById('aiChatPanel');
+                if (aiPanel && !aiPanel.classList.contains('collapsed')) {
+                    aiPanel.classList.add('collapsed');
+                }
+                document.getElementById('aiChatMessages').innerHTML = `
+                    <div class="ai-welcome">
+                        <div class="welcome-icon">💡</div>
+                        <h3>智能解析就绪</h3>
+                        <p>点击题目下方的"AI 解析"按钮开始分析</p>
+                    </div>
+                `;
+                
+                alert(`成功清空 ${deletedCount} 条聊天记录`);
+            } catch (error) {
+                console.error('清空聊天记录失败:', error);
+                alert('清空失败：' + error.message);
+            }
+        });
+    }
+    
     // 检查URL参数
     handleURLParams();
 }
 
 // 页面加载完成后初始化
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => initializeApp());
+    document.addEventListener('DOMContentLoaded', async () => {
+        await initChatDB().catch(err => console.error('IndexedDB 初始化失败:', err));
+        initializeApp();
+    });
 } else {
-    initializeApp();
+    (async () => {
+        await initChatDB().catch(err => console.error('IndexedDB 初始化失败:', err));
+        initializeApp();
+    })();
 }

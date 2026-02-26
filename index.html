@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自测系统</title>
+    <!-- Vditor for Markdown rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/index.min.js"></script>
     <link rel="stylesheet" href="css/common.css?v=20260223e1">
     <link rel="stylesheet" href="css/pages.css?v=20260223e1">
     <link rel="stylesheet" href="css/exam.css?v=20260223e1">
+    <link rel="stylesheet" href="css/ai-chat.css?v=20260223e1">
 </head>
 <body>
     <div class="app-container">
@@ -28,7 +32,13 @@
                 </div>
                 <button class="btn btn-submit" id="submit-btn">提交答卷</button>
                 <button class="btn btn-secondary" id="restart-btn" style="display: none;">重新开始</button>
-                <button class="btn btn-secondary" id="settings-btn" style="margin-top: 10px;">⚙️ 设置</button>
+                <button class="btn btn-text" id="clear-ai-chats-btn" title="清空所有题目的 AI 聊天记录">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    清空聊天记录
+                </button>
             </div>
         </div>
 
@@ -43,6 +53,7 @@
             
             <!-- 模式选择 -->
             <div class="mode-selection" id="mode-selection">
+                <button class="settings-btn-home" id="settings-btn" title="系统设置">⚙️</button>
                 <div class="mode-header">
                     <h1>练习系统</h1>
                     <p class="mode-subtitle">选择一种练习模式开始学习</p>
@@ -239,11 +250,56 @@
                 <button class="btn-primary" id="btn-start-custom">生成试卷并开始</button>
             </div>
 
-            <!-- 答题界面 -->
-            <div id="exam-interface" class="hidden">
-                <div class="question-container" id="question-container">
-                    <!-- 题目内容 -->
+            <!-- 答题布局：包含答题界面和 AI 面板 -->
+            <div class="exam-layout hidden" id="exam-layout">
+                <!-- 答题界面 -->
+                <div id="exam-interface" class="exam-section">
+                    <div class="question-container" id="question-container">
+                        <!-- 题目内容 -->
+                    </div>
                 </div>
+
+                <!-- AI 聊天侧边栏 -->
+                <aside class="ai-chat-panel collapsed" id="aiChatPanel">
+                    <!-- 拖拽调节宽度的分割条 -->
+                    <div class="layout-resizer" id="layoutResizer" title="拖动调节面板宽度"></div>
+                    
+                    <div class="ai-chat-header">
+                        <div class="ai-chat-title">
+                            <span class="ai-icon">🤖</span>
+                            <h3>AI 解析助手 <span class="ai-subtitle" id="aiSubtitle">· 未选中题目</span></h3>
+                        </div>
+                        <button class="btn-icon" id="closeAiPanel" title="关闭面板">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="ai-chat-messages" id="aiChatMessages">
+                        <div class="ai-welcome">
+                            <div class="welcome-icon">💡</div>
+                            <h3>智能解析就绪</h3>
+                            <p>点击题目下方的“AI 解析”按钮开始分析</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-chat-input-area">
+                        <div class="ai-input-wrapper">
+                            <textarea 
+                                id="aiChatInput" 
+                                class="ai-chat-input" 
+                                placeholder="继续提问..."
+                                rows="1"></textarea>
+                            <button class="ai-send-btn" id="aiChatSendBtn" disabled>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
             </div>
 
             <!-- 结果页面 -->

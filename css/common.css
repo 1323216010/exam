@@ -279,6 +279,32 @@ body {
     color: #059669;
 }
 
+.btn-text {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-text:hover {
+    background: #FEF2F2;
+    color: #DC2626;
+}
+
+.btn-text svg {
+    flex-shrink: 0;
+}
+
 .btn-primary {
     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
     color: white;
@@ -458,13 +484,15 @@ input[type="checkbox"] {
     padding: 15px 25px;
     background: #F9FAFB;
     display: flex;
-    gap: 10px;
-    justify-content: flex-end;
+    gap: 12px;
+    justify-content: space-between;
 }
 
 .modal-footer .btn {
-    padding: 10px 20px;
+    padding: 12px 32px;
     font-size: 14px;
+    min-width: 0;
+    flex: 1 1 0;
 }
 
 /* ==================== 响应式布局 ==================== */
@@ -921,6 +949,13 @@ input[type="checkbox"] {
 
     .modal-footer {
         padding: 12px 18px;
+        flex-wrap: wrap;
+    }
+    
+    .modal-footer .btn {
+        padding: 10px 24px;
+        min-width: 90px;
+        font-size: 14px;
     }
 
     /* 侧边栏底部优化 */

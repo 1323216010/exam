@@ -4,6 +4,7 @@ export const state = {
     currentQuestionIndex: 0,
     userAnswers: {},
     aiGradingDetails: {},
+    aiExplainDetails: {},
     showingResults: false,
     startTime: null,
     timerInterval: null,
@@ -18,6 +19,7 @@ export function resetState() {
     state.currentQuestionIndex = 0;
     state.userAnswers = {};
     state.aiGradingDetails = {};
+    state.aiExplainDetails = {};
     state.showingResults = false;
     state.startTime = null;
     state.currentMode = null;
