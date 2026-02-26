@@ -126,39 +126,60 @@ input[type="file"] {
 .page-title-section {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
     margin-bottom: 25px;
-    position: relative;
 }
 
-.page-title-section .btn-back {
-    position: absolute;
-    left: 0;
-}
-
-.page-title-section h1 {
-    font-size: 32px;
-    color: white;
-    margin: 0;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+/* 面包屑导航 */
+.breadcrumb {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 0;
+    font-size: 14px;
 }
 
-.title-count {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 500;
+.breadcrumb-item {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.title-count span {
+.breadcrumb-item:hover {
+    color: white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.breadcrumb-item.active {
     color: white;
     font-weight: 600;
-    font-size: 20px;
+}
+
+.breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    user-select: none;
+}
+
+.exam-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.exam-count-badge span {
+    font-weight: 700;
+    font-size: 16px;
 }
 
 /* ==================== 试卷列表/练习配置/自定义组卷容器 ==================== */
@@ -169,6 +190,11 @@ input[type="file"] {
     max-width: 1400px;
     margin: 0 auto;
     min-height: 100vh;
+}
+
+.practice-config-container .breadcrumb,
+.custom-exam-container .breadcrumb {
+    margin-bottom: 20px;
 }
 
 .exam-list-header,

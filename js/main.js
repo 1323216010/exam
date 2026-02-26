@@ -1431,9 +1431,12 @@ async function initializeApp() {
         });
     });
     
-    // 返回按钮
-    document.querySelectorAll('.btn-back').forEach(btn => {
-        btn.addEventListener('click', backToModeSelection);
+    // 面包屑导航 - 返回首页
+    document.querySelectorAll('[id^="breadcrumb-home-"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            backToModeSelection();
+        });
     });
     
     // 提交和查看按钮

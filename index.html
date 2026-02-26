@@ -77,7 +77,11 @@
 
             <!-- 文件上传 -->
             <div class="upload-container hidden" id="upload-container">
-                <button class="btn-back" id="btn-back-upload">← 返回</button>
+                <nav class="breadcrumb" style="position: absolute; top: 40px; left: 40px;">
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-upload">🏠 首页</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-item active">上传试卷</span>
+                </nav>
                 <div class="upload-box">
                     <div class="upload-icon">📄</div>
                     <div class="upload-title">选择试题文件</div>
@@ -90,8 +94,12 @@
             <!-- 试卷列表 -->
             <div class="exam-list-container hidden" id="exam-list-container">
                 <div class="page-title-section">
-                    <button class="btn-back" id="btn-back-exam-list">← 返回</button>
-                    <h1>📝 选择试卷进行模拟考试 <span class="title-count">共 <span id="exam-count">0</span> 套试卷</span></h1>
+                    <nav class="breadcrumb">
+                        <a href="#" class="breadcrumb-item" id="breadcrumb-home-exam-list">🏠 首页</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-item active">选择试卷进行模拟考试</span>
+                    </nav>
+                    <div class="exam-count-badge">共 <span id="exam-count">0</span> 套试卷</div>
                 </div>
                 
                 <div class="exam-list-toolbar">
@@ -144,7 +152,11 @@
 
             <!-- 题库练习配置 -->
             <div class="practice-config-container hidden" id="practice-config-container">
-                <button class="btn-back" id="btn-back-practice">← 返回</button>
+                <nav class="breadcrumb">
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-practice">🏠 首页</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-item active">题库练习设置</span>
+                </nav>
                 <div class="practice-config-header">
                     <h2>📚 题库练习设置</h2>
                     <div class="practice-info">加载所有历年真题进行练习</div>
@@ -176,7 +188,11 @@
 
             <!-- 自定义组卷 -->
             <div class="custom-exam-container hidden" id="custom-exam-container">
-                <button class="btn-back" id="btn-back-custom">← 返回</button>
+                <nav class="breadcrumb">
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-custom">🏠 首页</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-item active">自定义组卷</span>
+                </nav>
                 <div class="custom-exam-header">
                     <h2>🎯 自定义组卷</h2>
                     <div class="custom-info">根据条件筛选题目组成试卷</div>
