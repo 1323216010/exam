@@ -1,7 +1,7 @@
 // 答题页面核心逻辑
 import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getApiKey, saveApiKey, getApiUrl, saveApiUrl, getApiModel, saveApiModel, DEFAULT_API_URL, DEFAULT_API_MODEL } from './api.js';
+import { getApiKey, getApiUrl, getApiModel } from './api.js';
 import { shuffleArray, Timer, getFilenameFromPath } from './utils.js';
 import { initChatDB, loadAllChatRecords } from './aiChatStorage.js';
 import { openAiChatPanel, initAiChat } from './aiChat.js';
@@ -699,108 +699,6 @@ function stopTimer() {
     }
 }
 
-// ==================== 设置对话框 ====================
-
-function showSettings() {
-    const modal = document.getElementById('settings-modal');
-    const apiKeyInput = document.getElementById('api-key-input');
-    const apiUrlInput = document.getElementById('api-url-input');
-    const apiModelInput = document.getElementById('api-model-input');
-    
-    apiKeyInput.value = getApiKey();
-    apiUrlInput.value = getApiUrl();
-    apiModelInput.value = getApiModel();
-    
-    modal.classList.add('show');
-}
-
-function closeSettings() {
-    document.getElementById('settings-modal').classList.remove('show');
-}
-
-function saveSettings() {
-    const apiKey = document.getElementById('api-key-input').value.trim();
-    const apiUrl = document.getElementById('api-url-input').value.trim();
-    const apiModel = document.getElementById('api-model-input').value.trim();
-    
-    saveApiKey(apiKey);
-    saveApiUrl(apiUrl || DEFAULT_API_URL);
-    saveApiModel(apiModel || DEFAULT_API_MODEL);
-    
-    alert('设置已保存！');
-    closeSettings();
-}
-
-async function testApiConnection() {
-    const apiKey = document.getElementById('api-key-input').value.trim();
-    let apiUrl = document.getElementById('api-url-input').value.trim() || DEFAULT_API_URL;
-    const testResult = document.getElementById('test-result');
-    const testBtn = document.getElementById('test-api-btn');
-    
-    if (!apiKey) {
-        testResult.style.display = 'block';
-        testResult.style.background = '#FEF2F2';
-        testResult.style.color = '#991B1B';
-        testResult.style.border = '1px solid #FCA5A5';
-        testResult.textContent = '❌ 请先输入 API Key';
-        return;
-    }
-    
-    testBtn.disabled = true;
-    testBtn.textContent = '🔄 测试中...';
-    testResult.style.display = 'block';
-    testResult.style.background = '#F3F4F6';
-    testResult.style.color = '#4B5563';
-    testResult.style.border = '1px solid #D1D5DB';
-    testResult.textContent = '正在连接 AI 服务...';
-    
-    try {
-        const apiModel = document.getElementById('api-model-input').value.trim() || DEFAULT_API_MODEL;
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: apiModel,
-                messages: [
-                    {
-                        role: 'user',
-                        content: '你好，请回复"测试成功"'
-                    }
-                ],
-                temperature: 0.3,
-                max_tokens: 20
-            })
-        });
-        
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`API 返回错误: ${response.status} ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data.choices && data.choices[0] && data.choices[0].message) {
-            testResult.style.background = '#ECFDF5';
-            testResult.style.color = '#065F46';
-            testResult.style.border = '1px solid #6EE7B7';
-            testResult.textContent = `✅ 连接成功！AI 回复: ${data.choices[0].message.content.trim()}`;
-        } else {
-            throw new Error('API 返回格式异常');
-        }
-    } catch (error) {
-        testResult.style.background = '#FEF2F2';
-        testResult.style.color = '#991B1B';
-        testResult.style.border = '1px solid #FCA5A5';
-        testResult.textContent = `❌ 连接失败: ${error.message}`;
-    } finally {
-        testBtn.disabled = false;
-        testBtn.textContent = '🔍 测试连接';
-    }
-}
-
 // ==================== 试卷加载 ====================
 
 async function startExam(filePath, filename = null) {
@@ -1064,16 +962,6 @@ async function initializeExamApp() {
     document.getElementById('review-btn').addEventListener('click', handleReview);
     document.getElementById('restart-btn').addEventListener('click', restartExam);
     document.getElementById('restart-result-btn').addEventListener('click', restartExam);
-    
-    // 设置对话框
-    document.getElementById('exam-settings-btn')?.addEventListener('click', showSettings);
-    document.getElementById('close-settings').addEventListener('click', closeSettings);
-    document.getElementById('cancel-settings').addEventListener('click', closeSettings);
-    document.getElementById('save-settings').addEventListener('click', saveSettings);
-    document.getElementById('settings-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeSettings();
-    });
-    document.getElementById('test-api-btn').addEventListener('click', testApiConnection);
     
     // 初始化 AI 聊天面板
     initAiChat();
