@@ -1,10 +1,24 @@
-// 答题页面核心逻辑
+// 答题页面主逻辑（精简版）
 import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getApiKey, getApiUrl, getApiModel } from './api.js';
 import { shuffleArray, Timer, getFilenameFromPath } from './utils.js';
 import { initChatDB, loadAllChatRecords } from './aiChatStorage.js';
 import { openAiChatPanel, initAiChat } from './aiChat.js';
+import { 
+    saveProgress, 
+    loadProgress, 
+    clearProgress, 
+    restoreProgress, 
+    showProgressDialog 
+} from './examProgress.js';
+import { gradeSubjectiveQuestion } from './examGrading.js';
+import { 
+    generateQuestionNav, 
+    updateNavStatus, 
+    showQuestion, 
+    selectOption, 
+    saveTextAnswer 
+} from './examDisplay.js';
 
 // 计时器实例
 let timer = null;
@@ -48,19 +62,61 @@ function updateMobileMenuVisibility() {
 
 // ==================== 考试初始化 ====================
 
-async function initExam() {
+async function initExam(skipProgressCheck = false) {
     if (!state.examData || !state.examData.questions || state.examData.questions.length === 0) {
         alert('试题文件格式不正确或没有题目');
         return;
     }
 
-    // 重置状态
-    state.userAnswers = {};
-    state.aiGradingDetails = {};
-    state.aiExplainDetails = {};
-    state.currentQuestionIndex = 0;
-    state.showingResults = false;
-    state.startTime = new Date();
+    // 检查是否有保存的进度
+    if (!skipProgressCheck) {
+        const progress = loadProgress();
+        if (progress) {
+            const lastSaveDate = new Date(progress.lastSaveTime).toLocaleString('zh-CN');
+            const answeredCount = Object.keys(progress.userAnswers).filter(key => {
+                const answer = progress.userAnswers[key];
+                return answer !== undefined && answer !== '' && 
+                       !(Array.isArray(answer) && answer.length === 0);
+            }).length;
+            
+            showProgressDialog({
+                lastSaveDate,
+                answeredCount,
+                totalCount: state.examData.questions.length,
+                onContinue: () => {
+                    restoreProgress(progress);
+                    continueInitExam();
+                },
+                onRestart: () => {
+                    clearProgress();
+                    continueInitExam();
+                }
+            });
+            return;
+        }
+    } else {
+        // 如果跳过进度检查，清除旧进度
+        clearProgress();
+    }
+
+    continueInitExam();
+}
+
+// 继续初始化考试（内部函数）
+async function continueInitExam() {
+    // 如果没有恢复进度，重置状态
+    if (!state.userAnswers || Object.keys(state.userAnswers).length === 0) {
+        state.userAnswers = {};
+        state.aiGradingDetails = {};
+        state.aiExplainDetails = {};
+        state.currentQuestionIndex = 0;
+        state.showingResults = false;
+        state.startTime = new Date();
+    } else {
+        // 恢复进度时，只重置评分相关状态
+        state.aiGradingDetails = {};
+        state.showingResults = false;
+    }
 
     // 从 IndexedDB 加载聊天记录
     try {
@@ -93,314 +149,11 @@ async function initExam() {
     // 生成题目导航
     generateQuestionNav();
 
-    // 显示第一题
-    showQuestion(0);
+    // 显示当前题目
+    showQuestion(state.currentQuestionIndex);
 
     // 启动计时器
     startTimer();
-}
-
-// ==================== 题目导航 ====================
-
-function generateQuestionNav() {
-    const nav = document.getElementById('question-nav');
-    nav.innerHTML = '';
-
-    if (!state.examData || !state.examData.questions) return;
-
-    // 按题型分组
-    const typeGroups = {};
-    state.examData.questions.forEach((q, index) => {
-        const type = q.question_type;
-        if (!typeGroups[type]) {
-            typeGroups[type] = [];
-        }
-        typeGroups[type].push({ question: q, index: index });
-    });
-
-    // 生成分组
-    Object.keys(typeGroups).forEach(type => {
-        const group = typeGroups[type];
-        const groupDiv = document.createElement('div');
-        groupDiv.className = 'question-type-group';
-
-        const header = document.createElement('div');
-        header.className = 'type-header';
-        header.innerHTML = `
-            <span>${type}</span>
-            <span class="type-count">${group.length} 题</span>
-        `;
-        groupDiv.appendChild(header);
-
-        const grid = document.createElement('div');
-        grid.className = 'question-grid';
-
-        group.forEach(item => {
-            const btn = document.createElement('div');
-            btn.className = 'question-item';
-            btn.textContent = item.index + 1;
-            btn.addEventListener('click', () => jumpToQuestion(item.index));
-            btn.dataset.index = item.index;
-            grid.appendChild(btn);
-        });
-
-        groupDiv.appendChild(grid);
-        nav.appendChild(groupDiv);
-    });
-
-    updateNavStatus();
-}
-
-function updateNavStatus() {
-    const items = document.querySelectorAll('.question-item');
-    items.forEach(item => {
-        const index = parseInt(item.dataset.index);
-        item.classList.remove('current', 'answered');
-
-        if (index === state.currentQuestionIndex) {
-            item.classList.add('current');
-        } else if (state.userAnswers[index] !== undefined && state.userAnswers[index] !== '' && 
-                  !(Array.isArray(state.userAnswers[index]) && state.userAnswers[index].length === 0)) {
-            item.classList.add('answered');
-        }
-    });
-
-    // 更新已答题数
-    const answeredCount = Object.keys(state.userAnswers).filter(key => {
-        const answer = state.userAnswers[key];
-        return answer !== undefined && answer !== '' && 
-               !(Array.isArray(answer) && answer.length === 0);
-    }).length;
-    document.getElementById('answered-count').textContent = answeredCount;
-}
-
-function jumpToQuestion(index) {
-    if (!state.examData || !state.examData.questions) return;
-    if (index < 0 || index >= state.examData.questions.length) return;
-    showQuestion(index);
-}
-
-// ==================== 题目显示 ====================
-
-function showQuestion(index) {
-    if (!state.examData) return;
-
-    // 检查 AI 聊天面板是否打开
-    const aiPanel = document.getElementById('aiChatPanel');
-    const isPanelOpen = aiPanel && !aiPanel.classList.contains('collapsed');
-
-    state.currentQuestionIndex = index;
-    const question = state.examData.questions[index];
-    const container = document.getElementById('question-container');
-
-    let html = `
-        <div class="question-card">
-            <div class="question-header">
-                <div class="question-number">${index + 1}</div>
-                <div class="question-meta">
-                    <span class="question-type-badge">${question.question_type}</span>
-                    <span class="question-score-badge">${question.score} 分</span>
-                </div>
-            </div>
-            <div class="question-content">${question.content}</div>
-    `;
-
-    // 生成选项或输入框
-    if (question.options) {
-        const isMultiple = question.question_type.includes('多项');
-        const inputType = isMultiple ? 'checkbox' : 'radio';
-        const userAnswer = state.userAnswers[index] || (isMultiple ? [] : '');
-
-        html += '<div class="options">';
-        for (const [key, value] of Object.entries(question.options)) {
-            const isChecked = isMultiple ? userAnswer.includes(key) : userAnswer === key;
-            const checkedAttr = isChecked ? 'checked' : '';
-            const selectedClass = isChecked ? 'selected' : '';
-
-            let resultClass = '';
-            if (state.showingResults && question.answer) {
-                if (isMultiple) {
-                    if (question.answer.includes(key)) {
-                        resultClass = 'correct';
-                    }
-                } else {
-                    if (question.answer === key) {
-                        resultClass = 'correct';
-                    } else if (userAnswer === key) {
-                        resultClass = 'wrong';
-                    }
-                }
-            }
-
-            html += `
-                <div class="option ${selectedClass} ${resultClass}" 
-                     data-question-index="${index}" data-option="${key}" data-is-multiple="${isMultiple}">
-                    <input type="${inputType}" name="q${index}" value="${key}" ${checkedAttr} 
-                        ${state.showingResults ? 'disabled' : ''}>
-                    <span class="option-text"><strong>${key}.</strong> ${value}</span>
-                </div>
-            `;
-        }
-        html += '</div>';
-    } else {
-        const userAnswer = state.userAnswers[index] || '';
-        const disabled = state.showingResults ? 'disabled' : '';
-        html += `
-            <textarea class="textarea-answer" data-question-index="${index}" placeholder="请输入你的答案..." ${disabled}>${userAnswer}</textarea>
-        `;
-    }
-
-    // 答案区域
-    if (question.answer) {
-        const showAnswer = state.showingResults;
-        html += `
-            <div class="answer-section ${showAnswer ? 'show' : ''}" id="answer-${index}">
-                <div class="answer-label">参考答案</div>
-                <div class="answer-content">${question.answer}</div>
-            </div>
-        `;
-    }
-
-    // AI 解析区域（按需显示）
-    const explainState = state.aiExplainDetails[index];
-    const explainShow = explainState?.show;
-    html += `
-        <div class="ai-explain-section ${explainShow ? 'show' : ''}" id="ai-explain-${index}">
-            <div class="ai-explain-header">
-                <span class="ai-explain-label">🧠 AI 解析</span>
-                <span class="ai-explain-status" id="ai-explain-status-${index}"></span>
-            </div>
-            <div class="ai-explain-content" id="ai-explain-content-${index}"></div>
-        </div>
-    `;
-
-    // AI评分详情（仅主观题且已评分时显示）
-    if (!question.options && state.aiGradingDetails[index] && state.showingResults) {
-        const detail = state.aiGradingDetails[index];
-        html += `
-            <div class="ai-grading-section show">
-                <div class="ai-grading-header">
-                    <span class="ai-grading-label">🤖 AI 评分详情</span>
-                    <span class="ai-grading-score">${Math.round(detail.score * 100)}%</span>
-                </div>
-                <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">📊 得分依据</div>
-                    <div class="ai-grading-item-content">${detail.reason || '无'}</div>
-                </div>
-                <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">✅ 优点</div>
-                    <div class="ai-grading-item-content">${detail.strengths || '无'}</div>
-                </div>
-                <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">⚠️ 不足之处</div>
-                    <div class="ai-grading-item-content">${detail.weaknesses || '无'}</div>
-                </div>
-                <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">💡 改进建议</div>
-                    <div class="ai-grading-item-content">${detail.suggestions || '无'}</div>
-                </div>
-            </div>
-        `;
-    }
-
-    // 导航按钮
-    html += `
-        <div class="navigation-buttons">
-            <button class="btn-nav btn-prev" id="btn-prev" 
-                ${index === 0 ? 'disabled' : ''}>← 上一题</button>
-            <div class="nav-center-actions">
-                <button class="btn-show-answer" id="btn-show-answer" 
-                    ${!question.answer ? 'style="display:none"' : ''}>
-                    ${state.showingResults ? '已显示答案' : '显示答案'}
-                </button>
-                <button class="btn-ai-explain" id="btn-ai-explain" 
-                    ${!question.answer ? 'style="display:none"' : ''}>
-                    AI 解析
-                </button>
-            </div>
-            <button class="btn-nav btn-next" id="btn-next" 
-                ${index === state.examData.questions.length - 1 ? 'disabled' : ''}>下一题 →</button>
-        </div>
-    `;
-
-    html += '</div>';
-    container.innerHTML = html;
-
-    // 绑定选项点击事件
-    document.querySelectorAll('.option').forEach(option => {
-        option.addEventListener('click', function() {
-            const questionIndex = parseInt(this.dataset.questionIndex);
-            const optionKey = this.dataset.option;
-            const isMultiple = this.dataset.isMultiple === 'true';
-            selectOption(questionIndex, optionKey, isMultiple);
-        });
-    });
-
-    // 绑定文本框输入事件
-    const textarea = document.querySelector('.textarea-answer');
-    if (textarea) {
-        textarea.addEventListener('change', function() {
-            const questionIndex = parseInt(this.dataset.questionIndex);
-            saveTextAnswer(questionIndex, this.value);
-        });
-    }
-
-    // 绑定导航按钮事件
-    document.getElementById('btn-prev')?.addEventListener('click', () => {
-        if (state.currentQuestionIndex > 0) showQuestion(state.currentQuestionIndex - 1);
-    });
-
-    document.getElementById('btn-next')?.addEventListener('click', () => {
-        if (state.currentQuestionIndex < state.examData.questions.length - 1) 
-            showQuestion(state.currentQuestionIndex + 1);
-    });
-
-    document.getElementById('btn-show-answer')?.addEventListener('click', function() {
-        const answerSection = document.getElementById(`answer-${index}`);
-        if (answerSection) {
-            answerSection.classList.toggle('show');
-            this.textContent = answerSection.classList.contains('show') ? '隐藏答案' : '显示答案';
-        }
-    });
-
-    document.getElementById('btn-ai-explain')?.addEventListener('click', async function() {
-        openAiChatPanel(question, index);
-    });
-
-    updateNavStatus();
-    
-    // 如果 AI 聊天面板是打开状态，自动切换到新题目的聊天记录
-    if (isPanelOpen) {
-        openAiChatPanel(question, index);
-    }
-}
-
-// ==================== 答案处理 ====================
-
-function selectOption(questionIndex, option, isMultiple) {
-    if (state.showingResults) return;
-
-    if (isMultiple) {
-        if (!state.userAnswers[questionIndex]) {
-            state.userAnswers[questionIndex] = [];
-        }
-        const index = state.userAnswers[questionIndex].indexOf(option);
-        if (index > -1) {
-            state.userAnswers[questionIndex].splice(index, 1);
-        } else {
-            state.userAnswers[questionIndex].push(option);
-        }
-        state.userAnswers[questionIndex].sort();
-    } else {
-        state.userAnswers[questionIndex] = option;
-    }
-
-    showQuestion(questionIndex);
-}
-
-function saveTextAnswer(questionIndex, value) {
-    state.userAnswers[questionIndex] = value.trim();
-    updateNavStatus();
 }
 
 // ==================== 答卷提交和评分 ====================
@@ -564,102 +317,9 @@ async function calculateResults() {
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = false;
     submitBtn.textContent = '提交答卷';
-}
-
-async function gradeSubjectiveQuestion(questionContent, referenceAnswer, userAnswer, currentIndex, totalSubjective) {
-    const subjectiveIndex = state.examData.questions
-        .slice(0, currentIndex + 1)
-        .filter(q => !q.options)
-        .length;
     
-    const currentSpan = document.getElementById('grading-current');
-    const progressBar = document.getElementById('grading-progress-bar');
-    if (currentSpan) currentSpan.textContent = subjectiveIndex;
-    if (progressBar) {
-        progressBar.style.width = (subjectiveIndex / totalSubjective * 100) + '%';
-    }
-
-    try {
-        const apiKey = getApiKey();
-        if (!apiKey) {
-            console.warn('未设置 API Key，使用默认评分');
-            return 0.7;
-        }
-
-        let apiUrl = getApiUrl();
-        let apiModel = getApiModel();
-        
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: apiModel,
-                messages: [
-                    {
-                        role: 'system',
-                        content: '你是一个专业的考试评分助手。请根据参考答案评价学生答案的准确性和完整性，给出详细的评分依据。必须严格返回JSON格式，格式如下：{"score": 0.85, "reason": "评分理由", "strengths": "答案的优点", "weaknesses": "答案的不足", "suggestions": "改进建议"}。score为0-1之间的小数。'
-                    },
-                    {
-                        role: 'user',
-                        content: `题目：${questionContent}\n\n参考答案：${referenceAnswer}\n\n学生答案：${userAnswer}\n\n请评分并给出详细评价（必须返回JSON格式）：`
-                    }
-                ],
-                temperature: 0.3,
-                max_tokens: 3000
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('API 请求失败');
-        }
-
-        const data = await response.json();
-        const resultText = data.choices[0].message.content.trim();
-        
-        let result;
-        try {
-            let jsonText = resultText;
-            if (resultText.includes('```')) {
-                const codeBlockMatch = resultText.match(/```(?:json)?\s*([\s\S]*?)```/);
-                if (codeBlockMatch) {
-                    jsonText = codeBlockMatch[1].trim();
-                }
-            }
-            
-            const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                result = JSON.parse(jsonMatch[0]);
-            } else {
-                throw new Error('未找到JSON格式');
-            }
-        } catch (parseError) {
-            console.warn('AI 返回的JSON解析失败:', resultText);
-            console.warn('解析错误:', parseError);
-            const scoreMatch = resultText.match(/\d+\.?\d*/);
-            const score = scoreMatch ? parseFloat(scoreMatch[0]) : 0.5;
-            result = {
-                score: score > 1 ? score / 100 : score,
-                reason: `AI返回格式异常，原始内容：${resultText}`,
-                strengths: '无法解析',
-                weaknesses: '无法解析',
-                suggestions: '请检查API设置或稍后重试'
-            };
-        }
-
-        if (isNaN(result.score) || result.score < 0 || result.score > 1) {
-            console.warn('AI 返回的分数无效:', result.score);
-            result.score = 0.5;
-        }
-
-        state.aiGradingDetails[currentIndex] = result;
-        return result.score;
-    } catch (error) {
-        console.error('AI 评分错误:', error);
-        throw error;
-    }
+    // 提交后清除答题进度
+    clearProgress();
 }
 
 // ==================== 结果查看和重新开始 ====================
@@ -677,7 +337,7 @@ function handleReview() {
 
 function restartExam() {
     if (confirm('确定要重新开始吗？当前答题记录将被清除。')) {
-        initExam();
+        initExam(true); // 跳过进度检查
     }
 }
 
@@ -889,10 +549,6 @@ async function handleURLParams() {
                 return;
             }
             
-            const typeStats = {};
-            finalQuestions.forEach(q => {
-                typeStats[q.question_type] = (typeStats[q.question_type] || 0) + 1;
-            });
             const title = `自定义组卷 (${finalQuestions.length}题)`;
             
             state.examData = {
@@ -965,6 +621,13 @@ async function initializeExamApp() {
     
     // 初始化 AI 聊天面板
     initAiChat();
+    
+    // 页面卸载前保存进度
+    window.addEventListener('beforeunload', () => {
+        if (!state.showingResults && state.examData) {
+            saveProgress();
+        }
+    });
     
     // 处理 URL 参数并加载试卷
     handleURLParams();
