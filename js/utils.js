@@ -2,8 +2,10 @@
 
 // 从路径中提取文件名（不含扩展名）
 export function getFilenameFromPath(path) {
-    const filename = path.split('/').pop();
-    return filename.replace('.json', '');
+    if (typeof path !== 'string') return '';
+    const normalized = path.split('?')[0];
+    const filename = normalized.split(/[/\\]/).pop() || '';
+    return filename.replace(/\.json$/i, '');
 }
 
 // 数组随机排序（Fisher-Yates 算法）

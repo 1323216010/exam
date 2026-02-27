@@ -111,14 +111,14 @@ function filterExamList() {
     
     if (searchInput) {
         filtered = filtered.filter(e => {
-            const filename = getFilenameFromPath(e.path).toLowerCase();
+            const filename = getFilenameFromPath(getExamPath(e)).toLowerCase();
             return filename.includes(searchInput);
         });
     }
     
     filtered.sort((a, b) => {
-        const nameA = getFilenameFromPath(a.path);
-        const nameB = getFilenameFromPath(b.path);
+        const nameA = getFilenameFromPath(getExamPath(a));
+        const nameB = getFilenameFromPath(getExamPath(b));
         
         if (sortFilter === 'name-asc') {
             return nameA.localeCompare(nameB);
@@ -138,10 +138,11 @@ function filterExamList() {
     filtered.forEach((exam) => {
         const card = document.createElement('div');
         card.className = 'exam-card';
-        const filename = getFilenameFromPath(exam.path);
+        const examPath = getExamPath(exam);
+        const filename = getFilenameFromPath(examPath);
         
         card.addEventListener('click', () => {
-            const url = `exam.html?exam=${encodeURIComponent(exam.path)}&filename=${encodeURIComponent(filename)}`;
+            const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(filename)}`;
             window.open(url, '_blank');
         });
         
@@ -161,8 +162,15 @@ function filterExamList() {
         
         grid.appendChild(card);
         
-        loadExamDetails(exam.path, card);
+        if (examPath) {
+            loadExamDetails(examPath, card);
+        }
     });
+}
+
+function getExamPath(exam) {
+    if (!exam || typeof exam !== 'object') return '';
+    return exam.path || exam.file || '';
 }
 
 async function loadExamDetails(path, card) {
