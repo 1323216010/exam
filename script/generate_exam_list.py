@@ -27,8 +27,9 @@ def parse_filename(filename):
 
 def generate_exam_list():
     """扫描目录并生成试卷列表"""
-    # 定义路径
-    json_dir = Path('exam/json')
+    # 定义路径（基于脚本文件位置）
+    script_dir = Path(__file__).parent
+    json_dir = script_dir.parent / 'json'
     output_file = json_dir / 'exam-list.json'
     
     if not json_dir.exists():
