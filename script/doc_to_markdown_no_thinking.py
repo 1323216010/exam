@@ -12,7 +12,7 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 # 配置 AI 模型
-AI_MODEL = "gpt-4o"  # 可修改为其他模型
+AI_MODEL = "gpt-4.1"  # 可修改为其他模型
 
 # 初始化客户端
 client = OpenAI(
