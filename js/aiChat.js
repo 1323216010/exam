@@ -227,33 +227,45 @@ async function generateAiExplanationStream(question, userAnswer, contentEl, onUp
     let prompt;
     if (question.options) {
         // 选择题
-        prompt = `请以简洁清晰的方式给出题目解析，包含：
-1) 正确答案结论
-2) 关键思路/依据
-3) 常见误区（如有）
+        prompt = `请作为专业老师，对以下选择题进行详细解析。
 
-题目：${question.content}
+**题目：**
+${question.content}
 
-选项：
+**选项：**
 ${optionsText}
 
-参考答案：${referenceAnswerText}
+**参考答案：** ${referenceAnswerText}
 
-我的作答：${userAnswerText}`;
+**我的作答：** ${userAnswerText}
+
+**要求：**
+1. 首先明确指出正确答案是什么
+2. 详细解释为什么选这个答案（核心知识点、关键依据）
+3. 简要分析其他选项为什么不正确
+4. 如果我答错了，指出我可能的误解之处
+
+请使用清晰的 Markdown 格式输出。`;
     } else {
         // 主观题
-        prompt = `请以简洁清晰的方式给出题目解析，包含：
-1) 答题要点分析
-2) 关键知识点
-3) 参考答案要点
+        prompt = `请作为专业老师，对以下主观题进行详细解析。
 
-题目：${question.content}
+**题目：**
+${question.content}
 
-参考答案：
+**参考答案：**
 ${referenceAnswerText}
 
-我的作答：
-${userAnswerText || '未作答'}`;
+**我的作答：**
+${userAnswerText || '未作答'}
+
+**要求：**
+1. 列出本题的核心答题要点
+2. 解释相关的关键知识点
+3. 对比我的答案与参考答案，指出优点和不足
+4. 给出改进建议
+
+请使用清晰的 Markdown 格式输出。`;
     }
 
     const response = await fetch(apiUrl, {
