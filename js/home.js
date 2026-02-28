@@ -1,6 +1,6 @@
 // 首页逻辑：模式选择、试卷列表、练习配置、自定义组卷
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL } from './api.js';
+import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE, getChoicePromptTemplate, getSubjectivePromptTemplate, savePromptTemplates, resetPromptTemplates } from './api.js';
 import { getFilenameFromPath } from './utils.js';
 
 // ==================== 模式选择 ====================
@@ -405,11 +405,41 @@ function startCustomExam() {
 function showSettings() {
     const modal = document.getElementById('settings-modal');
     renderConfigList();
+    loadPromptTemplates();
+    switchSettingsTab('ai-config'); // 默认显示 AI 配置 tab
     modal.classList.add('show');
 }
 
 function closeSettings() {
     document.getElementById('settings-modal').classList.remove('show');
+}
+
+function switchSettingsTab(tabName) {
+    // 切换 tab 按钮状态
+    document.querySelectorAll('.settings-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.dataset.tab === tabName) {
+            tab.classList.add('active');
+        }
+    });
+    
+    // 切换 tab 内容
+    document.querySelectorAll('.settings-tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    const activeContent = document.getElementById(`tab-${tabName}`);
+    if (activeContent) {
+        activeContent.classList.add('active');
+    }
+}
+
+function loadPromptTemplates() {
+    const choiceTemplate = getChoicePromptTemplate();
+    const subjectiveTemplate = getSubjectivePromptTemplate();
+    
+    document.getElementById('choice-prompt-template').value = choiceTemplate;
+    document.getElementById('subjective-prompt-template').value = subjectiveTemplate;
 }
 
 function renderConfigList() {
@@ -524,8 +554,16 @@ function addNewConfig() {
 }
 
 function saveSettings() {
+    // 保存提示词模板
+    savePromptTemplatesFromUI();
     alert('配置已自动保存！');
     closeSettings();
+}
+
+function savePromptTemplatesFromUI() {
+    const choiceTemplate = document.getElementById('choice-prompt-template')?.value.trim();
+    const subjectiveTemplate = document.getElementById('subjective-prompt-template')?.value.trim();
+    savePromptTemplates(choiceTemplate, subjectiveTemplate);
 }
 
 async function testApiConnection() {
@@ -638,6 +676,14 @@ async function initializeApp() {
     document.getElementById('save-settings').addEventListener('click', saveSettings);
     document.getElementById('add-config-btn')?.addEventListener('click', addNewConfig);
     
+    // Tab 切换
+    document.querySelectorAll('.settings-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
+            switchSettingsTab(tabName);
+        });
+    });
+    
     // 点击模态框背景关闭 - 只在点击背景层时关闭
     const settingsModal = document.getElementById('settings-modal');
     settingsModal.addEventListener('mousedown', function(e) {
@@ -659,6 +705,16 @@ async function initializeApp() {
     }
     
     document.getElementById('test-api-btn').addEventListener('click', testApiConnection);
+    
+    // 提示词模板保存
+    document.getElementById('choice-prompt-template')?.addEventListener('blur', savePromptTemplatesFromUI);
+    document.getElementById('subjective-prompt-template')?.addEventListener('blur', savePromptTemplatesFromUI);
+    document.getElementById('reset-templates-btn')?.addEventListener('click', () => {
+        if (confirm('确定要恢复默认提示词模板吗？')) {
+            resetPromptTemplates();
+            loadPromptTemplates();
+        }
+    });
     
     // 试卷列表筛选
     const subjectFilter = document.getElementById('subject-filter');

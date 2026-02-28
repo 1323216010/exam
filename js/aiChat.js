@@ -1,7 +1,18 @@
 // AI 聊天侧边栏功能模块
 import { state } from './state.js';
-import { getApiKey, getApiUrl, getApiModel } from './api.js';
+import { getApiKey, getApiUrl, getApiModel, getChoicePromptTemplate, getSubjectivePromptTemplate } from './api.js';
 import { saveChatRecord, clearAllChatRecords } from './aiChatStorage.js';
+
+// ==================== 模板替换引擎 ====================
+
+function replacePromptTemplate(template, variables) {
+    let result = template;
+    for (const [key, value] of Object.entries(variables)) {
+        const placeholder = `{${key}}`;
+        result = result.split(placeholder).join(value || '');
+    }
+    return result;
+}
 
 // AI 面板宽度调节相关
 let isResizing = false;
@@ -223,25 +234,25 @@ async function generateAiExplanationStream(question, userAnswer, contentEl, onUp
         : '未作答';
     const referenceAnswerText = question.answer || '未提供参考答案';
 
-    // 根据题目类型构建不同的 prompt
+    // 根据题目类型使用不同的模板
     let prompt;
     if (question.options) {
-        // 选择题：简单问为什么选这个答案
-        prompt = `题目：${question.content}
-
-选项：
-${optionsText}
-
-答案：${referenceAnswerText}
-
-请简要解释为什么选择这个答案？`;
+        // 选择题
+        const template = getChoicePromptTemplate();
+        prompt = replacePromptTemplate(template, {
+            content: question.content,
+            options: optionsText,
+            answer: referenceAnswerText,
+            userAnswer: userAnswerText
+        });
     } else {
-        // 主观题：问知识点出处和答题要点
-        prompt = `题目：${question.content}
-
-答案：${referenceAnswerText}
-
-请说明这道题的知识点出处和答题要点。`;
+        // 主观题
+        const template = getSubjectivePromptTemplate();
+        prompt = replacePromptTemplate(template, {
+            content: question.content,
+            answer: referenceAnswerText,
+            userAnswer: userAnswerText
+        });
     }
 
     const response = await fetch(apiUrl, {

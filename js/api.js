@@ -1,8 +1,25 @@
 // API 配置管理 - 支持多配置切换
 const API_CONFIGS_STORAGE_KEY = 'exam_system_api_configs';
 const ACTIVE_CONFIG_ID_KEY = 'exam_system_active_config_id';
+const PROMPT_TEMPLATES_STORAGE_KEY = 'exam_system_prompt_templates';
 const DEFAULT_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
 const DEFAULT_API_MODEL = 'qwen-plus';
+
+// 默认提示词模板
+const DEFAULT_CHOICE_PROMPT_TEMPLATE = `题目：{content}
+
+选项：
+{options}
+
+答案：{answer}
+
+请简要解释为什么选择这个答案？`;
+
+const DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE = `题目：{content}
+
+答案：{answer}
+
+请说明这道题的知识点出处和答题要点。`;
 
 // 获取所有配置
 export function getAllConfigs() {
@@ -132,4 +149,44 @@ export function saveApiModel(apiModel) {
     updateConfig(active.id, { apiModel });
 }
 
-export { DEFAULT_API_URL, DEFAULT_API_MODEL };
+// ==================== 全局提示词模板管理 ====================
+
+// 获取提示词模板配置
+function getPromptTemplates() {
+    const templates = localStorage.getItem(PROMPT_TEMPLATES_STORAGE_KEY);
+    if (!templates) {
+        return {
+            choicePromptTemplate: DEFAULT_CHOICE_PROMPT_TEMPLATE,
+            subjectivePromptTemplate: DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE
+        };
+    }
+    return JSON.parse(templates);
+}
+
+// 保存提示词模板配置
+export function savePromptTemplates(choiceTemplate, subjectiveTemplate) {
+    const templates = {
+        choicePromptTemplate: choiceTemplate || DEFAULT_CHOICE_PROMPT_TEMPLATE,
+        subjectivePromptTemplate: subjectiveTemplate || DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE
+    };
+    localStorage.setItem(PROMPT_TEMPLATES_STORAGE_KEY, JSON.stringify(templates));
+}
+
+// 获取选择题提示词模板
+export function getChoicePromptTemplate() {
+    const templates = getPromptTemplates();
+    return templates.choicePromptTemplate || DEFAULT_CHOICE_PROMPT_TEMPLATE;
+}
+
+// 获取主观题提示词模板
+export function getSubjectivePromptTemplate() {
+    const templates = getPromptTemplates();
+    return templates.subjectivePromptTemplate || DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE;
+}
+
+// 重置提示词模板为默认值
+export function resetPromptTemplates() {
+    localStorage.removeItem(PROMPT_TEMPLATES_STORAGE_KEY);
+}
+
+export { DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE };

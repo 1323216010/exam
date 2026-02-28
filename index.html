@@ -225,24 +225,67 @@
 
     <!-- 设置对话框 -->
     <div class="modal" id="settings-modal">
-        <div class="modal-content">
+        <div class="modal-content modal-large">
             <div class="modal-header">
-                <h3>⚙️ AI 配置管理</h3>
+                <h3>⚙️ 系统设置</h3>
                 <button class="modal-close" id="close-settings">×</button>
             </div>
+            
+            <!-- Tab 标签页导航 -->
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="ai-config">
+                    <span class="tab-icon">🤖</span>
+                    <span class="tab-label">AI 配置</span>
+                </button>
+                <button class="settings-tab" data-tab="prompt-templates">
+                    <span class="tab-icon">📝</span>
+                    <span class="tab-label">提示词模板</span>
+                </button>
+            </div>
+            
             <div class="modal-body">
-                <div class="config-list-header">
-                    <div class="config-list-hint">💡 可以添加多个 AI 配置并切换使用</div>
-                    <button class="btn btn-secondary" id="add-config-btn">➕ 添加新配置</button>
+                <!-- AI 配置 Tab -->
+                <div class="settings-tab-content active" id="tab-ai-config">
+                    <div class="config-list-header">
+                        <div class="config-list-hint">💡 可以添加多个 AI 配置并切换使用</div>
+                        <button class="btn btn-secondary" id="add-config-btn">➕ 添加新配置</button>
+                    </div>
+                    
+                    <div class="config-list" id="config-list">
+                        <!-- 配置列表动态生成 -->
+                    </div>
+                    
+                    <div class="setting-item">
+                        <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试当前配置</button>
+                        <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
+                    </div>
                 </div>
                 
-                <div class="config-list" id="config-list">
-                    <!-- 配置列表动态生成 -->
-                </div>
-                
-                <div class="setting-item">
-                    <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试当前配置</button>
-                    <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
+                <!-- 提示词模板 Tab -->
+                <div class="settings-tab-content" id="tab-prompt-templates">
+                    <div class="prompt-templates-section">
+                        <div class="section-header">
+                            <div>
+                                <h4>📝 AI 提示词模板</h4>
+                                <p class="section-description">全局设置，对所有 AI 配置生效</p>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="reset-templates-btn">恢复默认</button>
+                        </div>
+                        <div class="section-hint">
+                            提示词模板控制 AI 解析的内容和风格。可用占位符：<code>{content}</code> <code>{options}</code> <code>{answer}</code> <code>{userAnswer}</code>
+                        </div>
+                        <div class="template-field">
+                            <label>🎯 选择题提示词模板</label>
+                            <textarea id="choice-prompt-template" class="template-textarea" rows="8" placeholder="留空使用默认模板"></textarea>
+                        </div>
+                        <div class="template-field">
+                            <label>📊 主观题提示词模板</label>
+                            <textarea id="subjective-prompt-template" class="template-textarea" rows="8" placeholder="留空使用默认模板"></textarea>
+                        </div>
+                        <div class="template-preview-hint">
+                            💡 提示：修改后自动保存，点击"恢复默认"可重置为系统默认模板
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
