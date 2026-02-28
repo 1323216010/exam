@@ -1,6 +1,6 @@
 // 首页逻辑：模式选择、试卷列表、练习配置、自定义组卷
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getApiKey, saveApiKey, getApiUrl, saveApiUrl, getApiModel, saveApiModel, DEFAULT_API_URL, DEFAULT_API_MODEL } from './api.js';
+import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL } from './api.js';
 import { getFilenameFromPath } from './utils.js';
 
 // ==================== 模式选择 ====================
@@ -404,14 +404,7 @@ function startCustomExam() {
 
 function showSettings() {
     const modal = document.getElementById('settings-modal');
-    const apiKeyInput = document.getElementById('api-key-input');
-    const apiUrlInput = document.getElementById('api-url-input');
-    const apiModelInput = document.getElementById('api-model-input');
-    
-    apiKeyInput.value = getApiKey();
-    apiUrlInput.value = getApiUrl();
-    apiModelInput.value = getApiModel();
-    
+    renderConfigList();
     modal.classList.add('show');
 }
 
@@ -419,31 +412,133 @@ function closeSettings() {
     document.getElementById('settings-modal').classList.remove('show');
 }
 
+function renderConfigList() {
+    const container = document.getElementById('config-list');
+    const configs = getAllConfigs();
+    const activeId = getActiveConfigId();
+    
+    container.innerHTML = '';
+    
+    configs.forEach(config => {
+        const item = document.createElement('div');
+        item.className = 'config-item' + (config.id === activeId ? ' active' : '');
+        item.dataset.configId = config.id;
+        
+        item.innerHTML = `
+            <div class="config-item-header">
+                <input type="radio" name="active-config" value="${config.id}" 
+                    ${config.id === activeId ? 'checked' : ''} 
+                    class="config-radio">
+                <input type="text" class="config-name-input" value="${config.name}" 
+                    placeholder="配置名称">
+                <button class="config-delete-btn" title="删除配置">🗑️</button>
+            </div>
+            <div class="config-item-body">
+                <div class="config-field">
+                    <label>API URL</label>
+                    <input type="text" class="config-field-input" data-field="apiUrl" 
+                        value="${config.apiUrl}" placeholder="${DEFAULT_API_URL}">
+                </div>
+                <div class="config-field">
+                    <label>API Key</label>
+                    <input type="password" class="config-field-input" data-field="apiKey" 
+                        value="${config.apiKey}" placeholder="请输入 API Key">
+                </div>
+                <div class="config-field">
+                    <label>模型名称</label>
+                    <input type="text" class="config-field-input" data-field="apiModel" 
+                        value="${config.apiModel}" placeholder="${DEFAULT_API_MODEL}">
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(item);
+    });
+    
+    // 绑定事件
+    bindConfigEvents();
+}
+
+function bindConfigEvents() {
+    const container = document.getElementById('config-list');
+    
+    // 切换激活配置
+    container.querySelectorAll('.config-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+            setActiveConfigId(this.value);
+            renderConfigList();
+        });
+    });
+    
+    // 更新配置名称
+    container.querySelectorAll('.config-name-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const configId = this.closest('.config-item').dataset.configId;
+            updateConfig(configId, { name: this.value.trim() || '未命名配置' });
+        });
+    });
+    
+    // 更新配置字段
+    container.querySelectorAll('.config-field-input').forEach(input => {
+        input.addEventListener('blur', function() {
+            const configId = this.closest('.config-item').dataset.configId;
+            const field = this.dataset.field;
+            updateConfig(configId, { [field]: this.value.trim() });
+        });
+    });
+    
+    // 删除配置
+    container.querySelectorAll('.config-delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const configId = this.closest('.config-item').dataset.configId;
+            const configs = getAllConfigs();
+            
+            if (configs.length <= 1) {
+                alert('至少需要保留一个配置！');
+                return;
+            }
+            
+            if (confirm('确定要删除这个配置吗？')) {
+                deleteConfig(configId);
+                renderConfigList();
+            }
+        });
+    });
+}
+
+function addNewConfig() {
+    const newConfig = addConfig('新配置', '', DEFAULT_API_URL, DEFAULT_API_MODEL);
+    renderConfigList();
+    
+    // 聚焦到新配置的名称输入框
+    setTimeout(() => {
+        const configItem = document.querySelector(`[data-config-id="${newConfig.id}"]`);
+        if (configItem) {
+            const nameInput = configItem.querySelector('.config-name-input');
+            if (nameInput) {
+                nameInput.focus();
+                nameInput.select();
+            }
+        }
+    }, 100);
+}
+
 function saveSettings() {
-    const apiKey = document.getElementById('api-key-input').value.trim();
-    const apiUrl = document.getElementById('api-url-input').value.trim();
-    const apiModel = document.getElementById('api-model-input').value.trim();
-    
-    saveApiKey(apiKey);
-    saveApiUrl(apiUrl || DEFAULT_API_URL);
-    saveApiModel(apiModel || DEFAULT_API_MODEL);
-    
-    alert('设置已保存！');
+    alert('配置已自动保存！');
     closeSettings();
 }
 
 async function testApiConnection() {
-    const apiKey = document.getElementById('api-key-input').value.trim();
-    let apiUrl = document.getElementById('api-url-input').value.trim() || DEFAULT_API_URL;
+    const activeConfig = getActiveConfig();
     const testResult = document.getElementById('test-result');
     const testBtn = document.getElementById('test-api-btn');
     
-    if (!apiKey) {
+    if (!activeConfig.apiKey) {
         testResult.style.display = 'block';
         testResult.style.background = '#FEF2F2';
         testResult.style.color = '#991B1B';
         testResult.style.border = '1px solid #FCA5A5';
-        testResult.textContent = '❌ 请先输入 API Key';
+        testResult.textContent = '❌ 当前配置未设置 API Key';
         return;
     }
     
@@ -456,15 +551,14 @@ async function testApiConnection() {
     testResult.textContent = '正在连接 AI 服务...';
     
     try {
-        const apiModel = document.getElementById('api-model-input').value.trim() || DEFAULT_API_MODEL;
-        const response = await fetch(apiUrl, {
+        const response = await fetch(activeConfig.apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Authorization': `Bearer ${activeConfig.apiKey}`
             },
             body: JSON.stringify({
-                model: apiModel,
+                model: activeConfig.apiModel,
                 messages: [
                     {
                         role: 'user',
@@ -542,9 +636,28 @@ async function initializeApp() {
     document.getElementById('close-settings').addEventListener('click', closeSettings);
     document.getElementById('cancel-settings').addEventListener('click', closeSettings);
     document.getElementById('save-settings').addEventListener('click', saveSettings);
-    document.getElementById('settings-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeSettings();
+    document.getElementById('add-config-btn')?.addEventListener('click', addNewConfig);
+    
+    // 点击模态框背景关闭 - 只在点击背景层时关闭
+    const settingsModal = document.getElementById('settings-modal');
+    settingsModal.addEventListener('mousedown', function(e) {
+        // 只有当点击目标是模态框本身（背景层）时才关闭
+        if (e.target === settingsModal) {
+            closeSettings();
+        }
     });
+    
+    // 阻止模态框内容区域的所有事件冒泡
+    const modalContent = settingsModal.querySelector('.modal-content');
+    if (modalContent) {
+        // 阻止所有鼠标事件冒泡
+        ['mousedown', 'mouseup', 'click'].forEach(eventType => {
+            modalContent.addEventListener(eventType, function(e) {
+                e.stopPropagation();
+            });
+        });
+    }
+    
     document.getElementById('test-api-btn').addEventListener('click', testApiConnection);
     
     // 试卷列表筛选

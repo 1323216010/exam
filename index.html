@@ -227,33 +227,27 @@
     <div class="modal" id="settings-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>⚙️ 系统设置</h3>
+                <h3>⚙️ AI 配置管理</h3>
                 <button class="modal-close" id="close-settings">×</button>
             </div>
             <div class="modal-body">
-                <div class="setting-item">
-                    <label for="api-url-input">API URL</label>
-                    <div class="input-hint">AI 评分服务的完整 API 地址</div>
-                    <input type="text" id="api-url-input" placeholder="https://proxy-hazel-theta-17.vercel.app/qwen/chat/completions">
+                <div class="config-list-header">
+                    <div class="config-list-hint">💡 可以添加多个 AI 配置并切换使用</div>
+                    <button class="btn btn-secondary" id="add-config-btn">➕ 添加新配置</button>
                 </div>
-                <div class="setting-item">
-                    <label for="api-key-input">API Key</label>
-                    <div class="input-hint">用于 AI 评分主观题（通义千问）</div>
-                    <input type="password" id="api-key-input" placeholder="请输入你的 API Key">
+                
+                <div class="config-list" id="config-list">
+                    <!-- 配置列表动态生成 -->
                 </div>
+                
                 <div class="setting-item">
-                    <label for="api-model-input">模型名称</label>
-                    <div class="input-hint">AI 模型名称（如 qwen3.5-plus）</div>
-                    <input type="text" id="api-model-input" placeholder="qwen3.5-plus">
-                </div>
-                <div class="setting-item">
-                    <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试连接</button>
+                    <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试当前配置</button>
                     <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancel-settings">取消</button>
-                <button class="btn btn-submit" id="save-settings">保存</button>
+                <button class="btn btn-secondary" id="cancel-settings">关闭</button>
+                <button class="btn btn-submit" id="save-settings">确定</button>
             </div>
         </div>
     </div>

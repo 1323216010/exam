@@ -226,46 +226,22 @@ async function generateAiExplanationStream(question, userAnswer, contentEl, onUp
     // 根据题目类型构建不同的 prompt
     let prompt;
     if (question.options) {
-        // 选择题
-        prompt = `请作为专业老师，对以下选择题进行详细解析。
+        // 选择题：简单问为什么选这个答案
+        prompt = `题目：${question.content}
 
-**题目：**
-${question.content}
-
-**选项：**
+选项：
 ${optionsText}
 
-**参考答案：** ${referenceAnswerText}
+答案：${referenceAnswerText}
 
-**我的作答：** ${userAnswerText}
-
-**要求：**
-1. 首先明确指出正确答案是什么
-2. 详细解释为什么选这个答案（核心知识点、关键依据）
-3. 简要分析其他选项为什么不正确
-4. 如果我答错了，指出我可能的误解之处
-
-请使用清晰的 Markdown 格式输出。`;
+请简要解释为什么选择这个答案？`;
     } else {
-        // 主观题
-        prompt = `请作为专业老师，对以下主观题进行详细解析。
+        // 主观题：问知识点出处和答题要点
+        prompt = `题目：${question.content}
 
-**题目：**
-${question.content}
+答案：${referenceAnswerText}
 
-**参考答案：**
-${referenceAnswerText}
-
-**我的作答：**
-${userAnswerText || '未作答'}
-
-**要求：**
-1. 列出本题的核心答题要点
-2. 解释相关的关键知识点
-3. 对比我的答案与参考答案，指出优点和不足
-4. 给出改进建议
-
-请使用清晰的 Markdown 格式输出。`;
+请说明这道题的知识点出处和答题要点。`;
     }
 
     const response = await fetch(apiUrl, {
@@ -287,7 +263,6 @@ ${userAnswerText || '未作答'}
                 }
             ],
             temperature: 0.3,
-            max_tokens: 800,
             stream: true
         })
     });
@@ -461,7 +436,6 @@ async function sendAiChatMessage() {
                 model: apiModel,
                 messages: messages,
                 temperature: 0.3,
-                max_tokens: 800,
                 stream: true
             })
         });
@@ -609,9 +583,20 @@ async function retryAiMessage(button) {
     const messages = Array.from(messagesContainer.querySelectorAll('.ai-message'));
     const messageIndex = messages.indexOf(messageDiv);
     
+    // 特殊处理：如果是第一条消息（初次解析），直接重新调用 sendAiExplanation
     if (messageIndex === 0) {
-        alert('找不到对应的用户消息');
-        return;
+        const messagesInCache = state.aiExplainDetails[currentAiQuestionIndex]?.messages || [];
+        
+        // 如果缓存中只有一条 assistant 消息，说明是初次解析
+        if (messagesInCache.length === 1 && messagesInCache[0].role === 'assistant') {
+            // 删除这条消息
+            messageDiv.remove();
+            messagesInCache.length = 0;
+            
+            // 重新生成
+            await sendAiExplanation(currentAiQuestion, currentAiQuestionIndex);
+            return;
+        }
     }
     
     const userMessageDiv = messages[messageIndex - 1];
@@ -668,7 +653,6 @@ async function retryAiMessage(button) {
                     model: apiModel,
                     messages: chatMessages,
                     temperature: 0.3,
-                    max_tokens: 800,
                     stream: true
                 })
             });
