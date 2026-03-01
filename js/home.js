@@ -2,6 +2,7 @@
 import { EXAM_LIST, loadExamList } from './config.js';
 import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE, getChoicePromptTemplate, getSubjectivePromptTemplate, savePromptTemplates, resetPromptTemplates } from './api.js';
 import { getFilenameFromPath } from './utils.js';
+import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 
 // ==================== 模式选择 ====================
 
@@ -81,6 +82,12 @@ function renderExamList() {
     subjectFilter.addEventListener('change', filterExamList);
     sortFilter.addEventListener('change', filterExamList);
     searchInput.addEventListener('input', filterExamList);
+    
+    // 绑定清空聊天记录按钮
+    const clearAllChatsBtn = document.getElementById('clear-all-chats-btn');
+    if (clearAllChatsBtn) {
+        clearAllChatsBtn.addEventListener('click', handleClearAllChats);
+    }
     
     // 绑定视图切换
     document.querySelectorAll('.view-btn').forEach(btn => {
@@ -227,7 +234,42 @@ async function loadExamDetails(path, card) {
         console.error('Failed to load exam details:', error);
     }
 }
-
+// 清空所有聊天记录
+async function handleClearAllChats() {
+    try {
+        const stats = await getChatStats();
+        const totalRecords = stats.totalRecords || 0;
+        
+        if (totalRecords === 0) {
+            alert('当前没有任何聊天记录');
+            return;
+        }
+        
+        if (!confirm(`确定要清除所有试卷的 AI 聊天记录吗？\n\n共有 ${totalRecords} 条记录将被删除，此操作不可恢复。`)) {
+            return;
+        }
+        
+        const btn = document.getElementById('clear-all-chats-btn');
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '清除中...';
+        
+        await clearAllChatDatabase();
+        
+        btn.textContent = '✓ 已清除';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 2000);
+        
+        alert('所有聊天记录已清除');
+    } catch (error) {
+        console.error('清除聊天记录失败:', error);
+        alert('清除失败：' + error.message);
+        const btn = document.getElementById('clear-all-chats-btn');
+        if (btn) btn.disabled = false;
+    }
+}
 // ==================== 练习模式 ====================
 
 function startPracticeMode() {

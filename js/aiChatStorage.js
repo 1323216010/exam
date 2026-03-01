@@ -35,10 +35,10 @@ export async function initChatDB() {
 // 获取当前考试的唯一标识
 function getExamId(examData) {
     if (!examData) return null;
-    // 使用试卷的课程代码和文件名组合作为唯一标识
-    const courseCode = examData.course_code || '';
-    const fileName = examData.file_name || '';
-    return `${courseCode}_${fileName}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+    // 优先使用 filename，其次使用 exam_info.title 作为唯一标识
+    const identifier = examData.filename || examData.exam_info?.title || 'unknown_exam';
+    // 将标识转换为安全的字符串格式
+    return identifier.replace(/[^a-zA-Z0-9\u4e00-\u9fa5_-]/g, '_');
 }
 
 // 生成存储的唯一 ID
@@ -199,5 +199,20 @@ export async function getChatStats() {
             });
         };
         countRequest.onerror = () => reject(countRequest.error);
+    });
+}
+
+// 清除所有试卷的聊天记录
+export async function clearAllChatDatabase() {
+    if (!db) await initChatDB();
+    
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([STORE_NAME], 'readwrite');
+        const store = transaction.objectStore(STORE_NAME);
+        
+        const request = store.clear();
+        
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
     });
 }
