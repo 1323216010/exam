@@ -1,0 +1,435 @@
+{
+  "exam_info": {
+    "title": "2024年4月高等教育自学考试全国统一命题考试",
+    "subject": "政治学概论",
+    "code": "00312",
+    "date": "2024-04"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "先秦时期法家思想的集大成者是",
+      "options": {
+        "A": "孔子",
+        "B": "韩非子",
+        "C": "孟子",
+        "D": "老子"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "西方政治学产生早且兴盛于",
+      "options": {
+        "A": "古希腊",
+        "B": "古罗马",
+        "C": "古印度",
+        "D": "文艺复兴"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "早期的一个政治学经典是",
+      "options": {
+        "A": "《君主论》",
+        "B": "《资本论》",
+        "C": "《社会契约论》",
+        "D": "《威斯特伐利亚判决》"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "近现代政治学的国家观念强调的核心是",
+      "options": {
+        "A": "宗教",
+        "B": "经济",
+        "C": "国家主权",
+        "D": "阶级"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "马克思主义认为，人与社会生活的基础是",
+      "options": {
+        "A": "习俗",
+        "B": "经济",
+        "C": "意志",
+        "D": "民族"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "下列对国家起源的理论中能解释部落和部落联盟产生的是",
+      "options": {
+        "A": "习惯说",
+        "B": "强权说",
+        "C": "契约说",
+        "D": "发展说"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "在美洲历史上，较早对国家进行系统分类的是",
+      "options": {
+        "A": "亚里士多德",
+        "B": "卢梭",
+        "C": "霍布斯",
+        "D": "高蒂鹤"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "在西方封建社会的末期，占支配地位的封建土地所有制度形式是",
+      "options": {
+        "A": "土地共有制",
+        "B": "封建土地所有",
+        "C": "国家私有制",
+        "D": "集体所有制"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "宪政派与统治于国家宪法的前提是",
+      "options": {
+        "A": "君主专制",
+        "B": "阶层问责",
+        "C": "政府轮流",
+        "D": "君权神授"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "国家权力关系是基于下列哪项原则与机构建立和运行",
+      "options": {
+        "A": "社会契约",
+        "B": "继承制",
+        "C": "政权权力",
+        "D": "政党制度"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "在西方国家历史中，比较典型的地方分权权利国家是",
+      "options": {
+        "A": "法国",
+        "B": "英国",
+        "C": "美国",
+        "D": "德国"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "制定特别行政区基本法的国家机关是",
+      "options": {
+        "A": "中央人民政府",
+        "B": "特别行政区的立法机关",
+        "C": "地方人民代表大会",
+        "D": "全国人民代表大会"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "根据现代国家宪法规定，国家机构是建构的组织原则是",
+      "options": {
+        "A": "共和制",
+        "B": "三权分立",
+        "C": "集权制",
+        "D": "君主制"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "西方国家具有立法权、财政权和监督权的主要机关是",
+      "options": {
+        "A": "国家元首",
+        "B": "议会",
+        "C": "法院",
+        "D": "法院"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "我国政治学界对政治文化的研究开始于",
+      "options": {
+        "A": "20世纪50年代",
+        "B": "20世纪60年代",
+        "C": "20世纪70年代",
+        "D": "20世纪80年代"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "民族平等的核心原则是",
+      "options": {
+        "A": "民族自决",
+        "B": "民族平等",
+        "C": "民族团结",
+        "D": "民族自治"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "主要区分政治制度和政权制度类型的依据是",
+      "options": {
+        "A": "合法性",
+        "B": "章程人数多少",
+        "C": "权力结构",
+        "D": "主要权属"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "一切政治关系的最终指向都是",
+      "options": {
+        "A": "民族关系",
+        "B": "政党关系",
+        "C": "阶级关系",
+        "D": "国家关系"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "国际政治中最重要具有决定意义的基本行为主体是",
+      "options": {
+        "A": "常设组织",
+        "B": "跨国家党",
+        "C": "个人",
+        "D": "主权国家"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "诠释旧时期的核心是",
+      "options": {
+        "A": "发展",
+        "B": "战争",
+        "C": "和平",
+        "D": "竞争"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "多项选择题",
+      "content": "根据马克思主义对国家历史类型划分的分类和解释的观点，人类社会经历了",
+      "options": {
+        "A": "奴隶制国家",
+        "B": "封建制国家",
+        "C": "资本主义国家",
+        "D": "社会主义国家"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "22",
+      "question_type": "多项选择题",
+      "content": "国家机构不同于一般的社会公共机构，它具有的主要特点包括",
+      "options": {
+        "A": "阶级性",
+        "B": "社会性",
+        "C": "武装性",
+        "D": "影响性"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "23",
+      "question_type": "多项选择题",
+      "content": "政府的主要职能有",
+      "options": {
+        "A": "国家",
+        "B": "效率",
+        "C": "正义",
+        "D": "公共权力"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "24",
+      "question_type": "多项选择题",
+      "content": "属于常见的政府权包括",
+      "options": {
+        "A": "统治权",
+        "B": "议决权",
+        "C": "行政管理权",
+        "D": "行政处置管理权",
+        "E": "社会管理权"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "25",
+      "question_type": "多项选择题",
+      "content": "实行责任制的政府，掌握政府使最高国家权力的权力一般都是",
+      "options": {
+        "A": "议会",
+        "B": "总统",
+        "C": "没有任期限制",
+        "D": "选举产生的",
+        "E": "具有严格的任期限制"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "26",
+      "question_type": "名词解释题",
+      "content": "人民代表大会制度",
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "27",
+      "question_type": "名词解释题",
+      "content": "政党",
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "28",
+      "question_type": "名词解释题",
+      "content": "政治心理",
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "29",
+      "question_type": "名词解释题",
+      "content": "君主制",
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "30",
+      "question_type": "名词解释题",
+      "content": "隔离主义",
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "31",
+      "question_type": "简答题",
+      "content": "简述政治经济学的理论基础。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "32",
+      "question_type": "简答题",
+      "content": "简述我国国家权力最高机构的具体内容并将权力做框架。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "33",
+      "question_type": "简答题",
+      "content": "简述社会主义民族关系的基本特点。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述我国联合政府的现实实现方式。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述政党的主要职能与类型。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "全球性的政治组织的典型特征。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "论述题",
+      "content": "论述马克思主义关于国家政治属性和社会职能的关系。",
+      "answer": null,
+      "score": 10
+    },
+    {
+      "question_number": "38",
+      "question_type": "论述题",
+      "content": "论述中国特色社会义政治文化在政治实践体育中的具体作用。",
+      "answer": null,
+      "score": 10
+    },
+    {
+      "question_number": "39",
+      "question_type": "材料分析题",
+      "content": "材料：\n“中国特色社会主义政治制度和国家治理体系是以马克思主义为指导、根植于中国大地、具有深厚中华文化根基、深得人民拥护的制度和治理体系，是具有强大生命力和巨大优势的制度和治理体系。”\n\n结合材料，分析中国特色社会主义政治制度和国家治理体系的优越性。（4分）\n结合材料与“一、二、三、四”，剖析国家治理体系和治理能力的含义及其关系。（6分）",
+      "answer": null,
+      "score": 10
+    }
+  ]
+}

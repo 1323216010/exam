@@ -38,15 +38,29 @@ def document_to_images(doc_path):
         # 如果是 Word 文档，先转换为 PDF
         pdf_path = doc_path.with_suffix('.pdf')
         print(f"正在将 {doc_path.name} 转换为 PDF...")
-        word = win32com.client.Dispatch("Word.Application")
-        word.Visible = False
+        word = None
+        doc = None
         
         try:
+            word = win32com.client.Dispatch("Word.Application")
+            word.Visible = False
             doc = word.Documents.Open(str(doc_path))
             doc.SaveAs(str(pdf_path), FileFormat=17)  # 17 = wdFormatPDF
             doc.Close()
+        except Exception as e:
+            print(f"转换 Word 文档时出错: {e}")
+            raise
         finally:
-            word.Quit()
+            try:
+                if doc:
+                    doc.Close()
+            except:
+                pass
+            try:
+                if word:
+                    word.Quit()
+            except:
+                pass
         
         print(f"PDF 已保存: {pdf_path}")
     else:
@@ -74,19 +88,63 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-def images_to_markdown(image_paths):
-    """使用 qwen3.5-plus 将多张图片一次性转换为 markdown"""
+def extract_score_structure(reference_md):
+    """从参考文档中提取分数结构"""
+    print("正在提取参考文档的分数结构...")
+    
+    messages = [
+        {
+            "role": "user",
+            "content": (
+                "请分析以下 Markdown 格式的试卷，提取出各种题型及其对应的分数。\n\n"
+                "要求：\n"
+                "1. 只输出题型和分数的对应关系，格式为：题型名称: 每题X分\n"
+                "2. 如果同一题型有不同分数，请分别列出\n"
+                "3. 不要输出其他内容\n\n"
+                "参考文档：\n"
+                f"```\n{reference_md}\n```"
+            )
+        }
+    ]
+    
+    completion = client.chat.completions.create(
+        model=AI_MODEL,
+        messages=messages,
+        stream=False
+    )
+    
+    score_structure = completion.choices[0].message.content
+    print(f"✓ 已提取分数结构：\n{score_structure}\n")
+    return score_structure
+
+def images_to_markdown(image_paths, score_structure=None):
+    """使用 AI 将多张图片一次性转换为 markdown"""
     print(f"\n正在处理 {len(image_paths)} 页文档...")
     
     # 构建 content 列表：一个文本提示 + 多个图片
+    prompt = (
+        "请将图片中的所有内容转换为 Markdown 格式文档。\n\n"
+        "要求：\n"
+        "1. 直接输出 Markdown 内容，不要用 ```markdown 代码块包裹\n"
+        "2. 必须包含所有题目，不要省略任何一道题\n"
+        "3. 可以忽略联系方式、页眉页脚等与题目无关的内容\n"
+        "4. 如遇明显笔误，请自动修正\n"
+        "5. 若不确定是否为笔误，请保持原样"
+    )
+    
+    # 如果提供了分数结构，添加到提示中
+    if score_structure:
+        prompt += (
+            "\n\n分数标注规则：\n"
+            "- 如果试卷图片中已经标注了分数，请使用图片中的分数\n"
+            "- 如果试卷图片中没有标注分数，请参考以下分数结构进行标注：\n"
+            f"{score_structure}\n"
+        )
+    
     content = [
         {
             "type": "text",
-            "text": (
-                "请将图片中的所有内容转换为完整的 Markdown 格式文档。"
-                "如遇明显笔误，请自动修正。"
-                "若不确定是否为笔误，请保持原样，不要擅自改动。"
-            )
+            "text": prompt
         }
     ]
     
@@ -131,7 +189,7 @@ def images_to_markdown(image_paths):
     print(f"\r  ✓ 完成     ")
     return result
 
-def convert_doc_to_markdown(doc_path, output_path=None):
+def convert_doc_to_markdown(doc_path, output_path=None, score_structure=None):
     """主函数：将 .doc 转换为 markdown"""
     doc_path = Path(doc_path)
     
@@ -152,9 +210,11 @@ def convert_doc_to_markdown(doc_path, output_path=None):
     # 步骤2: 使用 AI 一次性转换所有页面
     print("\n" + "=" * 60)
     print(f"步骤 2/3: 使用 AI 识别并转换 ({len(image_paths)} 页)")
+    if score_structure:
+        print("  (使用参考分数结构)")
     print("=" * 60)
     
-    final_markdown = images_to_markdown(image_paths)
+    final_markdown = images_to_markdown(image_paths, score_structure)
     
     # 步骤3: 保存结果
     print("\n" + "=" * 60)
@@ -176,6 +236,41 @@ if __name__ == "__main__":
     root = Tk()
     root.withdraw()  # 隐藏主窗口
     
+    # 1. 先询问是否需要参考文档
+    from tkinter import messagebox
+    use_reference = messagebox.askyesno(
+        "参考文档",
+        "是否需要选择一份参考 Markdown 文档？\n\n"
+        "如果后续试卷没有标记分数，可以参考该文档的分数规范。"
+    )
+    
+    score_structure = None
+    if use_reference:
+        print("请选择参考 Markdown 文档...")
+        reference_file = filedialog.askopenfilename(
+            title="选择参考 Markdown 文档 (可选)",
+            filetypes=[
+                ("Markdown 文件", "*.md"),
+                ("所有文件", "*.*")
+            ]
+        )
+        
+        if reference_file:
+            try:
+                with open(reference_file, 'r', encoding='utf-8') as f:
+                    reference_md = f.read()
+                print(f"✓ 已加载参考文档: {Path(reference_file).name}")
+                print(f"  参考文档字符数: {len(reference_md)}\n")
+                
+                # 提取分数结构
+                score_structure = extract_score_structure(reference_md)
+            except Exception as e:
+                print(f"⚠ 处理参考文档失败: {e}\n")
+                score_structure = None
+        else:
+            print("未选择参考文档\n")
+    
+    # 2. 选择要转换的文件
     print("请选择要转换的文件 (可多选)...")
     doc_files = filedialog.askopenfilenames(
         title="选择文档文件 (可多选)",
@@ -193,6 +288,6 @@ if __name__ == "__main__":
             print(f"\n{'='*60}")
             print(f"处理文件 {i}/{len(doc_files)}: {Path(doc_file).name}")
             print(f"{'='*60}")
-            convert_doc_to_markdown(doc_file)
+            convert_doc_to_markdown(doc_file, score_structure=score_structure)
     else:
         print("未选择文件，程序退出。")

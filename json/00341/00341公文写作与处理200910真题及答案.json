@@ -1,0 +1,407 @@
+{
+  "exam_info": {
+    "title": "全国2009年10月高等教育自学考试",
+    "subject": "公文写作与处理试题",
+    "code": "00341",
+    "date": "2009-10"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "“《书》者，政事之纪也”出自（    ）",
+      "options": {
+        "A": "孔子",
+        "B": "韩非子",
+        "C": "《荀子》",
+        "D": "《尚书》"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "发文机关同收文机关之间的公文往来关系是（    ）",
+      "options": {
+        "A": "组织关系",
+        "B": "业务关系",
+        "C": "行文关系",
+        "D": "平行关系"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "指出文章和文件都应当具备的三种性质：准确性、鲜明性、生动性的是（    ）",
+      "options": {
+        "A": "列宁",
+        "B": "马克思",
+        "C": "周恩来",
+        "D": "毛泽东"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "在写作中运用语言的方法和手段称之为（    ）",
+      "options": {
+        "A": "公文格式",
+        "B": "公文体式",
+        "C": "表达方式",
+        "D": "公文程式"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "发文人应标注在文件的（    ）",
+      "options": {
+        "A": "局首部分",
+        "B": "主体部分",
+        "C": "版记部分",
+        "D": "附件部分"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "公文的数字号用阿拉伯数字表示，一般用（    ）",
+      "options": {
+        "A": "3位数",
+        "B": "4位数",
+        "C": "5位数",
+        "D": "6位数"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "党的领导机关下发对下级机关行使、提出开展工作的原则和要求，应使用的公文文种是（    ）",
+      "options": {
+        "A": "通知",
+        "B": "指示",
+        "C": "命令",
+        "D": "决定"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "在我国古代，将“命”和“令”改称为“制”和“诏”的皇帝是（    ）",
+      "options": {
+        "A": "秦始皇",
+        "B": "汉武帝",
+        "C": "唐太宗",
+        "D": "汉高祖"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "根据《宪法》和《地方各级人民代表大会和地方各级人民政府组织法》的规定，有权发布命令(令)的政府级别是（    ）",
+      "options": {
+        "A": "省级以上",
+        "B": "地(市)级以上",
+        "C": "县级以上",
+        "D": "乡(镇)级以上"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "在以下文件中，可以用来向特定受文对象告知或转达有关事项，让对象知道或执行的文种是（    ）",
+      "options": {
+        "A": "通报",
+        "B": "公告",
+        "C": "通知",
+        "D": "通告"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "公告、通告、通知和通报的共同点是（    ）",
+      "options": {
+        "A": "告知性",
+        "B": "指导性",
+        "C": "公开性",
+        "D": "权威性"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "审判的最大特点是（    ）",
+      "options": {
+        "A": "简洁易读",
+        "B": "政治性强",
+        "C": "具体细致",
+        "D": "切实可信"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "在以下几种记载类文书中最具实用价值的是（    ）",
+      "options": {
+        "A": "会议记录",
+        "B": "会谈纪要",
+        "C": "接待记录",
+        "D": "大事记"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "毛泽东同志的《愚公移山》一文是在中共七大上的（    ）",
+      "options": {
+        "A": "闭幕词",
+        "B": "发言稿",
+        "C": "演讲稿",
+        "D": "工作报告"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "批发文件处理工作要求做到准确周密的是为了（    ）",
+      "options": {
+        "A": "注重时效",
+        "B": "确保质量",
+        "C": "安全保密",
+        "D": "加强管理"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "在以下公文处理程序中，收文程序和发文程序都有的是（    ）",
+      "options": {
+        "A": "审核",
+        "B": "核发",
+        "C": "分办",
+        "D": "传办"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "经办人对公文承办的情况和结果在公文处理单上作简要说明称（    ）",
+      "options": {
+        "A": "注办",
+        "B": "批办",
+        "C": "执办",
+        "D": "注办"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "发文登记一般采用的形式是（    ）",
+      "options": {
+        "A": "联单式",
+        "B": "薄册式",
+        "C": "卡片式",
+        "D": "图表式"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "归档文件整理的第一步是（    ）",
+      "options": {
+        "A": "分类",
+        "B": "装订",
+        "C": "排列",
+        "D": "编号"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "《归档文件整理规则》的颁布时间是（    ）",
+      "options": {
+        "A": "1996年",
+        "B": "1998年",
+        "C": "2000年",
+        "D": "2004年"
+      },
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "多项选择题",
+      "content": "根据行文关系来划分公文的类别，公文可分为（       ）",
+      "options": {
+        "A": "上行文",
+        "B": "下行文",
+        "C": "运行文",
+        "D": "平行文",
+        "E": "无行文"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "22",
+      "question_type": "多项选择题",
+      "content": "在公文起草中，围绕发文主旨收集的材料应当具有（       ）",
+      "options": {
+        "A": "真实性",
+        "B": "政治性",
+        "C": "典型性",
+        "D": "适用性",
+        "E": "时效性"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "23",
+      "question_type": "多项选择题",
+      "content": "公告、通告的写作应当注意做到（       ）",
+      "options": {
+        "A": "符合权限",
+        "B": "一事一告",
+        "C": "内容明确",
+        "D": "语气庄重",
+        "E": "格式规范"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "24",
+      "question_type": "多项选择题",
+      "content": "规章类文书的文种包括（       ）",
+      "options": {
+        "A": "条例",
+        "B": "规划",
+        "C": "章程",
+        "D": "实施细则",
+        "E": "公约"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "25",
+      "question_type": "多项选择题",
+      "content": "大事记的特点包括（       ）",
+      "options": {
+        "A": "客观",
+        "B": "准确",
+        "C": "及时",
+        "D": "系统",
+        "E": "可靠"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "整理归档文件可以使用的书写材料包括（       ）",
+      "options": {
+        "A": "钢笔",
+        "B": "圆珠笔",
+        "C": "蓝黑墨水",
+        "D": "毛笔",
+        "E": "纯黑墨水"
+      },
+      "score": 2
+    },
+    {
+      "question_number": "27",
+      "question_type": "判断说明题",
+      "content": "党的机关和国家行政机关规定的公文种类数量是一致的，都是13种。",
+      "score": 3
+    },
+    {
+      "question_number": "28",
+      "question_type": "判断说明题",
+      "content": "公文的主题词即公文主题。",
+      "score": 3
+    },
+    {
+      "question_number": "29",
+      "question_type": "判断说明题",
+      "content": "通报具有周知性的特点。",
+      "score": 3
+    },
+    {
+      "question_number": "30",
+      "question_type": "判断说明题",
+      "content": "工作计划应当具有操作性和预想性。",
+      "score": 3
+    },
+    {
+      "question_number": "31",
+      "question_type": "判断说明题",
+      "content": "编发简报应当迅速、及时。",
+      "score": 3
+    },
+    {
+      "question_number": "32",
+      "question_type": "判断说明题",
+      "content": "公文拟具生效的关键性环节是审核。",
+      "score": 3
+    },
+    {
+      "question_number": "33",
+      "question_type": "简答题",
+      "content": "简述公文的作用。",
+      "score": 5
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述数字号的作用及其标识形式。",
+      "score": 5
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述决议与提案的区别。",
+      "score": 5
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "机关控制收文应当采取哪些有效措施？",
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "为什么小机关或基层单位应选择集中形式来进行公文整理（立卷）工作？",
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "论述题",
+      "content": "试论施行有关文书的基本原则。",
+      "score": 10
+    },
+    {
+      "question_number": "39",
+      "question_type": "综合应用题",
+      "content": "请用下面提供的材料为依据，以汉汉区建设局的名义向上级主管部门撰写一份请求批准类请示的正文部分。\n要求：\n(1) 遵守标准的行文规则；\n(2) 理由要充分，要求要合理；\n(3) 格式要正确，语言要得体。",
+      "material": "市民期盼更多管线入地\n“生活所在的这次区工业路、工业二路都刚刚道路改造，但路旁仍有很多木电线杆，水泥线杆。很多强线改造都没有做到多管线入地，为什么这里不行呢？”昨日，xx市市民熊先生致电本报记者说心中的不解。\n记者在这个小区走访看到，熊先生所称的道路已经完成刷黑，有的正在铺设人行道，路两边的人行道上，确有那些电线杆，上面密布的各种缆线与修葺一新的路面形成鲜明对比。附近不少市民对有熊先生发出感慨。\n汉汉区建设局相关负责人解释，管线入地难度甚大。通常三干道为容易观感的改造，结合该方面的经费安排。水下通道改造以后如果电线杆正在线路当中，也会管线入地。该路段属次干道，但电线杆在人行道上，改时没有管线入地计划。该负责人还介绍说，这几种线路绝大都是市政行业，经有关市府批准，纳有一定的特殊性；其管线入地工程约需800万元资金。他表示，接受市民建议，立即着手向上级请示，力争早日给市民一个满意的答复。",
+      "score": 15
+    }
+  ]
+}

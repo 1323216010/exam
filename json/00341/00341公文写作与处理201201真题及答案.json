@@ -1,0 +1,445 @@
+{
+  "exam_info": {
+    "title": "2012年1月高等教育自学考试全国统一命题考试",
+    "subject": "公文写作与处理试题",
+    "code": "00341",
+    "date": "2012-01"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "“上古结绳而治，后世圣人易之以书契，百官以治，万民以察”，出自",
+      "options": {
+        "A": "《尚书》",
+        "B": "《周易》",
+        "C": "《汉书》",
+        "D": "《史记》"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "“书”、“笺”是我国最早的公行文，出现在哪一时期？",
+      "options": {
+        "A": "夏",
+        "B": "周代",
+        "C": "秦代",
+        "D": "汉代"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "在写作中，要求“写完后至少看两遍，删掉将可有可无的字、句、段删去，毫不可惜”的是谁？",
+      "options": {
+        "A": "鲁迅",
+        "B": "毛泽东",
+        "C": "周恩来",
+        "D": "冰心"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "在文起草工作中，由一人准备、选取材料并构思后局直至拟写成文的写作方式一般适用于",
+      "options": {
+        "A": "决策性公文",
+        "B": "重要会议报告",
+        "C": "事务性通知",
+        "D": "会议议决"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "在公文写作中，兼用叙述、说明和议论三种表达方式，其中为主的是",
+      "options": {
+        "A": "叙述",
+        "B": "说明",
+        "C": "议论",
+        "D": "叙述和说明"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "“三届两制、三农、中华十三大届六中全会、三个代表、政协”是公文中常见的",
+      "options": {
+        "A": "简称语",
+        "B": "引用语",
+        "C": "特定用语",
+        "D": "引用语"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "提取最高同写行政机关联系",
+      "options": {
+        "A": "国务院常务会议",
+        "B": "国务院办公厅",
+        "C": "全国人大代表大会",
+        "D": "国务院办公厅"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "举例列几个部门问题的下行文应该",
+      "options": {
+        "A": "协商一致再由上级机关裁决",
+        "B": "由各部门各自向下行文",
+        "C": "同上级机关协商一致再行文",
+        "D": "部门之间协商一致再行文"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "关于公文文本中，由领导机关制发的具有强制执行性质的指令性公文种类是",
+      "options": {
+        "A": "命令",
+        "B": "决议",
+        "C": "决定",
+        "D": "指示"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "在人民代表大会上使用“议案”一词以后，各级政协会议和企业职工代表大会则使用",
+      "options": {
+        "A": "方案",
+        "B": "草案",
+        "C": "“方案”",
+        "D": "提案"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "用来发布同国民经济和社会发展各方面情况的公报是",
+      "options": {
+        "A": "联合公报",
+        "B": "会议公报",
+        "C": "重大公报",
+        "D": "统计公报"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "通报的特点功能是",
+      "options": {
+        "A": "批评错误、传达精神",
+        "B": "表彰先进、交流情况",
+        "C": "表彰先进、传达精神",
+        "D": "表彰先进、批评错误"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "有些方面的工作上级机关想和下级机关商量着办，不带强制性质，这时可以使用",
+      "options": {
+        "A": "会议纪要",
+        "B": "通知",
+        "C": "函",
+        "D": "意见"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "规范类文书所涉及工作的期限一般是",
+      "options": {
+        "A": "1年以内",
+        "B": "1-2年",
+        "C": "2-3年",
+        "D": "5年以上"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "将本单位的重大公务活动按年、月、目的先后顺序如实记载的记录性文书是",
+      "options": {
+        "A": "年报",
+        "B": "总结",
+        "C": "实事记",
+        "D": "会议记录"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "当进行专门机构进行公文处理工作的机关单位是",
+      "options": {
+        "A": "基层单位",
+        "B": "较大的机关",
+        "C": "较小的机关",
+        "D": "小型企业"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "对某文书处理提出初步意见，供领导人批办参考的程序是",
+      "options": {
+        "A": "分办",
+        "B": "催办",
+        "C": "归办",
+        "D": "注办"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "公文稿件中的数字，写当使用汉字书写的是",
+      "options": {
+        "A": "成文时间",
+        "B": "发文字号",
+        "C": "文件编号",
+        "D": "年代"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "进行公文整理（立卷）时，要恰当地选择和确定立卷人员，最合适的人员应是",
+      "options": {
+        "A": "机要办公室主任",
+        "B": "承办文书的人员",
+        "C": "承担收发、运转、催办等工作的文书人员",
+        "D": "机关档案室的工作人员"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "在进行归类件分类法时，运用得最广泛的一种分类方法是",
+      "options": {
+        "A": "年度分类法",
+        "B": "组织机构分类法",
+        "C": "问题类别法",
+        "D": "保管期限分类法"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "多项选择题",
+      "content": "在文写作中，导语部分的写法常见的有",
+      "options": {
+        "A": "过渡式",
+        "B": "依据式",
+        "C": "问答式",
+        "D": "小结式",
+        "E": "原因式"
+      },
+      "answer": "ECE",
+      "score": 2
+    },
+    {
+      "question_number": "22",
+      "question_type": "多项选择题",
+      "content": "议案标题的组成部分包括",
+      "options": {
+        "A": "提议案人",
+        "B": "提议案时间",
+        "C": "议案内容",
+        "D": "提议案理由",
+        "E": "议案"
+      },
+      "answer": "ACE",
+      "score": 2
+    },
+    {
+      "question_number": "23",
+      "question_type": "多项选择题",
+      "content": "公告和通告的共同特点有",
+      "options": {
+        "A": "发布的公开性",
+        "B": "事项的重要性",
+        "C": "内容的周知性",
+        "D": "行为的权威性",
+        "E": "操作的严肃性"
+      },
+      "answer": "ABE",
+      "score": 2
+    },
+    {
+      "question_number": "24",
+      "question_type": "多项选择题",
+      "content": "调查报告的正文部分包括",
+      "options": {
+        "A": "标题",
+        "B": "主谈机关",
+        "C": "前言",
+        "D": "主体",
+        "E": "结尾"
+      },
+      "answer": "CDE",
+      "score": 2
+    },
+    {
+      "question_number": "25",
+      "question_type": "多项选择题",
+      "content": "以下的机关单位中，公文处理工作的组织可采用分工形式的有",
+      "options": {
+        "A": "省人民政府",
+        "B": "省业余体校",
+        "C": "省公安厅",
+        "D": "省教育厅",
+        "E": "军管区"
+      },
+      "answer": "ACDE",
+      "score": 2
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "以下的文件材料归属于公文整理归档范围的有",
+      "options": {
+        "A": "机关鸡的出版物原稿",
+        "B": "有若专利有价值的收发文件",
+        "C": "电话记录",
+        "D": "会议记录",
+        "E": "电报"
+      },
+      "answer": "ABCDE",
+      "score": 2
+    },
+    {
+      "question_number": "27",
+      "question_type": "判断说明题",
+      "content": "公文专作料的收集应当做到真实、典型、适用、时效。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "28",
+      "question_type": "判断说明题",
+      "content": "多级下行文就是采取逐级下达或者只对直属下级机关下达的一种行文方式。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "29",
+      "question_type": "判断说明题",
+      "content": "决议和决定都必须在会议有名称发布。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "30",
+      "question_type": "判断说明题",
+      "content": "所有调查研究的事项无一例外都要写调查报告。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "31",
+      "question_type": "判断说明题",
+      "content": "人委派党、党和政府系统的文书工作是由国家档案局来领导和指导。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "32",
+      "question_type": "判断说明题",
+      "content": "机关领导发送的文件批准稿时，需事前承办该文件的单位或承办人。",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "33",
+      "question_type": "简答题",
+      "content": "公文为什么要标注主题词？",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述会议公报的写作要求。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述公文的基本含义。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述简报类文书的作用。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "判断公文为什么要按保管期限进行分类？",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "论述题",
+      "content": "试述办机关公文处理工作的关键环节。",
+      "answer": "机关办机关公文处理工作的关键环节。",
+      "score": 10
+    },
+    {
+      "question_number": "39",
+      "question_type": "综合应用题",
+      "content": "以阳湖房管所的名义，起草一份请前进小区物业部门配合做好电梯维修的函。要求：(1)内容先后有序，文理清楚，结构明晰；(2)遵循“函”的写作格式。",
+      "answer": "（标题）关于请配合做好电梯维修的函\n前进小区物业管理委员会（受文单位）\n正文（略）\n阳湖房管所（行文单位盖章）\n××年×月×日",
+      "score": 15
+    }
+  ]
+}

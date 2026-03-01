@@ -1,0 +1,445 @@
+{
+  "exam_info": {
+    "title": "2010年10月高等教育自学考试全国统一命题考试",
+    "subject": "公文写作与处理试题",
+    "code": "00341",
+    "date": "2010-10"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "公文是公务活动的（    ）",
+      "options": {
+        "A": "媒介",
+        "B": "重要工具",
+        "C": "形式",
+        "D": "工作方式"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "在我国商代后期，出现了一种体式较为完备的文书，即（    ）",
+      "options": {
+        "A": "石文文书",
+        "B": "继商文书",
+        "C": "甲骨文书",
+        "D": "竹简文书"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "公文的文体、结构、附加标记和格式安排构成（    ）",
+      "options": {
+        "A": "公文样式",
+        "B": "公文体式",
+        "C": "公文规范",
+        "D": "公文形态"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "公文写作中最常用、最主要的表达方式是（    ）",
+      "options": {
+        "A": "叙述",
+        "B": "评论",
+        "C": "说明",
+        "D": "决策议议"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "现行的《中国共产党各级领导机关公文处理条例》发布于（    ）",
+      "options": {
+        "A": "1989年",
+        "B": "1996年",
+        "C": "2000年",
+        "D": "2005年"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "调查报告、会议纪要以及综合性的工作总结通常采用的表达方式是（    ）",
+      "options": {
+        "A": "叙述",
+        "B": "议论",
+        "C": "叙议夹述",
+        "D": "说明"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "不同系统的机关之间可以使用的文种是（    ）",
+      "options": {
+        "A": "指示",
+        "B": "批复",
+        "C": "报告",
+        "D": "商"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "在特殊情况下的越级上行文需要（    ）",
+      "options": {
+        "A": "得到直接上级机关的允许",
+        "B": "同时抄报越过的上级机关",
+        "C": "得到主送机关的允许",
+        "D": "同时抄报上级机关有关部门"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "常用的公报类型有（    ）",
+      "options": {
+        "A": "会议公报、统计公报、联合公报",
+        "B": "外交公报、会议公报、统计公报",
+        "C": "外交公报、善宣公报、统计公报",
+        "D": "会议公报、联合公报、善宣公报"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "报告是下级机关向上级机关呈送的（    ）",
+      "options": {
+        "A": "显批性公文",
+        "B": "告知性公文",
+        "C": "建议性公文",
+        "D": "陈述性公文"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "调查报告有两个特点，一是针对性强，二是（    ）",
+      "options": {
+        "A": "政策性强",
+        "B": "纪实性强",
+        "C": "综合性强",
+        "D": "实用性强"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "提出“没有调查就没有发言权”著名论断的是（    ）",
+      "options": {
+        "A": "毛泽东",
+        "B": "刘少奇",
+        "C": "周恩来",
+        "D": "邓小平"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "在提案的写作格式中，必须的项目有（    ）",
+      "options": {
+        "A": "标题",
+        "B": "发文字号",
+        "C": "紧急程度",
+        "D": "案由"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "常简报分为定期简报和不定期简报的依据是简报的（    ）",
+      "options": {
+        "A": "印刷时间",
+        "B": "性质",
+        "C": "内容",
+        "D": "发发布向"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "机关公文处理工作的程序和环节，除了公文的办理、管理和整理归档以外，还有（    ）",
+      "options": {
+        "A": "登收",
+        "B": "拟制",
+        "C": "审核",
+        "D": "批办"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "收发文办理的第一个环节是（    ）",
+      "options": {
+        "A": "拟稿",
+        "B": "分发",
+        "C": "登收",
+        "D": "登记"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "在公文标题中，如要引用来份公文，应当（    ）",
+      "options": {
+        "A": "先引标题，后引发文字号",
+        "B": "先引发文字号，后引标题",
+        "C": "先引发文机关名称，后引发文字号",
+        "D": "先引发文字号，后引发文机关名称"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "批复领导人对文稿的最后审批称（    ）",
+      "options": {
+        "A": "审核",
+        "B": "签发",
+        "C": "核发",
+        "D": "批办"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "构成档案全宗的国家机构、社会组织或个人称（    ）",
+      "options": {
+        "A": "立档单位",
+        "B": "行文单位",
+        "C": "法人单位",
+        "D": "归档单位"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "按照《归档文件整理规则》的规定，在实际进行文件整理时，首先应将文件按件（    ）",
+      "options": {
+        "A": "排列",
+        "B": "分类",
+        "C": "装订",
+        "D": "编目"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "多项选择题",
+      "content": "我国最早的上行文是奏代出现的（    ）",
+      "options": {
+        "A": "表",
+        "B": "诏",
+        "C": "书",
+        "D": "启",
+        "E": "奏"
+      },
+      "answer": "CE",
+      "score": 2
+    },
+    {
+      "question_number": "22",
+      "question_type": "多项选择题",
+      "content": "根据机关之间不同的行文关系，可以将机关之间的行文分为（    ）",
+      "options": {
+        "A": "上行文",
+        "B": "下行文",
+        "C": "迁行文",
+        "D": "多方向行文",
+        "E": "平行文"
+      },
+      "answer": "ABE",
+      "score": 2
+    },
+    {
+      "question_number": "23",
+      "question_type": "多项选择题",
+      "content": "该条例的内容必须具有（    ）",
+      "options": {
+        "A": "单一性",
+        "B": "政策性",
+        "C": "可行性",
+        "D": "权威性",
+        "E": "指导性"
+      },
+      "answer": "AC",
+      "score": 2
+    },
+    {
+      "question_number": "24",
+      "question_type": "多项选择题",
+      "content": "根据报告内容所涉及的范围，可将其分为（    ）",
+      "options": {
+        "A": "综合报告",
+        "B": "调查报告",
+        "C": "呈转性报告",
+        "D": "显报性报告",
+        "E": "专题报告"
+      },
+      "answer": "AC",
+      "score": 2
+    },
+    {
+      "question_number": "25",
+      "question_type": "多项选择题",
+      "content": "调查报告的主要特点是（    ）",
+      "options": {
+        "A": "政策性",
+        "B": "理论性",
+        "C": "实践性",
+        "D": "针对性",
+        "E": "纪实性"
+      },
+      "answer": "ABDE",
+      "score": 2
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "“件”是归档文件的整理单位，一般以（    ）",
+      "options": {
+        "A": "辅份文件为一件",
+        "B": "文件正本与定稿为一件",
+        "C": "工作计划与总结为一件",
+        "D": "原件与复制件为一件",
+        "E": "来与复文为一件"
+      },
+      "answer": "DE",
+      "score": 2
+    },
+    {
+      "question_number": "27",
+      "question_type": "判断说明题",
+      "content": "公文形成的主体是国家机关。",
+      "answer": "正确。国家机关是公文形成的主体。",
+      "score": 3
+    },
+    {
+      "question_number": "28",
+      "question_type": "判断说明题",
+      "content": "公文写作的时限性强，因此公文写作应当快写快发。",
+      "answer": "错误。公文写作应“快写快发”，但前提是保证质量，不能以快为唯一标准。",
+      "score": 3
+    },
+    {
+      "question_number": "29",
+      "question_type": "判断说明题",
+      "content": "批复发文时，一般的下行公文都有两个以上的主送机关。",
+      "answer": "错误。下行公文（如批复）一般只有一个主送机关。",
+      "score": 3
+    },
+    {
+      "question_number": "30",
+      "question_type": "判断说明题",
+      "content": "事项报告一般是定期报告。",
+      "answer": "错误。事项报告不定期，工作总结报告才定期。",
+      "score": 3
+    },
+    {
+      "question_number": "31",
+      "question_type": "判断说明题",
+      "content": "公文处理工作具有规范性特点。",
+      "answer": "正确。公文处理工作规范性强，合于规范才能保证处理质量。",
+      "score": 3
+    },
+    {
+      "question_number": "32",
+      "question_type": "判断说明题",
+      "content": "归档文件是指本机关形成的文件。",
+      "answer": "正确。归档文件指本机关或单位形成并保存备查的文件。",
+      "score": 3
+    },
+    {
+      "question_number": "33",
+      "question_type": "简答题",
+      "content": "公文的修改应从哪些方面入手？",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述联合行文的注意事项。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "指示与报告有何区别？",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述记录类文书的特点。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "应办立项的内容应包括哪些要素？",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "论述题",
+      "content": "试述决定与决议的异同。",
+      "answer": null,
+      "score": 10
+    },
+    {
+      "question_number": "39",
+      "question_type": "综合应用题",
+      "content": "请以提供的材料为依据，以某市教育局的名义起草一份紧急通知，发市属各中学。\n\n要求：\n(1)说明制发本通知的缘由；\n(2)针对出现的问题，提出解决办法（禁止什么，该怎么做）；\n(3)写明执行的要求；\n(4)层次清楚，格式正确（只要求撰制标题、受文单位、正文、行文单位).\n\n材料（摘要）：\n不参加军训就是不能吃苦\n某中学新生头顶烈日军训引质疑\n37℃！连续数日的高温天气，女生称“我差点中暑”；家长称“我把秋老虎扛了”；有的女生晕倒受伤。\n新生家属称多次收到通知，孩子带着生活用品前去报到军训，没过几天，孩子就打电话回家诉苦。军训期间，已有3人中暑，1人出现低血糖，已由家长领回家，军训还有七天……",
+      "answer": null,
+      "score": 15
+    }
+  ]
+}

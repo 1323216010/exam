@@ -1,0 +1,526 @@
+{
+  "exam_info": {
+    "title": "2017年10月高等教育自学考试全国统一命题考试",
+    "subject": "公文写作与处理试卷",
+    "code": "00341",
+    "date": "2017-10"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "下列文件中，局党委文件的传达文种是",
+      "options": {
+        "A": "计划",
+        "B": "总结",
+        "C": "章程",
+        "D": "通知"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "据确定《公文通递》所计，中国建设社会的公文文种有",
+      "options": {
+        "A": "20余种",
+        "B": "30余种",
+        "C": "40余种",
+        "D": "60余种"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "公文写作在文字表达方面的重要是指",
+      "options": {
+        "A": "结构严谨",
+        "B": "语言精准",
+        "C": "格式规范",
+        "D": "表述稳妥"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "公文的主体体现的是",
+      "options": {
+        "A": "机关领导意图和发文目的",
+        "B": "领导个人意图和发文目的",
+        "C": "公文拟定人员的意图",
+        "D": "上级领导机关的意图"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "在常命战争年代，强调党的领导干部在向中央写报告时，必须“自己动手，不要秘书书写”的领导是",
+      "options": {
+        "A": "周恩来",
+        "B": "朱德",
+        "C": "邓小平",
+        "D": "毛泽东"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "公文签发人应标注在文件的",
+      "options": {
+        "A": "封面部分",
+        "B": "主体部分",
+        "C": "版记部分",
+        "D": "附件部分"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "“一国两制、三改、中央十六届一中全会、三代代表、政办”等用语，是公文中常见的",
+      "options": {
+        "A": "普通语",
+        "B": "专用语",
+        "C": "特定用语",
+        "D": "引用语"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "公文写作中最常用、最主要的表达方式是",
+      "options": {
+        "A": "叙述",
+        "B": "议论",
+        "C": "说明",
+        "D": "发叙夹议"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "为避免工作人员正常的领导层级关系和工作业务联系，党政机关要严格控制",
+      "options": {
+        "A": "联合行文",
+        "B": "发文数量",
+        "C": "按接机关关系",
+        "D": "越级行文"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "我国最高国家行政机关是",
+      "options": {
+        "A": "国务常务会议",
+        "B": "国务院",
+        "C": "全国人民代表大会",
+        "D": "国务院办公厅"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "公文发文定性的确定依据是",
+      "options": {
+        "A": "公文的发文单位",
+        "B": "公文的内容",
+        "C": "公文的形式",
+        "D": "公文的收文单位"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "决定标题一般由三部分构成，分别是",
+      "options": {
+        "A": "决定事件、文种、日期",
+        "B": "决定机构、决定事件和日期",
+        "C": "决定机构、日期、文种",
+        "D": "发文单位决定、决定机构事件、文种"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "党政机关对重要事项或重大行动作出决策和安排的指导性公文是",
+      "options": {
+        "A": "决议",
+        "B": "决定",
+        "C": "令",
+        "D": "议案"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "记载、传达会议情况和议定事项的公文称",
+      "options": {
+        "A": "决议",
+        "B": "会议记录",
+        "C": "会议简报",
+        "D": "会议纪要"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "向特定受众对象告知或转达有关事项或文件、让受文对象知道或执行的公文文种是",
+      "options": {
+        "A": "通告",
+        "B": "公告",
+        "C": "通知",
+        "D": "公报"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "从报告内容涉及的范围看，政府工作报告是",
+      "options": {
+        "A": "综合报告",
+        "B": "专题报告",
+        "C": "调查报告",
+        "D": "情况报告"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "“条例”和“规定”的写作最常见的方式是",
+      "options": {
+        "A": "发叙夹议式",
+        "B": "条款式",
+        "C": "说明式",
+        "D": "陈述式"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "经验传用表格的文种是",
+      "options": {
+        "A": "调查报告",
+        "B": "计划",
+        "C": "总结",
+        "D": "会议纪要"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "总结式写的活有两种：一是分层展示，二是",
+      "options": {
+        "A": "章条式",
+        "B": "条款式",
+        "C": "纲目带动式",
+        "D": "说明式"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "可以制作作会议纪要、会议简报等公文文书重要依据的是",
+      "options": {
+        "A": "会议记录",
+        "B": "大事记",
+        "C": "按转记录",
+        "D": "电话记录"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "“核转记录”记录完成后，应交文由",
+      "options": {
+        "A": "领导确认",
+        "B": "秘书确认",
+        "C": "来访确认",
+        "D": "劳务评价确认"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "XX大学公文处理的组织机构应是",
+      "options": {
+        "A": "校党委组织部",
+        "B": "校党委宣传部",
+        "C": "校长办公室",
+        "D": "校人事部"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "在以下的机关单位中，公文处理工作可采用外工作形式的是",
+      "options": {
+        "A": "县人民政府",
+        "B": "县医院",
+        "C": "县城中学",
+        "D": "县机械厂"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "在公文处理工作中，执行文收发要求和公文处理规定进行的原则就是",
+      "options": {
+        "A": "准确岗位确保质量",
+        "B": "及时迅速确保时效",
+        "C": "安全可靠确保机密",
+        "D": "安全可靠确保保密"
+      },
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "在公文拟稿中，如要引用其他公文，应当",
+      "options": {
+        "A": "批复编号，后引文文字号",
+        "B": "先引文字号，后引标题",
+        "C": "先引发文机关名称，后引文文字号",
+        "D": "先引文字号，后引发文机关名称"
+      },
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "26",
+      "question_type": "单项选择题",
+      "content": "机关文字部门收到到的文件应进行审核的是",
+      "options": {
+        "A": "承办部门报拟的文稿",
+        "B": "下级机关上报的需要办理的公文",
+        "C": "领导人及其他部门讲话稿",
+        "D": "上级机关关注的重要公文"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "27",
+      "question_type": "单项选择题",
+      "content": "文件的转送式为专人负责的职责，但文件专人员只需要抄写副",
+      "options": {
+        "A": "末装领导来拟、亲自的件",
+        "B": "机密邮件",
+        "C": "本机关文本前门收的自封件",
+        "D": "先密封件"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "28",
+      "question_type": "单项选择题",
+      "content": "归档文件目录按正文三部分结构，除目录、目录封面外还有",
+      "options": {
+        "A": "备考表",
+        "B": "整理说明",
+        "C": "全子名称",
+        "D": "管理期限"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "29",
+      "question_type": "单项选择题",
+      "content": "2000年国家档案局颁布的《归档文件整理规则》中，提出的新公文整理（立卷）方法是",
+      "options": {
+        "A": "以“件”为单位",
+        "B": "以“案”为单位",
+        "C": "以“类目”为单位",
+        "D": "以“条宗”为单位"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "30",
+      "question_type": "单项选择题",
+      "content": "机关公文处理工作，需要整理（立卷）的文件材料是",
+      "options": {
+        "A": "文件草稿",
+        "B": "文件定稿",
+        "C": "重份文件",
+        "D": "校对稿"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "紧急公文应根据紧急的程度分别标明",
+      "options": {
+        "A": "特提",
+        "B": "加急",
+        "C": "特急",
+        "D": "急件",
+        "E": "平急"
+      },
+      "answer": "CD",
+      "score": 2
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "决议和决定的不同之处在于",
+      "options": {
+        "A": "决议必须由会议通过，而决定必须由领导机关任职权范围内作出",
+        "B": "决议多并针对全面性的问题作出决策，决定既可以解决全面性问题也可以解决具体事项",
+        "C": "决议以会议名称发布，但决定可以以机关名称发布",
+        "D": "决议以会议名称发布，而决定多是以机关名称发布",
+        "E": "决议必须由会议通过，而决定还可以由领导机关在职权范围内作出"
+      },
+      "answer": "BDE",
+      "score": 2
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "根据制定、发布条例的机关不同，条例可分为",
+      "options": {
+        "A": "党的中央机关制定的条例",
+        "B": "国家行政机关制定的条例",
+        "C": "地方权力机关制定的条例",
+        "D": "社会团体和其它已定流程制定的条例",
+        "E": "即能部门和地方各级政府制定的条例"
+      },
+      "answer": "ABC",
+      "score": 2
+    },
+    {
+      "question_number": "34",
+      "question_type": "多项选择题",
+      "content": "采用“分层展开”的总结，真正正文的内容有",
+      "options": {
+        "A": "总体概况",
+        "B": "主要成效及做法",
+        "C": "存在问题",
+        "D": "经验教训",
+        "E": "目标努力方向"
+      },
+      "answer": "ABCD",
+      "score": 2
+    },
+    {
+      "question_number": "35",
+      "question_type": "多项选择题",
+      "content": "简报类文件的主要作用是",
+      "options": {
+        "A": "汲取工作",
+        "B": "反馈问题",
+        "C": "交流经验",
+        "D": "布置工作",
+        "E": "沟通情况"
+      },
+      "answer": "ABCE",
+      "score": 2
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述公文的特点。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述公文成文时间的依据。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述平行文的含义和使用范围。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述核先先提前整理定文的主要内容。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "40",
+      "question_type": "简答题",
+      "content": "简述公文核发的含义。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "41",
+      "question_type": "论述题",
+      "content": "试述公文写作人员应具有的修养。",
+      "answer": "",
+      "score": 10
+    },
+    {
+      "question_number": "42",
+      "question_type": "论述题",
+      "content": "试述公文处理工作的具体要求。",
+      "answer": "",
+      "score": 10
+    },
+    {
+      "question_number": "43",
+      "question_type": "综合应用题",
+      "content": "请根据下述材料，以市公安局的名义，代理该文稿。某大学位于某市，该大学经常受到社会上不明身份人员的侵扰：有人随意到学校内滋事打架、聚众斗殴、赌博等从事一些不法行为；有人盗窃摩托、款被和打师生员工。有的商贩在流出大校区商南叫卖；有人随意到校园内放牧牛羊、取土、种植菜和花草。以上种种情况，不但影响了学校权益，而且影响了学校正常的教学秩序，直接威胁教学安全体师生员工的人身安全。该市公安局与教方研究决定为此于20XX年9月1日联合制定了一份公文，规定了上述若干事项，并申明凡违反规定，要根据我国《刑法》和《治安管理处罚条例》等有关法律令予以处罚。\n\n要求：\n1. 文种选择正确。\n2. 格式规范。\n3. 语言得体。",
+      "answer": "",
+      "score": 15
+    }
+  ]
+}

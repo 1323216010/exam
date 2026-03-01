@@ -1,0 +1,526 @@
+{
+  "exam_info": {
+    "title": "2025年10月高等教育自学考试",
+    "subject": "公文写作与处理试题",
+    "code": "00341",
+    "date": "2025-10"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "下列属于党政公文的文种是",
+      "options": {
+        "A": "公报",
+        "B": "指示",
+        "C": "通告",
+        "D": "规定"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "根据公文含义，公文形成的主体是",
+      "options": {
+        "A": "领导个人",
+        "B": "公民",
+        "C": "公文的撰写者",
+        "D": "国家机关和其他社会组织"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "公文写作的过程是",
+      "options": {
+        "A": "公文的立意与公文的起草",
+        "B": "公文的起草与修改",
+        "C": "公文的发文过程",
+        "D": "起草初稿、讨论修改形成送审稿"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "公文写作要保证公文内容政治上的",
+      "options": {
+        "A": "主动性",
+        "B": "客观性",
+        "C": "正确性",
+        "D": "程序性"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "公文所要说明和解决的主要问题称为公文",
+      "options": {
+        "A": "观点",
+        "B": "结论",
+        "C": "主题",
+        "D": "结论"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "上行公文的签发人标识位于",
+      "options": {
+        "A": "发文字号左侧",
+        "B": "发文字号右侧",
+        "C": "公文版头左上角",
+        "D": "公文版头右上角"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "完整公文标题的规范写作结构是",
+      "options": {
+        "A": "文种+事由+发文机关名称",
+        "B": "事由+文种+发文机关名称",
+        "C": "发文机关名称+事由+文种",
+        "D": "事由+文种"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "公文的表达方式和语体特点，说明公文是",
+      "options": {
+        "A": "文艺文体",
+        "B": "应用文体",
+        "C": "证论文体",
+        "D": "抒情文体"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "公文仿数字号的正确表达是",
+      "options": {
+        "A": "6位阿拉伯数码，位置在版心左上角顶格第1行",
+        "B": "3位阿拉伯数码，位置在版心右上角顶格第1行",
+        "C": "6位阿拉伯数码，位置在版心右上方",
+        "D": "3位阿拉伯数码，位置在版心右下方"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "任何情况下，公文标题不可省略的结构要素是",
+      "options": {
+        "A": "发文机关",
+        "B": "事由",
+        "C": "文种",
+        "D": "标点符号"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "党政机关对重要事项或重大行动作出决策和安排，适用的文种是",
+      "options": {
+        "A": "通报",
+        "B": "决定",
+        "C": "意见",
+        "D": "通知"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "议案的标题一般包括提议案人、议案内容和",
+      "options": {
+        "A": "文种",
+        "B": "发文号",
+        "C": "日期",
+        "D": "署名"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "嘉奖令是领导机关为奖励有突出贡献的人员或集体而发布的命令，其发文机构一般是",
+      "options": {
+        "A": "各级政府机关",
+        "B": "各级党委机关",
+        "C": "县以上地方人民政府",
+        "D": "省级以上机关"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "1981年国务院办公厅发布的《国家行政机关公文处理暂行办法》恢复使用的文种是",
+      "options": {
+        "A": "公告",
+        "B": "通告",
+        "C": "布告",
+        "D": "公报"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "某地政府拟在某区域内征地，宜选用的文种是",
+      "options": {
+        "A": "公告",
+        "B": "通告",
+        "C": "通报",
+        "D": "公报"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "党政公文中报告的格式比较简单，标题形式多采用",
+      "options": {
+        "A": "发文机关加事由加文种",
+        "B": "事由加文种",
+        "C": "发文机关加文种",
+        "D": "只写文种"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "请示的写作在表达方式上主要使用",
+      "options": {
+        "A": "叙述",
+        "B": "议论",
+        "C": "说明",
+        "D": "实叙夹议"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "下列能够作为“函”结语的是",
+      "options": {
+        "A": "请审批",
+        "B": "请指示",
+        "C": "特此函告",
+        "D": "特此报告"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "1927年撰写的《湖南农民运动考察报告》的作者是",
+      "options": {
+        "A": "毛泽东",
+        "B": "刘少奇",
+        "C": "周恩来",
+        "D": "邓小平"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "公文的处理直接关系到党和国家的方针政策贯彻执行，体现的公文处理工作特点是",
+      "options": {
+        "A": "政治性",
+        "B": "时限性",
+        "C": "机要性",
+        "D": "规范性"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "XX学校公文处理的组织形式应为",
+      "options": {
+        "A": "分散形式",
+        "B": "集中形式",
+        "C": "集中分散相结合",
+        "D": "分散处理形式"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "在大会结束时，由主要领导人向大会宣读的概括大会主要精神，总结大会成果，指出会后努力方向的文稿称为",
+      "options": {
+        "A": "答谢词",
+        "B": "闭幕词",
+        "C": "演说词",
+        "D": "祝酒词"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "讲话类文书结尾部分一般总结全文，并",
+      "options": {
+        "A": "设置悬念",
+        "B": "简明形势",
+        "C": "介绍方法",
+        "D": "提出希望"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "作者亲自参加会议，将与会情况及与会人员的发言如实记录下来，体现了记录类文书的特点是",
+      "options": {
+        "A": "目标的前瞻性",
+        "B": "操作的预想性",
+        "C": "表达的情感性",
+        "D": "材料的直接性"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "公文在运转处理的过程中，必须做到",
+      "options": {
+        "A": "安全可靠，确保机密",
+        "B": "准确、周密",
+        "C": "及时、迅速",
+        "D": "统一管理"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "26",
+      "question_type": "单项选择题",
+      "content": "公文处理工作要遵规守纪，通常情况下不得",
+      "options": {
+        "A": "向上行文",
+        "B": "向下行文",
+        "C": "同级行文",
+        "D": "越级行文"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "27",
+      "question_type": "单项选择题",
+      "content": "以文书人员为中心进行传阅文件的方式，称为",
+      "options": {
+        "A": "公开式传阅",
+        "B": "集中式传阅",
+        "C": "翻印式传阅",
+        "D": "轮箱式传阅"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "28",
+      "question_type": "单项选择题",
+      "content": "必须办理答复的文件，根据承办时限的要求，及时把对文件承办的情况进行督促与检查，称之为",
+      "options": {
+        "A": "批办",
+        "B": "催办",
+        "C": "查办",
+        "D": "注办"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "29",
+      "question_type": "单项选择题",
+      "content": "下列不需要立卷归档的文件材料是",
+      "options": {
+        "A": "下级机关报送的报告",
+        "B": "同级机关的文件材料",
+        "C": "非隶属机关的文件材料",
+        "D": "一般性文件的历次修改稿"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "30",
+      "question_type": "单项选择题",
+      "content": "归档文件中已破损的文件应予",
+      "options": {
+        "A": "修整",
+        "B": "销毁",
+        "C": "复刻",
+        "D": "保持原貌"
+      },
+      "answer": null,
+      "score": 1
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "下列属于公文结尾用语的有",
+      "options": {
+        "A": "照办",
+        "B": "总之",
+        "C": "此告",
+        "D": "特此函达",
+        "E": "为盼"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "确定机关行文关系的依据包括",
+      "options": {
+        "A": "行文规则",
+        "B": "组织形式",
+        "C": "隶属关系",
+        "D": "职权范围",
+        "E": "行文方式"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "下列属于组织章程的包括",
+      "options": {
+        "A": "《中国共产党章程》",
+        "B": "《中国工会章程》",
+        "C": "《中国秘书学会章程》",
+        "D": "《中国科学技术协会章程》",
+        "E": "《甲种外币存款章程》"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "34",
+      "question_type": "多项选择题",
+      "content": "简报类文书适用于",
+      "options": {
+        "A": "汇报工作",
+        "B": "反映问题",
+        "C": "交流经验",
+        "D": "沟通情况",
+        "E": "推动工作开展"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "35",
+      "question_type": "多项选择题",
+      "content": "下列属于归档文件整理的步骤有",
+      "options": {
+        "A": "装订",
+        "B": "分类、排列",
+        "C": "编号",
+        "D": "编目",
+        "E": "装盒"
+      },
+      "answer": null,
+      "score": 2
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述公文用语必须讲究庄重的原因。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述公文发文字号的构成要素及作用。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述命令的写作要求。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述批评错误的通报正文写作的结构要素。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "40",
+      "question_type": "简答题",
+      "content": "简述指示性通知正文的写法。",
+      "answer": null,
+      "score": 5
+    },
+    {
+      "question_number": "41",
+      "question_type": "论述题",
+      "content": "试述报告的特点及写作要求。",
+      "answer": null,
+      "score": 10
+    },
+    {
+      "question_number": "42",
+      "question_type": "论述题",
+      "content": "试述公文拟办工作的要求。",
+      "answer": null,
+      "score": 10
+    },
+    {
+      "question_number": "43",
+      "question_type": "综合应用题",
+      "content": "阅读材料，完成后面提出的问题：  \n1. 该公文文种为什么选用“通告”，不用“通知”，请说明理由。  \n2. 阅读分析该文件，简述“通告”写作注意问题及正文写法。  \n3. 假如你是该局办公室文书人员，请回答该发文办理程序中，必须做好哪些工作？\n\n（材料已附录，不另列。）",
+      "answer": null,
+      "score": 15
+    }
+  ]
+}
