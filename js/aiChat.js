@@ -213,6 +213,34 @@ function hideAiTypingIndicator() {
     } else {
         indicator.removeAttribute('id');
     }
+    
+    return indicator;
+}
+
+// 为流式输出完成后的消息 div 补上操作按钮（复制 & 重新生成）
+function addActionButtonsToMessage(messageDiv, content) {
+    if (!messageDiv || !content) return;
+    // 避免重复添加
+    if (messageDiv.querySelector('.ai-message-actions')) return;
+    
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'ai-message-actions';
+    actionsDiv.innerHTML = `
+        <button class="ai-action-btn ai-copy-btn" title="复制回复">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+        </button>
+        <button class="ai-action-btn ai-retry-btn" title="重新生成">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+        </button>
+    `;
+    messageDiv.appendChild(actionsDiv);
+    messageDiv.dataset.content = content;
 }
 
 // ==================== AI 流式输出 ====================
@@ -357,7 +385,8 @@ async function sendAiExplanation(question, questionIndex) {
             fullText = text;
         });
         
-        hideAiTypingIndicator();
+        const messageDiv = hideAiTypingIndicator();
+        addActionButtonsToMessage(messageDiv, fullText);
         
         // 保存到缓存
         if (!state.aiExplainDetails[questionIndex]) {
@@ -499,7 +528,8 @@ async function sendAiChatMessage() {
             contentDiv.textContent = fullText;
         }
         
-        hideAiTypingIndicator();
+        const messageDiv = hideAiTypingIndicator();
+        addActionButtonsToMessage(messageDiv, fullText);
         
         // 保存 AI 回复到缓存
         state.aiExplainDetails[currentAiQuestionIndex].messages.push({
