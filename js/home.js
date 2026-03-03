@@ -1,6 +1,6 @@
 // 首页逻辑：模式选择、试卷列表、练习配置、自定义组卷
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE, getChoicePromptTemplate, getSubjectivePromptTemplate, savePromptTemplates, resetPromptTemplates } from './api.js';
+import { getAllConfigs, getActiveConfig, getActiveConfigId, setActiveConfigId, addConfig, updateConfig, deleteConfig, DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE, getChoicePromptTemplate, getSubjectivePromptTemplate, savePromptTemplates, resetPromptTemplates, getShuffleOptions, setShuffleOptions } from './api.js';
 import { getFilenameFromPath } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 
@@ -448,6 +448,7 @@ function showSettings() {
     const modal = document.getElementById('settings-modal');
     renderConfigList();
     loadPromptTemplates();
+    loadExamSettings();
     switchSettingsTab('ai-config'); // 默认显示 AI 配置 tab
     modal.classList.add('show');
 }
@@ -482,6 +483,21 @@ function loadPromptTemplates() {
     
     document.getElementById('choice-prompt-template').value = choiceTemplate;
     document.getElementById('subjective-prompt-template').value = subjectiveTemplate;
+}
+
+function loadExamSettings() {
+    const shuffleOptions = getShuffleOptions();
+    const checkbox = document.getElementById('shuffle-options-checkbox');
+    if (checkbox) {
+        checkbox.checked = shuffleOptions;
+    }
+}
+
+function saveExamSettingsFromUI() {
+    const checkbox = document.getElementById('shuffle-options-checkbox');
+    if (checkbox) {
+        setShuffleOptions(checkbox.checked);
+    }
 }
 
 function renderConfigList() {
@@ -598,7 +614,9 @@ function addNewConfig() {
 function saveSettings() {
     // 保存提示词模板
     savePromptTemplatesFromUI();
-    alert('配置已自动保存！');
+    // 保存答题设置
+    saveExamSettingsFromUI();
+    alert('配置已保存！');
     closeSettings();
 }
 

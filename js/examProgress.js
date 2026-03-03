@@ -40,7 +40,12 @@ export function saveProgress() {
         examData: {
             filename: state.examData.filename,
             questionsCount: state.examData.questions?.length
-        }
+        },
+        // 保存打乱后的选项和答案，确保继续答题时一致
+        shuffledQuestions: state.examData.questions?.map(q => ({
+            options: q.options,
+            answer: q.answer
+        }))
     };
     
     try {
@@ -108,6 +113,20 @@ export function restoreProgress(progress) {
     state.currentQuestionIndex = progress.currentQuestionIndex || 0;
     if (progress.startTime) {
         state.startTime = new Date(progress.startTime);
+    }
+    
+    // 恢复打乱后的选项和答案
+    if (progress.shuffledQuestions && state.examData?.questions) {
+        progress.shuffledQuestions.forEach((saved, index) => {
+            if (state.examData.questions[index] && saved) {
+                if (saved.options) {
+                    state.examData.questions[index].options = saved.options;
+                }
+                if (saved.answer !== undefined) {
+                    state.examData.questions[index].answer = saved.answer;
+                }
+            }
+        });
     }
 }
 

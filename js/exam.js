@@ -2,7 +2,7 @@
 import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
 import { shuffleArray, Timer, getFilenameFromPath } from './utils.js';
-import { initChatDB, loadAllChatRecords } from './aiChatStorage.js';
+import { initChatDB, loadAllChatRecords, clearAllChatRecords } from './aiChatStorage.js';
 import { openAiChatPanel, initAiChat } from './aiChat.js';
 import { 
     saveProgress, 
@@ -19,9 +19,65 @@ import {
     selectOption, 
     saveTextAnswer 
 } from './examDisplay.js';
+import { getShuffleOptions } from './api.js';
 
 // 计时器实例
 let timer = null;
+
+// ==================== 重新开始处理 ====================
+
+function shuffleQuestionOptions() {
+    if (!state.examData || !state.examData.questions) return;
+    state.examData.questions.forEach(question => {
+        if (!question.options) return;
+
+        const originalKeys = Object.keys(question.options); // ["A", "B", "C", ...]
+        const entries = Object.entries(question.options);    // [["A","内容1"], ["B","内容2"], ...]
+        const shuffledEntries = shuffleArray(entries);       // 打乱顺序
+
+        // 重新分配标识：始终按 A、B、C、D 顺序，内容来自打乱后的结果
+        const newOptions = {};
+        const oldToNew = {}; // 旧标识 -> 新标识 的映射
+
+        originalKeys.forEach((newKey, i) => {
+            const [oldKey, value] = shuffledEntries[i];
+            newOptions[newKey] = value;
+            oldToNew[oldKey] = newKey;
+        });
+
+        // 转换答案（单选 "A" 或多选 "BCD"）
+        if (typeof question.answer === 'string' && question.answer.length > 0) {
+            const answerChars = question.answer.split('');
+            const allAreKeys = answerChars.every(ch => oldToNew.hasOwnProperty(ch));
+            if (allAreKeys) {
+                question.answer = answerChars.map(ch => oldToNew[ch]).sort().join('');
+            }
+        }
+
+        question.options = newOptions;
+    });
+}
+
+async function resetForRestart() {
+    clearProgress();
+    state.userAnswers = {};
+    state.aiGradingDetails = {};
+    state.aiExplainDetails = {};
+    state.currentQuestionIndex = 0;
+    state.showingResults = false;
+    state.startTime = new Date();
+
+    try {
+        await clearAllChatRecords(state.examData);
+    } catch (error) {
+        console.error('清空聊天记录失败:', error);
+    }
+
+    // 根据设置决定是否打乱选项顺序
+    if (getShuffleOptions()) {
+        shuffleQuestionOptions();
+    }
+}
 
 // ==================== 移动端侧边栏控制 ====================
 
@@ -87,8 +143,8 @@ async function initExam(skipProgressCheck = false) {
                     restoreProgress(progress);
                     continueInitExam();
                 },
-                onRestart: () => {
-                    clearProgress();
+                onRestart: async () => {
+                    await resetForRestart();
                     continueInitExam();
                 }
             });
@@ -96,7 +152,7 @@ async function initExam(skipProgressCheck = false) {
         }
     } else {
         // 如果跳过进度检查，清除旧进度
-        clearProgress();
+        await resetForRestart();
     }
 
     continueInitExam();

@@ -250,6 +250,10 @@
                     <span class="tab-icon">📝</span>
                     <span class="tab-label">提示词模板</span>
                 </button>
+                <button class="settings-tab" data-tab="exam-settings">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-label">答题设置</span>
+                </button>
             </div>
             
             <div class="modal-body">
@@ -293,6 +297,25 @@
                         </div>
                         <div class="template-preview-hint">
                             💡 提示：修改后自动保存，点击"恢复默认"可重置为系统默认模板
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 答题设置 Tab -->
+                <div class="settings-tab-content" id="tab-exam-settings">
+                    <div class="exam-settings-section">
+                        <div class="section-header">
+                            <div>
+                                <h4>📚 答题设置</h4>
+                                <p class="section-description">控制答题时的行为</p>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-checkbox-label">
+                                <input type="checkbox" id="shuffle-options-checkbox" checked>
+                                <span class="checkbox-text">重新开始时打乱选择题选项顺序</span>
+                            </label>
+                            <div class="setting-hint">开启后，每次重新开始答题时选择题的选项顺序会随机打乱，帮助加深记忆</div>
                         </div>
                     </div>
                 </div>

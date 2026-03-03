@@ -190,3 +190,37 @@ export function resetPromptTemplates() {
 }
 
 export { DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE };
+
+// ==================== 答题设置管理 ====================
+
+const EXAM_SETTINGS_STORAGE_KEY = 'exam_system_exam_settings';
+
+const DEFAULT_EXAM_SETTINGS = {
+    shuffleOptions: true  // 默认开启打乱选项顺序
+};
+
+// 获取答题设置
+export function getExamSettings() {
+    const settings = localStorage.getItem(EXAM_SETTINGS_STORAGE_KEY);
+    if (!settings) {
+        return { ...DEFAULT_EXAM_SETTINGS };
+    }
+    return { ...DEFAULT_EXAM_SETTINGS, ...JSON.parse(settings) };
+}
+
+// 保存答题设置
+export function saveExamSettings(settings) {
+    localStorage.setItem(EXAM_SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+}
+
+// 获取是否打乱选项
+export function getShuffleOptions() {
+    return getExamSettings().shuffleOptions;
+}
+
+// 设置是否打乱选项
+export function setShuffleOptions(enabled) {
+    const settings = getExamSettings();
+    settings.shuffleOptions = enabled;
+    saveExamSettings(settings);
+}
