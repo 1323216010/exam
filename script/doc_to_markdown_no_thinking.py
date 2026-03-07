@@ -12,7 +12,7 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 # 配置 AI 模型
-AI_MODEL = "gpt-4.1"  # 可修改为其他模型
+AI_MODEL = "gemini-3-flash-preview"  # 可修改为其他模型
 
 # 初始化客户端
 client = OpenAI(
@@ -127,9 +127,10 @@ def images_to_markdown(image_paths, score_structure=None):
         "要求：\n"
         "1. 直接输出 Markdown 内容，不要用 ```markdown 代码块包裹\n"
         "2. 必须包含所有题目，不要省略任何一道题\n"
-        "3. 可以忽略联系方式、页眉页脚等与题目无关的内容\n"
-        "4. 如遇明显笔误，请自动修正\n"
-        "5. 若不确定是否为笔误，请保持原样"
+        "3. 如果文档中包含答案，也必须完整保留；注意严格区分题目和答案，题目是题目，答案是答案，不要将答案内容混入题目正文\n"
+        "4. 可以忽略联系方式、页眉页脚等与题目无关的内容\n"
+        "5. 如遇明显笔误，请自动修正\n"
+        "6. 若不确定是否为笔误，请保持原样"
     )
     
     # 如果提供了分数结构，添加到提示中

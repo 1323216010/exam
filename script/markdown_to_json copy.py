@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from tkinter import Tk, filedialog
 
-AI_MODEL = "gpt-4.1"  # 可修改为其他模型
+AI_MODEL = "gemini-3-flash-preview"  # 可修改为其他模型
 
 # 初始化客户端
 client = OpenAI(
