@@ -238,17 +238,27 @@ async function generateFillQuestions(allQ, count) {
 export async function startAiGeneration() {
     const mcqEnabled = document.getElementById('ai-gen-mcq-enabled').checked;
     const fillEnabled = document.getElementById('ai-gen-fill-enabled').checked;
-    const mcqCount = parseInt(document.getElementById('ai-mcq-count').value) || 10;
-    const fillCount = parseInt(document.getElementById('ai-fill-count').value) || 10;
+    const mcqCount = parseInt(document.getElementById('ai-mcq-count').value) || 0;
+    const fillCount = parseInt(document.getElementById('ai-fill-count').value) || 0;
 
-    if (!mcqEnabled && !fillEnabled) {
-        alert('请至少勾选一种题型');
+    // 勾选但填了 0 视为不生成该类型
+    const willGenMcq = mcqEnabled && mcqCount > 0;
+    const willGenFill = fillEnabled && fillCount > 0;
+
+    if (!willGenMcq && !willGenFill) {
+        alert('请至少为一种题型填写大于 0 的数量');
         return;
     }
 
     const subject = document.getElementById('practice-subject-filter').value;
-    const selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
+    let selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
         .map(cb => parseInt(cb.value));
+
+    if (selectedExams.length === 0) {
+        const allBoxes = document.querySelectorAll('.practice-exam-checkbox');
+        const randomBox = allBoxes[Math.floor(Math.random() * allBoxes.length)];
+        selectedExams = [parseInt(randomBox.value)];
+    }
 
     const btn = document.getElementById('btn-start-ai-generate');
     const statusEl = document.getElementById('ai-generate-status');
@@ -263,17 +273,17 @@ export async function startAiGeneration() {
     try {
         const allQ = await loadPracticeSourceQuestions(subject, selectedExams.length > 0 ? selectedExams : null);
 
-        const typeDesc = [mcqEnabled && `选择题 ${mcqCount} 道`, fillEnabled && `填空题 ${fillCount} 道`].filter(Boolean).join(' + ');
+        const typeDesc = [willGenMcq && `选择题 ${mcqCount} 道`, willGenFill && `填空题 ${fillCount} 道`].filter(Boolean).join(' + ');
         statusEl.textContent = `正在调用 AI 生成 ${typeDesc}...`;
 
         let mcqQuestions = [], fillQuestions = [];
         const tasks = [];
-        if (mcqEnabled) tasks.push(generateMcqQuestions(allQ, mcqCount).then(q => { mcqQuestions = q; }));
-        if (fillEnabled) tasks.push(generateFillQuestions(allQ, fillCount).then(q => { fillQuestions = q; }));
+        if (willGenMcq) tasks.push(generateMcqQuestions(allQ, mcqCount).then(q => { mcqQuestions = q; }));
+        if (willGenFill) tasks.push(generateFillQuestions(allQ, fillCount).then(q => { fillQuestions = q; }));
         await Promise.all(tasks);
 
         const allQuestions = [...mcqQuestions, ...fillQuestions];
-        const typeKey = mcqEnabled && fillEnabled ? 'mixed' : mcqEnabled ? 'mcq' : 'fill';
+        const typeKey = willGenMcq && willGenFill ? 'mixed' : willGenMcq ? 'mcq' : 'fill';
         const title = typeKey === 'mixed'
             ? `AI混合题 (选择题${mcqQuestions.length}+填空题${fillQuestions.length})`
             : typeKey === 'mcq'
