@@ -1006,6 +1006,17 @@ async function initializeApp() {
     if (btnStartPractice) {
         btnStartPractice.addEventListener('click', startPracticeMode);
     }
+
+    // 练习模式 Tab 切换
+    document.querySelectorAll('.practice-mode-tab').forEach(btn => {
+        btn.addEventListener('click', () => switchPracticeTab(btn.dataset.practiceTab));
+    });
+
+    // AI 生成按钮
+    const btnStartAiMcq = document.getElementById('btn-start-ai-mcq');
+    if (btnStartAiMcq) btnStartAiMcq.addEventListener('click', startAiMcqGeneration);
+    const btnStartAiFill = document.getElementById('btn-start-ai-fill');
+    if (btnStartAiFill) btnStartAiFill.addEventListener('click', startAiFillGeneration);
     
     // 练习模式题型快速选择：选择题 / 非选择题
     const btnSelectChoiceTypes = document.getElementById('btn-select-choice-types');
