@@ -2,11 +2,11 @@
 const API_CONFIGS_STORAGE_KEY = 'exam_system_api_configs';
 const ACTIVE_CONFIG_ID_KEY = 'exam_system_active_config_id';
 const PROMPT_TEMPLATES_STORAGE_KEY = 'exam_system_prompt_templates';
-const DEFAULT_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
-const DEFAULT_API_MODEL = 'qwen-plus';
+export const DEFAULT_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
+export const DEFAULT_API_MODEL = 'qwen-plus';
 
 // 默认提示词模板
-const DEFAULT_CHOICE_PROMPT_TEMPLATE = `题目：{content}
+export const DEFAULT_CHOICE_PROMPT_TEMPLATE = `题目：{content}
 
 选项：
 {options}
@@ -15,7 +15,7 @@ const DEFAULT_CHOICE_PROMPT_TEMPLATE = `题目：{content}
 
 请简要解释为什么选择这个答案？`;
 
-const DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE = `题目：{content}
+export const DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE = `题目：{content}
 
 答案：{answer}
 
@@ -188,8 +188,6 @@ export function getSubjectivePromptTemplate() {
 export function resetPromptTemplates() {
     localStorage.removeItem(PROMPT_TEMPLATES_STORAGE_KEY);
 }
-
-export { DEFAULT_API_URL, DEFAULT_API_MODEL, DEFAULT_CHOICE_PROMPT_TEMPLATE, DEFAULT_SUBJECTIVE_PROMPT_TEMPLATE };
 
 // ==================== 答题设置管理 ====================
 

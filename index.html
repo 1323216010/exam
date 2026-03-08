@@ -142,92 +142,116 @@
                     <div class="practice-info">加载所有历年真题进行练习</div>
                 </div>
 
-                <!-- 共享：科目 + 试卷筛选（所有模式通用） -->
-                <div class="practice-config-shared">
-                    <div class="config-group">
-                        <label>科目筛选：</label>
-                        <select id="practice-subject-filter">
-                            <option value="">全部科目</option>
-                        </select>
-                    </div>
-                    <div class="config-group">
-                        <label>📄 试卷筛选：<span class="practice-exam-hint">（不选则使用全部试卷）</span></label>
-                        <div class="exam-checkbox-grid practice-exam-checkbox-grid" id="practice-exam-checkbox-grid">
-                            <!-- 试卷复选框动态生成 -->
-                        </div>
-                        <div class="quick-select" style="margin-top: 10px;">
-                            <button class="btn-secondary" id="btn-practice-select-all-exams">全选</button>
-                            <button class="btn-secondary" id="btn-practice-select-none-exams">全不选</button>
-                        </div>
-                    </div>
-                </div>
+                <!-- 统一白卡：来源设置 + Tabs + Tab内容 -->
+                <div class="practice-config-body">
 
-                <!-- Tab 导航 -->
-                <div class="practice-mode-tabs">
-                    <button class="practice-mode-tab active" data-practice-tab="direct">📖 刷原题</button>
-                    <button class="practice-mode-tab" data-practice-tab="ai-mcq">🤖 AI 选择题</button>
-                    <button class="practice-mode-tab" data-practice-tab="ai-fill">✏️ AI 填空题</button>
-                </div>
-
-                <!-- Tab 1: 刷原题 -->
-                <div class="practice-mode-tab-content" id="practice-tab-direct">
-                    <div class="practice-config-options">
-                        <div class="config-group">
-                            <label>题型筛选：</label>
-                            <div id="practice-type-filters" class="question-type-grid">
-                                <!-- 题型复选框动态生成 -->
+                    <!-- 来源设置（默认折叠） -->
+                    <div class="practice-source-section">
+                        <div class="practice-source-header" id="practice-source-toggle">
+                            <div class="practice-source-summary">
+                                <span>📚 题目来源：</span>
+                                <span class="source-summary-value" id="source-summary-text">加载中...</span>
                             </div>
-                            <div class="quick-select" style="margin-top: 10px;">
-                                <button class="btn-secondary" id="btn-select-choice-types">选择题</button>
-                                <button class="btn-secondary" id="btn-select-subjective-types">非选择题</button>
+                            <button class="source-toggle-btn" id="btn-toggle-source">展开设置 ▼</button>
+                        </div>
+                        <div class="practice-source-detail hidden" id="practice-source-detail">
+                            <div class="source-detail-row">
+                                <div class="config-group" style="margin-bottom: 0; flex: 0 0 200px;">
+                                    <label>科目：</label>
+                                    <select id="practice-subject-filter" style="width: 100%;">
+                                        <option value="">全部科目</option>
+                                    </select>
+                                </div>
+                                <div class="config-group" style="margin-bottom: 0; flex: 1; min-width: 0;">
+                                    <div class="exam-selector-header">
+                                        <label>试卷：</label>
+                                        <div class="quick-select-inline">
+                                            <button class="btn-secondary btn-sm" id="btn-practice-select-all-exams">全选</button>
+                                            <button class="btn-secondary btn-sm" id="btn-practice-select-none-exams">全不选</button>
+                                        </div>
+                                    </div>
+                                    <div class="exam-checkbox-grid practice-exam-checkbox-grid" id="practice-exam-checkbox-grid"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="config-group">
-                            <label class="config-label">
-                                <input type="checkbox" id="random-order" checked>
-                                随机顺序
-                            </label>
-                            <label class="config-label">
-                                <input type="checkbox" id="show-answer-immediately">
-                                答完立即显示答案
-                            </label>
-                        </div>
-                        <div class="config-group">
-                            <label>题量限制：</label>
-                            <input type="number" id="question-limit" placeholder="全部" min="1" style="width: 120px;">
-                        </div>
                     </div>
-                    <button class="btn-primary" id="btn-start-practice">开始练习</button>
-                </div>
 
-                <!-- Tab 2: AI 生成选择题 -->
-                <div class="practice-mode-tab-content hidden" id="practice-tab-ai-mcq">
-                    <div class="practice-config-options">
-                        <div class="ai-generate-hint">
-                            🤖 AI 将以所选试卷中的<strong>选择题</strong>为素材，自动出一套全新的单选题。需要先在 ⚙️ 设置中配置 AI API Key。
-                        </div>
-                        <div class="config-group" style="margin-top: 20px;">
-                            <label>生成题目数量：</label>
-                            <input type="number" id="ai-mcq-count" value="10" min="1" max="50" style="width: 120px;">
-                        </div>
+                    <!-- Tab 导航 -->
+                    <div class="practice-mode-tabs">
+                        <button class="practice-mode-tab active" data-practice-tab="direct">📖 刷原题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-mcq">🤖 AI 选择题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-fill">✏️ AI 填空题</button>
                     </div>
-                    <div id="ai-mcq-status" class="ai-generate-status hidden"></div>
-                    <button class="btn-primary" id="btn-start-ai-mcq">🤖 生成并开始</button>
-                </div>
 
-                <!-- Tab 3: AI 生成填空题 -->
-                <div class="practice-mode-tab-content hidden" id="practice-tab-ai-fill">
-                    <div class="practice-config-options">
-                        <div class="ai-generate-hint">
-                            ✏️ AI 将以所选试卷中的<strong>非选择题</strong>（简答、论述等）为素材，自动出一套填空题。需要先在 ⚙️ 设置中配置 AI API Key。
+                    <!-- Tab 1: 刷原题 -->
+                    <div class="practice-mode-tab-content" id="practice-tab-direct">
+                        <div class="tab-settings">
+                            <div class="config-group">
+                                <label>题型筛选：</label>
+                                <div id="practice-type-filters" class="question-type-grid"></div>
+                                <div class="quick-select" style="margin-top: 10px;">
+                                    <button class="btn-secondary" id="btn-select-choice-types">选择题</button>
+                                    <button class="btn-secondary" id="btn-select-subjective-types">非选择题</button>
+                                </div>
+                            </div>
+                            <div class="config-group config-row">
+                                <label class="config-label">
+                                    <input type="checkbox" id="random-order" checked>
+                                    随机顺序
+                                </label>
+                                <label class="config-label">
+                                    <input type="checkbox" id="show-answer-immediately">
+                                    答完立即显示答案
+                                </label>
+                                <div class="config-label" style="display: flex; align-items: center; gap: 8px;">
+                                    <span>题量限制：</span>
+                                    <input type="number" id="question-limit" placeholder="全部" min="1" style="width: 80px; padding: 5px 8px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
+                                </div>
+                            </div>
                         </div>
-                        <div class="config-group" style="margin-top: 20px;">
-                            <label>生成题目数量：</label>
-                            <input type="number" id="ai-fill-count" value="10" min="1" max="50" style="width: 120px;">
+                        <div class="tab-footer">
+                            <button class="btn-primary" id="btn-start-practice">开始练习</button>
                         </div>
                     </div>
-                    <div id="ai-fill-status" class="ai-generate-status hidden"></div>
-                    <button class="btn-primary" id="btn-start-ai-fill">✏️ 生成并开始</button>
+
+                    <!-- Tab 2: AI 生成选择题 -->
+                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-mcq">
+                        <div class="tab-settings">
+                            <div class="ai-generate-hint">
+                                🤖 AI 将从上方<strong>来源试卷</strong>中随机抽取若干道<strong>选择题</strong>作为参考素材，重新生成一套全新的单选题。<br>
+                                <span class="ai-hint-note">💡 生成数量与选择的试卷套数无关——来源决定知识范围，数量决定出多少道新题。</span>
+                            </div>
+                            <div class="config-row" style="margin-top: 20px;">
+                                <label>生成题目数量：</label>
+                                <input type="number" id="ai-mcq-count" value="10" min="1" max="50" style="width: 80px; padding: 5px 8px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
+                                <span class="config-hint">道（最多 50 道）</span>
+                            </div>
+                            <div id="ai-mcq-status" class="ai-generate-status hidden" style="margin-top: 14px;"></div>
+                        </div>
+                        <div class="tab-footer">
+                            <button class="btn-primary" id="btn-start-ai-mcq">🤖 生成并开始</button>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: AI 生成填空题 -->
+                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-fill">
+                        <div class="tab-settings">
+                            <div class="ai-generate-hint">
+                                ✏️ AI 将从上方<strong>来源试卷</strong>中随机抽取若干道<strong>非选择题</strong>（简答、论述等）作为参考素材，重新生成一套填空题。<br>
+                                <span class="ai-hint-note">💡 生成数量与选择的试卷套数无关——来源决定知识范围，数量决定出多少道新题。</span>
+                            </div>
+                            <div class="config-row" style="margin-top: 20px;">
+                                <label>生成题目数量：</label>
+                                <input type="number" id="ai-fill-count" value="10" min="1" max="50" style="width: 80px; padding: 5px 8px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
+                                <span class="config-hint">道（最多 50 道）</span>
+                            </div>
+                            <div id="ai-fill-status" class="ai-generate-status hidden" style="margin-top: 14px;"></div>
+                        </div>
+                        <div class="tab-footer">
+                            <button class="btn-primary" id="btn-start-ai-fill">✏️ 生成并开始</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

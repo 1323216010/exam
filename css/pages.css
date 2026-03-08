@@ -593,9 +593,23 @@ input[type="file"] {
     .exam-list-grid.view-grid {
         grid-template-columns: 1fr;
     }
+    
+    .source-detail-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .source-detail-row .config-group {
+        flex: unset !important;
+        width: 100%;
+    }
+    
+    .practice-mode-tab {
+        padding: 11px 14px;
+        font-size: 13px;
+    }
 }
 
-.practice-config-options,
 .custom-exam-config {
     background: white;
     padding: 30px;
@@ -604,16 +618,102 @@ input[type="file"] {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 共享筛选区（科目 + 试卷） */
-.practice-config-shared {
+/* ==================== 题库练习：统一白卡 ==================== */
+.practice-config-body {
     background: white;
-    padding: 24px 30px;
     border-radius: 12px;
-    margin-bottom: 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom: 2px solid #F3F4F6;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* 来源设置区（可折叠） */
+.practice-source-section {
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.practice-source-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+}
+
+.practice-source-header:hover {
+    background: #FAFAFA;
+}
+
+.practice-source-summary {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #6B7280;
+    font-weight: 500;
+}
+
+.source-summary-value {
+    color: #10B981;
+    font-weight: 600;
+}
+
+.source-toggle-btn {
+    font-size: 12px;
+    color: #6B7280;
+    background: none;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.source-toggle-btn:hover {
+    border-color: #10B981;
+    color: #10B981;
+}
+
+.practice-source-detail {
+    padding: 16px 24px 20px;
+    background: #FAFAFA;
+    border-top: 1px solid #F3F4F6;
+}
+
+.source-detail-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.source-detail-row .config-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.exam-selector-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.exam-selector-header label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.quick-select-inline {
+    display: flex;
+    gap: 6px;
 }
 
 /* 练习模式 Tab 导航 */
@@ -621,13 +721,12 @@ input[type="file"] {
     display: flex;
     gap: 0;
     background: white;
-    padding: 0 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 24px;
     border-bottom: 1px solid #E5E7EB;
 }
 
 .practice-mode-tab {
-    padding: 14px 24px;
+    padding: 13px 22px;
     border: none;
     background: transparent;
     font-size: 14px;
@@ -647,29 +746,36 @@ input[type="file"] {
 .practice-mode-tab.active {
     color: #10B981;
     border-bottom-color: #10B981;
-    background: transparent;
 }
 
-/* Tab 内容区 */
+/* Tab 内容区（无嵌套白盒） */
 .practice-mode-tab-content {
-    background: white;
-    padding: 0 0 0 0;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    margin-bottom: 20px;
+    /* 无独立阴影，融入外层卡片 */
 }
 
-.practice-mode-tab-content .practice-config-options {
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 1px solid #F3F4F6;
-    margin-bottom: 0;
+.tab-settings {
+    padding: 24px 24px 0;
 }
 
-.practice-mode-tab-content > .btn-primary {
-    margin: 20px 30px 24px;
-    display: block;
-    width: calc(100% - 60px);
+.tab-footer {
+    padding: 20px 24px 24px;
+}
+
+.tab-footer .btn-primary {
+    width: 100%;
+}
+
+/* 紧凑配置行 */
+.config-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.config-hint {
+    font-size: 13px;
+    color: #9CA3AF;
 }
 
 /* AI 生成提示区 */
@@ -677,20 +783,28 @@ input[type="file"] {
     background: linear-gradient(135deg, #F0FDF4 0%, #EFF6FF 100%);
     border: 1px solid #D1FAE5;
     border-radius: 10px;
-    padding: 18px 20px;
+    padding: 16px 18px;
     font-size: 14px;
     color: #374151;
-    line-height: 1.7;
-    margin-bottom: 4px;
+    line-height: 1.8;
 }
 
 .ai-generate-hint strong {
     color: #059669;
 }
 
+.ai-hint-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #6B7280;
+    background: rgba(255,255,255,0.6);
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
 /* AI 生成状态消息 */
 .ai-generate-status {
-    margin: 0 30px 12px;
     padding: 10px 14px;
     border-radius: 8px;
     font-size: 13px;
