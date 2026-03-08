@@ -137,40 +137,34 @@
                     <span class="breadcrumb-separator">›</span>
                     <span class="breadcrumb-item active">题库练习设置</span>
                 </nav>
-                <div class="practice-config-header">
-                    <h2><i data-icon="bookOpen"></i> 题库练习设置</h2>
-                    <div class="practice-info">加载所有历年真题进行练习</div>
-                </div>
 
-                <!-- 统一白卡：来源设置 + Tabs + Tab内容 -->
+                <!-- 统一白卡：标题 + 来源工具条 + Tabs + Tab内容 -->
                 <div class="practice-config-body">
 
-                    <!-- 来源设置（默认折叠） -->
-                    <div class="practice-source-section">
-                        <div class="practice-source-header" id="practice-source-toggle">
-                            <div class="practice-source-summary">
-                                <span><i data-icon="book"></i> 题目来源：</span>
-                                <span class="source-summary-value" id="source-summary-text">加载中...</span>
+                    <!-- 顶部标题 + 来源筛选条 -->
+                    <div class="practice-config-topbar">
+                        <h2 class="practice-config-title"><i data-icon="bookOpen"></i> 题库练习</h2>
+                        <div class="practice-source-toolbar">
+                            <div class="source-filter-item">
+                                <label class="source-filter-label"><i data-icon="book"></i> 科目</label>
+                                <select id="practice-subject-filter" class="source-filter-select">
+                                    <option value="">全部科目</option>
+                                </select>
                             </div>
-                            <button class="source-toggle-btn" id="btn-toggle-source">展开设置 ▼</button>
-                        </div>
-                        <div class="practice-source-detail hidden" id="practice-source-detail">
-                            <div class="source-detail-row">
-                                <div class="config-group" style="margin-bottom: 0; flex: 0 0 200px;">
-                                    <label>科目：</label>
-                                    <select id="practice-subject-filter" style="width: 100%;">
-                                        <option value="">全部科目</option>
-                                    </select>
-                                </div>
-                                <div class="config-group" style="margin-bottom: 0; flex: 1; min-width: 0;">
-                                    <div class="exam-selector-header">
-                                        <label>试卷：</label>
-                                        <div class="quick-select-inline">
+                            <div class="source-filter-item">
+                                <label class="source-filter-label"><i data-icon="clipboardList"></i> 试卷</label>
+                                <div class="exam-multiselect" id="exam-multiselect">
+                                    <button class="exam-multiselect-trigger" id="exam-multiselect-trigger" type="button">
+                                        <span id="exam-multiselect-label">加载中...</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                    <div class="exam-multiselect-dropdown hidden" id="exam-multiselect-dropdown">
+                                        <div class="exam-multiselect-toolbar">
                                             <button class="btn-secondary btn-sm" id="btn-practice-select-all-exams">全选</button>
                                             <button class="btn-secondary btn-sm" id="btn-practice-select-none-exams">全不选</button>
                                         </div>
+                                        <div class="exam-multiselect-list" id="practice-exam-checkbox-grid"></div>
                                     </div>
-                                    <div class="exam-checkbox-grid practice-exam-checkbox-grid" id="practice-exam-checkbox-grid"></div>
                                 </div>
                             </div>
                         </div>

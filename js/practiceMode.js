@@ -60,52 +60,42 @@ export function onPracticeSubjectChange() {
 }
 
 export function renderPracticeExamList(subject) {
-    const checkboxGrid = document.getElementById('practice-exam-checkbox-grid');
-    
+    const checkboxList = document.getElementById('practice-exam-checkbox-grid');
+    if (!checkboxList) return;
+
     let filtered = EXAM_LIST;
     if (subject) {
         filtered = filtered.filter(e => e.subject === subject);
     }
-    
-    checkboxGrid.innerHTML = '';
+
+    checkboxList.innerHTML = '';
     filtered.forEach((exam) => {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
-        item.className = 'exam-checkbox-item';
+        item.className = 'exam-multiselect-item';
         const filename = getFilenameFromPath(exam.file || exam.path);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="practice-exam-checkbox">
             <span title="${filename}">${filename}</span>
         `;
-        checkboxGrid.appendChild(item);
+        checkboxList.appendChild(item);
     });
-    
+
     updateSourceSummary();
 }
 
 export function updateSourceSummary() {
-    const subject = document.getElementById('practice-subject-filter')?.value || '';
     const allBoxes = document.querySelectorAll('.practice-exam-checkbox');
     const checkedBoxes = document.querySelectorAll('.practice-exam-checkbox:checked');
-    const subjectText = subject || '全部科目';
-    const examText = allBoxes.length === 0
+    const label = allBoxes.length === 0
         ? '加载中...'
         : checkedBoxes.length === 0
             ? `未选择（共 ${allBoxes.length} 套）`
             : checkedBoxes.length === allBoxes.length
                 ? `全部 ${allBoxes.length} 套`
                 : `已选 ${checkedBoxes.length}/${allBoxes.length} 套`;
-    const el = document.getElementById('source-summary-text');
-    if (el) el.textContent = `${subjectText} · ${examText}`;
-}
-
-export function toggleSourceDetail() {
-    const detail = document.getElementById('practice-source-detail');
-    const btn = document.getElementById('btn-toggle-source');
-    if (!detail || !btn) return;
-    const isHidden = detail.classList.contains('hidden');
-    detail.classList.toggle('hidden', !isHidden);
-    btn.textContent = isHidden ? '收起 ▲' : '展开设置 ▼';
+    const el = document.getElementById('exam-multiselect-label');
+    if (el) el.textContent = label;
 }
 
 async function loadPracticeQuestionTypes() {

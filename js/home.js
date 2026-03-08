@@ -3,7 +3,7 @@ import { loadExamList } from './config.js';
 import { renderExamList, filterExamList } from './examList.js';
 import { 
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
-    toggleSourceDetail, switchPracticeTab, startAiMcqGeneration, startAiFillGeneration 
+    switchPracticeTab, startAiMcqGeneration, startAiFillGeneration 
 } from './practiceMode.js';
 import { renderAiHistory } from './aiHistory.js';
 import { loadCustomExamUI, selectAllExams, selectNoneExams, startCustomExam } from './customExam.js';
@@ -156,11 +156,22 @@ async function initializeApp() {
     const subjectFilter = document.getElementById('subject-filter');
     if (subjectFilter) subjectFilter.addEventListener('change', filterExamList);
     
-    // 来源折叠/展开
-    const btnToggleSource = document.getElementById('btn-toggle-source');
-    if (btnToggleSource) btnToggleSource.addEventListener('click', (e) => { e.stopPropagation(); toggleSourceDetail(); });
-    const practiceSourceHeader = document.getElementById('practice-source-toggle');
-    if (practiceSourceHeader) practiceSourceHeader.addEventListener('click', toggleSourceDetail);
+    // 试卷多选下拉交互
+    const examMultiselectTrigger = document.getElementById('exam-multiselect-trigger');
+    const examMultiselectDropdown = document.getElementById('exam-multiselect-dropdown');
+    if (examMultiselectTrigger && examMultiselectDropdown) {
+        examMultiselectTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            examMultiselectDropdown.classList.toggle('hidden');
+        });
+        // 点击外部关闭下拉
+        document.addEventListener('click', (e) => {
+            const wrap = document.getElementById('exam-multiselect');
+            if (wrap && !wrap.contains(e.target)) {
+                examMultiselectDropdown.classList.add('hidden');
+            }
+        });
+    }
 
     // 试卷复选框变化时更新摘要
     const examGrid = document.getElementById('practice-exam-checkbox-grid');
@@ -212,11 +223,13 @@ async function initializeApp() {
     if (btnPracticeSelectAll) {
         btnPracticeSelectAll.addEventListener('click', () => {
             document.querySelectorAll('.practice-exam-checkbox').forEach(cb => cb.checked = true);
+            updateSourceSummary();
         });
     }
     if (btnPracticeSelectNone) {
         btnPracticeSelectNone.addEventListener('click', () => {
             document.querySelectorAll('.practice-exam-checkbox').forEach(cb => cb.checked = false);
+            updateSourceSummary();
         });
     }
     
