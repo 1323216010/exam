@@ -2,6 +2,7 @@
 import { state } from './state.js';
 import { saveProgress } from './examProgress.js';
 import { openAiChatPanel } from './aiChat.js';
+import { Icons } from './icons.js';
 
 // ==================== 题目导航 ====================
 
@@ -174,7 +175,7 @@ export function showQuestion(index) {
     html += `
         <div class="ai-explain-section ${explainShow ? 'show' : ''}" id="ai-explain-${index}">
             <div class="ai-explain-header">
-                <span class="ai-explain-label">🧠 AI 解析</span>
+                <span class="ai-explain-label">${Icons.brain} AI 解析</span>
                 <span class="ai-explain-status" id="ai-explain-status-${index}"></span>
             </div>
             <div class="ai-explain-content" id="ai-explain-content-${index}"></div>
@@ -187,23 +188,23 @@ export function showQuestion(index) {
         html += `
             <div class="ai-grading-section show">
                 <div class="ai-grading-header">
-                    <span class="ai-grading-label">🤖 AI 评分详情</span>
+                    <span class="ai-grading-label">${Icons.cpu} AI 评分详情</span>
                     <span class="ai-grading-score">${Math.round(detail.score * 100)}%</span>
                 </div>
                 <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">📊 得分依据</div>
+                    <div class="ai-grading-item-label">${Icons.barChart} 得分依据</div>
                     <div class="ai-grading-item-content">${detail.reason || '无'}</div>
                 </div>
                 <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">✅ 优点</div>
+                    <div class="ai-grading-item-label">${Icons.checkCircle} 优点</div>
                     <div class="ai-grading-item-content">${detail.strengths || '无'}</div>
                 </div>
                 <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">⚠️ 不足之处</div>
+                    <div class="ai-grading-item-label">${Icons.alertTriangle} 不足之处</div>
                     <div class="ai-grading-item-content">${detail.weaknesses || '无'}</div>
                 </div>
                 <div class="ai-grading-item">
-                    <div class="ai-grading-item-label">💡 改进建议</div>
+                    <div class="ai-grading-item-label">${Icons.lightbulb} 改进建议</div>
                     <div class="ai-grading-item-content">${detail.suggestions || '无'}</div>
                 </div>
             </div>

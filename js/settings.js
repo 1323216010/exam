@@ -7,6 +7,7 @@ import {
     savePromptTemplates, resetPromptTemplates,
     getShuffleOptions, setShuffleOptions 
 } from './api.js';
+import { Icons } from './icons.js';
 
 export function showSettings() {
     const modal = document.getElementById('settings-modal');
@@ -81,7 +82,7 @@ function renderConfigList() {
                     class="config-radio">
                 <input type="text" class="config-name-input" value="${config.name}" 
                     placeholder="配置名称">
-                <button class="config-delete-btn" title="删除配置">🗑️</button>
+                <button class="config-delete-btn" title="删除配置">${Icons.trash}</button>
             </div>
             <div class="config-item-body">
                 <div class="config-field">
@@ -190,12 +191,12 @@ export async function testApiConnection() {
         testResult.style.background = '#FEF2F2';
         testResult.style.color = '#991B1B';
         testResult.style.border = '1px solid #FCA5A5';
-        testResult.textContent = '❌ 当前配置未设置 API Key';
+        testResult.innerHTML = `${Icons.alertCircle} 当前配置未设置 API Key`;
         return;
     }
     
     testBtn.disabled = true;
-    testBtn.textContent = '🔄 测试中...';
+    testBtn.innerHTML = `${Icons.loader} 测试中...`;
     testResult.style.display = 'block';
     testResult.style.background = '#F3F4F6';
     testResult.style.color = '#4B5563';
@@ -232,7 +233,7 @@ export async function testApiConnection() {
             testResult.style.background = '#ECFDF5';
             testResult.style.color = '#065F46';
             testResult.style.border = '1px solid #6EE7B7';
-            testResult.textContent = `✅ 连接成功！AI 回复: ${data.choices[0].message.content.trim()}`;
+            testResult.innerHTML = `${Icons.checkCircle} 连接成功！AI 回复: ${data.choices[0].message.content.trim()}`;
         } else {
             throw new Error('API 返回格式异常');
         }
@@ -240,9 +241,9 @@ export async function testApiConnection() {
         testResult.style.background = '#FEF2F2';
         testResult.style.color = '#991B1B';
         testResult.style.border = '1px solid #FCA5A5';
-        testResult.textContent = `❌ 连接失败: ${error.message}`;
+        testResult.innerHTML = `${Icons.alertCircle} 连接失败: ${error.message}`;
     } finally {
         testBtn.disabled = false;
-        testBtn.textContent = '🔍 测试连接';
+        testBtn.innerHTML = `${Icons.search} 测试连接`;
     }
 }

@@ -546,6 +546,10 @@
 .result-icon {
     font-size: 80px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #10B981;
 }
 
 .result-title {

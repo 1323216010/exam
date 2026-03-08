@@ -1,8 +1,9 @@
 // AI 聊天记录的 IndexedDB 存储管理
 
 const DB_NAME = 'ExamAIChatDB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = 'chatRecords';
+const AI_EXAMS_STORE = 'aiGeneratedExams';
 
 let db = null;
 
@@ -18,17 +19,76 @@ export async function initChatDB() {
         };
         
         request.onupgradeneeded = (event) => {
-            const db = event.target.result;
+            const upgradeDb = event.target.result;
             
-            // 如果存储不存在，创建它
-            if (!db.objectStoreNames.contains(STORE_NAME)) {
-                const objectStore = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
-                // 创建索引：按 examId 查询
+            // chatRecords store（版本 1 已有）
+            if (!upgradeDb.objectStoreNames.contains(STORE_NAME)) {
+                const objectStore = upgradeDb.createObjectStore(STORE_NAME, { keyPath: 'id' });
                 objectStore.createIndex('examId', 'examId', { unique: false });
-                // 创建索引：按 examId + questionIndex 组合查询
                 objectStore.createIndex('examQuestion', ['examId', 'questionIndex'], { unique: true });
             }
+            
+            // aiGeneratedExams store（版本 2 新增）
+            if (!upgradeDb.objectStoreNames.contains(AI_EXAMS_STORE)) {
+                const aiStore = upgradeDb.createObjectStore(AI_EXAMS_STORE, { keyPath: 'id' });
+                aiStore.createIndex('createdAt', 'createdAt', { unique: false });
+                aiStore.createIndex('type', 'type', { unique: false });
+            }
         };
+    });
+}
+
+// ==================== AI 生成记录 CRUD ====================
+
+// 保存 AI 生成的试卷记录
+export async function saveAiGeneratedExam(record) {
+    if (!db) await initChatDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([AI_EXAMS_STORE], 'readwrite');
+        const store = transaction.objectStore(AI_EXAMS_STORE);
+        const request = store.put(record);
+        request.onsuccess = () => resolve(record);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// 获取所有 AI 生成记录（按时间倒序）
+export async function getAllAiGeneratedExams() {
+    if (!db) await initChatDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([AI_EXAMS_STORE], 'readonly');
+        const store = transaction.objectStore(AI_EXAMS_STORE);
+        const request = store.getAll();
+        request.onsuccess = () => {
+            const records = request.result || [];
+            records.sort((a, b) => b.createdAt - a.createdAt);
+            resolve(records);
+        };
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// 删除单条 AI 生成记录
+export async function deleteAiGeneratedExam(id) {
+    if (!db) await initChatDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([AI_EXAMS_STORE], 'readwrite');
+        const store = transaction.objectStore(AI_EXAMS_STORE);
+        const request = store.delete(id);
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+    });
+}
+
+// 清空所有 AI 生成记录
+export async function clearAllAiGeneratedExams() {
+    if (!db) await initChatDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([AI_EXAMS_STORE], 'readwrite');
+        const store = transaction.objectStore(AI_EXAMS_STORE);
+        const request = store.clear();
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
     });
 }
 

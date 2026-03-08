@@ -13,7 +13,7 @@
         <div class="main-content">
             <!-- 模式选择 -->
             <div class="mode-selection" id="mode-selection">
-                <button class="settings-btn-home" id="settings-btn" title="系统设置">⚙️</button>
+                <button class="settings-btn-home" id="settings-btn" title="系统设置"><i data-icon="settings"></i></button>
                 <div class="mode-header">
                     <h1>练习系统</h1>
                     <p class="mode-subtitle">选择一种练习模式开始学习</p>
@@ -21,25 +21,25 @@
                 
                 <div class="mode-cards">
                     <div class="mode-card" data-mode="upload">
-                        <div class="mode-icon">📁</div>
+                        <div class="mode-icon" data-icon="upload"></div>
                         <div class="mode-title">上传试卷</div>
                         <div class="mode-desc">上传本地JSON试卷文件进行练习</div>
                     </div>
                     
                     <div class="mode-card" data-mode="exam-list">
-                        <div class="mode-icon">📝</div>
+                        <div class="mode-icon" data-icon="clipboardList"></div>
                         <div class="mode-title">试卷模拟</div>
                         <div class="mode-desc">选择历年真题完整试卷进行模拟考试</div>
                     </div>
                     
                     <div class="mode-card" data-mode="practice">
-                        <div class="mode-icon">📚</div>
+                        <div class="mode-icon" data-icon="bookOpen"></div>
                         <div class="mode-title">题库练习</div>
                         <div class="mode-desc">加载所有题目进行刷题练习</div>
                     </div>
                     
                     <div class="mode-card" data-mode="custom">
-                        <div class="mode-icon">🎯</div>
+                        <div class="mode-icon" data-icon="target"></div>
                         <div class="mode-title">自定义组卷</div>
                         <div class="mode-desc">按条件筛选题目自定义组卷</div>
                     </div>
@@ -49,16 +49,16 @@
             <!-- 文件上传 -->
             <div class="upload-container hidden" id="upload-container">
                 <nav class="breadcrumb" style="position: absolute; top: 40px; left: 40px;">
-                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-upload">🏠 首页</a>
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-upload"><i data-icon="home"></i> 首页</a>
                     <span class="breadcrumb-separator">›</span>
                     <span class="breadcrumb-item active">上传试卷</span>
                 </nav>
                 <div class="upload-box">
-                    <div class="upload-icon">📄</div>
+                    <div class="upload-icon" data-icon="file"></div>
                     <div class="upload-title">选择试题文件</div>
                     <div class="upload-subtitle">支持 JSON 格式的试题文件</div>
                     <input type="file" id="file-input" accept=".json">
-                    <label for="file-input" class="btn-upload">📁 浏览文件</label>
+                    <label for="file-input" class="btn-upload"><i data-icon="folder"></i> 浏览文件</label>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
             <div class="exam-list-container hidden" id="exam-list-container">
                 <div class="page-title-section">
                     <nav class="breadcrumb">
-                        <a href="#" class="breadcrumb-item" id="breadcrumb-home-exam-list">🏠 首页</a>
+                        <a href="#" class="breadcrumb-item" id="breadcrumb-home-exam-list"><i data-icon="home"></i> 首页</a>
                         <span class="breadcrumb-separator">›</span>
                         <span class="breadcrumb-item active">选择试卷进行模拟考试</span>
                     </nav>
@@ -76,17 +76,17 @@
                 <div class="exam-list-toolbar">
                     <div class="exam-list-filters">
                         <div class="filter-item">
-                            <label>🔍 搜索</label>
+                            <label><i data-icon="search"></i> 搜索</label>
                             <input type="text" id="exam-search" placeholder="搜索试卷名称...">
                         </div>
                         <div class="filter-item">
-                            <label>📚 科目</label>
+                            <label><i data-icon="book"></i> 科目</label>
                             <select id="subject-filter">
                                 <option value="">全部科目</option>
                             </select>
                         </div>
                         <div class="filter-item">
-                            <label>📊 排序</label>
+                            <label><i data-icon="barChart"></i> 排序</label>
                             <select id="sort-filter">
                                 <option value="name-desc">名称 Z-A</option>
                                 <option value="name-asc">名称 A-Z</option>
@@ -133,12 +133,12 @@
             <!-- 题库练习配置 -->
             <div class="practice-config-container hidden" id="practice-config-container">
                 <nav class="breadcrumb">
-                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-practice">🏠 首页</a>
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-practice"><i data-icon="home"></i> 首页</a>
                     <span class="breadcrumb-separator">›</span>
                     <span class="breadcrumb-item active">题库练习设置</span>
                 </nav>
                 <div class="practice-config-header">
-                    <h2>📚 题库练习设置</h2>
+                    <h2><i data-icon="bookOpen"></i> 题库练习设置</h2>
                     <div class="practice-info">加载所有历年真题进行练习</div>
                 </div>
 
@@ -149,7 +149,7 @@
                     <div class="practice-source-section">
                         <div class="practice-source-header" id="practice-source-toggle">
                             <div class="practice-source-summary">
-                                <span>📚 题目来源：</span>
+                                <span><i data-icon="book"></i> 题目来源：</span>
                                 <span class="source-summary-value" id="source-summary-text">加载中...</span>
                             </div>
                             <button class="source-toggle-btn" id="btn-toggle-source">展开设置 ▼</button>
@@ -178,9 +178,10 @@
 
                     <!-- Tab 导航 -->
                     <div class="practice-mode-tabs">
-                        <button class="practice-mode-tab active" data-practice-tab="direct">📖 刷原题</button>
-                        <button class="practice-mode-tab" data-practice-tab="ai-mcq">🤖 AI 选择题</button>
-                        <button class="practice-mode-tab" data-practice-tab="ai-fill">✏️ AI 填空题</button>
+                        <button class="practice-mode-tab active" data-practice-tab="direct"><i data-icon="bookOpen"></i> 刷原题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-mcq"><i data-icon="cpu"></i> AI 选择题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-fill"><i data-icon="pencil"></i> AI 填空题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-history"><i data-icon="history"></i> 已生成题目</button>
                     </div>
 
                     <!-- Tab 1: 刷原题 -->
@@ -252,18 +253,25 @@
                         </div>
                     </div>
 
+                    <!-- Tab 4: AI 历史记录 -->
+                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-history">
+                        <div class="tab-settings" style="padding-bottom: 24px;">
+                            <div id="ai-history-list">
+                                <!-- 动态渲染 -->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- 自定义组卷 -->
             <div class="custom-exam-container hidden" id="custom-exam-container">
                 <nav class="breadcrumb">
-                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-custom">🏠 首页</a>
+                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-custom"><i data-icon="home"></i> 首页</a>
                     <span class="breadcrumb-separator">›</span>
                     <span class="breadcrumb-item active">自定义组卷</span>
                 </nav>
                 <div class="custom-exam-header">
-                    <h2>🎯 自定义组卷</h2>
+                    <h2><i data-icon="target"></i> 自定义组卷</h2>
                     <div class="custom-info">根据条件筛选题目组成试卷</div>
                 </div>
                 
@@ -315,22 +323,22 @@
     <div class="modal" id="settings-modal">
         <div class="modal-content modal-large">
             <div class="modal-header">
-                <h3>⚙️ 系统设置</h3>
+                <h3><i data-icon="settings"></i> 系统设置</h3>
                 <button class="modal-close" id="close-settings">×</button>
             </div>
             
             <!-- Tab 标签页导航 -->
             <div class="settings-tabs">
                 <button class="settings-tab active" data-tab="ai-config">
-                    <span class="tab-icon">🤖</span>
+                    <span class="tab-icon" data-icon="cpu"></span>
                     <span class="tab-label">AI 配置</span>
                 </button>
                 <button class="settings-tab" data-tab="prompt-templates">
-                    <span class="tab-icon">📝</span>
+                    <span class="tab-icon" data-icon="edit"></span>
                     <span class="tab-label">提示词模板</span>
                 </button>
                 <button class="settings-tab" data-tab="exam-settings">
-                    <span class="tab-icon">📚</span>
+                    <span class="tab-icon" data-icon="sliders"></span>
                     <span class="tab-label">答题设置</span>
                 </button>
             </div>
@@ -339,8 +347,8 @@
                 <!-- AI 配置 Tab -->
                 <div class="settings-tab-content active" id="tab-ai-config">
                     <div class="config-list-header">
-                        <div class="config-list-hint">💡 可以添加多个 AI 配置并切换使用</div>
-                        <button class="btn btn-secondary" id="add-config-btn">➕ 添加新配置</button>
+                        <div class="config-list-hint"><i data-icon="lightbulb"></i> 可以添加多个 AI 配置并切换使用</div>
+                        <button class="btn btn-secondary" id="add-config-btn"><i data-icon="plus"></i> 添加新配置</button>
                     </div>
                     
                     <div class="config-list" id="config-list">
@@ -348,7 +356,7 @@
                     </div>
                     
                     <div class="setting-item">
-                        <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;">🔍 测试当前配置</button>
+                        <button class="btn btn-secondary" id="test-api-btn" style="width: 100%;"><i data-icon="search"></i> 测试当前配置</button>
                         <div id="test-result" style="margin-top: 10px; padding: 10px; border-radius: 6px; display: none;"></div>
                     </div>
                 </div>
@@ -358,7 +366,7 @@
                     <div class="prompt-templates-section">
                         <div class="section-header">
                             <div>
-                                <h4>📝 AI 提示词模板</h4>
+                                <h4><i data-icon="edit"></i> AI 提示词模板</h4>
                                 <p class="section-description">全局设置，对所有 AI 配置生效</p>
                             </div>
                             <button class="btn btn-secondary btn-sm" id="reset-templates-btn">恢复默认</button>
@@ -367,15 +375,15 @@
                             提示词模板控制 AI 解析的内容和风格。可用占位符：<code>{content}</code> <code>{options}</code> <code>{answer}</code> <code>{userAnswer}</code>
                         </div>
                         <div class="template-field">
-                            <label>🎯 选择题提示词模板</label>
+                            <label>选择题提示词模板</label>
                             <textarea id="choice-prompt-template" class="template-textarea" rows="8" placeholder="留空使用默认模板"></textarea>
                         </div>
                         <div class="template-field">
-                            <label>📊 主观题提示词模板</label>
+                            <label>主观题提示词模板</label>
                             <textarea id="subjective-prompt-template" class="template-textarea" rows="8" placeholder="留空使用默认模板"></textarea>
                         </div>
                         <div class="template-preview-hint">
-                            💡 提示：修改后自动保存，点击"恢复默认"可重置为系统默认模板
+                            提示：修改后自动保存，点击"恢复默认"可重置为系统默认模板
                         </div>
                     </div>
                 </div>
@@ -385,7 +393,7 @@
                     <div class="exam-settings-section">
                         <div class="section-header">
                             <div>
-                                <h4>📚 答题设置</h4>
+                                <h4><i data-icon="sliders"></i> 答题设置</h4>
                                 <p class="section-description">控制答题时的行为</p>
                             </div>
                         </div>

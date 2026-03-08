@@ -1,827 +1,526 @@
 {
-    "exam_info": {
-      "title": "2024 年 4 月高等教育自学考试全国统一命题考试",
-      "subject": "公文写作与处理",
-      "code": "00341",
-      "date": "2024 年 4 月"
-    },
-    "questions": [
-      {
-        "question_number": "1",
-        "question_type": "单项选择题",
-        "content": "下列文种中，属法定公文的是",
-        "options": {
-          "A": "总结",
-          "B": "公告",
-          "C": "内参",
-          "D": "简报"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "2",
-        "question_type": "单项选择题",
-        "content": "国务院给各省、自治区、直辖市人民政府所发的文件是",
-        "options": {
-          "A": "泛行文",
-          "B": "上行文",
-          "C": "平行文",
-          "D": "下行文"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "3",
-        "question_type": "单项选择题",
-        "content": "公文的质量主要体现在公文的思想内容与",
-        "options": {
-          "A": "文字表达",
-          "B": "观点正确",
-          "C": "群众支持",
-          "D": "领导满意"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "4",
-        "question_type": "单项选择题",
-        "content": "请示有明确的受文对象，所体现的公文写作特点是",
-        "options": {
-          "A": "被动写作，遵命性强",
-          "B": "集思广益，群体性强",
-          "C": "决策之作，政策性强",
-          "D": "对象明确，针对性强"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "5",
-        "question_type": "单项选择题",
-        "content": "为了保证公文的完整性、正确性与有效性，提高办事效率，必须要有规范的",
-        "options": {
-          "A": "公文体式",
-          "B": "文面格式",
-          "C": "文章体裁",
-          "D": "构成要素"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "6",
-        "question_type": "单项选择题",
-        "content": "一份当年文件顺序号为“8”，发文字号中的序号规范书写应为",
-        "options": {
-          "A": "xx〔xxx〕第 8 号",
-          "B": "xx〔xxxx〕008 号",
-          "C": "xx〔xxxx〕08 号",
-          "D": "xx〔xxxx〕8 号"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "7",
-        "question_type": "单项选择题",
-        "content": "公文写作的主要表达方式有叙述、说明和",
-        "options": {
-          "A": "议论",
-          "B": "抒情",
-          "C": "记事",
-          "D": "描写"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "8",
-        "question_type": "单项选择题",
-        "content": "党中央与各省党委之间的行文关系是",
-        "options": {
-          "A": "同一系统的领导与被领导关系",
-          "B": "上下级业务主管部门间业务指导关系",
-          "C": "非同一系统间不相隶属关系",
-          "D": "同一系统间平行关系"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "9",
-        "question_type": "单项选择题",
-        "content": "党的二十大决议的下行文方式是",
-        "options": {
-          "A": "逐级下行文",
-          "B": "多级下行文",
-          "C": "直达基层组织和群众的下行文",
-          "D": "越级下行文"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "10",
-        "question_type": "单项选择题",
-        "content": "事关机关全局的重要方针政策性问题须加强统一领导，发文者应是",
-        "options": {
-          "A": "上级领导机关",
-          "B": "本机关",
-          "C": "机关业务部门",
-          "D": "机关办公室"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "11",
-        "question_type": "单项选择题",
-        "content": "以下公文中不需要发文字号的文种是",
-        "options": {
-          "A": "命令",
-          "B": "议案",
-          "C": "决议",
-          "D": "公告"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "12",
-        "question_type": "单项选择题",
-        "content": "下列属于决定的主要特点是",
-        "options": {
-          "A": "政策性强",
-          "B": "灵活性强",
-          "C": "非强制性",
-          "D": "一般事项"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "13",
-        "question_type": "单项选择题",
-        "content": "通报的主要特点是周知性和",
-        "options": {
-          "A": "约束性",
-          "B": "纪律性",
-          "C": "灵活性",
-          "D": "指导性"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "14",
-        "question_type": "单项选择题",
-        "content": "转发性通知的原件是通知，其标题应该写成",
-        "options": {
-          "A": "转发……关于……的通知的通知",
-          "B": "关于……的通知的通知",
-          "C": "转发……关于……的通知",
-          "D": "关于……的通知"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "15",
-        "question_type": "单项选择题",
-        "content": "表彰性通报中介绍先进事迹的写作要求是",
-        "options": {
-          "A": "具体描述，适当情感渲染",
-          "B": "简明扼要，突出最主要、最感人部分",
-          "C": "结合形势，升华提炼",
-          "D": "适宜学习，推进整体工作开展"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "16",
-        "question_type": "单项选择题",
-        "content": "批复可以分为两类，一类是指示性批复，另一类是",
-        "options": {
-          "A": "提审性批复",
-          "B": "合议性批复",
-          "C": "表态性批复",
-          "D": "建议性批复"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "17",
-        "question_type": "单项选择题",
-        "content": "不相隶属机关之间因人员调动行文，应使用的文种是",
-        "options": {
-          "A": "令",
-          "B": "函",
-          "C": "通知",
-          "D": "通告"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "18",
-        "question_type": "单项选择题",
-        "content": "会议纪要作为国家行政机关的法定公文文种始于",
-        "options": {
-          "A": "1951 年",
-          "B": "1981 年",
-          "C": "1987 年",
-          "D": "1989 年"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "19",
-        "question_type": "单项选择题",
-        "content": "计划类文书与规划类文书相比，其实现目标的期限较短，一般期限为",
-        "options": {
-          "A": "1 年以内",
-          "B": "1—2 年",
-          "C": "2—3 年",
-          "D": "5 年以上"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "20",
-        "question_type": "单项选择题",
-        "content": "制定实施细则的目的是加强法律、法规的",
-        "options": {
-          "A": "规范性",
-          "B": "强制性",
-          "C": "程序性",
-          "D": "可操作性"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "21",
-        "question_type": "单项选择题",
-        "content": "为个人所得税代扣代缴进行具体规定的行文，应使用的文种是",
-        "options": {
-          "A": "条例",
-          "B": "守则",
-          "C": "章程",
-          "D": "办法"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "22",
-        "question_type": "单项选择题",
-        "content": "公文处理工作对机关工作的作用，具有纽带作用、查考作用和",
-        "options": {
-          "A": "领导作用",
-          "B": "联系作用",
-          "C": "助手作用",
-          "D": "指导作用"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "23",
-        "question_type": "单项选择题",
-        "content": "开幕词结尾要求具有",
-        "options": {
-          "A": "展望性",
-          "B": "评价性",
-          "C": "预祝性",
-          "D": "激励性"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "24",
-        "question_type": "单项选择题",
-        "content": "具有总结性、激励性和评估性的讲话类文书是",
-        "options": {
-          "A": "欢迎词",
-          "B": "答谢词",
-          "C": "开幕词",
-          "D": "闭幕词"
-        },
-        "answer": "D",
-        "score": 1
-      },
-      {
-        "question_number": "25",
-        "question_type": "单项选择题",
-        "content": "我国历代领导人对保密工作都非常重视，提出“和平建设时期，保密就是保安全、保发展”的领导是",
-        "options": {
-          "A": "周恩来",
-          "B": "邓小平",
-          "C": "江泽民",
-          "D": "胡锦涛"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "26",
-        "question_type": "单项选择题",
-        "content": "机关规定基层报送的请示限期答复，体现的公文处理要求是",
-        "options": {
-          "A": "准确、周密，确保质量",
-          "B": "及时、迅速，注重时效",
-          "C": "安全可靠，确保机密",
-          "D": "精简文件，反对文牍主义"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "27",
-        "question_type": "单项选择题",
-        "content": "某县人民医院公文处理工作的组织形式应是",
-        "options": {
-          "A": "集中形式",
-          "B": "分工处理形式",
-          "C": "外包形式",
-          "D": "投标形式"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "28",
-        "question_type": "单项选择题",
-        "content": "收文拟办意见的写作要求",
-        "options": {
-          "A": "写出具体的承办计划",
-          "B": "提出详细承办方案",
-          "C": "文字简要，讲明简单理由",
-          "D": "分析深入，适宜复文"
-        },
-        "answer": "C",
-        "score": 1
-      },
-      {
-        "question_number": "29",
-        "question_type": "单项选择题",
-        "content": "下列属于立卷的文件是",
-        "options": {
-          "A": "上级机关的文件材料",
-          "B": "一般性文件的修改稿",
-          "C": "非隶属机关的参考件",
-          "D": "机关负责人兼职文件"
-        },
-        "answer": "A",
-        "score": 1
-      },
-      {
-        "question_number": "30",
-        "question_type": "单项选择题",
-        "content": "召开会议后形成会议通知、日程安排、会议简报、会议纪要等会议文件按“件”进行装订，体现的文件整理原则是",
-        "options": {
-          "A": "区分文件保存价值",
-          "B": "遵循文件形成规律",
-          "C": "便于保管",
-          "D": "便于利用"
-        },
-        "answer": "B",
-        "score": 1
-      },
-      {
-        "question_number": "31",
-        "question_type": "多项选择题",
-        "content": "公文的主要特点表现在公文有",
-        "options": {
-          "A": "法定的作者",
-          "B": "法定的权威",
-          "C": "特定的效用",
-          "D": "规范的体式",
-          "E": "规定的处理程序"
-        },
-        "answer": "ABCDE",
-        "score": 2
-      },
-      {
-        "question_number": "32",
-        "question_type": "多项选择题",
-        "content": "公文是为机关立言，它代表了机关的",
-        "options": {
-          "A": "政策水平",
-          "B": "业务水平",
-          "C": "领导水平",
-          "D": "工作绩效",
-          "E": "组织职能"
-        },
-        "answer": "ABC",
-        "score": 2
-      },
-      {
-        "question_number": "33",
-        "question_type": "多项选择题",
-        "content": "下列通知标题形式正确的有",
-        "options": {
-          "A": "发文单位加文种",
-          "B": "事由加文种",
-          "C": "发文单位加事由",
-          "D": "只写文种名称",
-          "E": "发文单位加事由加文种"
-        },
-        "answer": "BDE",
-        "score": 2
-      },
-      {
-        "question_number": "34",
-        "question_type": "多项选择题",
-        "content": "报告写作的要求有",
-        "options": {
-          "A": "陈述事实要清楚扼要",
-          "B": "事项要具有超前性",
-          "C": "问题缘由要充分深入",
-          "D": "表达观点要精炼清晰",
-          "E": "语言要简洁朴实"
-        },
-        "answer": "ADE",
-        "score": 2
-      },
-      {
-        "question_number": "35",
-        "question_type": "多项选择题",
-        "content": "以“件”为单位的归档文件整理要推进的工作有",
-        "options": {
-          "A": "注重件内文件价值判断",
-          "B": "更新观念，增强改革意识",
-          "C": "提高人员素质",
-          "D": "加强硬件建设",
-          "E": "注意新旧整理方法衔接"
-        },
-        "answer": "BCDE",
-        "score": 2
-      },
-      {
-        "question_number": "36",
-        "question_type": "简答题",
-        "content": "简述公文主体部分的内容。",
-        "answer": "（1）公文标题。（2）主送机关。（3）公文正文。（4）附件，成文时间。（5）公文生效标识，附注。",
-        "score": 5
-      },
-      {
-        "question_number": "37",
-        "question_type": "简答题",
-        "content": "简述同一份文件根据不同用途的文本形式。",
-        "answer": "（1）正本。（2）副本。（3）存本。（4）修订本。（5）试行本、暂行本、各种文字文本。",
-        "score": 5
-      },
-      {
-        "question_number": "38",
-        "question_type": "简答题",
-        "content": "简述公文的行文方向和行文方式。",
-        "answer": "行文方向：上行、下行、平行。行文方式：上行文、下行文、平行文。",
-        "score": 5
-      },
-      {
-        "question_number": "39",
-        "question_type": "简答题",
-        "content": "简述归档文件按事由进行排列的理由。",
-        "answer": "按事由排列，遵循了文件形成的客观规律，能够保持文件之间的有机联系，使归档文件进一步系统化，充分体现文件的价值，便于检索和利用。",
-        "score": 5
-      },
-      {
-        "question_number": "40",
-        "question_type": "简答题",
-        "content": "简述归档文件目录封面的内容。",
-        "answer": "（1）全宗名称。（2）年度。（3）保管期限。（4）机构（问题）。",
-        "score": 5
-      },
-      {
-        "question_number": "41",
-        "question_type": "论述题",
-        "content": "联系实际，试述公告与通告的特点及差异性。",
-        "answer": "（1）发布的公开性。公告与通告内容都是公开的，但发布的范围不同。公告涉及范围广，通告涉及范围小。（2）事项的重要性。必须是重要事项才使用公告与通告发布。公告公布较重大事情，通告公布事项重要度次于公告。（3）操作的严肃性。公告与通告内容重要涉及面广，操作必须严肃。公告一般由国家各级政权机构发布，发布通告也要注意权限。",
-        "score": 10
-      },
-      {
-        "question_number": "42",
-        "question_type": "论述题",
-        "content": "试述会议纪要的特点及写作方法。",
-        "answer": "（1）会议纪要的特点有：纪要性、约束性和知照性。（2）写作方法：一般在会议结束后起草，经主管领导人签字同意才算定稿。标题常用“会议名称加文种”，也可省去“会议”二字。正文一般分为会议概况、会议内容、结束语三部分。由会议主持机关撰写。",
-        "score": 10
-      },
-      {
-        "question_number": "43",
-        "question_type": "综合应用题",
-        "content": "阅读下面材料，回答文后提出的问题：\n2022年6月，XX市政府办公室对全市所辖县区政府及直属机关发布了一个告知通知：\nXX市人民政府关于发布 2021 年度市政府规范性文件清理结果的通知\n各县（市）、区人民政府，市政府各部门、各直属机构：\n为维护社会主义法制统一，按照工作要求，市政府对 2021 年 12 月 31 日以前制定的市政府规范性文件进行了清理，已经市政府第 9 次常务会议审议通过，现将清理结果发布如下。\n附件：1. 继续实施的市政府规范性文件目录\n2. 废止和失效的市政府规范性文件目录\nXX市人民政府办公室\n2022 年 5 月 27 日\n\n问题：\n（1）请从发文办理程序回答，该市政府办公室对外发布这个通知，必须做好哪些环节工作？其中哪个环节最重要，请说明理由。\n（2）假如你是该市政府下属某区政府办公室文书人员，收到上级这个通知文件，你应如何办理收文工作？收文办理程序有哪些环节工作？",
-        "answer": "（1）发文办理程序包括：拟稿、审核与签发、核发、缮印与校对、用印、登记与分发。最重要是拟稿，因为它是公文处理的关键，体现机关领导意图，直接影响效率。\n（2）收文办理程序包括：①签收、拆封和登记；②审核分发和传阅；③拟办、批办和承办；④催办、查办与注办。",
-        "score": 15
-      }
-    ]
+  "exam_info": {
+    "title": "2024 年 4 月高等教育自学考试全国统一命题考试",
+    "subject": "公文写作与处理",
+    "code": "00341",
+    "date": "2024 年 4 月"
   },
-  {
-    "exam_info": {
-      "title": "中国文化概论试题（部分）",
-      "subject": "中国文化概论",
-      "code": null,
-      "date": null
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "下列文种中，属法定公文的是",
+      "options": {
+        "A": "总结",
+        "B": "公告",
+        "C": "内参",
+        "D": "简报"
+      },
+      "answer": "B",
+      "score": 1
     },
-    "questions": [
-      {
-        "question_number": "21",
-        "question_type": "单项选择题",
-        "content": "流传于中国的北传佛教属于",
-        "options": {
-          "A": "大乘佛教",
-          "B": "小乘佛教",
-          "C": "上乘佛教",
-          "D": "下乘佛教"
-        },
-        "answer": null,
-        "score": null
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "国务院给各省、自治区、直辖市人民政府所发的文件是",
+      "options": {
+        "A": "泛行文",
+        "B": "上行文",
+        "C": "平行文",
+        "D": "下行文"
       },
-      {
-        "question_number": "22",
-        "question_type": "单项选择题",
-        "content": "明确提出“善政”不如“善教”教育观点的是",
-        "options": {
-          "A": "老子",
-          "B": "孟子",
-          "C": "墨子",
-          "D": "荀子"
-        },
-        "answer": null,
-        "score": null
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "公文的质量主要体现在公文的思想内容与",
+      "options": {
+        "A": "文字表达",
+        "B": "观点正确",
+        "C": "群众支持",
+        "D": "领导满意"
       },
-      {
-        "question_number": "23",
-        "question_type": "单项选择题",
-        "content": "京剧脸谱的“黑色”表示",
-        "options": {
-          "A": "忠烈正义",
-          "B": "阴险狡诈",
-          "C": "刚正稳健",
-          "D": "鲁莽豪爽"
-        },
-        "answer": null,
-        "score": null
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "请示有明确的受文对象，所体现的公文写作特点是",
+      "options": {
+        "A": "被动写作，遵命性强",
+        "B": "集思广益，群体性强",
+        "C": "决策之作，政策性强",
+        "D": "对象明确，针对性强"
       },
-      {
-        "question_number": "24",
-        "question_type": "单项选择题",
-        "content": "《诗经》中展现朝廷之音的是",
-        "options": {
-          "A": "风",
-          "B": "雅",
-          "C": "颂",
-          "D": "兴"
-        },
-        "answer": null,
-        "score": null
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "为了保证公文的完整性、正确性与有效性，提高办事效率，必须要有规范的",
+      "options": {
+        "A": "公文体式",
+        "B": "文面格式",
+        "C": "文章体裁",
+        "D": "构成要素"
       },
-      {
-        "question_number": "25",
-        "question_type": "单项选择题",
-        "content": "声调是汉语构词的一种手段，表示“给牲畜喝水”的“饮”读",
-        "options": {
-          "A": "一声",
-          "B": "二声",
-          "C": "三声",
-          "D": "四声"
-        },
-        "answer": null,
-        "score": null
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "一份当年文件顺序号为“8”，发文字号中的序号规范书写应为",
+      "options": {
+        "A": "xx〔xxx〕第 8 号",
+        "B": "xx〔xxxx〕008 号",
+        "C": "xx〔xxxx〕08 号",
+        "D": "xx〔xxxx〕8 号"
       },
-      {
-        "question_number": "26",
-        "question_type": "单项选择题",
-        "content": "朝鲜文字属于拼音文字，其字母来源于",
-        "options": {
-          "A": "叙利亚字母",
-          "B": "斯拉夫字母",
-          "C": "古印度字母",
-          "D": "独创字母"
-        },
-        "answer": null,
-        "score": null
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "公文写作的主要表达方式有叙述、说明和",
+      "options": {
+        "A": "议论",
+        "B": "抒情",
+        "C": "记事",
+        "D": "描写"
       },
-      {
-        "question_number": "27",
-        "question_type": "单项选择题",
-        "content": "《仓颉篇》一般用作",
-        "options": {
-          "A": "识字教材",
-          "B": "法律教材",
-          "C": "医学教材",
-          "D": "农耕教材"
-        },
-        "answer": null,
-        "score": null
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "党中央与各省党委之间的行文关系是",
+      "options": {
+        "A": "同一系统的领导与被领导关系",
+        "B": "上下级业务主管部门间业务指导关系",
+        "C": "非同一系统间不相隶属关系",
+        "D": "同一系统间平行关系"
       },
-      {
-        "question_number": "28",
-        "question_type": "单项选择题",
-        "content": "“两个黄鹂鸣翠柳，一行白鹭上青天。”运用的修辞手法是",
-        "options": {
-          "A": "顶真",
-          "B": "对偶",
-          "C": "排比",
-          "D": "复叠"
-        },
-        "answer": null,
-        "score": null
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "党的二十大决议的下行文方式是",
+      "options": {
+        "A": "逐级下行文",
+        "B": "多级下行文",
+        "C": "直达基层组织和群众的下行文",
+        "D": "越级下行文"
       },
-      {
-        "question_number": "29",
-        "question_type": "单项选择题",
-        "content": "佛教思想“顿悟”说属于",
-        "options": {
-          "A": "禅宗",
-          "B": "华严宗",
-          "C": "密宗",
-          "D": "净土宗"
-        },
-        "answer": null,
-        "score": null
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "事关机关全局的重要方针政策性问题须加强统一领导，发文者应是",
+      "options": {
+        "A": "上级领导机关",
+        "B": "本机关",
+        "C": "机关业务部门",
+        "D": "机关办公室"
       },
-      {
-        "question_number": "30",
-        "question_type": "单项选择题",
-        "content": "“赛利斯”是古希腊人对中国的称呼，意思是",
-        "options": {
-          "A": "产茶之国",
-          "B": "产铁之国",
-          "C": "产丝之国",
-          "D": "产瓷之国"
-        },
-        "answer": null,
-        "score": null
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "以下公文中不需要发文字号的文种是",
+      "options": {
+        "A": "命令",
+        "B": "议案",
+        "C": "决议",
+        "D": "公告"
       },
-      {
-        "question_number": "31",
-        "question_type": "多项选择题",
-        "content": "在下列选项中，属于物质文化遗产的有",
-        "options": {
-          "A": "石刻",
-          "B": "壁画",
-          "C": "口技",
-          "D": "中国功夫",
-          "E": "泥塑"
-        },
-        "answer": null,
-        "score": 2
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "下列属于决定的主要特点是",
+      "options": {
+        "A": "政策性强",
+        "B": "灵活性强",
+        "C": "非强制性",
+        "D": "一般事项"
       },
-      {
-        "question_number": "32",
-        "question_type": "多项选择题",
-        "content": "先秦两汉时期，我国西北地区兴修过许多水利工程，包括",
-        "options": {
-          "A": "郑国渠",
-          "B": "白渠",
-          "C": "六辅渠",
-          "D": "龙首渠",
-          "E": "通济渠"
-        },
-        "answer": null,
-        "score": 2
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "通报的主要特点是周期性和",
+      "options": {
+        "A": "约束性",
+        "B": "纪律性",
+        "C": "灵灵活性",
+        "D": "指导性"
       },
-      {
-        "question_number": "33",
-        "question_type": "多项选择题",
-        "content": "明末清初，对中国历史文化深刻反思的“三先生”是指",
-        "options": {
-          "A": "王夫之",
-          "B": "顾炎武",
-          "C": "朱熹",
-          "D": "蒲松龄",
-          "E": "黄宗羲"
-        },
-        "answer": null,
-        "score": 2
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "转发性通知的原件是通知，其标题应该写成",
+      "options": {
+        "A": "转发……关于……的通知的通知",
+        "B": "关于……的通知的通知",
+        "C": "转发……关于……的通知",
+        "D": "关于……的通知"
       },
-      {
-        "question_number": "34",
-        "question_type": "多项选择题",
-        "content": "下列作品属于元杂剧的有",
-        "options": {
-          "A": "《汉宫秋》",
-          "B": "《窦娥冤》",
-          "C": "《西厢记》",
-          "D": "《红楼梦》",
-          "E": "《聊斋志异》"
-        },
-        "answer": null,
-        "score": 2
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "表彰性通报中介绍先进事迹的写作要求是",
+      "options": {
+        "A": "具体描述，适当情感渲染",
+        "B": "简明扼要，突出最主要、最感人部分",
+        "C": "结合形势，升华提炼",
+        "D": "适宜学习，推进整体工作开展"
       },
-      {
-        "question_number": "35",
-        "question_type": "多项选择题",
-        "content": "传统医学有“四诊”技术，即",
-        "options": {
-          "A": "望",
-          "B": "闻",
-          "C": "问",
-          "D": "切",
-          "E": "测"
-        },
-        "answer": null,
-        "score": 2
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "批复可以分为两类，一类是指示性批复，另一类是",
+      "options": {
+        "A": "提审性批复",
+        "B": "合议性批复",
+        "C": "表态性批复",
+        "D": "建议性批复"
       },
-      {
-        "question_number": "36",
-        "question_type": "名词解释题",
-        "content": "文化政策",
-        "answer": null,
-        "score": 2
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "不相隶属机关之间因人员调动行文，应使用的文种是",
+      "options": {
+        "A": "令",
+        "B": "函",
+        "C": "通知",
+        "D": "通告"
       },
-      {
-        "question_number": "37",
-        "question_type": "名词解释题",
-        "content": "王官采诗说",
-        "answer": null,
-        "score": 2
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "会议纪要作为国家行政机关的法定公文文种始于",
+      "options": {
+        "A": "1951 年",
+        "B": "1981 年",
+        "C": "1987 年",
+        "D": "1989 年"
       },
-      {
-        "question_number": "38",
-        "question_type": "名词解释题",
-        "content": "家风",
-        "answer": null,
-        "score": 2
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "计划类文书与规划类文书相比，其实现目标的期限较短，一般期限为",
+      "options": {
+        "A": "1 年以内",
+        "B": "1—2 年",
+        "C": "2—3 年",
+        "D": "5 年以上"
       },
-      {
-        "question_number": "39",
-        "question_type": "名词解释题",
-        "content": "五服",
-        "answer": null,
-        "score": 2
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "制定实施细则的目的是加强法律、法规的",
+      "options": {
+        "A": "规范性",
+        "B": "强制性",
+        "C": "程序性",
+        "D": "可操作性"
       },
-      {
-        "question_number": "40",
-        "question_type": "名词解释题",
-        "content": "对联",
-        "answer": null,
-        "score": 2
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "为个人所得税代扣代缴进行具体规定的行文，应使用的文种是",
+      "options": {
+        "A": "条例",
+        "B": "守则",
+        "C": "章程",
+        "D": "办法"
       },
-      {
-        "question_number": "41",
-        "question_type": "简答题",
-        "content": "简述地理条件对中国文化的影响。",
-        "answer": null,
-        "score": 5
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "公文处理工作对机关工作的作用，具有纽带作用和",
+      "options": {
+        "A": "领导作用",
+        "B": "联系作用",
+        "C": "助手作用",
+        "D": "指导作用"
       },
-      {
-        "question_number": "42",
-        "question_type": "简答题",
-        "content": "简述婚姻礼仪的家族原则。",
-        "answer": null,
-        "score": 5
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "开幕词结尾要求具有",
+      "options": {
+        "A": "展望性",
+        "B": "评价性",
+        "C": "预祝性",
+        "D": "激励性"
       },
-      {
-        "question_number": "43",
-        "question_type": "简答题",
-        "content": "简述中国古代教育思想的基本特征。",
-        "answer": null,
-        "score": 5
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "具有总结性、激励性和评估性的讲话类文书是",
+      "options": {
+        "A": "欢迎词",
+        "B": "答谢词",
+        "C": "开幕词",
+        "D": "闭幕词"
       },
-      {
-        "question_number": "44",
-        "question_type": "简答题",
-        "content": "简述汉字的特点。",
-        "answer": null,
-        "score": 5
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "我国历代领导人对保密工作都非常重视，提出“和平建设时期，保密就是保安全、保发展”的领导是",
+      "options": {
+        "A": "周恩来",
+        "B": "邓小平",
+        "C": "江泽民",
+        "D": "胡锦涛"
       },
-      {
-        "question_number": "45",
-        "question_type": "简答题",
-        "content": "简述中国传统社会管理的方式。",
-        "answer": null,
-        "score": 5
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "26",
+      "question_type": "单项选择题",
+      "content": "机关规定基层报送的请示限期答复，体现的公文处理要求是",
+      "options": {
+        "A": "准确、周密，确保质量",
+        "B": "及时、迅速，注重时效",
+        "C": "安全可靠，确保机密",
+        "D": "精简文件，反对文牍主义"
       },
-      {
-        "question_number": "46",
-        "question_type": "简答题",
-        "content": "简述中国古代天神祭祀的种类。",
-        "answer": null,
-        "score": 5
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "27",
+      "question_type": "单项选择题",
+      "content": "某县人民医院公文处理工作的组织形式应是",
+      "options": {
+        "A": "集中形式",
+        "B": "分工处理形式",
+        "C": "外包形式",
+        "D": "投标形式"
       },
-      {
-        "question_number": "47",
-        "question_type": "论述题",
-        "content": "论述“天人合一”观念对中国文化的影响。",
-        "answer": null,
-        "score": 10
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "28",
+      "question_type": "单项选择题",
+      "content": "收文拟办意见的写作要求",
+      "options": {
+        "A": "写出具体的承办计划",
+        "B": "提出详细承办方案",
+        "C": "文字简要，讲明简单理由",
+        "D": "分析深入，适宜复文"
       },
-      {
-        "question_number": "48",
-        "question_type": "论述题",
-        "content": "论述中国精神文化对世界的影响。",
-        "answer": null,
-        "score": 10
-      }
-    ]
-  }
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "29",
+      "question_type": "单项选择题",
+      "content": "下列属于应立卷的文件是",
+      "options": {
+        "A": "上级机关的文件材料",
+        "B": "一般性文件的修改稿",
+        "C": "非隶属机关的参考件",
+        "D": "机关负责人兼职文件"
+      },
+      "answer": "A",
+      "score": 1
+    },
+    {
+      "question_number": "30",
+      "question_type": "单项选择题",
+      "content": "召开会议后形成会议通知、日程安排、会议简报、会议纪要等会议文件按“件”进行装订，体现的文件整理原则是",
+      "options": {
+        "A": "区分文件保存价值",
+        "B": "遵循文件形成规律",
+        "C": "便于保管",
+        "D": "便于利用"
+      },
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "公文的主要特点表现在公文有",
+      "options": {
+        "A": "法定的作者",
+        "B": "法定的权威",
+        "C": "特定的效用",
+        "D": "规范的体式",
+        "E": "规定的处理程序"
+      },
+      "answer": "ABCDE",
+      "score": 2
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "公文是为机关立言，它代表了机关的",
+      "options": {
+        "A": "政策水平",
+        "B": "业务水平",
+        "C": "领导水平",
+        "D": "工作绩效",
+        "E": "组织职能"
+      },
+      "answer": "ABC",
+      "score": 2
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "下列通知标题形式正确的有",
+      "options": {
+        "A": "发文单位加文种",
+        "B": "事由加文种",
+        "C": "发文单位加事由",
+        "D": "只写文种名称",
+        "E": "发文单位加事由加文种"
+      },
+      "answer": "BDE",
+      "score": 2
+    },
+    {
+      "question_number": "34",
+      "question_type": "多项选择题",
+      "content": "报告写作的要求有",
+      "options": {
+        "A": "陈述事实要清楚扼要",
+        "B": "事项要具有超前性",
+        "C": "问题缘由要充分深入",
+        "D": "表达观点要精炼清晰",
+        "E": "语言要简洁朴实"
+      },
+      "answer": "ADE",
+      "score": 2
+    },
+    {
+      "question_number": "35",
+      "question_type": "多项选择题",
+      "content": "以“件”为单位的归档文件整理要推进的工作有",
+      "options": {
+        "A": "注重件内文件价值判断",
+        "B": "更新观念，增强改革意识",
+        "C": "提高人员素质",
+        "D": "加强硬件建设",
+        "E": "注意新旧整理方法衔接"
+      },
+      "answer": "BCDE",
+      "score": 2
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述公文主体部分的内容。",
+      "answer": "（1）公文标题。（1 分）（2）主送机关。（1 分）（3）公文正文。（1 分）（4）附件，成文时间。（1 分）（5）公文生效标识，附注。（1 分）",
+      "score": 5
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述同一份文件根据不同用途的文本形式。",
+      "answer": "（1）正本。（1 分）（2）副本。（1 分）（3）存本。（1 分）（4）修订本。（1 分）（5）试行本、暂行本、各种文字文本。（1 分）",
+      "score": 5
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述公文的行文方向和行文方式。",
+      "answer": "行文方向：上行、下行、平行。（2 分）行文方式：上行文（1 分）、下行文（1 分）、平行文（1 分）。",
+      "score": 5
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述归档文件按事由进行排列的理由。",
+      "answer": "按事由排列，遵循了文件形成的客观规律，能够保持文件之间的有机联系（2 分），使归档文件进一步系统化，（1 分）充分体现文件的价值（1 分），便于检索和利用。（1 分）",
+      "score": 5
+    },
+    {
+      "question_number": "40",
+      "question_type": "简答题",
+      "content": "简述归档文件目录封面的内容。",
+      "answer": "（1）全宗名称。（2 分）（2）年度。（1 分）（3）保管期限。（1 分）（4）机构（问题）。（1 分）",
+      "score": 5
+    },
+    {
+      "question_number": "41",
+      "question_type": "论述题",
+      "content": "联系实际，试述公告与通告的特点及差异性。",
+      "answer": "（1）发布的公开性。公告与通告内容都是公开的，但发布的范围不同。公告涉及范围广，通告涉及范围小。如某地处理地区内部事务的通告，就不必要到外地张贴。（4 分）（2）事项的重要性。必须是重要事项才使用公告与通告发布。公告公布较重大事情，通告公布事项重要度次于公告。（3 分）（3）操作的严肃性。公告与通告均内容重要涉及面广，操作必须严肃。公告一般由国家各级政权机构发布，一般机关团体不能随意发布公告。发布通告也要注意权限，不能随意发布。（3 分）",
+      "score": 10
+    },
+    {
+      "question_number": "42",
+      "question_type": "论述题",
+      "content": "试述会议纪要的特点及写作方法。",
+      "answer": "（1）会议纪要的特点有：纪要性、约束性和知照性。（3 分）（2）会议纪要的写作一般在会议结束后起草，经主管领导人签字同意才算定稿。（2 分）会议纪要的标题常用“会议名称加文种”，也可省去“会议”二字。（1 分）会议纪要正文一般分为会议概况、会议内容、结束语三部分。（3 分）会议纪要由会议主持机关撰写。（1 分）",
+      "score": 10
+    },
+    {
+      "question_number": "43",
+      "question_type": "综合应用题",
+      "content": "阅读下面材料，回答文后提出的问题。\n2022年6月，XX市政府办公室对全市所辖县区政府及直属机关发布了一个告知通知：\nXX 市人民政府关于发布 2021 年度市政府规范性文件清理结果的通知\n各县（市）、区人民政府，市政府各部门、各直属机构：\n为维护社会主义法制统一，按照工作要求，市政府对 2021 年 12 月 31 日以前制定的市政府规范性文件进行了清理，已经市政府第 9 次常务会议审议通过，现将清理结果发布如下。\n附件：1. 继续实施的市政府规范性文件目录\n2. 废止和失效的市政府规范性文件目录\nXX 市人民政府办公室\n2022 年 5 月 27 日\n问题：\n(1) 请从发文办理程序回答，该市政府办公室对外发布这个通知，必须做好哪些环节工作？其中哪个环节最重要，请说明理由。\n(2) 假如你是该市政府下属某区政府办公室文书人员，收到上级这个通知文件，你应如何办理收文工作？收文办理程序有哪些环节工作？",
+      "answer": "（1）发文办理程序工作包括：拟稿、审核与签发、核发、缮印与校对、用印、登记与分发组成，发文必须做好每一环节工作。（3 分）其中最重要工作是第一步，公文的拟稿，它是整个公文处理的关键性工作之一（1 分）。公文拟稿，是公文承办人员根据领导交拟，或批办的意见草拟文稿的过程。（1 分）公文拟稿是代表法定作者的立言，体现机关领导意图和愿望的写作活动，需要收文单位的很好理解或执行，直接影响公文的工作效率。所以，公文拟稿是发文办理的最重要环节（2 分）。（2）收文办理，指文书部门收到文件材料后，在机关内部及时运转直到阅办完毕的全过程（2 分）。组成这一过程的一系列相互衔接的环节称之为收文办理程序。（1 分）具体内容包括：①签收、拆封和登记。（2 分）②审核分发和传阅。（1 分）③拟办、批办和承办。（1 分）④催办、查办与注办。（1 分）",
+      "score": 15
+    }
+  ]
+}

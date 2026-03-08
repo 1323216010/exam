@@ -2,6 +2,7 @@
 import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
 import { getFilenameFromPath, shuffleArray } from './utils.js';
+import { saveAiGeneratedExam } from './aiChatStorage.js';
 
 // ==================== 练习模式基础 ====================
 
@@ -248,9 +249,20 @@ export async function startAiMcqGeneration() {
 
         const questions = await callAiForQuestions(systemPrompt, userPrompt);
 
+        const id = `ai_mcq_${Date.now()}`;
         const title = `AI生成选择题 (${questions.length}题)`;
+        // 保存到 IndexedDB 历史记录
+        await saveAiGeneratedExam({
+            id,
+            title,
+            type: 'mcq',
+            subject: subject || '全部科目',
+            createdAt: Date.now(),
+            questionsCount: questions.length,
+            questions
+        });
         localStorage.setItem('uploadedExamData', JSON.stringify({
-            filename: title, exam_info: { title }, questions
+            filename: id, exam_info: { title }, questions
         }));
         setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${questions.length} 道选择题，即将打开...`);
         window.open('exam.html?mode=upload', '_blank');
@@ -298,9 +310,20 @@ export async function startAiFillGeneration() {
 
         const questions = await callAiForQuestions(systemPrompt, userPrompt);
 
+        const id = `ai_fill_${Date.now()}`;
         const title = `AI生成填空题 (${questions.length}题)`;
+        // 保存到 IndexedDB 历史记录
+        await saveAiGeneratedExam({
+            id,
+            title,
+            type: 'fill',
+            subject: subject || '全部科目',
+            createdAt: Date.now(),
+            questionsCount: questions.length,
+            questions
+        });
         localStorage.setItem('uploadedExamData', JSON.stringify({
-            filename: title, exam_info: { title }, questions
+            filename: id, exam_info: { title }, questions
         }));
         setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${questions.length} 道填空题，即将打开...`);
         window.open('exam.html?mode=upload', '_blank');

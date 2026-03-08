@@ -52,7 +52,9 @@
 
             <!-- 加载提示 -->
             <div id="exam-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: #6B7280; gap: 16px; font-size: 16px;">
-                <div style="font-size: 48px;">📝</div>
+                <div style="font-size: 48px; display:flex; align-items:center; justify-content:center; color:#9CA3AF;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
                 <div>正在加载试题...</div>
             </div>
 
@@ -72,7 +74,9 @@
                     
                     <div class="ai-chat-header">
                         <div class="ai-chat-title">
-                            <span class="ai-icon">🤖</span>
+                            <span class="ai-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                            </span>
                             <h3>AI 解析助手 <span class="ai-subtitle" id="aiSubtitle">· 未选中题目</span></h3>
                         </div>
                         <button class="btn-icon" id="closeAiPanel" title="关闭面板">
@@ -106,7 +110,9 @@
 
             <!-- 结果页面 -->
             <div class="result-container" id="result-container">
-                <div class="result-icon">🎉</div>
+                <div class="result-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
                 <div class="result-title">答题完成！</div>
                 <div class="result-score" id="result-score">0</div>
                 <div class="result-total">总分 <span id="total-score">0</span> 分</div>

@@ -5,12 +5,14 @@ import {
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
     toggleSourceDetail, switchPracticeTab, startAiMcqGeneration, startAiFillGeneration 
 } from './practiceMode.js';
+import { renderAiHistory } from './aiHistory.js';
 import { loadCustomExamUI, selectAllExams, selectNoneExams, startCustomExam } from './customExam.js';
 import { 
     showSettings, closeSettings, switchSettingsTab, addNewConfig, 
     saveSettings, savePromptTemplatesFromUI, testApiConnection 
 } from './settings.js';
 import { resetPromptTemplates } from './api.js';
+import { initIcons } from './icons.js';
 
 // ==================== 模式选择 ====================
 
@@ -172,7 +174,12 @@ async function initializeApp() {
 
     // 练习模式 Tab 切换
     document.querySelectorAll('.practice-mode-tab').forEach(btn => {
-        btn.addEventListener('click', () => switchPracticeTab(btn.dataset.practiceTab));
+        btn.addEventListener('click', () => {
+            const tabName = btn.dataset.practiceTab;
+            switchPracticeTab(tabName);
+            // 切到历史 tab 时自动加载
+            if (tabName === 'ai-history') renderAiHistory();
+        });
     });
 
     // AI 生成按钮
@@ -225,7 +232,7 @@ async function initializeApp() {
 
 // 页面加载完成后初始化
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp);
+    document.addEventListener('DOMContentLoaded', () => { initializeApp(); initIcons(); });
 } else {
-    initializeApp();
+    initializeApp(); initIcons();
 }

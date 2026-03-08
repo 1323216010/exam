@@ -76,6 +76,19 @@
 .mode-icon {
     font-size: 64px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #10B981;
+}
+
+.upload-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #10B981;
 }
 
 .mode-title {
@@ -110,10 +123,7 @@
     max-width: 500px;
 }
 
-.upload-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
-}
+
 
 .upload-title {
     font-size: 24px;
@@ -970,4 +980,170 @@ input[type="file"] {
 
 #question-type-filters {
     display: block;
+}
+
+/* ==================== AI 历史记录列表 ==================== */
+
+.ai-history-loading,
+.ai-history-empty {
+    padding: 40px 20px;
+    text-align: center;
+    color: #9CA3AF;
+}
+
+.ai-history-empty .empty-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.ai-history-empty .empty-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #6B7280;
+    margin-bottom: 6px;
+}
+
+.ai-history-empty .empty-hint {
+    font-size: 13px;
+    color: #9CA3AF;
+    max-width: 340px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.ai-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.ai-history-count {
+    font-size: 13px;
+    color: #6B7280;
+}
+
+.ai-history-count strong {
+    color: #374151;
+}
+
+.btn-danger-text {
+    color: #EF4444 !important;
+}
+
+.btn-danger-text:hover {
+    background: #FEF2F2 !important;
+    color: #DC2626 !important;
+}
+
+.ai-history-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ai-history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.ai-history-item:hover {
+    border-color: #10B981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+}
+
+.ai-history-item-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.ai-history-item-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.ai-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ai-type-badge.badge-mcq {
+    background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+    color: #1E40AF;
+}
+
+.ai-type-badge.badge-fill {
+    background: linear-gradient(135deg, #FCE7F3, #FBCFE8);
+    color: #BE185D;
+}
+
+.ai-history-title-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ai-history-item-meta {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: #9CA3AF;
+    flex-wrap: wrap;
+}
+
+.ai-history-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    padding: 5px 8px !important;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid #E5E7EB;
+    color: #9CA3AF;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-icon:hover {
+    background: #FEF2F2;
+    border-color: #FCA5A5;
+    color: #EF4444;
+}
+
+@media (max-width: 600px) {
+    .ai-history-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ai-history-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
 }

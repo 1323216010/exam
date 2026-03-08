@@ -2,6 +2,7 @@
 import { EXAM_LIST } from './config.js';
 import { getFilenameFromPath } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
+import { Icons } from './icons.js';
 
 export function renderExamList() {
     const grid = document.getElementById('exam-list-grid');
@@ -75,7 +76,7 @@ export function filterExamList() {
     grid.innerHTML = '';
     
     if (filtered.length === 0) {
-        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #9CA3AF; font-size: 16px;">🔍 没有找到符合条件的试卷</div>';
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#9CA3AF;font-size:16px;">${Icons.search} 没有找到符合条件的试卷</div>`;
         return;
     }
     
@@ -98,7 +99,7 @@ export function filterExamList() {
             </div>
             <div class="exam-card-footer">
                 <div class="exam-card-question-count" data-question-count>
-                    <span class="count-icon">📝</span>
+                    <span class="count-icon">${Icons.clipboardList}</span>
                     <span class="count-text">题目加载中...</span>
                 </div>
             </div>

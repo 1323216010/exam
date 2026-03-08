@@ -1,5 +1,6 @@
 // 答题进度管理模块
 import { state } from './state.js';
+import { Icons } from './icons.js';
 
 // ==================== 答题进度管理 ====================
 
@@ -136,7 +137,7 @@ export function showProgressDialog({ lastSaveDate, answeredCount, totalCount, on
         <div class="modal show" id="progress-dialog" style="z-index: 10000;">
             <div class="modal-content" style="max-width: 480px;">
                 <div class="modal-header">
-                    <h3>📋 发现答题进度</h3>
+                    <h3>${Icons.clipboardList} 发现答题进度</h3>
                 </div>
                 <div class="modal-body">
                     <div style="margin-bottom: 20px; padding: 16px; background: #F3F4F6; border-radius: 8px;">
