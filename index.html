@@ -173,8 +173,7 @@
                     <!-- Tab 导航 -->
                     <div class="practice-mode-tabs">
                         <button class="practice-mode-tab active" data-practice-tab="direct"><i data-icon="bookOpen"></i> 刷原题</button>
-                        <button class="practice-mode-tab" data-practice-tab="ai-mcq"><i data-icon="cpu"></i> AI 选择题</button>
-                        <button class="practice-mode-tab" data-practice-tab="ai-fill"><i data-icon="pencil"></i> AI 填空题</button>
+                        <button class="practice-mode-tab" data-practice-tab="ai-generate"><i data-icon="cpu"></i> AI 出题</button>
                         <button class="practice-mode-tab" data-practice-tab="ai-history"><i data-icon="history"></i> 已生成题目</button>
                     </div>
 
@@ -209,41 +208,39 @@
                         </div>
                     </div>
 
-                    <!-- Tab 2: AI 生成选择题 -->
-                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-mcq">
+                    <!-- Tab 2: AI 出题 -->
+                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-generate">
                         <div class="tab-settings">
                             <div class="ai-generate-hint">
-                                🤖 AI 将从上方<strong>来源试卷</strong>中随机抽取若干道<strong>选择题</strong>作为参考素材，重新生成一套全新的单选题。<br>
-                                <span class="ai-hint-note">💡 生成数量与选择的试卷套数无关——来源决定知识范围，数量决定出多少道新题。</span>
+                                AI 将从上方<strong>来源试卷</strong>中随机抽取题目作为参考素材，重新生成全新的题目。可同时生成选择题和填空题，混合成一套试卷一起练习。<br>
+                                <span class="ai-hint-note">💡 来源决定知识范围，数量决定出多少道新题。只勾选一种则仅生成该类型。</span>
                             </div>
-                            <div class="config-row" style="margin-top: 20px;">
-                                <label>生成题目数量：</label>
-                                <input type="number" id="ai-mcq-count" value="10" min="1" max="50" style="width: 80px; padding: 5px 8px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
-                                <span class="config-hint">道（最多 50 道）</span>
+                            <div class="ai-type-rows">
+                                <div class="ai-type-row">
+                                    <label class="ai-type-toggle">
+                                        <input type="checkbox" id="ai-gen-mcq-enabled" checked>
+                                        <span class="ai-type-label"><i data-icon="cpu"></i> 选择题</span>
+                                    </label>
+                                    <div class="ai-type-count">
+                                        <input type="number" id="ai-mcq-count" value="10" min="1" max="50">
+                                        <span class="config-hint">道（最多 50）</span>
+                                    </div>
+                                </div>
+                                <div class="ai-type-row">
+                                    <label class="ai-type-toggle">
+                                        <input type="checkbox" id="ai-gen-fill-enabled" checked>
+                                        <span class="ai-type-label"><i data-icon="pencil"></i> 填空题</span>
+                                    </label>
+                                    <div class="ai-type-count">
+                                        <input type="number" id="ai-fill-count" value="10" min="1" max="50">
+                                        <span class="config-hint">道（最多 50）</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="ai-mcq-status" class="ai-generate-status hidden" style="margin-top: 14px;"></div>
+                            <div id="ai-generate-status" class="ai-generate-status hidden" style="margin-top: 14px;"></div>
                         </div>
                         <div class="tab-footer">
-                            <button class="btn-primary" id="btn-start-ai-mcq">🤖 生成并开始</button>
-                        </div>
-                    </div>
-
-                    <!-- Tab 3: AI 生成填空题 -->
-                    <div class="practice-mode-tab-content hidden" id="practice-tab-ai-fill">
-                        <div class="tab-settings">
-                            <div class="ai-generate-hint">
-                                ✏️ AI 将从上方<strong>来源试卷</strong>中随机抽取若干道<strong>非选择题</strong>（简答、论述等）作为参考素材，重新生成一套填空题。<br>
-                                <span class="ai-hint-note">💡 生成数量与选择的试卷套数无关——来源决定知识范围，数量决定出多少道新题。</span>
-                            </div>
-                            <div class="config-row" style="margin-top: 20px;">
-                                <label>生成题目数量：</label>
-                                <input type="number" id="ai-fill-count" value="10" min="1" max="50" style="width: 80px; padding: 5px 8px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 14px;">
-                                <span class="config-hint">道（最多 50 道）</span>
-                            </div>
-                            <div id="ai-fill-status" class="ai-generate-status hidden" style="margin-top: 14px;"></div>
-                        </div>
-                        <div class="tab-footer">
-                            <button class="btn-primary" id="btn-start-ai-fill">✏️ 生成并开始</button>
+                            <button class="btn-primary" id="btn-start-ai-generate"><i data-icon="cpu"></i> 生成并开始</button>
                         </div>
                     </div>
 

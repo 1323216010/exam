@@ -925,6 +925,86 @@ input[type="file"] {
     padding: 5px 10px;
 }
 
+/* AI 出题：题型勾选行 */
+.ai-type-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.ai-type-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: #F9FAFB;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    transition: border-color 0.2s;
+}
+
+.ai-type-row:has(input[type="checkbox"]:checked) {
+    border-color: #10B981;
+    background: #F0FDF4;
+}
+
+.ai-type-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+    min-width: 90px;
+}
+
+.ai-type-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #10B981;
+    flex-shrink: 0;
+}
+
+.ai-type-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ai-type-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+
+.ai-type-count input[type="number"] {
+    width: 70px;
+    padding: 6px 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.ai-type-count input[type="number"]:focus {
+    outline: none;
+    border-color: #10B981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+/* 未勾选时灰化数量输入 */
+.ai-type-row:has(input[type="checkbox"]:not(:checked)) .ai-type-count {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
 /* AI 生成状态消息 */
 .ai-generate-status {
     padding: 10px 14px;
@@ -1194,6 +1274,11 @@ input[type="file"] {
 .ai-type-badge.badge-fill {
     background: linear-gradient(135deg, #FCE7F3, #FBCFE8);
     color: #BE185D;
+}
+
+.ai-type-badge.badge-mixed {
+    background: linear-gradient(135deg, #EDE9FE, #DDD6FE);
+    color: #6D28D9;
 }
 
 .ai-history-title-text {

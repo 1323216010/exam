@@ -3,7 +3,7 @@ import { loadExamList } from './config.js';
 import { renderExamList, filterExamList } from './examList.js';
 import { 
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
-    switchPracticeTab, startAiMcqGeneration, startAiFillGeneration 
+    switchPracticeTab, startAiGeneration 
 } from './practiceMode.js';
 import { renderAiHistory } from './aiHistory.js';
 import { loadCustomExamUI, selectAllExams, selectNoneExams, startCustomExam } from './customExam.js';
@@ -194,10 +194,8 @@ async function initializeApp() {
     });
 
     // AI 生成按钮
-    const btnStartAiMcq = document.getElementById('btn-start-ai-mcq');
-    if (btnStartAiMcq) btnStartAiMcq.addEventListener('click', startAiMcqGeneration);
-    const btnStartAiFill = document.getElementById('btn-start-ai-fill');
-    if (btnStartAiFill) btnStartAiFill.addEventListener('click', startAiFillGeneration);
+    const btnStartAiGenerate = document.getElementById('btn-start-ai-generate');
+    if (btnStartAiGenerate) btnStartAiGenerate.addEventListener('click', startAiGeneration);
     
     // 练习模式题型快速选择：选择题 / 非选择题
     const btnSelectChoiceTypes = document.getElementById('btn-select-choice-types');

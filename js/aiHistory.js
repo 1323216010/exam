@@ -17,7 +17,7 @@ export async function renderAiHistory() {
                 <div class="ai-history-empty">
                     <div class="empty-icon">${Icons.cpu}</div>
                     <div class="empty-text">暂无 AI 生成记录</div>
-                    <div class="empty-hint">在「AI 选择题」或「AI 填空题」标签页生成题目后，记录会保存在这里</div>
+                    <div class="empty-hint">在「AI 出题」标签页生成题目后，记录会保存在这里</div>
                 </div>
             `;
             return;
@@ -52,10 +52,12 @@ function createHistoryItem(record) {
     item.className = 'ai-history-item';
     item.dataset.id = record.id;
 
-    const isMcq = record.type === 'mcq';
-    const typeLabel = isMcq ? 'AI 选择题' : 'AI 填空题';
-    const typeIcon = isMcq ? Icons.cpu : Icons.pencil;
-    const typeClass = isMcq ? 'badge-mcq' : 'badge-fill';
+    const TYPE_CONFIG = {
+        mcq:   { label: 'AI 选择题', icon: Icons.cpu,   cls: 'badge-mcq'   },
+        fill:  { label: 'AI 填空题', icon: Icons.pencil, cls: 'badge-fill'  },
+        mixed: { label: 'AI 混合题', icon: Icons.brain,  cls: 'badge-mixed' },
+    };
+    const { label: typeLabel, icon: typeIcon, cls: typeClass } = TYPE_CONFIG[record.type] || TYPE_CONFIG.mcq;
 
     const dateStr = new Date(record.createdAt).toLocaleString('zh-CN', {
         year: 'numeric', month: '2-digit', day: '2-digit',

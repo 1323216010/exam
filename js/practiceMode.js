@@ -202,79 +202,57 @@ function setAiGenerateStatus(statusEl, btn, originalText, msg, isError = false) 
     if (btn) btn.textContent = originalText;
 }
 
-// ==================== AI 生成选择题 ====================
+// ==================== AI 生成：内部 helper ====================
 
-export async function startAiMcqGeneration() {
-    const count = parseInt(document.getElementById('ai-mcq-count').value) || 10;
-    const subject = document.getElementById('practice-subject-filter').value;
-    const selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
-        .map(cb => parseInt(cb.value));
+async function generateMcqQuestions(allQ, count) {
+    const choiceQ = allQ.filter(q => q.options);
+    if (choiceQ.length === 0) throw new Error('所选范围内没有选择题，无法生成');
 
-    const btn = document.getElementById('btn-start-ai-mcq');
-    const statusEl = document.getElementById('ai-mcq-status');
-    const originalText = btn.textContent;
+    const sample = shuffleArray([...choiceQ]).slice(0, 15);
+    const refText = sample.map((q, i) => {
+        const opts = Object.entries(q.options).map(([k, v]) => `${k}. ${v}`).join('\n');
+        return `[参考题${i + 1}]\n题目：${q.content}\n选项：\n${opts}\n答案：${q.answer}`;
+    }).join('\n\n');
 
-    btn.disabled = true;
-    btn.textContent = '⏳ 生成中...';
-    statusEl.classList.remove('hidden');
-    statusEl.className = 'ai-generate-status ai-status-info';
-    statusEl.textContent = '正在加载题目素材...';
-
-    try {
-        const allQ = await loadPracticeSourceQuestions(subject, selectedExams.length > 0 ? selectedExams : null);
-        const choiceQ = allQ.filter(q => q.options);
-
-        if (choiceQ.length === 0) throw new Error('所选范围内没有选择题，无法生成');
-
-        const sample = shuffleArray([...choiceQ]).slice(0, 15);
-        const refText = sample.map((q, i) => {
-            const opts = Object.entries(q.options).map(([k, v]) => `${k}. ${v}`).join('\n');
-            return `[参考题${i + 1}]\n题目：${q.content}\n选项：\n${opts}\n答案：${q.answer}`;
-        }).join('\n\n');
-
-        statusEl.textContent = `已加载 ${choiceQ.length} 道选择题素材，正在调用 AI 生成 ${count} 道新题...`;
-
-        const systemPrompt = `你是一位专业出题专家。请根据参考题目的风格和知识点，生成全新的单选题。必须严格以JSON数组格式输出，不要有任何其他内容。格式：[{"content":"题目内容","question_type":"单选题","options":{"A":"...","B":"...","C":"...","D":"..."},"answer":"A","score":2,"explanation":"解析"}]`;
-        const userPrompt = `请基于以下参考题目，生成 ${count} 道新的单选题（内容不要直接照抄，保持相同知识领域和难度）：\n\n${refText}`;
-
-        const questions = await callAiForQuestions(systemPrompt, userPrompt);
-
-        const id = `ai_mcq_${Date.now()}`;
-        const title = `AI生成选择题 (${questions.length}题)`;
-        // 保存到 IndexedDB 历史记录
-        await saveAiGeneratedExam({
-            id,
-            title,
-            type: 'mcq',
-            subject: subject || '全部科目',
-            createdAt: Date.now(),
-            questionsCount: questions.length,
-            questions
-        });
-        localStorage.setItem('uploadedExamData', JSON.stringify({
-            filename: id, exam_info: { title }, questions
-        }));
-        setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${questions.length} 道选择题，即将打开...`);
-        window.open('exam.html?mode=upload', '_blank');
-    } catch (e) {
-        setAiGenerateStatus(statusEl, null, null, `❌ 生成失败：${e.message}`, true);
-    } finally {
-        btn.disabled = false;
-        btn.textContent = originalText;
-    }
+    const systemPrompt = `你是一位专业出题专家。请根据参考题目的风格和知识点，生成全新的单选题。必须严格以JSON数组格式输出，不要有任何其他内容。格式：[{"content":"题目内容","question_type":"单选题","options":{"A":"...","B":"...","C":"...","D":"..."},"answer":"A","score":2,"explanation":"解析"}]`;
+    const userPrompt = `请基于以下参考题目，生成 ${count} 道新的单选题（内容不要直接照抄，保持相同知识领域和难度）：\n\n${refText}`;
+    return await callAiForQuestions(systemPrompt, userPrompt);
 }
 
-// ==================== AI 生成填空题 ====================
+async function generateFillQuestions(allQ, count) {
+    const subjectiveQ = allQ.filter(q => !q.options);
+    if (subjectiveQ.length === 0) throw new Error('所选范围内没有非选择题，无法生成');
 
-export async function startAiFillGeneration() {
-    const count = parseInt(document.getElementById('ai-fill-count').value) || 10;
+    const sample = shuffleArray([...subjectiveQ]).slice(0, 10);
+    const refText = sample.map((q, i) =>
+        `[参考题${i + 1}]\n题目：${q.content}\n答案：${q.answer}`
+    ).join('\n\n');
+
+    const systemPrompt = `你是一位专业出题专家。请根据参考题目的知识点，生成全新的填空题。用 ___ 表示空白处，一道题可有多个空。必须严格以JSON数组格式输出，不要有任何其他内容。格式：[{"content":"题目内容，___为空","question_type":"填空题","answer":"答案（多个空用|分隔）","score":2,"explanation":"解析"}]`;
+    const userPrompt = `请基于以下参考题目，生成 ${count} 道新的填空题（内容不要直接照抄，保持相同知识领域）：\n\n${refText}`;
+    return await callAiForQuestions(systemPrompt, userPrompt);
+}
+
+// ==================== AI 出题（合并入口）====================
+
+export async function startAiGeneration() {
+    const mcqEnabled = document.getElementById('ai-gen-mcq-enabled').checked;
+    const fillEnabled = document.getElementById('ai-gen-fill-enabled').checked;
+    const mcqCount = parseInt(document.getElementById('ai-mcq-count').value) || 10;
+    const fillCount = parseInt(document.getElementById('ai-fill-count').value) || 10;
+
+    if (!mcqEnabled && !fillEnabled) {
+        alert('请至少勾选一种题型');
+        return;
+    }
+
     const subject = document.getElementById('practice-subject-filter').value;
     const selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
         .map(cb => parseInt(cb.value));
 
-    const btn = document.getElementById('btn-start-ai-fill');
-    const statusEl = document.getElementById('ai-fill-status');
-    const originalText = btn.textContent;
+    const btn = document.getElementById('btn-start-ai-generate');
+    const statusEl = document.getElementById('ai-generate-status');
+    const originalHTML = btn.innerHTML;
 
     btn.disabled = true;
     btn.textContent = '⏳ 生成中...';
@@ -284,43 +262,41 @@ export async function startAiFillGeneration() {
 
     try {
         const allQ = await loadPracticeSourceQuestions(subject, selectedExams.length > 0 ? selectedExams : null);
-        const subjectiveQ = allQ.filter(q => !q.options);
 
-        if (subjectiveQ.length === 0) throw new Error('所选范围内没有非选择题，无法生成');
+        const typeDesc = [mcqEnabled && `选择题 ${mcqCount} 道`, fillEnabled && `填空题 ${fillCount} 道`].filter(Boolean).join(' + ');
+        statusEl.textContent = `正在调用 AI 生成 ${typeDesc}...`;
 
-        const sample = shuffleArray([...subjectiveQ]).slice(0, 10);
-        const refText = sample.map((q, i) =>
-            `[参考题${i + 1}]\n题目：${q.content}\n答案：${q.answer}`
-        ).join('\n\n');
+        let mcqQuestions = [], fillQuestions = [];
+        const tasks = [];
+        if (mcqEnabled) tasks.push(generateMcqQuestions(allQ, mcqCount).then(q => { mcqQuestions = q; }));
+        if (fillEnabled) tasks.push(generateFillQuestions(allQ, fillCount).then(q => { fillQuestions = q; }));
+        await Promise.all(tasks);
 
-        statusEl.textContent = `已加载 ${subjectiveQ.length} 道非选择题素材，正在调用 AI 生成 ${count} 道填空题...`;
+        const allQuestions = [...mcqQuestions, ...fillQuestions];
+        const typeKey = mcqEnabled && fillEnabled ? 'mixed' : mcqEnabled ? 'mcq' : 'fill';
+        const title = typeKey === 'mixed'
+            ? `AI混合题 (选择题${mcqQuestions.length}+填空题${fillQuestions.length})`
+            : typeKey === 'mcq'
+                ? `AI生成选择题 (${mcqQuestions.length}题)`
+                : `AI生成填空题 (${fillQuestions.length}题)`;
 
-        const systemPrompt = `你是一位专业出题专家。请根据参考题目的知识点，生成全新的填空题。用 ___ 表示空白处，一道题可有多个空。必须严格以JSON数组格式输出，不要有任何其他内容。格式：[{"content":"题目内容，___为空","question_type":"填空题","answer":"答案（多个空用|分隔）","score":2,"explanation":"解析"}]`;
-        const userPrompt = `请基于以下参考题目，生成 ${count} 道新的填空题（内容不要直接照抄，保持相同知识领域）：\n\n${refText}`;
-
-        const questions = await callAiForQuestions(systemPrompt, userPrompt);
-
-        const id = `ai_fill_${Date.now()}`;
-        const title = `AI生成填空题 (${questions.length}题)`;
-        // 保存到 IndexedDB 历史记录
+        const id = `ai_${typeKey}_${Date.now()}`;
         await saveAiGeneratedExam({
-            id,
-            title,
-            type: 'fill',
+            id, title, type: typeKey,
             subject: subject || '全部科目',
             createdAt: Date.now(),
-            questionsCount: questions.length,
-            questions
+            questionsCount: allQuestions.length,
+            questions: allQuestions
         });
         localStorage.setItem('uploadedExamData', JSON.stringify({
-            filename: id, exam_info: { title }, questions
+            filename: id, exam_info: { title }, questions: allQuestions
         }));
-        setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${questions.length} 道填空题，即将打开...`);
+        setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${allQuestions.length} 道题目，即将打开...`);
         window.open('exam.html?mode=upload', '_blank');
     } catch (e) {
         setAiGenerateStatus(statusEl, null, null, `❌ 生成失败：${e.message}`, true);
     } finally {
         btn.disabled = false;
-        btn.textContent = originalText;
+        btn.innerHTML = originalHTML;
     }
 }
