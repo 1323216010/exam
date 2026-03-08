@@ -12,6 +12,7 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
 AI_MODEL = "gemini-3-flash-preview"  # 可修改为其他模型
+
 client = OpenAI(
     api_key=os.getenv("YINLI_API_KEY"),
     base_url="https://yinli.one/v1"

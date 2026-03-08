@@ -149,13 +149,23 @@
                         </select>
                     </div>
                     <div class="config-group">
+                        <label>📄 试卷筛选：<span class="practice-exam-hint">（不选则使用全部试卷）</span></label>
+                        <div class="exam-checkbox-grid practice-exam-checkbox-grid" id="practice-exam-checkbox-grid">
+                            <!-- 试卷复选框动态生成 -->
+                        </div>
+                        <div class="quick-select" style="margin-top: 10px;">
+                            <button class="btn-secondary" id="btn-practice-select-all-exams">全选</button>
+                            <button class="btn-secondary" id="btn-practice-select-none-exams">全不选</button>
+                        </div>
+                    </div>
+                    <div class="config-group">
                         <label>题型筛选：</label>
                         <div id="practice-type-filters" class="question-type-grid">
                             <!-- 题型复选框动态生成 -->
                         </div>
                         <div class="quick-select" style="margin-top: 10px;">
-                            <button class="btn-secondary" id="btn-select-all-types">全选</button>
-                            <button class="btn-secondary" id="btn-select-none-types">全不选</button>
+                            <button class="btn-secondary" id="btn-select-choice-types">选择题</button>
+                            <button class="btn-secondary" id="btn-select-subjective-types">非选择题</button>
                         </div>
                     </div>
                     <div class="config-group">

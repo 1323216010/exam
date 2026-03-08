@@ -281,6 +281,10 @@ function startPracticeMode() {
     const selectedTypes = Array.from(document.querySelectorAll('.practice-type-checkbox:checked'))
         .map(cb => cb.value);
     
+    // 获取选中的试卷（不选表示全部）
+    const selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
+        .map(cb => cb.value);
+    
     if (selectedTypes.length === 0) {
         alert('请至少选择一种题型');
         return;
@@ -292,6 +296,7 @@ function startPracticeMode() {
     if (questionLimit) params.set('limit', questionLimit);
     if (subject) params.set('subject', subject);
     if (selectedTypes.length > 0) params.set('types', selectedTypes.join(','));
+    if (selectedExams.length > 0) params.set('exams', selectedExams.join(','));
     
     const url = `exam.html?${params.toString()}`;
     window.open(url, '_blank');
@@ -306,13 +311,47 @@ async function initPracticeSubjectFilter() {
         subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
     });
     
+    // 绑定科目变更事件，联动更新试卷列表
+    subjectFilter.removeEventListener('change', onPracticeSubjectChange);
+    subjectFilter.addEventListener('change', onPracticeSubjectChange);
+    
+    // 初始渲染试卷列表
+    renderPracticeExamList('');
+    
     // 加载题型选择
     await loadPracticeQuestionTypes();
 }
 
+function onPracticeSubjectChange() {
+    const subject = document.getElementById('practice-subject-filter').value;
+    renderPracticeExamList(subject);
+}
+
+function renderPracticeExamList(subject) {
+    const checkboxGrid = document.getElementById('practice-exam-checkbox-grid');
+    
+    let filtered = EXAM_LIST;
+    if (subject) {
+        filtered = filtered.filter(e => e.subject === subject);
+    }
+    
+    checkboxGrid.innerHTML = '';
+    filtered.forEach((exam) => {
+        const originalIndex = EXAM_LIST.indexOf(exam);
+        const item = document.createElement('label');
+        item.className = 'exam-checkbox-item';
+        const filename = getFilenameFromPath(exam.file || exam.path);
+        item.innerHTML = `
+            <input type="checkbox" value="${originalIndex}" class="practice-exam-checkbox" checked>
+            <span title="${filename}">${filename}</span>
+        `;
+        checkboxGrid.appendChild(item);
+    });
+}
+
 async function loadPracticeQuestionTypes() {
     try {
-        const response = await fetch(EXAM_LIST[0].path);
+        const response = await fetch(EXAM_LIST[0].file || EXAM_LIST[0].path);
         const data = await response.json();
         
         const types = [...new Set(data.questions.map(q => q.question_type))];
@@ -365,7 +404,7 @@ function filterCustomExamList() {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-checkbox-item';
-        const filename = getFilenameFromPath(exam.path);
+        const filename = getFilenameFromPath(exam.file || exam.path);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="exam-checkbox">
             <span>${filename}</span>
@@ -376,7 +415,7 @@ function filterCustomExamList() {
 
 async function loadQuestionTypes() {
     try {
-        const response = await fetch(EXAM_LIST[0].path);
+        const response = await fetch(EXAM_LIST[0].file || EXAM_LIST[0].path);
         const data = await response.json();
         
         const types = [...new Set(data.questions.map(q => q.question_type))];
@@ -786,17 +825,35 @@ async function initializeApp() {
         btnStartPractice.addEventListener('click', startPracticeMode);
     }
     
-    // 练习模式题型全选/全不选
-    const btnSelectAllTypes = document.getElementById('btn-select-all-types');
-    const btnSelectNoneTypes = document.getElementById('btn-select-none-types');
-    if (btnSelectAllTypes) {
-        btnSelectAllTypes.addEventListener('click', () => {
-            document.querySelectorAll('.practice-type-checkbox').forEach(cb => cb.checked = true);
+    // 练习模式题型快速选择：选择题 / 非选择题
+    const btnSelectChoiceTypes = document.getElementById('btn-select-choice-types');
+    const btnSelectSubjectiveTypes = document.getElementById('btn-select-subjective-types');
+    if (btnSelectChoiceTypes) {
+        btnSelectChoiceTypes.addEventListener('click', () => {
+            document.querySelectorAll('.practice-type-checkbox').forEach(cb => {
+                cb.checked = cb.value.includes('选');
+            });
         });
     }
-    if (btnSelectNoneTypes) {
-        btnSelectNoneTypes.addEventListener('click', () => {
-            document.querySelectorAll('.practice-type-checkbox').forEach(cb => cb.checked = false);
+    if (btnSelectSubjectiveTypes) {
+        btnSelectSubjectiveTypes.addEventListener('click', () => {
+            document.querySelectorAll('.practice-type-checkbox').forEach(cb => {
+                cb.checked = !cb.value.includes('选');
+            });
+        });
+    }
+    
+    // 练习模式试卷快速选择
+    const btnPracticeSelectAll = document.getElementById('btn-practice-select-all-exams');
+    const btnPracticeSelectNone = document.getElementById('btn-practice-select-none-exams');
+    if (btnPracticeSelectAll) {
+        btnPracticeSelectAll.addEventListener('click', () => {
+            document.querySelectorAll('.practice-exam-checkbox').forEach(cb => cb.checked = true);
+        });
+    }
+    if (btnPracticeSelectNone) {
+        btnPracticeSelectNone.addEventListener('click', () => {
+            document.querySelectorAll('.practice-exam-checkbox').forEach(cb => cb.checked = false);
         });
     }
     

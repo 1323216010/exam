@@ -432,28 +432,34 @@ async function startExam(filePath, filename = null) {
     }
 }
 
-async function loadAllQuestions(subjectFilter = null) {
+async function loadAllQuestions(subjectFilter = null, examIndices = null) {
     const allQuestions = [];
     
-    for (const exam of EXAM_LIST) {
+    for (let i = 0; i < EXAM_LIST.length; i++) {
+        const exam = EXAM_LIST[i];
         if (subjectFilter && exam.subject !== subjectFilter) {
             continue;
         }
         
+        if (examIndices && examIndices.length > 0 && !examIndices.includes(i)) {
+            continue;
+        }
+        
         try {
-            const response = await fetch(exam.path);
+            const examPath = exam.file || exam.path;
+            const response = await fetch(examPath);
             if (!response.ok) continue;
             
             const data = await response.json();
             if (data.questions && Array.isArray(data.questions)) {
-                const filename = getFilenameFromPath(exam.path);
+                const filename = getFilenameFromPath(examPath);
                 data.questions.forEach(q => {
                     q.source = filename;
                     allQuestions.push(q);
                 });
             }
         } catch (error) {
-            console.error(`加载 ${exam.path} 失败:`, error);
+            console.error(`加载 ${exam.file || exam.path} 失败:`, error);
         }
     }
     
@@ -496,9 +502,10 @@ async function handleURLParams() {
         const limit = params.get('limit');
         const subject = params.get('subject');
         const types = params.get('types') ? params.get('types').split(',') : null;
+        const examIndices = params.get('exams') ? params.get('exams').split(',').map(n => parseInt(n)) : null;
         
         try {
-            let allQuestions = await loadAllQuestions(subject);
+            let allQuestions = await loadAllQuestions(subject, examIndices);
             
             // 按题型筛选
             if (types && types.length > 0) {
@@ -549,19 +556,20 @@ async function handleURLParams() {
             for (const index of selectedIndices) {
                 const exam = EXAM_LIST[index];
                 try {
-                    const response = await fetch(exam.path);
+                    const examPath = exam.file || exam.path;
+                    const response = await fetch(examPath);
                     if (!response.ok) continue;
                     
                     const data = await response.json();
                     if (data.questions && Array.isArray(data.questions)) {
-                        const filename = getFilenameFromPath(exam.path);
+                        const filename = getFilenameFromPath(examPath);
                         data.questions.forEach(q => {
                             q.source = filename;
                             allQuestions.push(q);
                         });
                     }
                 } catch (error) {
-                    console.error(`加载 ${exam.path} 失败:`, error);
+                    console.error(`加载 ${exam.file || exam.path} 失败:`, error);
                 }
             }
             
