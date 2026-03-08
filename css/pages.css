@@ -604,6 +604,111 @@ input[type="file"] {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* 共享筛选区（科目 + 试卷） */
+.practice-config-shared {
+    background: white;
+    padding: 24px 30px;
+    border-radius: 12px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 2px solid #F3F4F6;
+}
+
+/* 练习模式 Tab 导航 */
+.practice-mode-tabs {
+    display: flex;
+    gap: 0;
+    background: white;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.practice-mode-tab {
+    padding: 14px 24px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.practice-mode-tab:hover {
+    color: #10B981;
+    background: #F9FAFB;
+}
+
+.practice-mode-tab.active {
+    color: #10B981;
+    border-bottom-color: #10B981;
+    background: transparent;
+}
+
+/* Tab 内容区 */
+.practice-mode-tab-content {
+    background: white;
+    padding: 0 0 0 0;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.practice-mode-tab-content .practice-config-options {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #F3F4F6;
+    margin-bottom: 0;
+}
+
+.practice-mode-tab-content > .btn-primary {
+    margin: 20px 30px 24px;
+    display: block;
+    width: calc(100% - 60px);
+}
+
+/* AI 生成提示区 */
+.ai-generate-hint {
+    background: linear-gradient(135deg, #F0FDF4 0%, #EFF6FF 100%);
+    border: 1px solid #D1FAE5;
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 4px;
+}
+
+.ai-generate-hint strong {
+    color: #059669;
+}
+
+/* AI 生成状态消息 */
+.ai-generate-status {
+    margin: 0 30px 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ai-status-info {
+    background: #EFF6FF;
+    color: #1E40AF;
+    border: 1px solid #BFDBFE;
+}
+
+.ai-status-error {
+    background: #FEF2F2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+}
+
 .config-group {
     margin-bottom: 20px;
 }
