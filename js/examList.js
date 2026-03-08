@@ -91,25 +91,23 @@ export function filterExamList() {
             window.open(url, '_blank');
         });
         
+        const metaBadges = buildExamInfoBadges(exam.exam_info);
+        const countText = exam.question_count != null ? `共 ${exam.question_count} 题` : '题目数未知';
+
         card.innerHTML = `
             <div class="exam-card-header">
                 <div class="exam-card-title">${filename}</div>
-                <div class="exam-card-meta" data-exam-info>
-                </div>
+                <div class="exam-card-meta">${metaBadges}</div>
             </div>
             <div class="exam-card-footer">
-                <div class="exam-card-question-count" data-question-count>
+                <div class="exam-card-question-count">
                     <span class="count-icon">${Icons.clipboardList}</span>
-                    <span class="count-text">题目加载中...</span>
+                    <span class="count-text">${countText}</span>
                 </div>
             </div>
         `;
         
         grid.appendChild(card);
-        
-        if (examPath) {
-            loadExamDetails(examPath, card);
-        }
     });
 }
 
@@ -118,59 +116,28 @@ function getExamPath(exam) {
     return exam.path || exam.file || '';
 }
 
-async function loadExamDetails(path, card) {
-    try {
-        const response = await fetch(path);
-        if (!response.ok) return;
-        
-        const data = await response.json();
-        const questionCount = data.questions ? data.questions.length : 0;
-        
-        const countElement = card.querySelector('[data-question-count] .count-text');
-        if (countElement) {
-            countElement.textContent = `共 ${questionCount} 题`;
-        }
-        
-        if (data.exam_info && typeof data.exam_info === 'object') {
-            const metaContainer = card.querySelector('[data-exam-info]');
-            if (metaContainer) {
-                metaContainer.innerHTML = '';
-                
-                const fieldStyles = {
-                    'code': { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
-                    'date': { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
-                    'subject': { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
-                    'title': { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
-                };
-                
-                const colorSchemes = [
-                    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
-                    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
-                    { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
-                    { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
-                    { bg: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)', color: '#7C3AED' },
-                ];
-                
-                let colorIndex = 0;
-                Object.entries(data.exam_info).forEach(([key, value]) => {
-                    if (value == null || value === '') return;
-                    
-                    const style = fieldStyles[key] || colorSchemes[colorIndex % colorSchemes.length];
-                    if (!fieldStyles[key]) colorIndex++;
-                    
-                    const badge = document.createElement('span');
-                    badge.className = 'exam-info-badge';
-                    badge.style.background = style.bg;
-                    badge.style.color = style.color;
-                    badge.textContent = value;
-                    
-                    metaContainer.appendChild(badge);
-                });
-            }
-        }
-    } catch (error) {
-        console.error('Failed to load exam details:', error);
-    }
+const FIELD_STYLES = {
+    'code':    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
+    'date':    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
+    'subject': { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
+    'title':   { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
+};
+const COLOR_SCHEMES = [
+    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
+    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
+    { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
+    { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
+    { bg: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)', color: '#7C3AED' },
+];
+
+function buildExamInfoBadges(examInfo) {
+    if (!examInfo || typeof examInfo !== 'object') return '';
+    let colorIndex = 0;
+    return Object.entries(examInfo).map(([key, value]) => {
+        if (value == null || value === '') return '';
+        const style = FIELD_STYLES[key] || COLOR_SCHEMES[colorIndex++ % COLOR_SCHEMES.length];
+        return `<span class="exam-info-badge" style="background:${style.bg};color:${style.color}">${value}</span>`;
+    }).join('');
 }
 
 async function handleClearAllChats() {

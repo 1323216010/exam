@@ -50,11 +50,19 @@ def generate_exam_list():
             # 构建相对路径（从 exam/ 开始）
             relative_path = f"json/{subdir.name}/{json_file.name}"
             
-            
             exam_entry = {
                 'file': relative_path,
                 'subject': subdir.name,  # 使用文件夹名称作为科目标识
             }
+            
+            # 读取 exam_info 和题目数量，避免前端逐个请求
+            try:
+                with open(json_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                exam_entry['exam_info'] = data.get('exam_info', {})
+                exam_entry['question_count'] = len(data.get('questions', []))
+            except Exception as e:
+                print(f"  ⚠ 读取 {json_file.name} 失败: {e}")
             
             exams.append(exam_entry)
     
