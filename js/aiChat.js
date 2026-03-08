@@ -302,7 +302,8 @@ async function generateAiExplanationStream(question, userAnswer, contentEl, onUp
                 }
             ],
             temperature: 0.3,
-            stream: true
+            stream: true,
+            enable_thinking: false
         })
     });
 
@@ -476,7 +477,8 @@ async function sendAiChatMessage() {
                 model: apiModel,
                 messages: messages,
                 temperature: 0.3,
-                stream: true
+                stream: true,
+                enable_thinking: false
             })
         });
         
@@ -694,7 +696,8 @@ async function retryAiMessage(button) {
                     model: apiModel,
                     messages: chatMessages,
                     temperature: 0.3,
-                    stream: true
+                    stream: true,
+                    enable_thinking: false
                 })
             });
             

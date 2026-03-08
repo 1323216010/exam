@@ -46,7 +46,7 @@ export async function gradeSubjectiveQuestion(questionContent, referenceAnswer, 
                     }
                 ],
                 temperature: 0.3,
-                max_tokens: 3000
+                enable_thinking: false
             })
         });
 

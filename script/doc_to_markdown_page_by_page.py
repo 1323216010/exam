@@ -92,7 +92,7 @@ def image_to_markdown(image_path, page_num):
         completion = client.chat.completions.create(
             model="qwen3.5-plus",
             messages=messages,
-            extra_body={"enable_thinking": True},
+            extra_body={"enable_thinking": False},
             stream=True
         )
         

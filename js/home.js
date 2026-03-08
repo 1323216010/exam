@@ -664,7 +664,7 @@ async function testApiConnection() {
                     }
                 ],
                 temperature: 0.3,
-                max_tokens: 20
+                enable_thinking: false
             })
         });
         
