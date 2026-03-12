@@ -1314,7 +1314,7 @@ input[type="checkbox"] {
     }
 
     /* 确保触摸滚动流畅 */
-    .question-container,
+    #exam-interface,
     .question-nav,
     .main-content {
         -webkit-overflow-scrolling: touch;
