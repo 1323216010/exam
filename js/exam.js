@@ -191,6 +191,7 @@ async function continueInitExam() {
     document.getElementById('result-container').classList.remove('show');
     document.getElementById('exam-layout').classList.remove('hidden');
     document.getElementById('sidebar').classList.remove('hidden');
+    document.getElementById('sidebarEdge')?.classList.remove('hidden');
     document.getElementById('restart-btn').style.display = 'none';
 
     // 更新移动端菜单显示
@@ -655,6 +656,96 @@ function showLoadError(message) {
     }
 }
 
+// ==================== 侧边栏拖拽调节和折叠 ====================
+
+const SIDEBAR_WIDTH_KEY = 'exam_sidebar_width';
+const SIDEBAR_COLLAPSED_KEY = 'exam_sidebar_collapsed';
+const SIDEBAR_MIN_WIDTH = 160;
+const SIDEBAR_MAX_WIDTH = 500;
+
+function initSidebarResizeAndCollapse() {
+    // 移动端使用汉堡菜单，不需要此功能
+    if (window.innerWidth <= 768) return;
+
+    const sidebar = document.getElementById('sidebar');
+    const sidebarEdge = document.getElementById('sidebarEdge');
+    const collapseBtn = document.getElementById('sidebarCollapseBtn');
+    if (!sidebar || !sidebarEdge || !collapseBtn) return;
+
+    // 恢复保存的宽度
+    const savedWidth = parseInt(localStorage.getItem(SIDEBAR_WIDTH_KEY));
+    if (savedWidth >= SIDEBAR_MIN_WIDTH && savedWidth <= SIDEBAR_MAX_WIDTH) {
+        sidebar.style.width = savedWidth + 'px';
+    }
+
+    // 恢复折叠状态
+    if (localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === 'true') {
+        sidebar.classList.add('sidebar-collapsed');
+        sidebarEdge.classList.add('sidebar-edge-collapsed');
+    }
+
+    // 折叠/展开按钮点击
+    collapseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isNowCollapsed = sidebar.classList.toggle('sidebar-collapsed');
+        sidebarEdge.classList.toggle('sidebar-edge-collapsed', isNowCollapsed);
+
+        if (!isNowCollapsed) {
+            // 展开时暂时保持 overflow:hidden，防止内容在过渡中溢出
+            sidebar.style.overflow = 'hidden';
+            setTimeout(() => { sidebar.style.overflow = ''; }, 260);
+        }
+
+        localStorage.setItem(SIDEBAR_COLLAPSED_KEY, isNowCollapsed);
+    });
+
+    // 重置宽度按钮
+    const resetWidthBtn = document.getElementById('reset-sidebar-width-btn');
+    if (resetWidthBtn) {
+        resetWidthBtn.addEventListener('click', () => {
+            sidebar.style.width = '';
+            localStorage.removeItem(SIDEBAR_WIDTH_KEY);
+        });
+    }
+
+    // 拖拽调节宽度
+    let isResizing = false;
+    let startX = 0;
+    let startWidth = 0;
+
+    sidebarEdge.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.sidebar-collapse-btn')) return;
+        if (sidebar.classList.contains('sidebar-collapsed')) return;
+
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = sidebar.offsetWidth;
+        sidebarEdge.classList.add('resizing');
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        sidebar.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        const dx = e.clientX - startX;
+        const newWidth = Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, startWidth + dx));
+        sidebar.style.width = newWidth + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!isResizing) return;
+        isResizing = false;
+        sidebarEdge.classList.remove('resizing');
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        sidebar.style.transition = '';
+        if (!sidebar.classList.contains('sidebar-collapsed')) {
+            localStorage.setItem(SIDEBAR_WIDTH_KEY, sidebar.offsetWidth);
+        }
+    });
+}
+
 // ==================== 页面初始化 ====================
 
 async function initializeExamApp() {
@@ -664,6 +755,9 @@ async function initializeExamApp() {
     } catch (error) {
         console.error('加载试卷列表失败:', error);
     }
+
+    // 初始化侧边栏拖拽调节和折叠
+    initSidebarResizeAndCollapse();
     
     // 初始化侧边栏
     document.getElementById('question-nav').innerHTML = '';

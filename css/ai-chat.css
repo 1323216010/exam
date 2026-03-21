@@ -16,11 +16,64 @@
     min-height: 0;
 }
 
+/* ==================== AI 面板折叠边 ==================== */
+.ai-panel-edge {
+    width: 8px;
+    flex-shrink: 0;
+    background: white;
+    border-left: 1px solid #E5E7EB;
+    cursor: default;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.ai-panel-toggle-btn {
+    width: 18px;
+    height: 44px;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);
+    color: #9CA3AF;
+    padding: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    pointer-events: auto;
+    position: relative;
+    z-index: 11;
+}
+
+.ai-panel-toggle-btn:hover {
+    background: #EEF2FF;
+    color: #6366F1;
+    border-color: #6366F1;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
+.ai-panel-toggle-btn svg {
+    transition: transform 0.25s ease;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+/* 面板展开时箭头旋转 180°（‹ → ›），指向右侧表示「点击折叠」 */
+.ai-panel-edge.ai-panel-edge-open .ai-panel-toggle-btn svg {
+    transform: rotate(180deg);
+}
+
 /* ==================== AI 聊天侧边栏 ==================== */
 .ai-chat-panel {
     width: var(--ai-panel-width, 450px);
     background: white;
-    border-left: 1px solid #E5E7EB;
+    border-left: none; /* 由 ai-panel-edge 提供分隔线 */
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -41,13 +94,13 @@ body.resizing .ai-chat-panel {
     overflow: hidden;
 }
 
-/* 拖拽分隔条 */
+/* 拖拽分隔条（位于 ai-panel-edge 内，覆盖整个分隔区域） */
 .layout-resizer {
     position: absolute;
     left: 0;
     top: 0;
+    right: 0;
     bottom: 0;
-    width: 6px;
     cursor: ew-resize;
     background: transparent;
     z-index: 10;
@@ -166,9 +219,11 @@ body.resizing .ai-chat-panel {
     background: #6B7280;
 }
 
-/* AI 消息项 */
+/* AI 消息项 - DeepSeek 简约风格 */
 .ai-message {
     margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
     animation: slideIn 0.3s ease;
 }
 
@@ -184,36 +239,39 @@ body.resizing .ai-chat-panel {
 }
 
 .ai-message.user {
-    display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .ai-message.assistant {
-    display: flex;
-    flex-direction: column;
     align-items: flex-start;
 }
 
 .ai-message-content {
-    max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 8px;
     word-wrap: break-word;
     line-height: 1.6;
     font-size: 14px;
 }
 
+/* 用户消息：简约灰色圆角气泡 */
 .ai-message.user .ai-message-content {
-    background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
-    color: white;
-    border-bottom-right-radius: 4px;
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    background: #f4f4f5;
+    color: #111;
 }
 
+/* 助手消息：无气泡，全宽透明 */
 .ai-message.assistant .ai-message-content {
-    background: #F9FAFB;
-    color: #1F2937;
-    border: 1px solid #E5E7EB;
-    border-bottom-left-radius: 4px;
+    width: 100%;
+    background: transparent;
+    color: #111;
+}
+
+/* 助手消息文本（vditor 渲染目标） */
+.ai-message.assistant .message-text {
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 /* AI 消息操作按钮 */
@@ -221,28 +279,34 @@ body.resizing .ai-chat-panel {
     display: flex;
     gap: 6px;
     margin-top: 6px;
-    margin-left: 4px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.ai-message.assistant:hover .ai-message-actions,
+.ai-message.assistant .ai-message-actions:hover {
+    opacity: 1;
 }
 
 .ai-action-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
-    border: 1px solid #E5E7EB;
+    padding: 5px;
+    border: 1px solid #ddd;
     background: white;
-    color: #6B7280;
-    border-radius: 4px;
+    color: #666;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 .ai-action-btn:hover {
-    background: #F0FDF4;
-    border-color: #10B981;
-    color: #10B981;
+    background: #f5f5f5;
+    border-color: #6366F1;
+    color: #6366F1;
 }
 
 .ai-action-btn.success {
@@ -255,122 +319,362 @@ body.resizing .ai-chat-panel {
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+    stroke: currentColor;
+    transition: all 0.2s;
 }
 
 .ai-action-btn:hover svg {
     transform: scale(1.1);
 }
 
-/* Markdown 渲染样式 */
-.ai-message-content .vditor-reset {
+/* Markdown 渲染样式 - 适配 DeepSeek 简约风格 */
+.message-text.vditor-reset,
+.message-text .vditor-reset {
+    font-size: 14px;
     padding: 0;
-    color: inherit;
-    font-family: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
 }
 
-.ai-message-content .vditor-reset h1,
-.ai-message-content .vditor-reset h2,
-.ai-message-content .vditor-reset h3 {
-    margin-top: 0.8em;
-    margin-bottom: 0.4em;
-    color: inherit;
-}
+.message-text.vditor-reset h1, .message-text .vditor-reset h1 { font-size: 1.15em; }
+.message-text.vditor-reset h2, .message-text .vditor-reset h2 { font-size: 1.05em; }
+.message-text.vditor-reset h3,
+.message-text.vditor-reset h4,
+.message-text.vditor-reset h5,
+.message-text.vditor-reset h6,
+.message-text .vditor-reset h3,
+.message-text .vditor-reset h4,
+.message-text .vditor-reset h5,
+.message-text .vditor-reset h6 { font-size: 1em; }
 
-.ai-message-content .vditor-reset p {
-    margin: 0.4em 0;
-}
+.message-text.vditor-reset p,
+.message-text.vditor-reset li,
+.message-text.vditor-reset td,
+.message-text .vditor-reset p,
+.message-text .vditor-reset li,
+.message-text .vditor-reset td { font-size: 14px; }
 
-.ai-message-content .vditor-reset code {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.9em;
-}
-
-.ai-message.user .ai-message-content .vditor-reset code {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.ai-message-content .vditor-reset pre {
-    background: #F9FAFB;
-    border: 1px solid #E5E7EB;
-    border-radius: 6px;
-    padding: 12px;
-    overflow-x: auto;
-    margin: 0.4em 0;
-}
-
-.ai-message.user .ai-message-content .vditor-reset pre {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.ai-message-content .vditor-reset ul,
-.ai-message-content .vditor-reset ol {
-    margin: 0.4em 0;
-    padding-left: 1.5em;
-}
-
-/* AI 输入区域 */
+/* AI 输入区域 - DeepSeek 简约风格 */
 .ai-chat-input-area {
-    padding: 16px;
-    border-top: 1px solid #E5E7EB;
+    padding: 10px 12px 12px;
     background: white;
 }
 
-.ai-input-wrapper {
+/* 图片预览区域 */
+.ai-image-preview-container {
     display: flex;
     gap: 8px;
-    align-items: flex-end;
-}
-
-.ai-chat-input {
-    flex: 1;
-    min-height: 40px;
-    max-height: 120px;
-    padding: 10px 12px;
-    border: 2px solid #E5E7EB;
+    flex-wrap: wrap;
+    padding: 8px;
+    background: #f4f4f5;
     border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.5;
-    resize: none;
-    font-family: inherit;
-    transition: border-color 0.2s;
+    margin-bottom: 6px;
 }
 
-.ai-chat-input:focus {
-    outline: none;
-    border-color: #10B981;
+.ai-image-preview {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
 }
 
-.ai-send-btn {
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
-    color: white;
+.ai-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     cursor: pointer;
+}
+
+.ai-image-preview-remove {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    padding: 0;
+    line-height: 1;
+}
+
+.ai-image-preview-remove:hover {
+    background: rgba(220, 53, 69, 0.85);
+}
+
+/* 消息中的图片 */
+.ai-message-images {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+    max-width: 85%;
+}
+
+.ai-message-image {
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.ai-message-image:hover {
+    opacity: 0.88;
+}
+
+/* 图片放大遮罩 */
+.ai-image-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+.ai-image-overlay.active {
+    display: flex;
+}
+
+.ai-image-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* DeepSeek 风格输入框 */
+.ai-input-box {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ai-input-box:focus-within {
+    border-color: #bbb;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+}
+
+.ai-chat-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px 6px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    resize: none;
+    min-height: 42px;
+    max-height: 200px;
+    overflow-y: hidden;
+    display: block;
+    line-height: 1.6;
+    color: #111;
+}
+
+.ai-input-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 8px;
+}
+
+.ai-input-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 附件上传按钮 */
+.ai-attach-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.15s, background 0.15s;
+    flex-shrink: 0;
+}
+
+.ai-attach-btn:hover {
+    color: #555;
+    background: #f3f4f6;
+}
+
+.ai-attach-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* 思考模式切换 */
+.ai-thinking-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    background: transparent;
+    font-size: 12px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.ai-thinking-chip:hover {
+    border-color: #6366F1;
+    color: #6366F1;
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.ai-thinking-chip.active {
+    border-color: #6366F1;
+    background: rgba(99, 102, 241, 0.08);
+    color: #6366F1;
+    font-weight: 500;
+}
+
+.ai-thinking-chip svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* 发送按钮 - 圆形 DeepSeek 风格 */
+.ai-send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: #10B981;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
     flex-shrink: 0;
 }
 
 .ai-send-btn:hover:not(:disabled) {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    background: #059669;
 }
 
 .ai-send-btn:disabled {
-    opacity: 0.5;
+    background: #d0d0d0;
     cursor: not-allowed;
 }
 
+.ai-send-btn.stop {
+    background: #1a1a1a;
+}
+
+.ai-send-btn.stop:hover {
+    background: #333;
+}
+
 .ai-send-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
+}
+
+/* Reasoning Block - 思考过程折叠块 */
+.ai-reasoning-block {
+    margin-bottom: 10px;
+}
+
+.ai-reasoning-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0 8px;
+    font-size: 13px;
+    color: #9ca3af;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.ai-reasoning-header::-webkit-details-marker {
+    display: none;
+}
+
+.ai-reasoning-chevron {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+}
+
+details[open] > .ai-reasoning-header .ai-reasoning-chevron {
+    transform: rotate(180deg);
+}
+
+.ai-reasoning-block.is-streaming .ai-reasoning-chevron {
+    display: none;
+}
+
+.ai-reasoning-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 2px;
+}
+
+.ai-reasoning-dots span {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #9ca3af;
+    animation: ai-reasoning-bounce 1.2s ease-in-out infinite;
+}
+
+.ai-reasoning-dots span:nth-child(2) { animation-delay: 0.2s; }
+.ai-reasoning-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ai-reasoning-bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-4px); opacity: 1; }
+}
+
+.ai-reasoning-body {
+    border-left: 2px solid #e5e7eb;
+    margin-left: 7px;
+    padding-left: 12px;
+}
+
+.ai-reasoning-text {
+    margin: 0;
+    padding: 2px 0 6px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #9ca3af;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 /* 按钮样式 */
@@ -400,6 +704,10 @@ body.resizing .ai-chat-panel {
 
 /* 响应式 */
 @media (max-width: 768px) {
+    .ai-panel-edge {
+        display: none !important;
+    }
+
     .exam-layout {
         flex-direction: column;
     }

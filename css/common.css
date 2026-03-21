@@ -212,6 +212,25 @@ body {
     background: #F9FAFB;
 }
 
+.sidebar-footer-actions {
+    display: flex;
+    margin-top: 8px;
+    border-top: 1px solid #F3F4F6;
+    padding-top: 4px;
+}
+
+.sidebar-footer-actions .btn-text {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+    font-size: 11px;
+    padding: 7px 4px;
+}
+
+.sidebar-footer-actions .btn-text:not(:last-child) {
+    border-right: 1px solid #F3F4F6;
+}
+
 .progress-info {
     display: flex;
     justify-content: space-between;
@@ -230,6 +249,92 @@ body {
     font-family: 'Courier New', monospace;
     font-weight: 600;
     color: #059669;
+}
+
+/* ==================== 侧边栏调节边 ==================== */
+
+.sidebar-edge {
+    width: 8px;
+    flex-shrink: 0;
+    background: white;
+    cursor: col-resize;
+    position: relative;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.sidebar-edge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: #E5E7EB;
+    transition: width 0.15s ease, background 0.15s ease;
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+.sidebar-edge:hover::before,
+.sidebar-edge.resizing::before {
+    width: 3px;
+    background: #10B981;
+}
+
+.sidebar-collapse-btn {
+    width: 18px;
+    height: 44px;
+    background: white;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);
+    color: #9CA3AF;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    pointer-events: auto;
+}
+
+.sidebar-collapse-btn:hover {
+    background: #F0FDF4;
+    color: #10B981;
+    border-color: #10B981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.sidebar-collapse-btn svg {
+    transition: transform 0.25s ease;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.sidebar-edge.sidebar-edge-collapsed .sidebar-collapse-btn svg {
+    transform: rotate(180deg);
+}
+
+/* 桌面端：侧边栏折叠宽度动画，去掉向右的阴影（由 sidebar-edge 分隔线替代） */
+@media (min-width: 769px) {
+    .sidebar {
+        transition: width 0.25s ease;
+        overflow: hidden;
+        box-shadow: none;
+    }
+
+    .sidebar.sidebar-collapsed {
+        width: 0 !important;
+        min-width: 0 !important;
+    }
 }
 
 /* ==================== 通用组件样式 ==================== */
@@ -822,6 +927,11 @@ input[type="checkbox"] {
 
     .sidebar.show {
         transform: translateX(0);
+    }
+
+    /* 移动端隐藏侧边栏调节边 */
+    .sidebar-edge {
+        display: none !important;
     }
 
     /* 侧边栏头部优化 */
