@@ -18,6 +18,8 @@ function replacePromptTemplate(template, variables) {
 
 let isResizing = false;
 let lastAiPanelWidth = 450;
+let aiAutoScrollEnabled = true;
+const AUTO_SCROLL_BOTTOM_THRESHOLD = 24;
 
 // 思考模式 & 图片上传
 let aiThinkingEnabled = false;
@@ -78,6 +80,7 @@ function renderMarkdownWithVditor(targetElement, markdownText) {
     const renderId = ++vditorRenderToken;
     Vditor.preview(targetElement, normalized, vditorOptions).then(() => {
         targetElement.dataset.renderId = String(renderId);
+        maybeScrollAiMessagesToBottom();
     }).catch(err => {
         console.error('Markdown 渲染错误:', err);
         targetElement.textContent = markdownText || '';
@@ -90,6 +93,25 @@ function normalizeMathDelimiters(text) {
     text = text.replace(/\\\[\s*([\s\S]*?)\s*\\\]/g, (_, expr) => `$$${expr}$$`);
     text = text.replace(/\\\(\s*([\s\S]*?)\s*\\\)/g, (_, expr) => `$${expr}$`);
     return text;
+}
+
+function isNearBottom(container) {
+    if (!container) return true;
+    return container.scrollHeight - container.scrollTop - container.clientHeight <= AUTO_SCROLL_BOTTOM_THRESHOLD;
+}
+
+function maybeScrollAiMessagesToBottom(force = false) {
+    const messagesContainer = document.getElementById('aiChatMessages');
+    if (!messagesContainer) return;
+    if (force || aiAutoScrollEnabled) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (force) aiAutoScrollEnabled = true;
+    }
+}
+
+function updateAiAutoScrollState() {
+    const messagesContainer = document.getElementById('aiChatMessages');
+    aiAutoScrollEnabled = isNearBottom(messagesContainer);
 }
 
 // ==================== AI 聊天面板控制 ====================
@@ -116,6 +138,8 @@ export function openAiChatPanel(question, questionIndex) {
     } else {
         displayCachedConversation(questionIndex);
     }
+
+    maybeScrollAiMessagesToBottom(true);
 }
 
 function displayCachedConversation(questionIndex) {
@@ -128,6 +152,7 @@ function displayCachedConversation(questionIndex) {
         addAiMessage(msg.role, msg.content, msg.role === 'assistant');
     });
     document.getElementById('aiChatSendBtn').disabled = false;
+    maybeScrollAiMessagesToBottom(true);
 }
 
 // ==================== 消息渲染 ====================
@@ -198,7 +223,7 @@ function addAiMessage(role, content, isMarkdown = false, images = []) {
     }
 
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    maybeScrollAiMessagesToBottom();
 
     return contentDiv;
 }
@@ -221,7 +246,7 @@ function showAiTypingIndicator() {
     `;
     typingDiv.appendChild(contentDiv);
     messagesContainer.appendChild(typingDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    maybeScrollAiMessagesToBottom();
 }
 
 function hideAiTypingIndicator() {
@@ -382,7 +407,7 @@ function startAssistantMessage(withReasoning) {
 
     messageDiv.appendChild(contentDiv);
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    maybeScrollAiMessagesToBottom();
 
     return { messageDiv, textEl, reasoningTextEl };
 }
@@ -418,7 +443,6 @@ async function callChatAPI(apiMessages) {
 async function readStreamInto(response, textEl, reasoningTextEl) {
     const reader = response.body.getReader();
     const decoder = new TextDecoder('utf-8');
-    const messagesContainer = document.getElementById('aiChatMessages');
     let fullText = '';
     let fullReasoning = '';
     let lastRenderTime = 0;
@@ -457,7 +481,7 @@ async function readStreamInto(response, textEl, reasoningTextEl) {
                             textEl.textContent = fullText;
                         }
                         lastRenderTime = now;
-                        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        maybeScrollAiMessagesToBottom();
                     }
                 }
             } catch (e) {
@@ -472,7 +496,7 @@ async function readStreamInto(response, textEl, reasoningTextEl) {
         } catch (e) {
             textEl.textContent = fullText;
         }
-        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        maybeScrollAiMessagesToBottom();
     }
 
     if (!fullText) throw new Error('API 未返回任何内容');
@@ -742,12 +766,16 @@ export function initAiChat() {
     });
 
     // AI 消息操作按钮事件委托
-    document.getElementById('aiChatMessages')?.addEventListener('click', (e) => {
+    const aiMessagesEl = document.getElementById('aiChatMessages');
+    aiMessagesEl?.addEventListener('click', (e) => {
         const copyBtn = e.target.closest('.ai-copy-btn');
         const retryBtn = e.target.closest('.ai-retry-btn');
         if (copyBtn) copyAiMessage(copyBtn);
         else if (retryBtn) retryAiMessage(retryBtn);
     });
+
+    // 用户上滑后暂停自动滚动；回到底部后恢复
+    aiMessagesEl?.addEventListener('scroll', updateAiAutoScrollState);
 
     // 思考模式切换
     document.getElementById('aiThinkingBtn')?.addEventListener('click', toggleAiThinking);
