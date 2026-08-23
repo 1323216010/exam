@@ -1,6 +1,6 @@
 // 首页逻辑：模式选择、文件上传、面包屑导航
 import { loadExamList } from './config.js';
-import { renderExamList, filterExamList } from './examList.js';
+import { renderExamList, filterExamList } from './examList.js?v=20260823b';
 import { 
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
     switchPracticeTab, startAiGeneration 

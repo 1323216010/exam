@@ -769,8 +769,9 @@ async function initializeExamApp() {
     document.getElementById('mobile-overlay').addEventListener('click', closeMobileSidebar);
     
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.question-nav-item') && window.innerWidth <= 768) {
-            setTimeout(closeMobileSidebar, 300);
+        if (e.target.closest('.question-item') && window.innerWidth <= 768) {
+            // 题目已切换后立即收起导航，避免遮挡手机端答题内容。
+            setTimeout(closeMobileSidebar, 0);
         }
     });
     

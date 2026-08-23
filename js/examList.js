@@ -83,12 +83,27 @@ export function filterExamList() {
     filtered.forEach((exam) => {
         const card = document.createElement('div');
         card.className = 'exam-card';
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
         const examPath = getExamPath(exam);
         const filename = getFilenameFromPath(examPath);
-        
-        card.addEventListener('click', () => {
+
+        const openExam = () => {
             const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(filename)}`;
-            window.open(url, '_blank');
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                window.location.assign(url);
+            } else {
+                window.open(url, '_blank');
+            }
+        };
+
+        card.setAttribute('aria-label', `开始模拟：${filename}`);
+        card.addEventListener('click', openExam);
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openExam();
+            }
         });
         
         const metaBadges = buildExamInfoBadges(exam.exam_info);
@@ -104,6 +119,7 @@ export function filterExamList() {
                     <span class="count-icon">${Icons.clipboardList}</span>
                     <span class="count-text">${countText}</span>
                 </div>
+                <span class="exam-card-start" aria-hidden="true">开始模拟 <span>→</span></span>
             </div>
         `;
         

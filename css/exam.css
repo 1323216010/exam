@@ -5,41 +5,6 @@
     background: #ffffff;
 }
 
-@media (max-width: 768px) {
-    #exam-interface {
-        padding-top: 62px;
-        padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    .question-container {
-        padding: 0 12px 20px;
-    }
-
-    .question-card {
-        padding: 18px 4px 24px;
-    }
-
-    .navigation-buttons {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .navigation-buttons > .btn-nav {
-        flex: 1 1 calc(50% - 5px);
-    }
-
-    .nav-center-actions {
-        order: 3;
-        width: 100%;
-        justify-content: stretch;
-    }
-
-    .nav-center-actions > button {
-        flex: 1;
-        min-height: 44px;
-    }
-}
-
 /* ==================== 题目显示 ==================== */ */
 .question-container {
     padding: 30px;
@@ -642,4 +607,45 @@
     gap: 15px;
     justify-content: center;
     margin-top: 30px;
+}
+
+/* ==================== 手机端答题布局 ==================== */
+@media (max-width: 768px) {
+    #exam-interface {
+        padding-top: 12px;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .question-container {
+        padding: 0 12px 20px;
+    }
+
+    .question-card {
+        padding: 18px 4px 24px;
+    }
+
+    /* 菜单悬浮在左上角，题目信息向右避开它，不再为整行留出空白。 */
+    .question-header {
+        padding-left: 58px;
+    }
+
+    .navigation-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .navigation-buttons > .btn-nav {
+        flex: 1 1 calc(50% - 5px);
+    }
+
+    .nav-center-actions {
+        order: 3;
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .nav-center-actions > button {
+        flex: 1;
+        min-height: 44px;
+    }
 }

@@ -440,6 +440,11 @@ input[type="file"] {
     opacity: 1;
 }
 
+.exam-card:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.45);
+    outline-offset: 3px;
+}
+
 .exam-card-header {
     margin-bottom: 0;
 }
@@ -502,6 +507,26 @@ input[type="file"] {
 .exam-card-question-count .count-text {
     color: #6B7280;
     font-weight: 600;
+}
+
+.exam-card-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #059669;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.exam-card-start span {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.exam-card:hover .exam-card-start span {
+    transform: translateX(3px);
 }
     gap: 6px;
     white-space: nowrap;
@@ -616,6 +641,27 @@ input[type="file"] {
         gap: 12px;
     }
 
+    .filter-item {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .filter-item label {
+        width: 44px;
+        font-size: 13px;
+    }
+
+    .filter-item-actions {
+        justify-content: flex-end;
+        padding-top: 2px;
+    }
+
+    .filter-item-actions .btn-text {
+        min-height: 40px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
     .filter-item input[type="text"],
     .filter-item select {
         min-height: 44px;
@@ -623,6 +669,23 @@ input[type="file"] {
 
     .exam-card {
         padding: 16px;
+    }
+
+    .exam-card-title {
+        margin-bottom: 9px;
+    }
+
+    .exam-card-meta {
+        gap: 6px;
+    }
+
+    .exam-info-badge {
+        padding: 4px 8px;
+    }
+
+    .exam-card-footer {
+        margin-top: 10px;
+        padding-top: 10px;
     }
     
     .practice-mode-tab {
