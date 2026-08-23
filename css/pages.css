@@ -558,6 +558,13 @@ input[type="file"] {
 }
 
 @media (max-width: 768px) {
+    .exam-list-container,
+    .practice-config-container,
+    .custom-exam-container {
+        min-height: 100dvh;
+        padding: 16px 14px 28px;
+    }
+
     .settings-btn-home {
         width: 44px;
         height: 44px;
@@ -598,10 +605,129 @@ input[type="file"] {
     .exam-list-grid.view-grid {
         grid-template-columns: 1fr;
     }
+
+    .exam-list-toolbar {
+        padding: 14px;
+        margin-bottom: 16px;
+        gap: 12px;
+    }
+
+    .exam-list-filters {
+        gap: 12px;
+    }
+
+    .filter-item input[type="text"],
+    .filter-item select {
+        min-height: 44px;
+    }
+
+    .exam-card {
+        padding: 16px;
+    }
     
     .practice-mode-tab {
         padding: 11px 14px;
         font-size: 13px;
+    }
+
+    .mode-selection {
+        min-height: 100dvh;
+        justify-content: flex-start;
+        padding: 84px 20px 28px;
+    }
+
+    .mode-header {
+        margin-bottom: 28px;
+    }
+
+    .mode-header h1 {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .mode-subtitle {
+        font-size: 15px;
+    }
+
+    .mode-card {
+        min-height: 0;
+        padding: 22px 20px;
+        border-radius: 14px;
+    }
+
+    .mode-icon {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .mode-title {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .mode-desc {
+        font-size: 13px;
+    }
+
+    .upload-container .breadcrumb {
+        position: static !important;
+        align-self: stretch;
+        margin-bottom: 24px;
+    }
+
+    .breadcrumb {
+        flex-wrap: wrap;
+        column-gap: 7px;
+        row-gap: 4px;
+    }
+
+    .breadcrumb-item,
+    .breadcrumb-item.active {
+        font-size: 13px;
+    }
+
+    .page-title-section {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .exam-count-badge {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .practice-mode-tabs {
+        padding: 0 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .practice-mode-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-settings {
+        padding: 18px 16px 0;
+    }
+
+    .tab-footer {
+        padding: 18px 16px 20px;
+    }
+
+    .ai-type-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ai-type-count {
+        width: 100%;
+    }
+
+    .ai-type-count input[type="number"] {
+        width: 88px;
     }
 }
 

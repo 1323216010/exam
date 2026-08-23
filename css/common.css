@@ -912,6 +912,23 @@ input[type="checkbox"] {
 
 /* ==================== 响应式布局 ==================== */
 @media (max-width: 768px) {
+    html,
+    body {
+        height: 100%;
+        min-height: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    .app-container {
+        height: 100dvh;
+        min-height: 100dvh;
+    }
+
+    .main-content {
+        min-width: 0;
+        overscroll-behavior-y: contain;
+    }
+
     /* 侧边栏移动端适配 */
     .sidebar {
         position: fixed;
@@ -1340,6 +1357,7 @@ input[type="checkbox"] {
         width: 95%;
         max-width: none;
         margin: 10px;
+        max-height: calc(100dvh - 20px);
     }
 
     .modal-header {
@@ -1438,35 +1456,36 @@ input[type="checkbox"] {
         touch-action: manipulation;
     }
 
-    /* 极小屏幕额外优化 */
-    @media (max-width: 360px) {
-        .sidebar {
-            width: 90vw;
-        }
+}
 
-        .question-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
+/* 极小屏幕额外优化。该规则需位于外层媒体查询之外，避免被浏览器忽略。 */
+@media (max-width: 360px) {
+    .sidebar {
+        width: 90vw;
+    }
 
-        .question-item {
-            font-size: 11px;
-        }
+    .question-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
-        .mode-header h1 {
-            font-size: 22px;
-        }
+    .question-item {
+        font-size: 11px;
+    }
 
-        .mode-card {
-            padding: 20px 15px;
-        }
+    .mode-header h1 {
+        font-size: 22px;
+    }
 
-        .mode-icon {
-            font-size: 40px;
-        }
+    .mode-card {
+        padding: 20px 15px;
+    }
 
-        .mode-title {
-            font-size: 16px;
-        }
+    .mode-icon {
+        font-size: 40px;
+    }
+
+    .mode-title {
+        font-size: 16px;
     }
 }
 
