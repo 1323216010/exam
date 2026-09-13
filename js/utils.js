@@ -8,6 +8,54 @@ export function getFilenameFromPath(path) {
     return filename.replace(/\.json$/i, '');
 }
 
+const SUBJECT_NAMES = {
+    '00312': '政治学概论',
+    '00341': '公文写作与处理',
+    '12656': '毛概',
+    '15041': '毛概'
+};
+
+export function getSubjectDisplayName(subject) {
+    return SUBJECT_NAMES[subject] || subject || '';
+}
+
+function normalizeExamDate(value) {
+    if (!value) return '';
+
+    const text = String(value).trim();
+    const yearMonth = text.match(/((?:19|20)\d{2})\s*(?:年|-)?\s*(1[0-2]|0?[1-9])\s*月?/);
+    if (yearMonth) {
+        return `${yearMonth[1]}年${Number(yearMonth[2])}月`;
+    }
+
+    const compactDate = text.match(/((?:19|20)\d{2})(0[1-9]|1[0-2])/);
+    if (compactDate) {
+        return `${compactDate[1]}年${Number(compactDate[2])}月`;
+    }
+
+    const halfYear = text.match(/((?:19|20)\d{2})\s*年?\s*(上半年|下半年)/);
+    if (halfYear) {
+        return `${halfYear[1]}年${halfYear[2]}`;
+    }
+
+    return '';
+}
+
+// 统一试卷显示名称，避免直接展示格式不一致的来源文件名。
+export function getExamDisplayName(exam) {
+    if (!exam || typeof exam !== 'object') return '';
+
+    const path = exam.path || exam.file || '';
+    const filename = getFilenameFromPath(path);
+    const date = normalizeExamDate(exam.exam_info?.date)
+        || normalizeExamDate(filename);
+    const subject = getSubjectDisplayName(exam.subject)
+        || String(exam.exam_info?.subject || '').replace(/(?:试题|试卷)$/, '').trim();
+
+    if (date && subject) return `${date} · ${subject}`;
+    return subject || date || filename;
+}
+
 // 数组随机排序（Fisher-Yates 算法）
 export function shuffleArray(array) {
     const result = [...array];

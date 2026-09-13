@@ -1,7 +1,8 @@
 // 答题页面主逻辑（精简版）
 import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
-import { shuffleArray, Timer, getFilenameFromPath } from './utils.js';
+import { getSubjectFilterLabel, matchesSubjectFilter } from './subjectFilter.js';
+import { getExamDisplayName, shuffleArray, Timer } from './utils.js';
 import { initChatDB, loadAllChatRecords, clearAllChatRecords } from './aiChatStorage.js';
 import { openAiChatPanel, initAiChat } from './aiChat.js';
 import { 
@@ -441,7 +442,7 @@ async function loadAllQuestions(subjectFilter = null, examIndices = null) {
     
     for (let i = 0; i < EXAM_LIST.length; i++) {
         const exam = EXAM_LIST[i];
-        if (subjectFilter && exam.subject !== subjectFilter) {
+        if (!matchesSubjectFilter(exam.subject, subjectFilter)) {
             continue;
         }
         
@@ -456,7 +457,7 @@ async function loadAllQuestions(subjectFilter = null, examIndices = null) {
             
             const data = await response.json();
             if (data.questions && Array.isArray(data.questions)) {
-                const filename = getFilenameFromPath(examPath);
+                const filename = getExamDisplayName(exam);
                 data.questions.forEach(q => {
                     q.source = filename;
                     allQuestions.push(q);
@@ -530,7 +531,7 @@ async function handleURLParams() {
                 questions = shuffleArray(questions);
             }
             
-            const subjectText = subject ? subject : '全部科目';
+            const subjectText = subject ? getSubjectFilterLabel(subject) : '全部科目';
             const typeText = types && types.length > 0 ? ` - ${types.join('、')}` : '';
             const title = `题库练习 - ${subjectText}${typeText} (${questions.length}题)`;
             state.examData = {
@@ -566,7 +567,7 @@ async function handleURLParams() {
                     
                     const data = await response.json();
                     if (data.questions && Array.isArray(data.questions)) {
-                        const filename = getFilenameFromPath(examPath);
+                        const filename = getExamDisplayName(exam);
                         data.questions.forEach(q => {
                             q.source = filename;
                             allQuestions.push(q);

@@ -1,14 +1,15 @@
 // 自定义组卷功能
 import { EXAM_LIST } from './config.js';
-import { getFilenameFromPath } from './utils.js';
+import { getExamDisplayName } from './utils.js';
+import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
 
 export function loadCustomExamUI() {
     const subjectFilter = document.getElementById('custom-subject-filter');
-    const subjects = [...new Set(EXAM_LIST.map(e => e.subject))].sort();
+    const subjects = getSubjectFilterOptions(EXAM_LIST);
     
     subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(subject => {
-        subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
+    subjects.forEach(({ value, label }) => {
+        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
     });
     
     subjectFilter.removeEventListener('change', filterCustomExamList);
@@ -24,7 +25,7 @@ export function filterCustomExamList() {
     
     let filtered = EXAM_LIST;
     if (subjectFilter) {
-        filtered = filtered.filter(e => e.subject === subjectFilter);
+        filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subjectFilter));
     }
     
     checkboxGrid.innerHTML = '';
@@ -32,7 +33,7 @@ export function filterCustomExamList() {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-checkbox-item';
-        const filename = getFilenameFromPath(exam.file || exam.path);
+        const filename = getExamDisplayName(exam);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="exam-checkbox">
             <span>${filename}</span>

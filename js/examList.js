@@ -1,8 +1,9 @@
 // 试卷列表相关功能
 import { EXAM_LIST } from './config.js';
-import { getFilenameFromPath } from './utils.js';
+import { getExamDisplayName, getFilenameFromPath } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 import { Icons } from './icons.js';
+import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
 
 export function renderExamList() {
     const grid = document.getElementById('exam-list-grid');
@@ -13,10 +14,10 @@ export function renderExamList() {
     
     examCount.textContent = EXAM_LIST.length;
     
-    const subjects = [...new Set(EXAM_LIST.map(e => e.subject))].sort();
+    const subjects = getSubjectFilterOptions(EXAM_LIST);
     subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(subject => {
-        subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
+    subjects.forEach(({ value, label }) => {
+        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
     });
     
     subjectFilter.addEventListener('change', filterExamList);
@@ -51,19 +52,20 @@ export function filterExamList() {
     let filtered = EXAM_LIST;
     
     if (subjectFilter) {
-        filtered = filtered.filter(e => e.subject === subjectFilter);
+        filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subjectFilter));
     }
     
     if (searchInput) {
         filtered = filtered.filter(e => {
             const filename = getFilenameFromPath(getExamPath(e)).toLowerCase();
-            return filename.includes(searchInput);
+            const displayName = getExamDisplayName(e).toLowerCase();
+            return filename.includes(searchInput) || displayName.includes(searchInput);
         });
     }
     
     filtered.sort((a, b) => {
-        const nameA = getFilenameFromPath(getExamPath(a));
-        const nameB = getFilenameFromPath(getExamPath(b));
+        const nameA = getExamDisplayName(a);
+        const nameB = getExamDisplayName(b);
         
         if (sortFilter === 'name-asc') {
             return nameA.localeCompare(nameB);
@@ -86,10 +88,10 @@ export function filterExamList() {
         card.setAttribute('role', 'button');
         card.tabIndex = 0;
         const examPath = getExamPath(exam);
-        const filename = getFilenameFromPath(examPath);
+        const displayName = getExamDisplayName(exam);
 
         const openExam = () => {
-            const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(filename)}`;
+            const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(displayName)}`;
             if (window.matchMedia('(max-width: 768px)').matches) {
                 window.location.assign(url);
             } else {
@@ -97,7 +99,7 @@ export function filterExamList() {
             }
         };
 
-        card.setAttribute('aria-label', `开始模拟：${filename}`);
+        card.setAttribute('aria-label', `开始模拟：${displayName}`);
         card.addEventListener('click', openExam);
         card.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
@@ -106,12 +108,12 @@ export function filterExamList() {
             }
         });
         
-        const metaBadges = buildExamInfoBadges(exam.exam_info);
+        const metaBadges = buildExamInfoBadges(exam);
         const countText = exam.question_count != null ? `共 ${exam.question_count} 题` : '题目数未知';
 
         card.innerHTML = `
             <div class="exam-card-header">
-                <div class="exam-card-title">${filename}</div>
+                <div class="exam-card-title">${displayName}</div>
                 <div class="exam-card-meta">${metaBadges}</div>
             </div>
             <div class="exam-card-footer">
@@ -138,22 +140,11 @@ const FIELD_STYLES = {
     'subject': { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
     'title':   { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
 };
-const COLOR_SCHEMES = [
-    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
-    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
-    { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
-    { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
-    { bg: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)', color: '#7C3AED' },
-];
-
-function buildExamInfoBadges(examInfo) {
-    if (!examInfo || typeof examInfo !== 'object') return '';
-    let colorIndex = 0;
-    return Object.entries(examInfo).map(([key, value]) => {
-        if (value == null || value === '') return '';
-        const style = FIELD_STYLES[key] || COLOR_SCHEMES[colorIndex++ % COLOR_SCHEMES.length];
-        return `<span class="exam-info-badge" style="background:${style.bg};color:${style.color}">${value}</span>`;
-    }).join('');
+function buildExamInfoBadges(exam) {
+    const code = exam.exam_info?.code || exam.subject;
+    if (!code) return '';
+    const style = FIELD_STYLES.code;
+    return `<span class="exam-info-badge" style="background:${style.bg};color:${style.color}">${code}</span>`;
 }
 
 async function handleClearAllChats() {

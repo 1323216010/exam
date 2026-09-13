@@ -1,8 +1,9 @@
 // 题库练习模式相关功能
 import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
-import { getFilenameFromPath, shuffleArray } from './utils.js';
+import { getExamDisplayName, shuffleArray } from './utils.js';
 import { saveAiGeneratedExam } from './aiChatStorage.js';
+import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
 
 // ==================== 练习模式基础 ====================
 
@@ -40,11 +41,11 @@ export function startPracticeMode() {
 
 export async function initPracticeSubjectFilter() {
     const subjectFilter = document.getElementById('practice-subject-filter');
-    const subjects = [...new Set(EXAM_LIST.map(e => e.subject))].sort();
+    const subjects = getSubjectFilterOptions(EXAM_LIST);
     
     subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(subject => {
-        subjectFilter.innerHTML += `<option value="${subject}">${subject}</option>`;
+    subjects.forEach(({ value, label }) => {
+        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
     });
     
     subjectFilter.removeEventListener('change', onPracticeSubjectChange);
@@ -65,7 +66,7 @@ export function renderPracticeExamList(subject) {
 
     let filtered = EXAM_LIST;
     if (subject) {
-        filtered = filtered.filter(e => e.subject === subject);
+        filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subject));
     }
 
     checkboxList.innerHTML = '';
@@ -73,7 +74,7 @@ export function renderPracticeExamList(subject) {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-multiselect-item';
-        const filename = getFilenameFromPath(exam.file || exam.path);
+        const filename = getExamDisplayName(exam);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="practice-exam-checkbox">
             <span title="${filename}">${filename}</span>
@@ -138,7 +139,7 @@ async function loadPracticeSourceQuestions(subject, examIndices) {
     const allQuestions = [];
     for (let i = 0; i < EXAM_LIST.length; i++) {
         const exam = EXAM_LIST[i];
-        if (subject && exam.subject !== subject) continue;
+        if (!matchesSubjectFilter(exam.subject, subject)) continue;
         if (examIndices && examIndices.length > 0 && !examIndices.includes(i)) continue;
         try {
             const path = exam.file || exam.path;
