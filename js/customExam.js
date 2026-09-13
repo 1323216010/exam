@@ -1,20 +1,15 @@
 // 自定义组卷功能
 import { EXAM_LIST } from './config.js';
-import { getExamDisplayName } from './utils.js';
-import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
+import { compareExamsByDate, getExamDateLabel, getExamDisplayName } from './utils.js';
+import { bindSubjectTabs, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js';
 
 export function loadCustomExamUI() {
     const subjectFilter = document.getElementById('custom-subject-filter');
-    const subjects = getSubjectFilterOptions(EXAM_LIST);
-    
-    subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(({ value, label }) => {
-        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
-    });
-    
+    bindSubjectTabs(document.getElementById('custom-subject-tabs'), subjectFilter, EXAM_LIST);
+
     subjectFilter.removeEventListener('change', filterCustomExamList);
     subjectFilter.addEventListener('change', filterCustomExamList);
-    
+
     filterCustomExamList();
     loadQuestionTypes();
 }
@@ -28,17 +23,32 @@ export function filterCustomExamList() {
         filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subjectFilter));
     }
     
+    filtered = [...filtered].sort((a, b) => compareExamsByDate(a, b, 'desc'));
     checkboxGrid.innerHTML = '';
-    filtered.forEach((exam) => {
+
+    const appendExam = (exam) => {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-checkbox-item';
-        const filename = getExamDisplayName(exam);
+        const filename = getExamDateLabel(exam) || getExamDisplayName(exam);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="exam-checkbox">
             <span>${filename}</span>
         `;
         checkboxGrid.appendChild(item);
+    };
+
+    if (subjectFilter) {
+        filtered.forEach(appendExam);
+        return;
+    }
+
+    groupExamsBySubject(filtered).forEach(group => {
+        const heading = document.createElement('div');
+        heading.className = 'exam-subject-heading exam-subject-heading-compact';
+        heading.textContent = `${group.label} · ${group.exams.length} 套`;
+        checkboxGrid.appendChild(heading);
+        group.exams.forEach(appendExam);
     });
 }
 

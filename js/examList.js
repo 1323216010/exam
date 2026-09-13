@@ -1,9 +1,9 @@
 // 试卷列表相关功能
 import { EXAM_LIST } from './config.js';
-import { getExamDisplayName, getFilenameFromPath } from './utils.js';
+import { compareExamsByDate, getExamDateLabel, getExamDisplayName, getFilenameFromPath, getSubjectDisplayName } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 import { Icons } from './icons.js';
-import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
+import { bindSubjectTabs, getSubjectChip, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js';
 
 export function renderExamList() {
     const grid = document.getElementById('exam-list-grid');
@@ -11,122 +11,139 @@ export function renderExamList() {
     const subjectFilter = document.getElementById('subject-filter');
     const searchInput = document.getElementById('exam-search');
     const sortFilter = document.getElementById('sort-filter');
-    
+
     examCount.textContent = EXAM_LIST.length;
-    
-    const subjects = getSubjectFilterOptions(EXAM_LIST);
-    subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(({ value, label }) => {
-        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
-    });
-    
-    subjectFilter.addEventListener('change', filterExamList);
-    sortFilter.addEventListener('change', filterExamList);
-    searchInput.addEventListener('input', filterExamList);
-    
-    const clearAllChatsBtn = document.getElementById('clear-all-chats-btn');
-    if (clearAllChatsBtn) {
-        clearAllChatsBtn.addEventListener('click', handleClearAllChats);
-    }
-    
-    document.querySelectorAll('.view-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const view = btn.dataset.view;
-            grid.classList.remove('view-grid', 'view-list');
-            grid.classList.add(`view-${view}`);
+    bindSubjectTabs(document.getElementById('subject-tabs'), subjectFilter, EXAM_LIST);
+
+    if (!subjectFilter.dataset.bound) {
+        subjectFilter.dataset.bound = '1';
+        subjectFilter.addEventListener('change', filterExamList);
+        sortFilter.addEventListener('change', filterExamList);
+        searchInput.addEventListener('input', filterExamList);
+
+        const clearAllChatsBtn = document.getElementById('clear-all-chats-btn');
+        if (clearAllChatsBtn) {
+            clearAllChatsBtn.addEventListener('click', handleClearAllChats);
+        }
+
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const view = btn.dataset.view;
+                grid.classList.remove('view-grid', 'view-list');
+                grid.classList.add(`view-${view}`);
+            });
         });
-    });
-    
+    }
+
     filterExamList();
 }
 
 export function filterExamList() {
     const grid = document.getElementById('exam-list-grid');
+    const examCount = document.getElementById('exam-count');
     const subjectFilter = document.getElementById('subject-filter').value;
     const searchInput = document.getElementById('exam-search').value.toLowerCase();
     const sortFilter = document.getElementById('sort-filter').value;
-    
+    const sortDirection = sortFilter === 'date-asc' ? 'asc' : 'desc';
+
     let filtered = EXAM_LIST;
-    
+
     if (subjectFilter) {
         filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subjectFilter));
     }
-    
+
     if (searchInput) {
-        filtered = filtered.filter(e => {
-            const filename = getFilenameFromPath(getExamPath(e)).toLowerCase();
-            const displayName = getExamDisplayName(e).toLowerCase();
-            return filename.includes(searchInput) || displayName.includes(searchInput);
-        });
+        filtered = filtered.filter(e => examMatchesSearch(e, searchInput));
     }
-    
-    filtered.sort((a, b) => {
-        const nameA = getExamDisplayName(a);
-        const nameB = getExamDisplayName(b);
-        
-        if (sortFilter === 'name-asc') {
-            return nameA.localeCompare(nameB);
-        } else if (sortFilter === 'name-desc') {
-            return nameB.localeCompare(nameA);
-        }
-        return 0;
-    });
-    
+
+    filtered = [...filtered].sort((a, b) => compareExamsByDate(a, b, sortDirection));
+    examCount.textContent = filtered.length;
     grid.innerHTML = '';
-    
+
     if (filtered.length === 0) {
         grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#9CA3AF;font-size:16px;">${Icons.search} 没有找到符合条件的试卷</div>`;
         return;
     }
-    
-    filtered.forEach((exam) => {
-        const card = document.createElement('div');
-        card.className = 'exam-card';
-        card.setAttribute('role', 'button');
-        card.tabIndex = 0;
-        const examPath = getExamPath(exam);
-        const displayName = getExamDisplayName(exam);
 
-        const openExam = () => {
-            const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(displayName)}`;
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                window.location.assign(url);
-            } else {
-                window.open(url, '_blank');
-            }
-        };
+    if (subjectFilter) {
+        filtered.forEach(exam => grid.appendChild(createExamCard(exam)));
+        return;
+    }
 
-        card.setAttribute('aria-label', `开始模拟：${displayName}`);
-        card.addEventListener('click', openExam);
-        card.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openExam();
-            }
-        });
-        
-        const metaBadges = buildExamInfoBadges(exam);
-        const countText = exam.question_count != null ? `共 ${exam.question_count} 题` : '题目数未知';
-
-        card.innerHTML = `
-            <div class="exam-card-header">
-                <div class="exam-card-title">${displayName}</div>
-                <div class="exam-card-meta">${metaBadges}</div>
-            </div>
-            <div class="exam-card-footer">
-                <div class="exam-card-question-count">
-                    <span class="count-icon">${Icons.clipboardList}</span>
-                    <span class="count-text">${countText}</span>
-                </div>
-                <span class="exam-card-start" aria-hidden="true">开始模拟 <span>→</span></span>
-            </div>
-        `;
-        
-        grid.appendChild(card);
+    groupExamsBySubject(filtered).forEach(group => {
+        const heading = document.createElement('div');
+        heading.className = 'exam-subject-heading';
+        heading.textContent = `${group.label} · ${group.exams.length} 套`;
+        grid.appendChild(heading);
+        group.exams.forEach(exam => grid.appendChild(createExamCard(exam)));
     });
+}
+
+function examMatchesSearch(exam, searchInput) {
+    const filename = getFilenameFromPath(getExamPath(exam)).toLowerCase();
+    const displayName = getExamDisplayName(exam).toLowerCase();
+    const dateLabel = getExamDateLabel(exam).toLowerCase();
+    const subjectName = getSubjectDisplayName(exam.subject).toLowerCase();
+    const code = String(exam.exam_info?.code || exam.subject || '').toLowerCase();
+
+    return filename.includes(searchInput)
+        || displayName.includes(searchInput)
+        || dateLabel.includes(searchInput)
+        || subjectName.includes(searchInput)
+        || code.includes(searchInput);
+}
+
+function createExamCard(exam) {
+    const card = document.createElement('div');
+    card.className = 'exam-card';
+    card.setAttribute('role', 'button');
+    card.tabIndex = 0;
+
+    const examPath = getExamPath(exam);
+    const displayName = getExamDisplayName(exam);
+    const title = getExamDateLabel(exam) || displayName;
+    const subjectChip = getSubjectChip(exam.subject);
+    const countText = exam.question_count != null ? `共 ${exam.question_count} 题` : '题目数未知';
+
+    const openExam = () => {
+        const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(displayName)}`;
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            window.location.assign(url);
+        } else {
+            window.open(url, '_blank');
+        }
+    };
+
+    card.setAttribute('aria-label', `开始模拟：${displayName}`);
+    card.addEventListener('click', openExam);
+    card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openExam();
+        }
+    });
+
+    card.style.setProperty('--subject-accent', subjectChip.accent);
+    card.innerHTML = `
+        <div class="exam-card-header">
+            <div class="exam-card-title">${title}</div>
+            <div class="exam-card-meta">
+                <span class="exam-subject-chip" style="background:${subjectChip.bg};color:${subjectChip.color}">${subjectChip.label}</span>
+            </div>
+        </div>
+        <div class="exam-card-footer">
+            <div class="exam-card-question-count">
+                <span class="count-icon">${Icons.clipboardList}</span>
+                <span class="count-text">${countText}</span>
+            </div>
+            <span class="exam-card-start" aria-hidden="true">开始模拟 <span>→</span></span>
+        </div>
+    `;
+
+    return card;
 }
 
 function getExamPath(exam) {
@@ -134,46 +151,33 @@ function getExamPath(exam) {
     return exam.path || exam.file || '';
 }
 
-const FIELD_STYLES = {
-    'code':    { bg: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)', color: '#1E40AF' },
-    'date':    { bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)', color: '#059669' },
-    'subject': { bg: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: '#BE185D' },
-    'title':   { bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', color: '#D97706' },
-};
-function buildExamInfoBadges(exam) {
-    const code = exam.exam_info?.code || exam.subject;
-    if (!code) return '';
-    const style = FIELD_STYLES.code;
-    return `<span class="exam-info-badge" style="background:${style.bg};color:${style.color}">${code}</span>`;
-}
-
 async function handleClearAllChats() {
     try {
         const stats = await getChatStats();
         const totalRecords = stats.totalRecords || 0;
-        
+
         if (totalRecords === 0) {
             alert('当前没有任何聊天记录');
             return;
         }
-        
+
         if (!confirm(`确定要清除所有试卷的 AI 聊天记录吗？\n\n共有 ${totalRecords} 条记录将被删除，此操作不可恢复。`)) {
             return;
         }
-        
+
         const btn = document.getElementById('clear-all-chats-btn');
         const originalText = btn.textContent;
         btn.disabled = true;
         btn.textContent = '清除中...';
-        
+
         await clearAllChatDatabase();
-        
+
         btn.textContent = '✓ 已清除';
         setTimeout(() => {
             btn.textContent = originalText;
             btn.disabled = false;
         }, 2000);
-        
+
         alert('所有聊天记录已清除');
     } catch (error) {
         console.error('清除聊天记录失败:', error);

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自测系统</title>
     <link rel="stylesheet" href="css/common.css?v=20260823">
-    <link rel="stylesheet" href="css/pages.css?v=20260823b">
+    <link rel="stylesheet" href="css/pages.css?v=20260913c">
 </head>
 <body>
     <div class="app-container">
@@ -74,22 +74,21 @@
                 </div>
                 
                 <div class="exam-list-toolbar">
+                    <div class="subject-tabs" id="subject-tabs" aria-label="科目"></div>
+                    <select id="subject-filter" class="hidden" tabindex="-1" aria-hidden="true">
+                        <option value="">全部科目</option>
+                    </select>
+                    <div class="exam-list-toolbar-main">
                     <div class="exam-list-filters">
                         <div class="filter-item filter-item-actions">
                             <label><i data-icon="search"></i> 搜索</label>
                             <input type="text" id="exam-search" placeholder="搜索试卷名称...">
                         </div>
                         <div class="filter-item">
-                            <label><i data-icon="book"></i> 科目</label>
-                            <select id="subject-filter">
-                                <option value="">全部科目</option>
-                            </select>
-                        </div>
-                        <div class="filter-item">
                             <label><i data-icon="barChart"></i> 排序</label>
                             <select id="sort-filter">
-                                <option value="name-desc">名称 Z-A</option>
-                                <option value="name-asc">名称 A-Z</option>
+                                <option value="date-desc">最新</option>
+                                <option value="date-asc">最早</option>
                             </select>
                         </div>
                         <div class="filter-item">
@@ -102,7 +101,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <div class="view-switcher">
                         <button class="view-btn active" data-view="grid" title="网格视图">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -122,6 +120,7 @@
                                 <line x1="3" y1="18" x2="3.01" y2="18"></line>
                             </svg>
                         </button>
+                    </div>
                     </div>
                 </div>
                 
@@ -145,9 +144,10 @@
                     <div class="practice-config-topbar">
                         <h2 class="practice-config-title"><i data-icon="bookOpen"></i> 题库练习</h2>
                         <div class="practice-source-toolbar">
-                            <div class="source-filter-item">
+                            <div class="source-filter-item source-filter-item-subject">
                                 <label class="source-filter-label"><i data-icon="book"></i> 科目</label>
-                                <select id="practice-subject-filter" class="source-filter-select">
+                                <div class="subject-tabs" id="practice-subject-tabs" aria-label="科目"></div>
+                                <select id="practice-subject-filter" class="hidden" tabindex="-1" aria-hidden="true">
                                     <option value="">全部科目</option>
                                 </select>
                             </div>
@@ -270,7 +270,8 @@
                     <div class="config-section">
                         <h3>选择试卷</h3>
                         <div class="exam-list-filters">
-                            <select id="custom-subject-filter">
+                            <div class="subject-tabs" id="custom-subject-tabs" aria-label="科目"></div>
+                            <select id="custom-subject-filter" class="hidden" tabindex="-1" aria-hidden="true">
                                 <option value="">全部科目</option>
                             </select>
                         </div>
@@ -405,6 +406,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/home.js?v=20260823b"></script>
+    <script type="module" src="js/home.js?v=20260913"></script>
 </body>
 </html>

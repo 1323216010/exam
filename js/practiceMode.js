@@ -1,9 +1,9 @@
 // 题库练习模式相关功能
 import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
-import { getExamDisplayName, shuffleArray } from './utils.js';
+import { compareExamsByDate, getExamDateLabel, getExamDisplayName, shuffleArray } from './utils.js';
 import { saveAiGeneratedExam } from './aiChatStorage.js';
-import { getSubjectFilterOptions, matchesSubjectFilter } from './subjectFilter.js';
+import { bindSubjectTabs, matchesSubjectFilter } from './subjectFilter.js';
 
 // ==================== 练习模式基础 ====================
 
@@ -41,17 +41,12 @@ export function startPracticeMode() {
 
 export async function initPracticeSubjectFilter() {
     const subjectFilter = document.getElementById('practice-subject-filter');
-    const subjects = getSubjectFilterOptions(EXAM_LIST);
-    
-    subjectFilter.innerHTML = '<option value="">全部科目</option>';
-    subjects.forEach(({ value, label }) => {
-        subjectFilter.innerHTML += `<option value="${value}">${label}</option>`;
-    });
-    
+    bindSubjectTabs(document.getElementById('practice-subject-tabs'), subjectFilter, EXAM_LIST);
+
     subjectFilter.removeEventListener('change', onPracticeSubjectChange);
     subjectFilter.addEventListener('change', onPracticeSubjectChange);
-    
-    renderPracticeExamList('');
+
+    renderPracticeExamList(subjectFilter.value);
     await loadPracticeQuestionTypes();
 }
 
@@ -69,15 +64,19 @@ export function renderPracticeExamList(subject) {
         filtered = filtered.filter(e => matchesSubjectFilter(e.subject, subject));
     }
 
+    filtered = [...filtered].sort((a, b) => compareExamsByDate(a, b, 'desc'));
+
     checkboxList.innerHTML = '';
     filtered.forEach((exam) => {
         const originalIndex = EXAM_LIST.indexOf(exam);
         const item = document.createElement('label');
         item.className = 'exam-multiselect-item';
-        const filename = getExamDisplayName(exam);
+        const filename = subject
+            ? (getExamDateLabel(exam) || getExamDisplayName(exam))
+            : getExamDisplayName(exam);
         item.innerHTML = `
             <input type="checkbox" value="${originalIndex}" class="practice-exam-checkbox">
-            <span title="${filename}">${filename}</span>
+            <span title="${getExamDisplayName(exam)}">${filename}</span>
         `;
         checkboxList.appendChild(item);
     });

@@ -1,0 +1,403 @@
+{
+  "exam_info": {
+    "title": "2015年10月高等教育自学考试市政学试题",
+    "subject": "市政学",
+    "code": "00292",
+    "date": "2015年10月"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "目前世界上大多数国家和地区确定和划分城市的主要标准是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "城市人口规模    B．城市商业规模    C．城市面积大小   D．城市工业规模"
+      }
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "城市富有生机和活力的体现在于其",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "高度聚集性      B．经济性         C．开放性           D．系统性"
+      }
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "在我国，城市型聚落的最低层次单元是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "建制镇          B．建制县         C．村落             D. 社区"
+      }
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "目前我国市民参与水、电等公用事业价格调整决策的主要方式是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "信访            B．参加社会团体   C．参加听证会        D．游行集会"
+      }
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "我国城市居民委员会的任期为每届",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "一年            B．两年          C．三年               D．四年"
+      }
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "日本各城市实行的市政体制是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "市议会制        B．议会市长制    C．市长议会制         D．市委员会制"
+      }
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "市政体制的内容和形式主要取决于",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "国家政体        B．生产力水平    C．民族习俗           D．历史传统"
+      }
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "20世纪80年代以来，西方国家城市政府开始大力推行公用事业的民营化，对公用事业采取",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "垂直管理原则    B．直接管理原则    C．分类管理原则   D．间接管理原则"
+      }
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "城市复杂的社会生活结构决定了西方国家市政职能",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "形式的法制性                       B．内容的广泛性",
+        "C": "导向的服务性                       D. 实现方式的多样性"
+      }
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "人口城市化的基础是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "非农产业城市化  B. 地域城市化      C．经济城市化   D. 居民意识城市化"
+      }
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "大批农民进入城市却找不到工作，这种现象属于城市化中的",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "集中性城市化    B．分散性城市化    C．低度城市化      D．过度城市化"
+      }
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "我国古代城市的里坊制形成于",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "东周时期        B．西周时期        C．春秋战国时期    D．秦朝时期"
+      }
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "1922年，英国伦敦规划委员会总顾问昂温提出了",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "田园城市理论    B．邻里单位理论    C．中心地理论      D．卫星城理论"
+      }
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "城市现代化的主要标志是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "基础设施容量大  B．基础设施现代化  C．城市规模大     D．经济高速发展"
+      }
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "下列城市基础设施中完全通过市场补偿实现投入产出循环的是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "路灯            B．红绿灯          C．公共绿地       D．出租汽车"
+      }
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "下列属于城市公共事业中的纯公共物品的是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "义务教育        B．高等教育        C．高速公路       D．民营医院"
+      }
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "城市公共卫生管理中，对各种医药卫生力量的组织方针是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "预防为主                           B．团结中西医",
+        "C": "面向广大城市居民                   D．卫生工作与群众参与相结合"
+      }
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "城市公共财政属于",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "地方财政        B．国家财政        C．统一财政        D．分级财政"
+      }
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "城市公共财政节约与便利准则的内涵是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "国家的福利      B．社会的福利      C．社会的公平      D．公众的公平"
+      }
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "城市生态环境质量标准中的低级标准又称为",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "安全环境标准    B．舒适环境标准    C．美化环境标准   D．宜居环境标准"
+      }
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "我国城市中对所辖区域的环境质量负责的第一责任人是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "城市环境部门的主要领导人           B．城市人大主要负责人",
+        "C": "城市政协主要负责人                 D．城市政府的主要领导人"
+      }
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "预计我国进入重度老龄化阶段的年份是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "2030年        B．2050年           C．2060年          D．2100年"
+      }
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "目前中国城市最常见的社区类型是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "功能型社区    B．自然型社区        C．地域型社区       D．单位型社区"
+      }
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "行政首长的口头指示属于城市公共安全管理的",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "经济手段      B．信息手段          C．行政手段         D．法律手段"
+      }
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "城市公共安全控制机制中的事中控制又被称为 二、多项选择题 (本大题共8小题，每小题2分，共16分) 在每小题列出的五个备选项中至少有两个是符合题目要求的，请将其选出并将“答题卡”的相应代码涂黑。未涂、错涂、多涂或少涂均无分。",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "前馈控制      B．现场控制          C．后馈控制         D．过程控制"
+      }
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "下列聚落类型中属于典型的农村型聚落的有",
+      "answer": "CDE",
+      "score": 2,
+      "options": {
+        "A": "镇          B．县          C．村组        D．小自然村    E. 村庄"
+      }
+    },
+    {
+      "question_number": "27",
+      "question_type": "多项选择题",
+      "content": "市长负责制的优点是",
+      "answer": "ABCE",
+      "score": 2,
+      "options": {
+        "A": "结构优化    B．责任明确    C．效率较高    D．权力集中    E．行动迅速"
+      }
+    },
+    {
+      "question_number": "28",
+      "question_type": "多项选择题",
+      "content": "城市发展战略的类型有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "经济发展战略                       B．社会发展战略",
+        "C": "科技发展战略                       D．文化发展战略",
+        "E": "生态保护战略"
+      }
+    },
+    {
+      "question_number": "29",
+      "question_type": "多项选择题",
+      "content": "下列属于城市政府管理经济的手段和政策的有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "价格手段    B．财政政策    C．计划手段    D．土地政策    E．税收手段"
+      }
+    },
+    {
+      "question_number": "30",
+      "question_type": "多项选择题",
+      "content": "城市基础设施实现投入产出补偿的途径有",
+      "answer": "ABCE",
+      "score": 2,
+      "options": {
+        "A": "市场补偿                           B．社会补偿"
+      }
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "城市公共事业的税收管理原则有",
+      "answer": "ABCD",
+      "score": 2,
+      "options": {
+        "A": "强制原则    B．必要原则    C．法制原则    D．适度原则     E．完全原则"
+      }
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "城市生态系统的构成要素主要有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "成分        B．结构        C．功能        D．作用         E．性质"
+      }
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "美国政府责任委员会建构的评估模式的维度包括 第二部分非选择题 三、简答题 (本大题共6小题，每小题6分，共36分) 请在答题卡上作答。",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "投入与能量                    B．产出",
+        "C": "结果                          D．效率和成本效益",
+        "E": "生产力"
+      }
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述市民参政的条件。",
+      "answer": "简述市民参政的条件。",
+      "score": 6
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述我国市政体制的基本特征。",
+      "answer": "简述我国市政体制的基本特征。",
+      "score": 6
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述我国城市旧城改造与新区开发的原则。",
+      "answer": "简述我国城市旧城改造与新区开发的原则。",
+      "score": 6
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述城市基础设施的作用。",
+      "answer": "简述城市基础设施的作用。",
+      "score": 6
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述城市生态系统的功能。",
+      "answer": "简述城市生态系统的功能。",
+      "score": 6
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述市政绩效评估的方法。 四、论述题(本大题共l小题，共l2分) 请在答题卡上作答。",
+      "answer": "简述市政绩效评估的方法。\n四、论述题(本大题共l小题，共l2分)\n请在答题卡上作答。",
+      "score": 6
+    },
+    {
+      "question_number": "40",
+      "question_type": "论述题",
+      "content": "试述城市社区管理在城市现代化建设中的意义。 五、材料分析题(本大题共l小题，共11分) 请在答题卡上作答。",
+      "answer": "试述城市社区管理在城市现代化建设中的意义。\n五、材料分析题(本大题共l小题，共11分)\n请在答题卡上作答。",
+      "score": 12
+    },
+    {
+      "question_number": "41",
+      "question_type": "材料分析题",
+      "content": "阅读下列材料，分析回答问题： 广东现有常住人口l．2亿，其中非户籍人口3097万，其异地务工人员随迁子女规模大、增长快、分布集中，2012年全省义务教育阶段非户籍学生365．4万人，比2011年增加27．6万人，其中外省户籍188．1万人。如不设准入条件，每年将有超过20万的随迁子女进入广东省内学校的高中阶段就读。 由于关涉人口巨大，因此广东省对《进城务工人员随迁子女在广东省参加高校招生考试实施办法》(以下简称《办法》)的制定非常谨慎，在多次调研、召开座谈会，广泛听取意见和反复论证的基础上，经公示征求意见和修改后，2013年11月29日，广东省教育厅等单位正式公布《办法》，明确了随迁子女在广东省报名参加高考所需的各项证明材料以及详细的报考手续和程序，并明确了随迁子女资格认定的部门职责及保障措施。对于符合条件的考生，省内各职能部门将保障其受教育权利和升学机会。 问题：(1)结合材料分析我国城市教育管理体制中存在的问题。(5分) (2)结合材料回答我国城市教育管理体制运行和管理的模式。(6分)",
+      "answer": "阅读下列材料，分析回答问题：\n广东现有常住人口l．2亿，其中非户籍人口3097万，其异地务工人员随迁子女规模大、增长快、分布集中，2012年全省义务教育阶段非户籍学生365．4万人，比2011年增加27．6万人，其中外省户籍188．1万人。如不设准入条件，每年将有超过20万的随迁子女进入广东省内学校的高中阶段就读。\n由于关涉人口巨大，因此广东省对《进城务工人员随迁子女在广东省参加高校招生考试实施办法》(以下简称《办法》)的制定非常谨慎，在多次调研、召开座谈会，广泛听取意见和反复论证的基础上，经公示征求意见和修改后，2013年11月29日，广东省教育厅等单位正式公布《办法》，明确了随迁子女在广东省报名参加高考所需的各项证明材料以及详细的报考手续和程序，并明确了随迁子女资格认定的部门职责及保障措施。对于符合条件的考生，省内各职能部门将保障其受教育权利和升学机会。\n问题：(1)结合材料分析我国城市教育管理体制中存在的问题。(5分)\n(2)结合材料回答我国城市教育管理体制运行和管理的模式。(6分)",
+      "score": 11
+    }
+  ]
+}

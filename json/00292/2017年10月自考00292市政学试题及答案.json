@@ -1,0 +1,420 @@
+{
+  "exam_info": {
+    "title": "2017年10月高等教育自学考试市政学试题",
+    "subject": "市政学",
+    "code": "00292",
+    "date": "2017年10月"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "本卷所有试题必须在答题卡上作答。答在试卷上无效，试卷空白处和背面均可作草稿纸。",
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "第一部分为选择题。必须对应试卷上的题号使用2B铅笔将“答题卡”的相应代码涂黑。",
+      "answer": "B",
+      "score": 1
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "第二部分为非选择题。必须注明大、小题号，使用0.5毫米黑色字迹签字笔作答。",
+      "answer": "D",
+      "score": 1
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "合理安排答题空间，超出答题区域无效。 第一部分选择题",
+      "answer": "C",
+      "score": 1
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "下列属于城市人民团体的是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "市总工会        B．市基金会",
+        "C": "市志愿者组织    D．市慈善总会"
+      }
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "市政体制主要为议会市长制的国家是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "加拿大    B．英国    C．法国D．日本"
+      }
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "下列属于直辖市的城市是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "深圳    B．重庆",
+        "C": "广州    D．南京"
+      }
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "市政职能过程包括",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "市政决策、市政执行和市政反馈    B．市政决策、市政执行和市政控制",
+        "C": "市政协调、市政执行和市政控制    D．市政预测、市政沟通和市政控制"
+      }
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "城市化概念的提出者是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "美国规划师佩里    B．西班牙工程师塞德",
+        "C": "英国记者霍华德    D．法国建筑师柯布西耶"
+      }
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "我国城乡经济社会发展一体化的层面包括国家层面、省级行政区域层面和．",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "市级行政区域层面    B．县级行政区域层面",
+        "C": "市县层面            D．乡镇层面"
+      }
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "城市化早期和初级阶段出现的城市化类型是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "积极型城市化    B．消极型城市化",
+        "C": "集中性城市化    D．分散性城市化"
+      }
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "英国人昂温提出的城市规划理论是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "邻里单位理论    B．花园城市理论",
+        "C": "中心地理论       D．卫星城理论"
+      }
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "我国的城市规划纳入法制化轨道是在",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "1968年    B．1989年",
+        "C": "1992年    D．2008年"
+      }
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "我国现行城市规划的法律依据是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "《中华人民共和国城乡规划法》    B．《中华人民共和国城市规划法》",
+        "C": "《中华人民共和国城镇规划法》    D．《中华人民共和国城区规划法》"
+      }
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "城市存在和发展的物质基础是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "城市功能        B．城市性质",
+        "C": "城市基础设施    D．城市管理体制"
+      }
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "城市基础设施建设资金的主要来源是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "银行贷款    B．企业投资",
+        "C": "社会融资     D．国家和城市政府的财政拨款"
+      }
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "城市土地管理中，统一负责城市土地管理和监督的行政执法部门是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "市国土资源局    B．市规划局",
+        "C": "市工商局        D．市司法局"
+      }
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "城市公共部门为履行其职能而筹集的一切资金的总和称为",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "城市公共收入     B．城市公共支出",
+        "C": "城市公共财政    D．城市公共预算"
+      }
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "我国的全国性群众卫生救护组织是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "爱国卫生运动委员会    B．妇幼保健站",
+        "C": "疾病预防与控制中心    D．中国红十字会"
+      }
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "城市政府采购的主要采购方式是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "邀请招标    B．公开招标",
+        "C": "竞争性谈判  D．询价"
+      }
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "城市土地使用权在城市土地经营者与使用者之间的横向流动或转让指的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "城市土地一级市场    B．城市土地二级市场",
+        "C": "城市土地三级市场    D．城市土地四级市场"
+      }
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "城市环境是人类在城市的生产和生活中形成的，由动物、植物、微生物、水、土壤、大气、阳光以及建筑物、构筑物等组成的",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "地理环境    B．自然环境",
+        "C": "人工环境     D．自然环境与人工环境的复合体"
+      }
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "人们长期共同生产生活或按照自己的意愿选择而形成的社区称为",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "功能社区    B．法定社区",
+        "C": "自然社区    D．自治社区"
+      }
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "我国居民委员会的任期是每届",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "两年    B．三年",
+        "C": "四年    D．五年"
+      }
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "下列属于市政绩效管理信息系统软件要素的是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "计算机    B．信息管理人员",
+        "C": "网络      D．图书资料"
+      }
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "下列属于现代城市特点的有",
+      "answer": "CDE",
+      "score": 2,
+      "options": {
+        "A": "城市功能单一          B．城市的消费性和城乡分离",
+        "C": "城市发展呈现多样化    D．城市成为人类的主要聚居区",
+        "E": "城市成为第三产业的中心"
+      }
+    },
+    {
+      "question_number": "27",
+      "question_type": "多项选择题",
+      "content": "市政学的研究对象主要有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "市政主体    B．市政客体",
+        "C": "市政目标    D．市政规律",
+        "E": "市政方式和手段"
+      }
+    },
+    {
+      "question_number": "28",
+      "question_type": "多项选择题",
+      "content": "西方国家市政体制的类型包括",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "市议会制      B．市经理制",
+        "C": "议会市长制    D．市长议会制",
+        "E": "市委员会制"
+      }
+    },
+    {
+      "question_number": "29",
+      "question_type": "多项选择题",
+      "content": "世界近代城市规划理论史上影响较大的著作有",
+      "answer": "BCD",
+      "score": 2,
+      "options": {
+        "A": "《周礼·考工记》    B．《明日之城市》",
+        "C": "《阳光城》          D．《明天，和平改革之路》",
+        "E": "《建筑十书》"
+      }
+    },
+    {
+      "question_number": "30",
+      "question_type": "多项选择题",
+      "content": "下列属于我国城市公共事业管理领域的有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "城市教育管理    B．城市卫生管理",
+        "C": "城市科技管理    D．城市文化管理",
+        "E": "城市经济管理"
+      }
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "下列属于城市土地自然特性的有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "位置固定性    B．区位效益性",
+        "C": "稀缺性        D．耐久性",
+        "E": "差异性"
+      }
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "我国城市人口管理的内容包括",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "户籍管理          B．居民身份证管理",
+        "C": "人口普查与预测    D．流动人口管理",
+        "E": "计划生育管理"
+      }
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "城市社会福利管理的具体内容包括 第二部分非选择题",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "老人社会福利管理        B．儿童社会福利管理",
+        "C": "精神病人社会福利管理    D．残疾人社会福利管理",
+        "E": "妇女社会福利管理"
+      }
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述我国市政体制的基本特征。",
+      "answer": "简述我国市政体制的基本特征。",
+      "score": 6
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述城市化的主要衡量指标。",
+      "answer": "简述城市化的主要衡量指标。",
+      "score": 6
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述世界规划史上的《马丘比丘宪章》的主要内容。",
+      "answer": "简述世界规划史上的《马丘比丘宪章》的主要内容。",
+      "score": 6
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述城市基础设施的种类。",
+      "answer": "简述城市基础设施的种类。",
+      "score": 6
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述城市公共卫生管理的意义。",
+      "answer": "简述城市公共卫生管理的意义。",
+      "score": 6
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述市政绩效评估的任务。",
+      "answer": "简述市政绩效评估的任务。\n四、论述题;本题11分。",
+      "score": 6
+    },
+    {
+      "question_number": "40",
+      "question_type": "论述题",
+      "content": "试述生态城市建设须遵循的基本原则。",
+      "answer": "试述生态城市建设须遵循的基本原则。\n五、材料分析题：本题12分。",
+      "score": 11
+    },
+    {
+      "question_number": "41",
+      "question_type": "材料分析题",
+      "content": "近年来，我国平均每年增加城市20个，城市人口每年以1.4％的速度递增，目前我国城镇人口达5.43亿，据预测，2020年我国的城镇人口还将净增3亿。定位不当、盲目扩大工业、整体功能不完善、交通堵塞、环境恶化、重大危险源不断增加等在城镇化、城市现代化加快过程中出现的问题，严重威胁我国的城市公共安全。同时，现代工业、新技术、信息产业的高速发展在为人类创造巨大财富的同时，也为城市公共安全埋下了隐患。专家们表示，一旦信息网络被破坏，轻则造成一定的经济损失，重则影响到一个国家的经济、军事安全。另外，世界多极化、全球化趋势的不断加快，也是城市公共安全的一大威胁。此外，随着广大人民群众物质文化水平的提高，人们对公共安全水平的要求也越来越高。 问题：请结合材料谈谈城市公共安全问题的成因。 \u0001\u0001",
+      "answer": "近年来，我国平均每年增加城市20个，城市人口每年以1.4％的速度递增，目前我国城镇人口达5.43亿，据预测，2020年我国的城镇人口还将净增3亿。定位不当、盲目扩大工业、整体功能不完善、交通堵塞、环境恶化、重大危险源不断增加等在城镇化、城市现代化加快过程中出现的问题，严重威胁我国的城市公共安全。同时，现代工业、新技术、信息产业的高速发展在为人类创造巨大财富的同时，也为城市公共安全埋下了隐患。专家们表示，一旦信息网络被破坏，轻则造成一定的经济损失，重则影响到一个国家的经济、军事安全。另外，世界多极化、全球化趋势的不断加快，也是城市公共安全的一大威胁。此外，随着广大人民群众物质文化水平的提高，人们对公共安全水平的要求也越来越高。\n    问题：请结合材料谈谈城市公共安全问题的成因。\n\u0001\u0001",
+      "score": 12
+    }
+  ]
+}

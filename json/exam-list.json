@@ -1,5 +1,434 @@
 [
   {
+    "file": "json/00292/2004年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2004年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2004年4月"
+    },
+    "question_count": 52
+  },
+  {
+    "file": "json/00292/2005年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2005年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2005年4月"
+    },
+    "question_count": 52
+  },
+  {
+    "file": "json/00292/2006年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2006年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2006年4月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2007年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2007年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2007年4月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2008年7月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2008年7月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2008年7月"
+    },
+    "question_count": 49
+  },
+  {
+    "file": "json/00292/2009年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2009年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2009年4月"
+    },
+    "question_count": 49
+  },
+  {
+    "file": "json/00292/2009年7月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2009年7月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2009年7月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2010年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2010年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2010年4月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2011年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2011年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2011年4月"
+    },
+    "question_count": 48
+  },
+  {
+    "file": "json/00292/2011年7月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2011年7月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2011年7月"
+    },
+    "question_count": 48
+  },
+  {
+    "file": "json/00292/2012年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2012年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2012年4月"
+    },
+    "question_count": 48
+  },
+  {
+    "file": "json/00292/2012年7月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2012年7月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2012年7月"
+    },
+    "question_count": 48
+  },
+  {
+    "file": "json/00292/2013年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2013年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2013年4月"
+    },
+    "question_count": 48
+  },
+  {
+    "file": "json/00292/2013年7月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2013年7月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2013年7月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2014年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2014年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2014年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2014年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2014年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2014年4月"
+    },
+    "question_count": 47
+  },
+  {
+    "file": "json/00292/2015年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2015年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2015年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2015年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2015年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2015年4月"
+    },
+    "question_count": 39
+  },
+  {
+    "file": "json/00292/2016年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2016年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2016年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2016年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2016年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2016年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2017年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2017年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2017年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2017年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2017年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2017年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2018年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2018年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2018年10月"
+    },
+    "question_count": 33
+  },
+  {
+    "file": "json/00292/2018年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2018年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2018年4月"
+    },
+    "question_count": 39
+  },
+  {
+    "file": "json/00292/2019年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2019年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2019年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2019年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2019年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2019年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2020年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2020年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2020年10月"
+    },
+    "question_count": 31
+  },
+  {
+    "file": "json/00292/2020年8月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2020年8月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2020年8月"
+    },
+    "question_count": 35
+  },
+  {
+    "file": "json/00292/2021年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2021年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2021年10月"
+    },
+    "question_count": 34
+  },
+  {
+    "file": "json/00292/2021年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2021年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2021年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2022年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2022年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2022年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2022年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2022年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2022年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2023年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2023年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2023年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2023年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2023年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2023年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2024年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2024年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2024年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2024年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2024年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2024年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2025年10月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2025年10月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2025年10月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2025年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2025年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2025年4月"
+    },
+    "question_count": 41
+  },
+  {
+    "file": "json/00292/2026年4月自考00292市政学试题及答案.json",
+    "subject": "00292",
+    "exam_info": {
+      "title": "2026年4月高等教育自学考试市政学试题",
+      "subject": "市政学",
+      "code": "00292",
+      "date": "2026年4月"
+    },
+    "question_count": 41
+  },
+  {
     "file": "json/00312/00312政治学概论200410.json",
     "subject": "00312",
     "exam_info": {

@@ -9,6 +9,7 @@ export function getFilenameFromPath(path) {
 }
 
 const SUBJECT_NAMES = {
+    '00292': '市政学',
     '00312': '政治学概论',
     '00341': '公文写作与处理',
     '12656': '毛概',
@@ -39,6 +40,42 @@ function normalizeExamDate(value) {
     }
 
     return '';
+}
+
+export function getExamDateLabel(exam) {
+    if (!exam || typeof exam !== 'object') return '';
+
+    const path = exam.path || exam.file || '';
+    return normalizeExamDate(exam.exam_info?.date)
+        || normalizeExamDate(getFilenameFromPath(path));
+}
+
+export function getExamDateValue(exam) {
+    const label = getExamDateLabel(exam);
+    if (!label) return 0;
+
+    const yearMonth = label.match(/((?:19|20)\d{2})年(\d{1,2})月/);
+    if (yearMonth) {
+        return Number(yearMonth[1]) * 100 + Number(yearMonth[2]);
+    }
+
+    const halfYear = label.match(/((?:19|20)\d{2})年(上半年|下半年)/);
+    if (halfYear) {
+        return Number(halfYear[1]) * 100 + (halfYear[2] === '上半年' ? 6 : 12);
+    }
+
+    return 0;
+}
+
+export function compareExamsByDate(a, b, direction = 'desc') {
+    const diff = getExamDateValue(a) - getExamDateValue(b);
+    if (diff !== 0) return direction === 'asc' ? diff : -diff;
+
+    const nameA = getExamDisplayName(a);
+    const nameB = getExamDisplayName(b);
+    return direction === 'asc'
+        ? nameA.localeCompare(nameB, 'zh')
+        : nameB.localeCompare(nameA, 'zh');
 }
 
 // 统一试卷显示名称，避免直接展示格式不一致的来源文件名。

@@ -1,0 +1,503 @@
+{
+  "exam_info": {
+    "title": "2023年4月高等教育自学考试市政学试题",
+    "subject": "市政学",
+    "code": "00292",
+    "date": "2023年4月"
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "20世纪初世界上最大的城市是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "伦敦",
+        "B": "巴黎",
+        "C": "威尼斯",
+        "D": "东京"
+      }
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "带有强制性、垂直性、无偿性等特点的市政管理手段是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "经济手段",
+        "B": "法律手段",
+        "C": "技术手段",
+        "D": "行政手段"
+      }
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "标志着我国市制开端的法规性文件是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "《城镇乡地方自治章程》",
+        "B": "《广州市暂行条例》",
+        "C": "《江苏暂行市乡制》",
+        "D": "《市自治制》"
+      }
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "在我国市政体制中处于领导核心地位的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "市政府",
+        "B": "中共市委",
+        "C": "市人大",
+        "D": "市政协"
+      }
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "当前我国的市纪律检查委员会的每届任期是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "二年",
+        "B": "三年",
+        "C": "四年",
+        "D": "五年"
+      }
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "市政府的机构设置中，属于内务管理部门的是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "市教育局",
+        "B": "市司法局",
+        "C": "市财政局",
+        "D": "市政府办公厅（室）"
+      }
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "西方国家市政体制的具体形式表现多样，以下哪个国家的市长和市政府在办理中央事务方面不受市议会监督？",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "英国",
+        "B": "日本",
+        "C": "德国",
+        "D": "法国"
+      }
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "我国城市中设立为直辖市时间最短的是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "上海",
+        "B": "北京",
+        "C": "重庆",
+        "D": "天津"
+      }
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "下列属于市政职能中一般职能的是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "服务职能",
+        "B": "经济职能",
+        "C": "建设职能",
+        "D": "规划职能"
+      }
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "下列属于我国城市政府社会职能的是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "城市规划职能",
+        "B": "交通运输职能",
+        "C": "民政管理职能",
+        "D": "预算管理职能"
+      }
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "从宋朝开始沿用的、对我国城市规划产生深远影响的城市规划布局是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "街坊制",
+        "B": "里坊制",
+        "C": "功能分区式布局",
+        "D": "功能混合式布局"
+      }
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "卫星城理论的提出者是英国伦敦规划委员会总顾问",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "埃比尼泽·霍华德",
+        "B": "格迪斯",
+        "C": "昂温",
+        "D": "佩里"
+      }
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "认为居住是城市的首要功能，住宅应该占用城市中最好的地区的城市规划理论是",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "雅典宪章",
+        "B": "田园城市理论",
+        "C": "邻里单位理论",
+        "D": "马丘比丘宪章"
+      }
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "下列属于完全靠市场补偿实现投入产出循环的基础设施部门和单位是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "路灯养护部门",
+        "B": "供电所",
+        "C": "出租车公司",
+        "D": "公交公司"
+      }
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "我国基础设施建设规划中，近期规划的期限一般为",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "3年",
+        "B": "5年",
+        "C": "8年",
+        "D": "10年"
+      }
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "城市公共事业管理诸方面效益的关系，应以",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "环境效益为主",
+        "B": "经济效益为主",
+        "C": "社会效益为主",
+        "D": "生态效益为主"
+      }
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "我国对图书馆、博物馆、重点文物保护单位等公共文化服务事业实行的是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "市场化运营模式",
+        "B": "产业化运营模式",
+        "C": "政府扶持模式",
+        "D": "政企分开模式"
+      }
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "我国城市旅游、娱乐用地土地使用权出让的最高年限是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "40年",
+        "B": "50年",
+        "C": "60年",
+        "D": "70年"
+      }
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "体现了城市土地使用权在国家与城市土地经营者、使用者之间的纵向流动，具有垄断性质的是在",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "城市土地一级市场",
+        "B": "城市土地二级市场",
+        "C": "城市土地三级市场",
+        "D": "城市土地四级市场"
+      }
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "主要适用于大型商业发展项目用地的土地使用权出让方式为",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "招标出让",
+        "B": "协议出让",
+        "C": "挂牌出让",
+        "D": "拍卖出让"
+      }
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "“生态城市”的概念由联合国教科文组织提出于",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "1965年",
+        "B": "1970年",
+        "C": "1971年",
+        "D": "1973年"
+      }
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "我国城市社区的领导核心是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "市民政局",
+        "B": "社区党组织",
+        "C": "社区居委会",
+        "D": "业主委员会"
+      }
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "市政的目标是实现",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "社会利益",
+        "B": "公共利益",
+        "C": "经济利益",
+        "D": "根本利益"
+      }
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "城乡经济社会发展一体化的主要动力是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "基础设施一体化",
+        "B": "公共服务一体化",
+        "C": "交通一体化",
+        "D": "产业一体化"
+      }
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "我国各城市的政协履行职能有相应的会议制度，全体会议每年至少举行",
+      "answer": "A",
+      "score": 1,
+      "options": {
+        "A": "一次",
+        "B": "两次",
+        "C": "三次",
+        "D": "四次"
+      }
+    },
+    {
+      "question_number": "26",
+      "question_type": "多项选择题",
+      "content": "下列属于近代城市发展特点的有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "城市的结构和功能发生了根本性变化",
+        "B": "城乡差距扩大、城乡关系对立",
+        "C": "城市成为第三产业的中心",
+        "D": "城市成为人类的主要聚居区",
+        "E": "城市公用设施得到普及"
+      }
+    },
+    {
+      "question_number": "27",
+      "question_type": "多项选择题",
+      "content": "下列不属于城市居民委员会的特点是",
+      "answer": "B",
+      "score": 2,
+      "options": {
+        "A": "自我组织",
+        "B": "自我经营",
+        "C": "自我教育",
+        "D": "自我服务",
+        "E": "自我管理"
+      }
+    },
+    {
+      "question_number": "28",
+      "question_type": "多项选择题",
+      "content": "大都市区管理体制中，市政府与市镇分立合作的具体形式有",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "大都市兼并周围的郊区",
+        "B": "签订合作协议",
+        "C": "职能转移",
+        "D": "多功能都市行政区",
+        "E": "都市政府联合会"
+      }
+    },
+    {
+      "question_number": "29",
+      "question_type": "多项选择题",
+      "content": "三位一体的市政控制管理体制包括",
+      "answer": "ABDE",
+      "score": 2,
+      "options": {
+        "A": "领导控制",
+        "B": "专门部门的专职控制",
+        "C": "道德控制",
+        "D": "公务员的自我控制",
+        "E": "法律控制"
+      }
+    },
+    {
+      "question_number": "30",
+      "question_type": "多项选择题",
+      "content": "城市基础设施的自然垄断性具体表现在",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "大量的沉淀资本",
+        "B": "服务的地区依附性",
+        "C": "规模经济性",
+        "D": "超前性",
+        "E": "系统性"
+      }
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "下列属于实行政府指导价的城市公共事业的产品和服务有",
+      "answer": "ACDE",
+      "score": 2,
+      "options": {
+        "A": "公立医院专家门诊的挂号费",
+        "B": "非义务教育的学费",
+        "C": "城市的垃圾清运费",
+        "D": "大学的住宿费",
+        "E": "文化体育场馆的服务性收费"
+      }
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "中国城市生态环境问题具体表现在",
+      "answer": "ABCDE",
+      "score": 2,
+      "options": {
+        "A": "水体污染",
+        "B": "大气环境污染",
+        "C": "噪声污染",
+        "D": "固体废物污染",
+        "E": "光污染"
+      }
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "市政绩效管理信息系统构成的软件要素包括",
+      "answer": "ADE",
+      "score": 2,
+      "options": {
+        "A": "制度因素",
+        "B": "设备因素",
+        "C": "场地因素",
+        "D": "技术因素",
+        "E": "人员因素"
+      }
+    },
+    {
+      "question_number": "34",
+      "question_type": "简答题",
+      "content": "简述城市规划实施管理的内容。",
+      "answer": "城市规划实施管理主要包括以下几个方面：",
+      "score": 6
+    },
+    {
+      "question_number": "35",
+      "question_type": "简答题",
+      "content": "简述我国城市基础设施建设的资金来源。",
+      "answer": "我国城市基础设施建设的资金来源主要包括：",
+      "score": 6
+    },
+    {
+      "question_number": "36",
+      "question_type": "简答题",
+      "content": "简述城市政府采购的方式。",
+      "answer": "城市政府采购的方式主要包括：",
+      "score": 6
+    },
+    {
+      "question_number": "37",
+      "question_type": "简答题",
+      "content": "简述城市科技管理的意义。",
+      "answer": "城市科技管理的意义主要体现在：",
+      "score": 6
+    },
+    {
+      "question_number": "38",
+      "question_type": "简答题",
+      "content": "简述市政绩效管理监督系统的工作目标。",
+      "answer": "市政绩效管理监督系统的工作目标主要包括：",
+      "score": 6
+    },
+    {
+      "question_number": "39",
+      "question_type": "简答题",
+      "content": "简述城市公共安全的管理手段。",
+      "answer": "城市公共安全的管理手段主要包括：",
+      "score": 6
+    },
+    {
+      "question_number": "40",
+      "question_type": "论述题",
+      "content": "试述城市社会保障管理的意义。",
+      "answer": "城市社会保障管理的意义主要体现在以下几个方面：",
+      "score": 11
+    },
+    {
+      "question_number": "41",
+      "question_type": "材料分析题",
+      "content": "结合材料谈谈中国特色城镇化战略应坚持的原则。",
+      "answer": "结合材料内容，中国特色城镇化战略应坚持以下原则：",
+      "score": 12
+    }
+  ]
+}
