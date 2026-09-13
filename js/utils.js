@@ -11,6 +11,7 @@ export function getFilenameFromPath(path) {
 const SUBJECT_NAMES = {
     '00292': '市政学',
     '00312': '政治学概论',
+    '00318': '公共政策导论',
     '00341': '公文写作与处理',
     '12656': '毛概',
     '15041': '毛概'
@@ -90,6 +91,8 @@ export function getExamDisplayName(exam) {
         || String(exam.exam_info?.subject || '').replace(/(?:试题|试卷)$/, '').trim();
 
     if (date && subject) return `${date} · ${subject}`;
+    const title = String(exam.exam_info?.title || '').trim();
+    if (title) return title;
     return subject || date || filename;
 }
 

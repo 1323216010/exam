@@ -880,6 +880,78 @@
     "question_count": 39
   },
   {
+    "file": "json/00318/00318公共政策导论模拟题一.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "模拟题一 · 公共政策导论",
+      "subject": "公共政策导论",
+      "code": "00318"
+    },
+    "question_count": 27
+  },
+  {
+    "file": "json/00318/00318公共政策导论模拟题三.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "模拟题三 · 公共政策导论",
+      "subject": "公共政策导论",
+      "code": "00318"
+    },
+    "question_count": 27
+  },
+  {
+    "file": "json/00318/00318公共政策导论模拟题二.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "模拟题二 · 公共政策导论",
+      "subject": "公共政策导论",
+      "code": "00318"
+    },
+    "question_count": 27
+  },
+  {
+    "file": "json/00318/00318公共政策导论模拟题五.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "模拟题五 · 公共政策导论",
+      "subject": "公共政策导论",
+      "code": "00318"
+    },
+    "question_count": 27
+  },
+  {
+    "file": "json/00318/00318公共政策导论模拟题四.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "模拟题四 · 公共政策导论",
+      "subject": "公共政策导论",
+      "code": "00318"
+    },
+    "question_count": 27
+  },
+  {
+    "file": "json/00318/2026年1月自考00318公共政策导论试题及答案.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "2026年1月高等教育自学考试公共政策导论试题",
+      "subject": "公共政策导论",
+      "code": "00318",
+      "date": "2026年1月"
+    },
+    "question_count": 31
+  },
+  {
+    "file": "json/00318/2026年4月自考00318公共政策导论试题及答案.json",
+    "subject": "00318",
+    "exam_info": {
+      "title": "2026年4月高等教育自学考试公共政策导论试题",
+      "subject": "公共政策导论",
+      "code": "00318",
+      "date": "2026年4月"
+    },
+    "question_count": 31
+  },
+  {
     "file": "json/00341/00341公文写作与处理200410真题及答案.json",
     "subject": "00341",
     "exam_info": {

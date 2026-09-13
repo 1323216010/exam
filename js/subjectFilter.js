@@ -23,7 +23,7 @@ export function getSubjectFilterOptions(exams) {
         options.set(value, label);
     });
 
-    const preferredOrder = ['00312', '12656,15041', '00341', '00292'];
+    const preferredOrder = ['00312', '12656,15041', '00341', '00292', '00318'];
 
     return [...options.entries()]
         .map(([value, label]) => ({ value, label }))
@@ -63,7 +63,8 @@ const SUBJECT_CHIP_STYLES = {
     '00312': { bg: '#DBEAFE', color: '#1E40AF', accent: '#60A5FA' },
     '12656,15041': { bg: '#FCE7F3', color: '#BE185D', accent: '#F472B6' },
     '00341': { bg: '#FEF3C7', color: '#B45309', accent: '#FBBF24' },
-    '00292': { bg: '#EDE9FE', color: '#6D28D9', accent: '#A78BFA' }
+    '00292': { bg: '#EDE9FE', color: '#6D28D9', accent: '#A78BFA' },
+    '00318': { bg: '#CCFBF1', color: '#0F766E', accent: '#2DD4BF' }
 };
 
 export function getSubjectChip(subject) {
