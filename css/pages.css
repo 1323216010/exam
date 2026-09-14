@@ -55,7 +55,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
-    max-width: 1200px;
+    max-width: 960px;
     width: 100%;
 }
 
@@ -218,7 +218,7 @@ input[type="file"] {
     font-size: 16px;
 }
 
-/* ==================== 试卷列表/练习配置/自定义组卷容器 ==================== */
+/* ==================== 试卷列表/练习配置容器 ==================== */
 .exam-list-container,
 .practice-config-container,
 .custom-exam-container {
@@ -865,7 +865,7 @@ input[type="file"] {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== 题库练习：统一白卡 ==================== */
+/* ==================== 自由刷题：统一白卡 ==================== */
 .practice-config-body {
     background: white;
     border-radius: 12px;
@@ -874,7 +874,7 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
-/* 题库练习：顶部标题条 + 来源工具条 */
+/* 自由刷题：顶部标题条 + 来源工具条 */
 .practice-config-topbar {
     display: flex;
     align-items: center;
@@ -1302,7 +1302,65 @@ input[type="file"] {
     font-size: 14px;
 }
 
-/* ==================== 自定义组卷 ==================== */
+/* ==================== 自由刷题：高级选项 ==================== */
+.practice-advanced-options {
+    margin: 4px 24px 0;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    background: #F9FAFB;
+    overflow: hidden;
+}
+
+.practice-advanced-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.practice-advanced-toggle:hover {
+    background: #F3F4F6;
+}
+
+.practice-advanced-toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.practice-advanced-chevron {
+    transition: transform 0.2s ease;
+    color: #6B7280;
+    flex-shrink: 0;
+}
+
+.practice-advanced-options.is-open .practice-advanced-chevron {
+    transform: rotate(180deg);
+}
+
+.practice-advanced-body {
+    padding: 0 16px 16px;
+    border-top: 1px solid #E5E7EB;
+    background: #fff;
+}
+
+.practice-advanced-body .type-count-hint {
+    margin-top: 12px;
+}
+
+.practice-advanced-body .question-type-grid {
+    margin-top: 4px;
+}
+
+/* ==================== 组卷题型数量（高级选项复用） ==================== */
 .config-section {
     margin-bottom: 30px;
     padding-bottom: 30px;

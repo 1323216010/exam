@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自测系统</title>
     <link rel="stylesheet" href="css/common.css?v=20260823">
-    <link rel="stylesheet" href="css/pages.css?v=20260913c">
+    <link rel="stylesheet" href="css/pages.css?v=20260914d">
 </head>
 <body>
     <div class="app-container">
@@ -28,20 +28,14 @@
                     
                     <div class="mode-card" data-mode="exam-list">
                         <div class="mode-icon" data-icon="clipboardList"></div>
-                        <div class="mode-title">试卷模拟</div>
+                        <div class="mode-title">整卷模拟</div>
                         <div class="mode-desc">选择历年真题完整试卷进行模拟考试</div>
                     </div>
                     
                     <div class="mode-card" data-mode="practice">
                         <div class="mode-icon" data-icon="bookOpen"></div>
-                        <div class="mode-title">题库练习</div>
-                        <div class="mode-desc">加载所有题目进行刷题练习</div>
-                    </div>
-                    
-                    <div class="mode-card" data-mode="custom">
-                        <div class="mode-icon" data-icon="target"></div>
-                        <div class="mode-title">自定义组卷</div>
-                        <div class="mode-desc">按条件筛选题目自定义组卷</div>
+                        <div class="mode-title">自由刷题</div>
+                        <div class="mode-desc">按科目、题型自由刷题，也可按数量精细组卷</div>
                     </div>
                 </div>
             </div>
@@ -129,12 +123,12 @@
                 </div>
             </div>
 
-            <!-- 题库练习配置 -->
+            <!-- 自由刷题配置 -->
             <div class="practice-config-container hidden" id="practice-config-container">
                 <nav class="breadcrumb">
                     <a href="#" class="breadcrumb-item" id="breadcrumb-home-practice"><i data-icon="home"></i> 首页</a>
                     <span class="breadcrumb-separator">›</span>
-                    <span class="breadcrumb-item active">题库练习设置</span>
+                    <span class="breadcrumb-item active">自由刷题设置</span>
                 </nav>
 
                 <!-- 统一白卡：标题 + 来源工具条 + Tabs + Tab内容 -->
@@ -142,7 +136,7 @@
 
                     <!-- 顶部标题 + 来源筛选条 -->
                     <div class="practice-config-topbar">
-                        <h2 class="practice-config-title"><i data-icon="bookOpen"></i> 题库练习</h2>
+                        <h2 class="practice-config-title"><i data-icon="bookOpen"></i> 自由刷题</h2>
                         <div class="practice-source-toolbar">
                             <div class="source-filter-item source-filter-item-subject">
                                 <label class="source-filter-label"><i data-icon="book"></i> 科目</label>
@@ -203,6 +197,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="practice-advanced-options" id="practice-advanced-options">
+                            <button type="button" class="practice-advanced-toggle" id="btn-toggle-advanced" aria-expanded="false">
+                                <span class="practice-advanced-toggle-label"><i data-icon="sliders"></i> 高级选项</span>
+                                <svg class="practice-advanced-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="practice-advanced-body hidden" id="practice-advanced-body">
+                                <div class="type-count-hint">设置每种题型要抽取的数量后，将按数量组卷（不填则按上方勾选题型自由刷题；输入 -1 表示该题型全选）</div>
+                                <div id="practice-type-counts" class="question-type-grid"></div>
+                                <label class="config-label" style="margin-top: 12px;">
+                                    <input type="checkbox" id="practice-deduplicate" checked>
+                                    去除重复题目
+                                </label>
+                            </div>
+                        </div>
                         <div class="tab-footer">
                             <button class="btn-primary" id="btn-start-practice">开始练习</button>
                         </div>
@@ -255,59 +263,6 @@
 
                 </div>
             </div>
-            <div class="custom-exam-container hidden" id="custom-exam-container">
-                <nav class="breadcrumb">
-                    <a href="#" class="breadcrumb-item" id="breadcrumb-home-custom"><i data-icon="home"></i> 首页</a>
-                    <span class="breadcrumb-separator">›</span>
-                    <span class="breadcrumb-item active">自定义组卷</span>
-                </nav>
-                <div class="custom-exam-header">
-                    <h2><i data-icon="target"></i> 自定义组卷</h2>
-                    <div class="custom-info">根据条件筛选题目组成试卷</div>
-                </div>
-                
-                <div class="custom-exam-config">
-                    <div class="config-section">
-                        <h3>选择试卷</h3>
-                        <div class="exam-list-filters">
-                            <div class="subject-tabs" id="custom-subject-tabs" aria-label="科目"></div>
-                            <select id="custom-subject-filter" class="hidden" tabindex="-1" aria-hidden="true">
-                                <option value="">全部科目</option>
-                            </select>
-                        </div>
-                        <div class="exam-checkbox-grid" id="exam-checkbox-grid">
-                            <!-- 试卷复选框动态生成 -->
-                        </div>
-                        <div class="quick-select">
-                            <button class="btn-secondary" id="btn-select-all">全选</button>
-                            <button class="btn-secondary" id="btn-select-none">全不选</button>
-                        </div>
-                    </div>
-                    
-                    <div class="config-section">
-                        <h3>题型和数量</h3>
-                        <div class="type-count-hint">设置每种题型要抽取的题目数量（不输入则不选，输入 -1 表示全选）</div>
-                        <div id="question-type-filters" class="question-type-grid">
-                            <!-- 题型配置动态生成 -->
-                        </div>
-                    </div>
-                    
-                    <div class="config-section">
-                        <h3>其他选项</h3>
-                        <label class="config-label">
-                            <input type="checkbox" id="custom-random" checked>
-                            随机顺序
-                        </label>
-                        <label class="config-label">
-                            <input type="checkbox" id="custom-deduplicate" checked>
-                            去除重复题目
-                        </label>
-                    </div>
-                </div>
-                
-                <button class="btn-primary" id="btn-start-custom">生成试卷并开始</button>
-            </div>
-
         </div>
     </div>
 
@@ -406,6 +361,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/home.js?v=20260914b"></script>
+    <script type="module" src="js/home.js?v=20260914d"></script>
 </body>
 </html>

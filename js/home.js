@@ -4,9 +4,8 @@ import { renderExamList, filterExamList } from './examList.js?v=20260914b';
 import { 
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
     switchPracticeTab, startAiGeneration 
-} from './practiceMode.js';
+} from './practiceMode.js?v=20260914d';
 import { renderAiHistory } from './aiHistory.js';
-import { loadCustomExamUI, selectAllExams, selectNoneExams, startCustomExam } from './customExam.js';
 import { 
     showSettings, closeSettings, switchSettingsTab, addNewConfig, 
     saveSettings, savePromptTemplatesFromUI, testApiConnection 
@@ -31,10 +30,6 @@ function selectMode(mode) {
             document.getElementById('practice-config-container').classList.remove('hidden');
             initPracticeSubjectFilter();
             break;
-        case 'custom':
-            document.getElementById('custom-exam-container').classList.remove('hidden');
-            loadCustomExamUI();
-            break;
     }
 }
 
@@ -43,7 +38,6 @@ function backToModeSelection() {
     document.getElementById('upload-container').classList.add('hidden');
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
-    document.getElementById('custom-exam-container').classList.add('hidden');
     
     // 显示模式选择页面
     document.getElementById('mode-selection').classList.remove('hidden');
@@ -85,7 +79,6 @@ async function initializeApp() {
     document.getElementById('upload-container').classList.add('hidden');
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
-    document.getElementById('custom-exam-container').classList.add('hidden');
     
     // 文件上传
     document.getElementById('file-input').addEventListener('change', handleFileUpload);
@@ -231,14 +224,17 @@ async function initializeApp() {
         });
     }
     
-    // 自定义组卷按钮
-    const btnSelectAll = document.getElementById('btn-select-all');
-    const btnSelectNone = document.getElementById('btn-select-none');
-    const btnStartCustom = document.getElementById('btn-start-custom');
-    
-    if (btnSelectAll) btnSelectAll.addEventListener('click', selectAllExams);
-    if (btnSelectNone) btnSelectNone.addEventListener('click', selectNoneExams);
-    if (btnStartCustom) btnStartCustom.addEventListener('click', startCustomExam);
+    // 自由刷题：高级选项折叠
+    const btnToggleAdvanced = document.getElementById('btn-toggle-advanced');
+    const advancedBody = document.getElementById('practice-advanced-body');
+    const advancedWrap = document.getElementById('practice-advanced-options');
+    if (btnToggleAdvanced && advancedBody) {
+        btnToggleAdvanced.addEventListener('click', () => {
+            const open = advancedBody.classList.toggle('hidden') === false;
+            btnToggleAdvanced.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (advancedWrap) advancedWrap.classList.toggle('is-open', open);
+        });
+    }
 }
 
 // 页面加载完成后初始化
