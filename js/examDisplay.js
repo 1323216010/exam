@@ -107,7 +107,7 @@ export function showQuestion(index) {
                 <div class="question-number">${index + 1}</div>
                 <div class="question-meta">
                     <span class="question-type-badge">${question.question_type}</span>
-                    <span class="question-score-badge">${question.score} 分</span>
+                    ${question.score == null ? '' : `<span class="question-score-badge">${question.score} 分</span>`}
                 </div>
             </div>
             <div class="question-content">${question.content}</div>

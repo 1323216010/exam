@@ -1,7 +1,7 @@
 // 答题页面主逻辑（精简版）
 import { state, resetState } from './state.js';
 import { EXAM_LIST, loadExamList } from './config.js';
-import { getSubjectFilterLabel, matchesSubjectFilter } from './subjectFilter.js?v=20260913d';
+import { getSubjectFilterLabel, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 import { getExamDisplayName, shuffleArray, Timer } from './utils.js';
 import { initChatDB, loadAllChatRecords, clearAllChatRecords } from './aiChatStorage.js';
 import { openAiChatPanel, initAiChat } from './aiChat.js';

@@ -3,7 +3,7 @@ import { EXAM_LIST } from './config.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, getFilenameFromPath, getSubjectDisplayName } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 import { Icons } from './icons.js';
-import { bindSubjectTabs, getSubjectChip, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js?v=20260914a';
+import { bindSubjectTabs, getSubjectChip, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
 export function renderExamList() {
     const grid = document.getElementById('exam-list-grid');

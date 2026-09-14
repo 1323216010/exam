@@ -1,7 +1,7 @@
 // 自定义组卷功能
 import { EXAM_LIST } from './config.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName } from './utils.js';
-import { bindSubjectTabs, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js?v=20260914a';
+import { bindSubjectTabs, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
 export function loadCustomExamUI() {
     const subjectFilter = document.getElementById('custom-subject-filter');

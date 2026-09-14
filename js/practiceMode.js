@@ -3,7 +3,7 @@ import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, shuffleArray } from './utils.js';
 import { saveAiGeneratedExam } from './aiChatStorage.js';
-import { bindSubjectTabs, matchesSubjectFilter } from './subjectFilter.js?v=20260914a';
+import { bindSubjectTabs, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
 // ==================== 练习模式基础 ====================
 

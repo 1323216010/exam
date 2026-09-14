@@ -1,0 +1,227 @@
+{
+  "exam_info": {
+    "title": "第十五章 电子政务的环境建设",
+    "subject": "电子政务概论",
+    "code": "03333",
+    "date": "",
+    "kind": "章节练习",
+    "source_files": [
+      "章节练习及答案\\第十五章 电子政务的环境建设.doc"
+    ]
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "source_question_number": "1",
+      "question_type": "单项选择题",
+      "content": "下列不属于电子政务建设的软环境问题三大难题的是( )。",
+      "answer": "D",
+      "score": null,
+      "options": {
+        "A": "观念",
+        "B": "习惯",
+        "C": "权力",
+        "D": "安全"
+      },
+      "analysis": "电子政务建设的软环境问题：（1）三大难题——观念、习惯、权力；（2）三大关系——统与分、条与块、电与政；（3）四大体系——安全、 标准、法律、应用。"
+    },
+    {
+      "question_number": "2",
+      "source_question_number": "2",
+      "question_type": "单项选择题",
+      "content": "下列不属于电子政务建设的软环境问题三大关系的是( )。",
+      "answer": "B",
+      "score": null,
+      "options": {
+        "A": "统与分",
+        "B": "纵与横",
+        "C": "条与块",
+        "D": "电与政"
+      },
+      "analysis": "电子政务建设的软环境问题：（1）三大难题——观念、习惯、权力；（2）三大关系——统与分、条与块、电与政；（3）四大体系——安全、 标准、法律、应用。"
+    },
+    {
+      "question_number": "3",
+      "source_question_number": "3",
+      "question_type": "单项选择题",
+      "content": "下列不属于电子政务建设的软环境问题四大体系的是( )。",
+      "answer": "D",
+      "score": null,
+      "options": {
+        "A": "安全",
+        "B": "标准",
+        "C": "法律",
+        "D": "权力"
+      },
+      "analysis": "电子政务建设的软环境问题：（1）三大难题——观念、习惯、权力；（2）三大关系——统与分、条与块、电与政；（3）四大体系——安全、 标准、法律、应用。"
+    },
+    {
+      "question_number": "4",
+      "source_question_number": "4",
+      "question_type": "单项选择题",
+      "content": "电子政务的灵魂是( )。开发一套电子政务系统较容易，而要让一套系统真正应用起来却很难。",
+      "answer": "D",
+      "score": null,
+      "options": {
+        "A": "安全",
+        "B": "标准",
+        "C": "法律",
+        "D": "应用"
+      },
+      "analysis": "电子政务的灵魂是应用。开发一套电子政务系统较容易，而要让一套系统真正应用起来却很难。"
+    },
+    {
+      "question_number": "5",
+      "source_question_number": "5",
+      "question_type": "简答题",
+      "content": "简述电子政务建设的软环境问题。",
+      "answer": "（1）三大难题——观念、习惯、权力。\n（2）三大关系——统与分、条与块、电与政。\n（3）四大体系——安全、 标准、法律、应用。",
+      "score": null
+    },
+    {
+      "question_number": "6",
+      "source_question_number": "6",
+      "question_type": "名词解释",
+      "content": "统与分",
+      "answer": "“统与分”指的是从中央到地方、从国家部委到各地方委办局电子政务网络平台建设的布局。",
+      "score": null
+    },
+    {
+      "question_number": "7",
+      "source_question_number": "7",
+      "question_type": "名词解释",
+      "content": "条与块",
+      "answer": "“条与块”是指区域性管理体系和行业性管理体系的关系。",
+      "score": null
+    },
+    {
+      "question_number": "8",
+      "source_question_number": "8",
+      "question_type": "名词解释",
+      "content": "电与政",
+      "answer": "“电与政”既指政府电子化与电子化政府的关系，也指电子政务与政府改革之间的互动关系。",
+      "score": null
+    },
+    {
+      "question_number": "9",
+      "source_question_number": "1",
+      "question_type": "单项选择题",
+      "content": "( ）是电子政务的基础。",
+      "answer": "A",
+      "score": null,
+      "options": {
+        "A": "建立数据库",
+        "B": "网上办公",
+        "C": "行政审批",
+        "D": "行政决策"
+      },
+      "analysis": "电子政务要求政府运用掌握的数据和信息在各级政府部门和社会各界之间进行信息交换和共享，从而完成和协助完成各项行政行为，因此建立数据库是电子政务的基础。"
+    },
+    {
+      "question_number": "10",
+      "source_question_number": "2",
+      "question_type": "单项选择题",
+      "content": "( ）本身就是一个新观的信息化行政组织，电子政务为政府机关的精简优化拓展了空间。",
+      "answer": "A",
+      "score": null,
+      "options": {
+        "A": "行政审批中心",
+        "B": "行政诉讼中心",
+        "C": "网络管理中心",
+        "D": "网络信息中心"
+      },
+      "analysis": "行政审批中心本身就是一个新观的信息化行政组织，电子政务为政府机关的精简优化拓展了空间。"
+    },
+    {
+      "question_number": "11",
+      "source_question_number": "3",
+      "question_type": "简答题",
+      "content": "简述电子政务软环境建设的重点。",
+      "answer": "（1）网上办公环境的建立。\n（2）行政审批方式的改革。\n（3）行政决策机制的变革。\n（4）行政组织形式的革新。\n统计\n 平均正确率 73.6%",
+      "score": null
+    },
+    {
+      "question_number": "12",
+      "source_question_number": "1",
+      "question_type": "单项选择题",
+      "content": "电子政务旨在( )。",
+      "answer": "B",
+      "score": null,
+      "options": {
+        "A": "提升经济实力",
+        "B": "提升政府竞争力",
+        "C": "提升企业竞争力",
+        "D": "提升公众素质"
+      },
+      "analysis": "中国政府之所以发展电子政务，首先是旨在提高政府竞争力。目前人们谈及竞争，大多是指企业之间的竞争，但事实上，目前经济竞争中还有一个重要的层面，就是政府之间的竞争。"
+    },
+    {
+      "question_number": "13",
+      "source_question_number": "2",
+      "question_type": "单项选择题",
+      "content": "电子政务有助于改造并提升政府的竞争力，或者说网络时代的政府竞争力必须是基于( ）的。",
+      "answer": "A",
+      "score": null,
+      "options": {
+        "A": "网络",
+        "B": "计算机硬件",
+        "C": "计算机软件",
+        "D": "大数据"
+      },
+      "analysis": "电子政务有助于改造并提升政府的竞争力，或者说网络时代的政府竞争力必须是基于网络的。因为通过网络，能够提高政府服务与监管水平，提高行政效率，促进政府信息和决策透明化。"
+    },
+    {
+      "question_number": "14",
+      "source_question_number": "3",
+      "question_type": "单项选择题",
+      "content": "长期以来，我国政府以监管为主要角色，而现代政府则更强调( )，这也需要在电子政务中得以体现。",
+      "answer": "B",
+      "score": null,
+      "options": {
+        "A": "权力",
+        "B": "服务",
+        "C": "网络",
+        "D": "政务"
+      },
+      "analysis": "长期以来，我国政府以监管为主要角色，而现代政府则更强调服务，这也需要在电子政务中得以体现。"
+    },
+    {
+      "question_number": "15",
+      "source_question_number": "4",
+      "question_type": "单项选择题",
+      "content": "中国政府之所以发展电子政务，首先是旨在（ ）。",
+      "answer": "A",
+      "score": null,
+      "options": {
+        "A": "提高政府竞争力",
+        "B": "大力发展经济",
+        "C": "找到电子政务的切入点",
+        "D": "防止花架子和形象工程"
+      },
+      "analysis": "中国政府之所以发展电子政务，首先是旨在提高政府竞争力。"
+    },
+    {
+      "question_number": "16",
+      "source_question_number": "5",
+      "question_type": "单项选择题",
+      "content": "“（ ）”就是要求我们在最初的电子政务方案设计中就要注意采用效果评估的方式。",
+      "answer": "B",
+      "score": null,
+      "options": {
+        "A": "用电子",
+        "B": "重政务",
+        "C": "重权力",
+        "D": "轻政务"
+      },
+      "analysis": "“重政务”就是要求我们在最初的电子政务方案设计中就要注意采用效果评估的方式，如到底通过电子政务能缩减多少流程环节、提高多少服务能力，以及如何改变职能和部门，等等。"
+    },
+    {
+      "question_number": "17",
+      "source_question_number": "6",
+      "question_type": "简答题",
+      "content": "简述理性推进电子政务建设进程。",
+      "answer": "理性推进电子政务建设进程：\n（1）电子政务旨在提升政府竞争力；\n（2）电子政务的切入点；\n（3）防止花架子和形象工程。",
+      "score": null
+    }
+  ]
+}

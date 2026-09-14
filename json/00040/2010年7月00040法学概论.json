@@ -1,0 +1,551 @@
+{
+  "exam_info": {
+    "title": "2010年7月 · 法学概论",
+    "subject": "法学概论",
+    "code": "00040",
+    "date": "2010年7月",
+    "kind": "历年真题",
+    "source_files": [
+      "00040法学概论201007【答案在试卷后】.doc"
+    ]
+  },
+  "questions": [
+    {
+      "question_number": "1",
+      "question_type": "单项选择题",
+      "content": "法学的研究对象是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "政治",
+        "B": "法律",
+        "C": "经济",
+        "D": "文化"
+      }
+    },
+    {
+      "question_number": "2",
+      "question_type": "单项选择题",
+      "content": "我国婚姻法第24条规定：“夫妻有相互继承遗产的权利。”该规定属于",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "禁止性规范",
+        "B": "命令性规范",
+        "C": "义务性规范",
+        "D": "授权性规范"
+      }
+    },
+    {
+      "question_number": "3",
+      "question_type": "单项选择题",
+      "content": "以涉及的内容为标准，法律原则分为",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "社会原则和专门法律原则",
+        "B": "公理性原则和政策性原则",
+        "C": "基本原则和具体原则",
+        "D": "确定性原则和非确定性原则"
+      }
+    },
+    {
+      "question_number": "4",
+      "question_type": "单项选择题",
+      "content": "古代印度的《摩奴法典》属于",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "制定法",
+        "B": "习惯法",
+        "C": "判例法",
+        "D": "宗教法"
+      }
+    },
+    {
+      "question_number": "5",
+      "question_type": "单项选择题",
+      "content": "我国宪法规定，有权制定行政法规的国家机关是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "全国人民代表大会",
+        "B": "全国人民代表大会常务委员会",
+        "C": "国务院",
+        "D": "中央军事委员会"
+      }
+    },
+    {
+      "question_number": "6",
+      "question_type": "单项选择题",
+      "content": "“依法治国，建设社会主义法治国家”载入我国宪法是在",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "1987年",
+        "B": "1996年",
+        "C": "1997年",
+        "D": "1999年"
+      }
+    },
+    {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "我国最高国家审判机关是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "最高人民法院",
+        "B": "最高人民检察院",
+        "C": "最高终审法院",
+        "D": "国务院"
+      }
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "在行政法律关系中，主体的一方必定是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "行政机关",
+        "B": "公民",
+        "C": "法人",
+        "D": "外国人"
+      }
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "依法履行公职、纳入国家行政编制，由国家财政负担工资福利的工作人员是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "行政机关的职工",
+        "B": "行政机关的工勤人员",
+        "C": "行政人员",
+        "D": "公务员"
+      }
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "1985年1月19日国务院批准的中国专利局公布的《中华人民共和国专利法实施细则》属于",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "职权立法",
+        "B": "授权立法",
+        "C": "执行性立法",
+        "D": "创制性立法"
+      }
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "我国著作权法规定，法人或者其它组织作品的发表权和财产权的保护期为",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "10年",
+        "B": "20年",
+        "C": "30年",
+        "D": "50年"
+      }
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "我国民法通则规定，一般诉讼时效期间为",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "1年",
+        "B": "2年",
+        "C": "4年",
+        "D": "20年"
+      }
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "我国公司法规定，股份有限公司的权力机构是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "股东大会",
+        "B": "董事会",
+        "C": "经理",
+        "D": "监事会"
+      }
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "下列属于我国市场规制法的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "公司法",
+        "B": "消费者权益保护法",
+        "C": "税法",
+        "D": "环境保护法"
+      }
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "下列属于商业贿赂行为的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "折扣",
+        "B": "佣金",
+        "C": "回扣",
+        "D": "减价"
+      }
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "我国刑法规定，在犯罪过程中自动放弃犯罪或者自动有效防止犯罪结果发生的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "犯罪终结",
+        "B": "犯罪中断",
+        "C": "犯罪未遂",
+        "D": "犯罪中止"
+      }
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "我国刑法规定，拘役的期限为1个月以上6个月以下，数罪并罚时最高不能超过",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "1年",
+        "B": "2年",
+        "C": "3年",
+        "D": "5年"
+      }
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "体现犯罪的本质并决定犯罪的性质的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "犯罪对象",
+        "B": "犯罪客体",
+        "C": "犯罪主体",
+        "D": "犯罪构成"
+      }
+    },
+    {
+      "question_number": "19",
+      "question_type": "单项选择题",
+      "content": "我国刑事诉讼法规定，执行逮捕的机关是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "公安机关",
+        "B": "国家安全机关",
+        "C": "审判机关",
+        "D": "检察机关"
+      }
+    },
+    {
+      "question_number": "20",
+      "question_type": "单项选择题",
+      "content": "我国民事诉讼法规定，因不动产纠纷提起的诉讼，管辖法院是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "原告所在地人民法院",
+        "B": "不动产所在地人民法院",
+        "C": "原告经常居住地人民法院",
+        "D": "被告所在地人民法院"
+      }
+    },
+    {
+      "question_number": "21",
+      "question_type": "单项选择题",
+      "content": "下列属于我国行政诉讼法特有的基本原则的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "适用法律一律平等",
+        "B": "两审终审制",
+        "C": "审判公开",
+        "D": "不适用调解"
+      }
+    },
+    {
+      "question_number": "22",
+      "question_type": "单项选择题",
+      "content": "我国民事诉讼法规定，非财产案件只交纳",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "鉴定费",
+        "B": "公告费",
+        "C": "案件受理费",
+        "D": "翻译费"
+      }
+    },
+    {
+      "question_number": "23",
+      "question_type": "单项选择题",
+      "content": "我国民法通则规定，下列财产所有权的取得属于传来取得的是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "通过国有化取得",
+        "B": "通过没收取得",
+        "C": "通过买卖取得",
+        "D": "通过收益取得"
+      }
+    },
+    {
+      "question_number": "24",
+      "question_type": "单项选择题",
+      "content": "我国民法通则规定，不得代理的行为是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "买卖",
+        "B": "遗嘱",
+        "C": "租赁",
+        "D": "借贷"
+      }
+    },
+    {
+      "question_number": "25",
+      "question_type": "单项选择题",
+      "content": "我国刑法规定，具有刑事责任能力的自然人成为故意杀人罪的主体须年满",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "10周岁",
+        "B": "14周岁",
+        "C": "16周岁",
+        "D": "18周岁"
+      }
+    },
+    {
+      "question_number": "26",
+      "question_type": "单项选择题",
+      "content": "我国行政诉讼法规定，下列不属于人民法院的主管范围的行为是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "对拘留、罚款等行政处罚不服的",
+        "B": "认为行政机关侵犯法律规定的经营自主权的",
+        "C": "不具有强制力的行政指导行为",
+        "D": "认为行政机关违法要求履行义务的"
+      }
+    },
+    {
+      "question_number": "27",
+      "question_type": "单项选择题",
+      "content": "按照国际惯例，引渡的对象一般是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "政治犯",
+        "B": "普通刑事犯",
+        "C": "宗教犯",
+        "D": "军事犯"
+      }
+    },
+    {
+      "question_number": "28",
+      "question_type": "单项选择题",
+      "content": "世界贸易组织的前身是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "关税与贸易总协定",
+        "B": "国际商会",
+        "C": "国际法协会",
+        "D": "国际贸易协会"
+      }
+    },
+    {
+      "question_number": "29",
+      "question_type": "单项选择题",
+      "content": "在冲突规范“物权关系依物之所在地法”中，其后一部分“物之所在地法’’的法律术语是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "系属",
+        "B": "识别",
+        "C": "连结点",
+        "D": "范围"
+      }
+    },
+    {
+      "question_number": "30",
+      "question_type": "单项选择题",
+      "content": "甲国法院依本国的冲突规范，有关涉外民事关系应适用乙国法，而依乙国的冲突规范，则应适用丙国的实体法，结果法院适用丙国的实体法判决了案件的情况是",
+      "answer": "",
+      "score": 1,
+      "options": {
+        "A": "反致",
+        "B": "保留",
+        "C": "规避",
+        "D": "转致 二、多项选择题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）(本大题共5小题，每小题2分，共10分) 在每小题列出的五个备选项中至少有两个是符合题目要求的，请将其代码填写在题后的括号内。错选、多选、少选或未选均无分。"
+      }
+    },
+    {
+      "question_number": "31",
+      "question_type": "多项选择题",
+      "content": "法律产生的决定性因素包括",
+      "answer": "",
+      "score": 2,
+      "options": {
+        "A": "氏族的出现",
+        "B": "商品交换的出现",
+        "C": "私有制的出现",
+        "D": "奴隶制的出现",
+        "E": "道德的出现"
+      }
+    },
+    {
+      "question_number": "32",
+      "question_type": "多项选择题",
+      "content": "关于民事行为的效力，下列说法正确的有",
+      "answer": "",
+      "score": 2,
+      "options": {
+        "A": "民事行为具备有效成立的各种要件，即发生法律上的效力",
+        "B": "无效的民事行为是指不具备有效成立的要件，因而法律上不允许发生行为人预期的民事法律后果的行为",
+        "C": "可撤销的民事行为一经撤销，自始无效",
+        "D": "民事行为不可以附条件",
+        "E": "无效的民事行为可分为绝对无效和相对无效"
+      }
+    },
+    {
+      "question_number": "33",
+      "question_type": "多项选择题",
+      "content": "我国刑法规定，教唆犯的构成要件包括",
+      "answer": "",
+      "score": 2,
+      "options": {
+        "A": "被教唆的人接受了教唆",
+        "B": "有教唆他人犯罪的行为",
+        "C": "有教唆他人犯罪的故意",
+        "D": "被教唆的人实施了被教唆的罪",
+        "E": "教唆的对象不满14周岁"
+      }
+    },
+    {
+      "question_number": "34",
+      "question_type": "多项选择题",
+      "content": "我国刑事诉讼法规定，刑事诉讼中的当事人包括",
+      "answer": "",
+      "score": 2,
+      "options": {
+        "A": "自诉人",
+        "B": "附带民事诉讼的原告人和被告人",
+        "C": "被告人",
+        "D": "证人",
+        "E": "辩护人"
+      }
+    },
+    {
+      "question_number": "35",
+      "question_type": "多项选择题",
+      "content": "下列不属于我国民事诉讼法规定的证据的有",
+      "answer": "",
+      "score": 2,
+      "options": {
+        "A": "被告人供述",
+        "B": "被害人陈述",
+        "C": "书证",
+        "D": "物证",
+        "E": "现场笔录 三、名词解释题（本大题共5小题，每小题3分，共15分）"
+      }
+    },
+    {
+      "question_number": "36",
+      "question_type": "名词解释",
+      "content": "法律解释",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "37",
+      "question_type": "名词解释",
+      "content": "专利",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "38",
+      "question_type": "名词解释",
+      "content": "抗税",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "39",
+      "question_type": "名词解释",
+      "content": "直接故意",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "40",
+      "question_type": "名词解释",
+      "content": "行政诉讼的证据 四、简答题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题共3小题，每小题5分，共15分）",
+      "answer": "",
+      "score": 3
+    },
+    {
+      "question_number": "41",
+      "question_type": "简答题",
+      "content": "简述我国依法治国的必要性。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "42",
+      "question_type": "简答题",
+      "content": "简述我国行政处罚法的法定原则的内容。",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "43",
+      "question_type": "简答题",
+      "content": "简述支票的法定记载事项。 五、论述题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题14分）",
+      "answer": "",
+      "score": 5
+    },
+    {
+      "question_number": "44",
+      "question_type": "论述题",
+      "content": "试述我国公民基本权利和义务的社会主义性质。 六、案例分析题(本大题共2小题，每小题8分，共16分)",
+      "answer": "",
+      "score": 14
+    },
+    {
+      "question_number": "45",
+      "question_type": "材料分析题",
+      "content": "甲，17岁，某公司临时工，月工资1000元。一天，甲用4000元买了一台电脑。甲的父母认为甲尚未成年，没有征得家长同意，不能进行大数额的买卖，要求退货并要求卖方退款。而甲却认为用的是自己的工资，不愿退货。 问题：(1)甲的买卖行为是否有效?为什么? (2)如果甲是一名在校中学生，完全没有收入来源，那么其父母的退款要求是否合法?为什么?",
+      "answer": "",
+      "score": 8
+    },
+    {
+      "question_number": "46",
+      "question_type": "材料分析题",
+      "content": "迈克系外国国籍，2001年来到我国，在某市外国语学校任教。迈克在我国任教期间，利用教师身份，搜集我国政治、经济、军事等方面情报，并窃取我国大量机密文件。某市公安机关于2003年1月将其逮捕，并在其住所内查获一批机密文件。迈克对上述罪行供认不讳，但认为中国法院无权对其判罪量刑。 问题：迈克的行为是否应适用我国刑法，由我国法院进行审判?为什么? \u0001\u0001 \u0003 \u0004 \u0003 \u0004 \u0013 HYPERLINK \"http://zk.ikaoti.cn/zikao.htm\" \u0001\u0014更多考资微信公众号：ikaoti QQ：593777558\u0015 \u0013PAGE \u0015 \u0013PAGE \u00146\u0015 更多科目自考真题答案至：http://zk.ikaoti.cn/zikao.htm",
+      "answer": "",
+      "score": 8
+    }
+  ]
+}

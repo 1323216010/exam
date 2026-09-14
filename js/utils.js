@@ -9,6 +9,8 @@ export function getFilenameFromPath(path) {
 }
 
 const SUBJECT_NAMES = {
+    '00040': '法学概论',
+    '03333': '电子政务概论',
     '00292': '市政学',
     '00312': '政治学概论',
     '00318': '公共政策导论',
