@@ -8,7 +8,7 @@ export const state = {
     showingResults: false,
     startTime: null,
     timerInterval: null,
-    currentMode: null, // 'upload', 'exam-list', 'practice', 'custom'
+    currentMode: null, // 'upload', 'exam-list', 'practice' (自由刷题；exam.html 仍支持 mode=custom)
     allExamData: [],
     selectedExams: []
 };

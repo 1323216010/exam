@@ -501,7 +501,7 @@ async function handleURLParams() {
         return;
     }
     
-    // 练习模式
+    // 自由刷题（练习路径）
     if (params.get('mode') === 'practice') {
         const randomOrder = params.get('random') === 'true';
         const limit = params.get('limit');
@@ -533,7 +533,7 @@ async function handleURLParams() {
             
             const subjectText = subject ? getSubjectFilterLabel(subject) : '全部科目';
             const typeText = types && types.length > 0 ? ` - ${types.join('、')}` : '';
-            const title = `题库练习 - ${subjectText}${typeText} (${questions.length}题)`;
+            const title = `自由刷题 - ${subjectText}${typeText} (${questions.length}题)`;
             state.examData = {
                 filename: title,
                 exam_info: {
@@ -549,7 +549,7 @@ async function handleURLParams() {
         return;
     }
     
-    // 自定义组卷模式
+    // 自由刷题（按题型数量组卷路径）
     if (params.get('mode') === 'custom') {
         const selectedIndices = params.get('exams').split(',').map(n => parseInt(n));
         const typeConfigs = JSON.parse(params.get('typeConfig'));
@@ -625,7 +625,7 @@ async function handleURLParams() {
                 return;
             }
             
-            const title = `自定义组卷 (${finalQuestions.length}题)`;
+            const title = `自由刷题 (${finalQuestions.length}题)`;
             
             state.examData = {
                 filename: title,
@@ -750,7 +750,7 @@ function initSidebarResizeAndCollapse() {
 // ==================== 页面初始化 ====================
 
 async function initializeExamApp() {
-    // 加载试卷列表（练习模式和自定义组卷需要）
+    // 加载试卷列表（自由刷题等模式需要）
     try {
         await loadExamList();
     } catch (error) {

@@ -1,4 +1,4 @@
-// 题库练习模式相关功能
+// 自由刷题模式相关功能（含高级组卷）
 import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, shuffleArray } from './utils.js';
@@ -11,32 +11,53 @@ export function startPracticeMode() {
     const randomOrder = document.getElementById('random-order').checked;
     const questionLimit = document.getElementById('question-limit').value;
     const subject = document.getElementById('practice-subject-filter').value;
-    
+    const deduplicateEl = document.getElementById('practice-deduplicate');
+    const deduplicate = deduplicateEl ? deduplicateEl.checked : true;
+
     const selectedTypes = Array.from(document.querySelectorAll('.practice-type-checkbox:checked'))
         .map(cb => cb.value);
-    
+
     const selectedExams = Array.from(document.querySelectorAll('.practice-exam-checkbox:checked'))
         .map(cb => cb.value);
-    
+
     if (selectedExams.length === 0) {
         alert('请至少选择一套试卷');
         return;
     }
-    if (selectedTypes.length === 0) {
-        alert('请至少选择一种题型');
-        return;
-    }
-    
+
+    // 高级选项：任一题型填写了数量 → 走自定义组卷路径
+    const typeConfigs = {};
+    document.querySelectorAll('.practice-type-count-input').forEach(input => {
+        const raw = input.value.trim();
+        if (raw === '') return;
+        const count = parseInt(raw, 10);
+        if (Number.isNaN(count)) return;
+        typeConfigs[input.dataset.type] = count;
+    });
+    const hasTypeCounts = Object.keys(typeConfigs).length > 0;
+
     const params = new URLSearchParams();
-    params.set('mode', 'practice');
-    params.set('random', randomOrder);
-    if (questionLimit) params.set('limit', questionLimit);
-    if (subject) params.set('subject', subject);
-    if (selectedTypes.length > 0) params.set('types', selectedTypes.join(','));
-    if (selectedExams.length > 0) params.set('exams', selectedExams.join(','));
-    
-    const url = `exam.html?${params.toString()}`;
-    window.open(url, '_blank');
+
+    if (hasTypeCounts) {
+        params.set('mode', 'custom');
+        params.set('exams', selectedExams.join(','));
+        params.set('typeConfig', JSON.stringify(typeConfigs));
+        params.set('random', randomOrder);
+        params.set('dedup', deduplicate);
+    } else {
+        if (selectedTypes.length === 0) {
+            alert('请至少选择一种题型，或在高级选项中填写题型数量');
+            return;
+        }
+        params.set('mode', 'practice');
+        params.set('random', randomOrder);
+        if (questionLimit) params.set('limit', questionLimit);
+        if (subject) params.set('subject', subject);
+        params.set('types', selectedTypes.join(','));
+        params.set('exams', selectedExams.join(','));
+    }
+
+    window.open(`exam.html?${params.toString()}`, '_blank');
 }
 
 export async function initPracticeSubjectFilter() {
@@ -102,20 +123,36 @@ async function loadPracticeQuestionTypes() {
     try {
         const response = await fetch(EXAM_LIST[0].file || EXAM_LIST[0].path);
         const data = await response.json();
-        
+
         const types = [...new Set(data.questions.map(q => q.question_type))];
         const typeFilters = document.getElementById('practice-type-filters');
-        
-        typeFilters.innerHTML = '';
-        types.forEach(type => {
-            const item = document.createElement('label');
-            item.className = 'config-label';
-            item.innerHTML = `
-                <input type="checkbox" value="${type}" class="practice-type-checkbox">
-                <span>${type}</span>
-            `;
-            typeFilters.appendChild(item);
-        });
+        const typeCounts = document.getElementById('practice-type-counts');
+
+        if (typeFilters) {
+            typeFilters.innerHTML = '';
+            types.forEach(type => {
+                const item = document.createElement('label');
+                item.className = 'config-label';
+                item.innerHTML = `
+                    <input type="checkbox" value="${type}" class="practice-type-checkbox">
+                    <span>${type}</span>
+                `;
+                typeFilters.appendChild(item);
+            });
+        }
+
+        if (typeCounts) {
+            typeCounts.innerHTML = '';
+            types.forEach(type => {
+                const item = document.createElement('div');
+                item.className = 'type-count-item';
+                item.innerHTML = `
+                    <span class="type-count-label">${type}</span>
+                    <input type="number" class="practice-type-count-input type-count-input" placeholder="不限" min="-1" data-type="${type}">
+                `;
+                typeCounts.appendChild(item);
+            });
+        }
     } catch (error) {
         console.error('加载题型失败:', error);
     }
