@@ -14,7 +14,7 @@
       "question_number": "1",
       "question_type": "单项选择题",
       "content": "法学的研究对象是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "政治",
@@ -105,7 +105,7 @@
       "question_number": "8",
       "question_type": "单项选择题",
       "content": "在行政法律关系中，主体的一方必定是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "行政机关",
@@ -118,7 +118,7 @@
       "question_number": "9",
       "question_type": "单项选择题",
       "content": "依法履行公职、纳入国家行政编制，由国家财政负担工资福利的工作人员是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "行政机关的职工",
@@ -131,7 +131,7 @@
       "question_number": "10",
       "question_type": "单项选择题",
       "content": "1985年1月19日国务院批准的中国专利局公布的《中华人民共和国专利法实施细则》属于",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "职权立法",
@@ -170,7 +170,7 @@
       "question_number": "13",
       "question_type": "单项选择题",
       "content": "我国公司法规定，股份有限公司的权力机构是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "股东大会",
@@ -183,7 +183,7 @@
       "question_number": "14",
       "question_type": "单项选择题",
       "content": "下列属于我国市场规制法的是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "公司法",
@@ -248,7 +248,7 @@
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "我国刑事诉讼法规定，执行逮捕的机关是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "公安机关",
@@ -261,7 +261,7 @@
       "question_number": "20",
       "question_type": "单项选择题",
       "content": "我国民事诉讼法规定，因不动产纠纷提起的诉讼，管辖法院是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "原告所在地人民法院",
@@ -274,7 +274,7 @@
       "question_number": "21",
       "question_type": "单项选择题",
       "content": "下列属于我国行政诉讼法特有的基本原则的是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "适用法律一律平等",
@@ -287,7 +287,7 @@
       "question_number": "22",
       "question_type": "单项选择题",
       "content": "我国民事诉讼法规定，非财产案件只交纳",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "鉴定费",
@@ -333,7 +333,8 @@
         "B": "14周岁",
         "C": "16周岁",
         "D": "18周岁"
-      }
+      },
+      "analysis": "刑事责任能力，是指行为人构成犯罪和承担刑事责任所必须具备的刑法意义上辨认和控制自己行为的能力，不具备刑事责任能力者即使实施了客观上危害社会的行为，也不能成为犯罪主体，不能被追究刑事责任；刑事责任能力减弱者，其刑事责任也要相应地适当减轻。"
     },
     {
       "question_number": "26",
@@ -397,7 +398,7 @@
         "A": "反致",
         "B": "保留",
         "C": "规避",
-        "D": "转致 二、多项选择题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）(本大题共5小题，每小题2分，共10分) 在每小题列出的五个备选项中至少有两个是符合题目要求的，请将其代码填写在题后的括号内。错选、多选、少选或未选均无分。"
+        "D": "转致 二、多项选择题（更多科目请访问"
       }
     },
     {
@@ -467,7 +468,7 @@
         "B": "被害人陈述",
         "C": "书证",
         "D": "物证",
-        "E": "现场笔录 三、名词解释题（本大题共5小题，每小题3分，共15分）"
+        "E": "现场笔录"
       }
     },
     {
@@ -488,7 +489,7 @@
       "question_number": "38",
       "question_type": "名词解释",
       "content": "抗税",
-      "answer": "",
+      "answer": "抗税是指纳税人以暴力、威胁方法拒不缴纳税款的行为。",
       "score": 3
     },
     {
@@ -502,14 +503,14 @@
       "question_number": "40",
       "question_type": "名词解释",
       "content": "行政诉讼的证据 四、简答题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题共3小题，每小题5分，共15分）",
-      "answer": "",
+      "answer": "条约是国际法主体间依据国际法所缔结的据以确定其相互权利与义务的书面协议。广义的条约指不论以何种名称成形式出现的国际法主体间达成的国际协议。狭义的条约仅指以条约为名称的协议。",
       "score": 3
     },
     {
       "question_number": "41",
       "question_type": "简答题",
       "content": "简述我国依法治国的必要性。",
-      "answer": "",
+      "answer": "（1）依法治国是建立和完善社会主义市场经济，发展社会主义物质文明的需要。 （ 2）依法治国是扩大社会主义民主，实现国家政治体制改革，建设社会主义政治文明的需要。 （ 3）依法治国是建设社会主义精神文明的需要。",
       "score": 5
     },
     {

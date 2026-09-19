@@ -118,7 +118,7 @@
       "question_number": "10",
       "question_type": "单项选择题",
       "content": "《中华人民共和国行政复议法》自 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "1998年10月1日起施行",
@@ -131,7 +131,7 @@
       "question_number": "11",
       "question_type": "单项选择题",
       "content": "我国担保法规定，定金数额虽可由当事人自主约定，但不得超过主合同标的额的【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "5％",
@@ -157,7 +157,7 @@
       "question_number": "13",
       "question_type": "单项选择题",
       "content": "在下列票据法律关系中，只有两方当事人的票据是 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "支票",
@@ -196,7 +196,7 @@
       "question_number": "16",
       "question_type": "单项选择题",
       "content": "纳税人有特殊困难不能按期纳税的，经省、自治区、直辖市国家税务局、地方税务局批准，可以延期缴纳税款，但最长不得超过 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "3个月",
@@ -261,7 +261,7 @@
       "question_number": "21",
       "question_type": "单项选择题",
       "content": "为了保护自己的合法权益而参加到他人正在进行的民事诉讼中的人，称为 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "民事诉讼中的第三人",
@@ -274,7 +274,7 @@
       "question_number": "22",
       "question_type": "单项选择题",
       "content": "人民法院审理选民资格案件适用 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "普通程序",
@@ -326,7 +326,7 @@
       "question_number": "26",
       "question_type": "单项选择题",
       "content": "现代国际法的首要渊源是 【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "国际习惯",
@@ -339,7 +339,7 @@
       "question_number": "27",
       "question_type": "单项选择题",
       "content": "我国现行确立自然人国籍的原则是 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "血统主义",
@@ -365,7 +365,7 @@
       "question_number": "29",
       "question_type": "单项选择题",
       "content": "我国公民和外国人结婚，适用 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "当事人的本国法",
@@ -384,7 +384,7 @@
         "A": "被继承人的本国法",
         "B": "被继承人的住所地法",
         "C": "被继承人死亡时的住所地法",
-        "D": "动产所在地法 二、多项选择题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）(本大题共5小题，每小题2分，共10分) 在每小题列出的五个备选项中至少有两个是符合题目要求的，请将其代码填写在题后的括号内。错选、多选、少选或未选均无分。"
+        "D": "动产所在地法 二、多项选择题（更多科目请访问"
       }
     },
     {
@@ -454,7 +454,7 @@
         "B": "赔偿",
         "C": "道歉",
         "D": "限制主权",
-        "E": "对国际罪行的直接责任人进行国际审判 三、名词解释题 (本大题共5小题，每小题3分，共15分)"
+        "E": "对国际罪行的直接责任人进行国际审判"
       }
     },
     {
@@ -468,7 +468,7 @@
       "question_number": "37",
       "question_type": "名词解释",
       "content": "公务员",
-      "answer": "",
+      "answer": "是指依法履行公职、纳入国家行政编制、由国家财政负担工资福利的工作人员。",
       "score": 3
     },
     {
@@ -482,14 +482,14 @@
       "question_number": "39",
       "question_type": "名词解释",
       "content": "犯罪构成",
-      "answer": "",
+      "answer": "犯罪构成是指依刑法的规定，确定某种行为构成犯罪所必须具备的主观要件和客观要件的总和",
       "score": 3
     },
     {
       "question_number": "40",
       "question_type": "名词解释",
       "content": "督促程序 四、简答题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）(本大题共3小题．每小题5分，共15分)",
-      "answer": "",
+      "answer": "条约是国际法主体间依据国际法所缔结的据以确定其相互权利与义务的书面协议。广义的条约指不论以何种名称成形式出现的国际法主体间达成的国际协议。狭义的条约仅指以条约为名称的协议。",
       "score": 3
     },
     {

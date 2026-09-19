@@ -14,7 +14,7 @@
       "question_number": "1",
       "question_type": "单项选择题",
       "content": "“全面依法治国”被明确为发展中国特色社会主义的基本方略的时间是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "2013 年",
@@ -40,7 +40,7 @@
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "钦定宪法、协定宪法与民定宪法的分类标准是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "制定主体",
@@ -53,7 +53,7 @@
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "根据我国《宪法》规定，最高国家权力机关是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "主席",
@@ -66,7 +66,7 @@
       "question_number": "5",
       "question_type": "单项选择题",
       "content": "以行政行为所针对相对人是否特定为标准，可以将行政行为分为",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "抽象行政行为与具体行政行为",
@@ -82,10 +82,10 @@
       "answer": "",
       "score": 1,
       "options": {
-        "A": "依法给予 15 元的罚款",
-        "B": "依法给予 30 元的罚款",
-        "C": "依法给予 50 元的罚款",
-        "D": "依法给予 100 元的罚款 00040# 法学概论试题 第 1 页（共 5 页）"
+        "A": "依法给予",
+        "B": "依法给予",
+        "C": "依法给予",
+        "D": "依法给予 100 元的罚款"
       }
     },
     {
@@ -157,7 +157,7 @@
       "question_number": "24",
       "question_type": "单项选择题",
       "content": "下列属于使馆职务的是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "谈判",
@@ -170,7 +170,7 @@
       "question_number": "25",
       "question_type": "单项选择题",
       "content": "条约缔约时意思表示存在瑕疵不包括",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "对客观事实的认识错误",
@@ -311,7 +311,7 @@
         "B": "移送管辖",
         "C": "指定管辖",
         "D": "管辖权的转移",
-        "E": "集中管辖 非选择题部分"
+        "E": "集中管辖"
       }
     },
     {
@@ -339,14 +339,14 @@
       "question_number": "39",
       "question_type": "名词解释",
       "content": "拘传",
-      "answer": "",
+      "answer": "拘传是指公安机关、人民检察院和人民法院对未被羁押的犯罪嫌疑人、被告人,依\n法强制其到案接受讯问的一种强制措施。",
       "score": 3
     },
     {
       "question_number": "40",
       "question_type": "名词解释",
       "content": "反诉 四、简答题：本大题共3小题，每小题5分，共15分。",
-      "answer": "",
+      "answer": "诉前保全是指利害关系人因情况紧急，不立即申请保全将会使其合法权益受到难以弥 补的损害的，可以在提起诉讼或者申请仲裁前向被保全财产所在地、被申请人住所地 或者对案件有管辖权的人民法院申请保全措施。",
       "score": 3
     },
     {
