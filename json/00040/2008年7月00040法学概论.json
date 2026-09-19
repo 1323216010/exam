@@ -27,7 +27,7 @@
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "我国现行宪法是第五届全国人民代表大会第五次会议通过的",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "1954年宪法",
@@ -40,7 +40,7 @@
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "我国宪法规定，凡具有中华人民共和国国籍的人都是中华人民共和国",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "人民",
@@ -53,7 +53,7 @@
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "我国宪法规定，我国社会主义经济制度的基础是",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "公有制",
@@ -66,7 +66,7 @@
       "question_number": "5",
       "question_type": "单项选择题",
       "content": "我国宪法规定，我国人民民主专政的根本标志是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "工人阶级的领导",
@@ -79,7 +79,7 @@
       "question_number": "6",
       "question_type": "单项选择题",
       "content": "我国的政权组织形式是人民代表大会制度，人民代表大会制度以",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "三权分立为原则",
@@ -92,7 +92,7 @@
       "question_number": "7",
       "question_type": "单项选择题",
       "content": "我国解决民族问题和处理民族关系的基本原则是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "民族团结",
@@ -105,7 +105,7 @@
       "question_number": "8",
       "question_type": "单项选择题",
       "content": "我国的国家权力机关是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "全国人民代表大会及其常委会和地方各级人民代表大会及其常委会",
@@ -118,7 +118,7 @@
       "question_number": "9",
       "question_type": "单项选择题",
       "content": "行政机关依法制定各种行政管理法规的行为是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "行政立法",
@@ -131,7 +131,7 @@
       "question_number": "10",
       "question_type": "单项选择题",
       "content": "依我国行政处罚法规定，下列属于行政处罚种类的是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "警告",
@@ -144,7 +144,7 @@
       "question_number": "11",
       "question_type": "单项选择题",
       "content": "我国民法通则和民事诉讼法规定，利害关系人向人民法院申请宣告失踪的条件之一是公民下落不明满",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "1年",
@@ -157,7 +157,7 @@
       "question_number": "12",
       "question_type": "单项选择题",
       "content": "我国专利法规定，我国对发明专利权的保护期限为",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "5年",
@@ -170,7 +170,7 @@
       "question_number": "13",
       "question_type": "单项选择题",
       "content": "我国婚姻法规定的结婚所必须遵守的程序是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "进行结婚公证",
@@ -183,7 +183,7 @@
       "question_number": "14",
       "question_type": "单项选择题",
       "content": "我国法律规定，兄弟姐妹、祖父母、外祖父母属于法定继承人中的",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "第一顺序继承人",
@@ -223,7 +223,7 @@
       "question_number": "17",
       "question_type": "单项选择题",
       "content": "税法的最基本构成要素包括",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "纳税主体、征税对象和税率",
@@ -236,7 +236,7 @@
       "question_number": "18",
       "question_type": "单项选择题",
       "content": "我国刑法规定的完全不负刑事责任年龄阶段是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "不满14周岁",
@@ -249,7 +249,7 @@
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "甲欲毒杀乙5岁的儿子来报复乙，甲买来毒药，并带着毒药来到乙家中，不巧，乙的儿子到外婆家去了。甲的行为属于",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "犯罪预备",
@@ -262,7 +262,7 @@
       "question_number": "20",
       "question_type": "单项选择题",
       "content": "我国刑法规定，对累犯应当",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "加重处罚",
@@ -275,7 +275,7 @@
       "question_number": "21",
       "question_type": "单项选择题",
       "content": "我国刑法规定，被判处管制的犯罪分子由",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "人民检察院执行",
@@ -288,7 +288,7 @@
       "question_number": "22",
       "question_type": "单项选择题",
       "content": "我国刑事诉讼法规定，除法律有特别规定外，刑事案件的侦查由",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "国家安全机关进行",
@@ -328,7 +328,7 @@
       "question_number": "25",
       "question_type": "单项选择题",
       "content": "行政诉讼的被告通常是",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "公民",
@@ -341,7 +341,7 @@
       "question_number": "26",
       "question_type": "单项选择题",
       "content": "行政诉讼中的举证责任由",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "原告承担",
@@ -393,7 +393,7 @@
       "question_number": "30",
       "question_type": "单项选择题",
       "content": "在外国人的民事诉讼地位上，我国实行的是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "国民待遇制度",
@@ -406,7 +406,7 @@
       "question_number": "31",
       "question_type": "多项选择题",
       "content": "我国宪法规定的我国公民享有的政治权利和自由包括",
-      "answer": "",
+      "answer": "BD",
       "score": 2,
       "options": {
         "A": "宗教信仰自由",
@@ -420,7 +420,7 @@
       "question_number": "32",
       "question_type": "多项选择题",
       "content": "下列属于要物法律行为的有",
-      "answer": "",
+      "answer": "AE",
       "score": 2,
       "options": {
         "A": "借贷合同",
@@ -434,7 +434,7 @@
       "question_number": "33",
       "question_type": "多项选择题",
       "content": "犯罪构成的要素包括",
-      "answer": "",
+      "answer": "ABDE",
       "score": 2,
       "options": {
         "A": "犯罪客体",
@@ -448,7 +448,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "下列关于刑事自诉案件的表述正确的有",
-      "answer": "",
+      "answer": "ABCDE",
       "score": 2,
       "options": {
         "A": "自诉案件由人民法院直接受理",
@@ -462,7 +462,7 @@
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "社会支持起诉的案件包括",
-      "answer": "",
+      "answer": "BCDE",
       "score": 2,
       "options": {
         "A": "侵权案件",
@@ -476,28 +476,28 @@
       "question_number": "36",
       "question_type": "名词解释",
       "content": "国家机构",
-      "answer": "",
+      "answer": "国家机构是统治阶级为实现国家权力而建立起来的一整套国家机关体系的总称，是实现国家职能的重要工具。",
       "score": 3
     },
     {
       "question_number": "37",
       "question_type": "名词解释",
       "content": "代理",
-      "answer": "",
+      "answer": "代理是指代理人在代理权限的范围内，以被代理人的名义对第三人实施民事法律行为，行为后果直接由被代理人承受的一种制度。",
       "score": 3
     },
     {
       "question_number": "38",
       "question_type": "名词解释",
       "content": "产品质量法",
-      "answer": "",
+      "answer": "产品质量法是调整在生产、流通和消费过程中因产品质量所发生的经济关系的法律规范的总称。",
       "score": 3
     },
     {
       "question_number": "39",
       "question_type": "名词解释",
       "content": "数罪并罚",
-      "answer": "",
+      "answer": "数罪并罚是指一人犯有数罪，人民法院对其所犯的各罪分别定罪量刑后，依照法定的原则，决定应当执行的刑罚。",
       "score": 3
     },
     {
@@ -511,42 +511,42 @@
       "question_number": "41",
       "question_type": "简答题",
       "content": "简述我国宪法关于经济制度的主要内容。",
-      "answer": "",
+      "answer": "我国宪法关于经济制度的主要内容包括：（1）确认生产资料的社会主义公有制是我国社会主义经济制度的基础；（2）坚持公有制为主体、多种所有制经济共同发展的基本经济制度；（3）坚持按劳分配为主体、多种分配方式并存的分配制度；（4）国家实行社会主义市场经济；（5）社会主义的公共财产神圣不可侵犯，公民的合法的私有财产不受侵犯。",
       "score": 5
     },
     {
       "question_number": "42",
       "question_type": "简答题",
       "content": "简述行政处罚法的基本原则。",
-      "answer": "",
+      "answer": "行政处罚法的基本原则包括：（1）处罚法定原则；（2）公正、公开原则；（3）处罚与教育相结合原则；（4）保障当事人权利原则；（5）监督制约原则。",
       "score": 5
     },
     {
       "question_number": "43",
       "question_type": "简答题",
       "content": "简述股份有限公司的设立条件。 五、论述题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题共1小题，14分）",
-      "answer": "",
+      "answer": "股份有限公司的设立条件包括：（1）发起人符合法定人数；（2）发起人认购和募集的股本达到法定资本最低限额；（3）股份发行、筹办事项符合法律规定；（4）发起人制订公司章程，采用募集方式设立的经创立大会通过；（5）有公司名称，建立符合股份有限公司要求的组织机构；（6）有公司住所。",
       "score": 5
     },
     {
       "question_number": "44",
       "question_type": "论述题",
       "content": "试论我国依法治国的必要性。 六、案例分析题(本大题共2小题，每小题8分，共16分)",
-      "answer": "",
+      "answer": "依法治国的必要性：（1）依法治国是建立和完善社会主义市场经济，发展社会主义物质文明的需要；（2）依法治国是扩大社会主义民主，实现国家政治体制改革，建设社会主义政治文明的需要；（3）依法治国是建设社会主义精神文明的需要。",
       "score": 14
     },
     {
       "question_number": "45",
       "question_type": "材料分析题",
       "content": "某音像商店进回一批新型“随身听”，经价格核算，定价为1999元。售货员王某在制作价格标签时，不小心看漏了个“1”，将价格标为999元。李某来该商店无意中发现此“随身听”价格如此便宜，就问是真货还是假货，在得到售货员王某的确切回答“是真货”，并检查确非假货后，用信用卡支付，买下两台。并连说：“真便宜，真便宜!” 月底，该商店在盘点时，发现少了2000元，经查，是王某标错价格所致。王某通过信用卡找到李某，要求李某退回两台“随身听”，商店将返回他支付的1998元货款。李某当即拒绝，说：“我当时也表示怀疑，是在你确认这个价格无误之后，我才付的款。所以，买卖关系已经成立，你现在不能反悔。”王某说当初自己也不知道真实价格是1999元，是自己抄单抄错了。李某说：“那是你们商店内部的事，我不知道也不想知道。”商店无奈，只有起诉到人民法院。 问题：(1)商店与李某之间的行为属于什么性质的行为?为什么? (2)法院应该如何判决?",
-      "answer": "",
+      "answer": "（1）商店与李某之间的行为属于因重大误解而为的可撤销民事行为。售货员将价格标错，对标的价格发生重大误解，李某虽有怀疑但在得到确认后购买，双方意思表示存在重大误解。\n（2）法院应支持商店的请求，撤销该买卖行为，李某返还两台随身听，商店返还李某已付货款。",
       "score": 8
     },
     {
       "question_number": "46",
       "question_type": "材料分析题",
       "content": "郑某因上班迟到被田某当场批评，便对田某怀恨在心。一天晚上下班后，郑某骑自行车尾随田某至一无人处，掏出事先准备好的水果刀从背后猛地刺向田某。田某受伤后顺势抓住郑某的自行车，将其推翻在地，并喊：“杀人啦!”郑某见势，举刀再次刺向田某。田某在躲避之际将手中的袋子甩向郑某，正砸在郑某的头部。因袋中装有田某带回家准备刷厕所的硫酸一瓶，瓶子被砸破后，硫酸将郑某的双眼烧瞎，并导致面部大面积毁容。人民法院认为田某的行为属于正当防卫，不负刑事责任。 问题：(1)什么是正当防卫?正当防卫须具备哪些条件? (2)法院的处理是否正确?为什么? \u0001\u0001 \u0003 \u0004 \u0003 \u0004 \u0013 HYPERLINK \"http://zk.ikaoti.cn/zikao.htm\" \u0001\u0014更多考资微信公众号：ikaoti QQ：593777558\u0015 \u0013PAGE \u0015 \u0013PAGE \u00146\u0015 更多科目自考真题答案至：http://zk.ikaoti.cn/zikao.htm",
-      "answer": "",
+      "answer": "（1）正当防卫是指为了使国家、公共利益、本人或者他人的人身、财产和其他权利免受正在进行的不法侵害，而采取的制止不法侵害并对不法侵害人造成损害的行为。成立条件：①必须有不法侵害行为发生；②必须是正在进行的不法侵害；③必须是为了保护合法权益；④必须针对不法侵害人本人；⑤不能明显超过必要限度造成重大损害。\n（2）法院处理正确。郑某持刀连续刺杀，属严重危及人身安全的暴力犯罪，田某反击致郑某重伤毁容，属于正当防卫，不负刑事责任。",
       "score": 8
     }
   ]

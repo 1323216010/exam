@@ -14,7 +14,7 @@
       "question_number": "1",
       "question_type": "单项选择题",
       "content": "国家某一方面的基本制度由基本法律规定，其制定机关是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "全国人民代表大会",
@@ -27,7 +27,7 @@
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "下列人员中，由全国人民代表大会选举产生的是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "中华人民共和国副主席",
@@ -40,7 +40,7 @@
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "我国现行宪法规定，宪法的修改要由",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "全国人民代表大会以全体代表的过半数通过",
@@ -66,7 +66,7 @@
       "question_number": "5",
       "question_type": "单项选择题",
       "content": "我国选举法规定，由选民直接选举选出的人民代表大会代表是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "全国人民代表大会代表",
@@ -79,7 +79,7 @@
       "question_number": "6",
       "question_type": "单项选择题",
       "content": "我国人民代表大会制度的组织原则是",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "一切权力属于人民原则",
@@ -92,7 +92,7 @@
       "question_number": "7",
       "question_type": "单项选择题",
       "content": "我国人民民主专政的基础是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "工人阶级的领导",
@@ -118,7 +118,7 @@
       "question_number": "9",
       "question_type": "单项选择题",
       "content": "行政机关在行政管理活动中针对特定的事项而采取的处理决定是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "行政执法",
@@ -131,7 +131,7 @@
       "question_number": "10",
       "question_type": "单项选择题",
       "content": "下列不属于行政处罚行为的是",
-      "answer": "A",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "警告",
@@ -144,7 +144,7 @@
       "question_number": "11",
       "question_type": "单项选择题",
       "content": "我国婚姻法规定的结婚的法定年龄是",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "男20周岁，女18周岁",
@@ -157,7 +157,7 @@
       "question_number": "12",
       "question_type": "单项选择题",
       "content": "下列属于双方民事法律行为的是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "遗嘱",
@@ -170,7 +170,7 @@
       "question_number": "13",
       "question_type": "单项选择题",
       "content": "我国法律规定，商标权的保护期限为",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "10年",
@@ -183,7 +183,7 @@
       "question_number": "14",
       "question_type": "单项选择题",
       "content": "我国民法规定，自然人的民事权利能力始于",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "受孕",
@@ -196,7 +196,7 @@
       "question_number": "15",
       "question_type": "单项选择题",
       "content": "我国有限责任公司的组织机构中的日常经营决策和业务执行机关是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "股东会",
@@ -209,7 +209,7 @@
       "question_number": "16",
       "question_type": "单项选择题",
       "content": "除纳税人、征税对象外，税法最基本的构成要素还包括",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "税种税目",
@@ -235,7 +235,7 @@
       "question_number": "18",
       "question_type": "单项选择题",
       "content": "依据我国刑法规定，被判处无期徒刑的犯罪分子，经过一次或几次减刑以后实际执行的刑期不能少于",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "5年",
@@ -248,7 +248,7 @@
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "我国刑法规定，对于累犯",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "可以从重处罚",
@@ -261,7 +261,7 @@
       "question_number": "20",
       "question_type": "单项选择题",
       "content": "我国刑法规定，已满14周岁不满16周岁的人犯下列何种罪应负刑事责任?",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "盗窃罪",
@@ -274,7 +274,7 @@
       "question_number": "21",
       "question_type": "单项选择题",
       "content": "就犯罪客观方面而言，犯罪构成必须具备的必要要件是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "危害行为",
@@ -287,7 +287,7 @@
       "question_number": "22",
       "question_type": "单项选择题",
       "content": "下列各项中，属于我国刑事诉讼法特有基本原则的是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "公民在适用法律上一律平等",
@@ -300,7 +300,7 @@
       "question_number": "23",
       "question_type": "单项选择题",
       "content": "我国现行的《中华人民共和国民事诉讼法》是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "1982年3月8日颁布并生效的",
@@ -313,7 +313,7 @@
       "question_number": "24",
       "question_type": "单项选择题",
       "content": "我国民事诉讼中一般地域管辖采用的是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "原告就被告原则",
@@ -326,7 +326,7 @@
       "question_number": "25",
       "question_type": "单项选择题",
       "content": "我国行政诉讼法规定，因不动产提起诉讼的管辖法院是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "原告所在地人民法院",
@@ -339,7 +339,7 @@
       "question_number": "26",
       "question_type": "单项选择题",
       "content": "我国行政诉讼法规定，行政诉讼审查的对象是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "具体行政行为",
@@ -378,7 +378,7 @@
       "question_number": "29",
       "question_type": "单项选择题",
       "content": "外国人在我国领域内进行民事活动，如依其本国法律为无行为能力，而依我国法律为有行为能力，则应当",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "认定为无行为能力",
@@ -391,7 +391,7 @@
       "question_number": "30",
       "question_type": "单项选择题",
       "content": "我国公民和外国人离婚，适用",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "受理案件的法院所在地的法律",
@@ -418,7 +418,7 @@
       "question_number": "32",
       "question_type": "多项选择题",
       "content": "我国民法规定，我国民事法律关系主体的范围包括",
-      "answer": "",
+      "answer": "ABCDE",
       "score": 2,
       "options": {
         "A": "法人",
@@ -432,7 +432,7 @@
       "question_number": "33",
       "question_type": "多项选择题",
       "content": "我国民事诉讼当事人的诉讼义务主要包括",
-      "answer": "",
+      "answer": "BCE",
       "score": 2,
       "options": {
         "A": "按有关规定查阅相关法律文书",
@@ -446,7 +446,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "我国刑法的基本原则包括",
-      "answer": "",
+      "answer": "BCE",
       "score": 2,
       "options": {
         "A": "类推原则",
@@ -460,7 +460,7 @@
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "依据我国刑事诉讼法规定，下列刑事案件属中级人民法院管辖的有",
-      "answer": "",
+      "answer": "BCD",
       "score": 2,
       "options": {
         "A": "张某侵占案",
@@ -474,34 +474,34 @@
       "question_number": "36",
       "question_type": "名词解释",
       "content": "公民",
-      "answer": "",
+      "answer": "公民，通常是指具有一国国籍的人。",
       "score": 3
     },
     {
       "question_number": "37",
       "question_type": "名词解释",
       "content": "继承权",
-      "answer": "",
+      "answer": "继承权（即财产继承权）是指公民依法享有的承受被继承人死亡后留下的遗产的权利。",
       "score": 3
     },
     {
       "question_number": "38",
       "question_type": "名词解释",
       "content": "犯罪对象",
-      "answer": "",
+      "answer": "犯罪对象是指犯罪行为侵犯某种社会关系时直接遭受影响的人或物。",
       "score": 3
     },
     {
       "question_number": "39",
       "question_type": "名词解释",
       "content": "不正当竞争行为",
-      "answer": "",
+      "answer": "不正当竞争行为，是指经营者违反本法规定，损害其他经营者的合法权益，扰乱社会经济秩序的行为。",
       "score": 3
     },
     {
       "question_number": "40",
       "question_type": "名词解释",
-      "content": "行政诉讼 四、简答题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题共3小题，每小题5分，共15分）",
+      "content": "行政诉讼",
       "answer": "条约是国际法主体间依据国际法所缔结的据以确定其相互权利与义务的书面协议。广义的条约指不论以何种名称成形式出现的国际法主体间达成的国际协议。狭义的条约仅指以条约为名称的协议。",
       "score": 3
     },
@@ -509,42 +509,42 @@
       "question_number": "41",
       "question_type": "简答题",
       "content": "简述我国宪法规定的公民的基本义务。",
-      "answer": "",
+      "answer": "根据宪法的规定，我国公民的基本义务有：（1）维护国家统一和全国各民族团结的义务。（2）遵守宪法和法律，保守国家秘密，爱护公共财产，遵守劳动纪律，遵守公共秩序，尊重社会公德。（3）维护祖国的安全、荣誉和利益。（4）保卫祖国，依法服兵役和参加民兵组织。（5）依法纳税。",
       "score": 5
     },
     {
       "question_number": "42",
       "question_type": "简答题",
       "content": "简述我国行政许可法的基本原则。",
-      "answer": "",
+      "answer": "行政许可法的基本原则是：（1）合法与合理原则（设定和实施行政许可，应当依照法定的权限、范围、条件和程序；应当遵循公开、公平、公正的原则）；（2）效能与便民原则；（3）监督与责任原则。",
       "score": 5
     },
     {
       "question_number": "43",
       "question_type": "简答题",
-      "content": "简述本票的特征。 五、论述题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）（本大题共1小题，14分）",
-      "answer": "",
+      "content": "简述本票的特征。",
+      "answer": "本票的特征表现为：（1）本票是自付票据，即本票的出票人和付款人为同一人；（2）本票没有承兑制度，这一点与汇票不同；（3）本票的基本当事人只有出票人和收款人。",
       "score": 5
     },
     {
       "question_number": "44",
       "question_type": "论述题",
-      "content": "试述社会主义法律意识对社会主义法制建设的重要作用。 六、案例分析题（本大题共2小题，每小题8分，共16分）",
-      "answer": "",
+      "content": "试述社会主义法律意识对社会主义法制建设的重要作用。",
+      "answer": "社会主义法律意识对于社会主义法制建设具有重要意义：（1）对社会主义法律的制定和适用的作用。制定任何一项法律，都要依靠法律意识的指导；执法人员在适用法律时，也需要运用社会主义法律意识正确地理解和适用法律。（2）对社会主义法律遵守的作用。公民法律意识越强，越能自觉遵守法律。（3）对清除旧法律意识的作用。社会主义法律意识引导全社会同轻视法律、以言代法、以权抗法等旧法律意识作斗争。",
       "score": 14
     },
     {
       "question_number": "45",
       "question_type": "材料分析题",
       "content": "甲（30岁），一日带邻居的儿子乙（12岁）上街去玩，看到有摸奖的，甲摸了几次均未中，便让乙去摸，但乙没带钱，甲给乙5元钱，并说：“拿去摸奖吧，凑个热闹，不用还了。”结果，乙摸得价值20万元的大奖。 问题：乙摸奖中奖的行为是否有效？为什么？",
-      "answer": "",
+      "answer": "有效。因为：10周岁以上的未成年人是限制民事行为能力人，可以独立进行与他的年龄、智力相适应的民事活动。甲给乙5元钱摸奖，乙摸得大奖的行为与其年龄、智力相适应，因而是有效的。",
       "score": 8
     },
     {
       "question_number": "46",
       "question_type": "材料分析题",
       "content": "被告人甲，男，23岁，2005年高中毕业后在家待业，经常在街道上游荡，不时在菜市场上强拿强要，起哄闹事。同年9月12日，甲在一路口看到一妇女蹲下系鞋带，其风衣口袋露出手机的金色链条。甲挤上前，紧贴妇女身旁，将手机偷走。后甲因打架被拘留。拘留期间，甲主动交待了其偷窃手机的罪行。因受害人未报案，司法机关并不知道此情况。后经查证，证明其交待的罪行属实。 问题：（1）本案中甲主动交待其偷窃手机的行为属于什么性质的行为？为什么？ （2）对甲盗窃手机的行为应如何处理？ \u0001\u0001 \u0003 \u0004 \u0003 \u0004 \u0013 HYPERLINK \"http://zk.ikaoti.cn/zikao.htm\" \u0001\u0014更多考资微信公众号：ikaoti QQ：593777558\u0015 \u0013PAGE \u0015 \u0013PAGE \u00145\u0015 更多科目自考真题答案至：http://zk.ikaoti.cn/zikao.htm",
-      "answer": "",
+      "answer": "（1）甲主动交待其偷窃手机的行为属于自首。因为根据刑法规定，被采取强制措施的犯罪嫌疑人如实供述司法机关还未掌握的本人其他罪行的，视为自首。\n（2）对于自首的犯罪分子，可以从轻或者减轻处罚；犯罪较轻的，可以免除处罚。本案中对甲盗窃手机的行为应从轻或减轻处罚。",
       "score": 8
     }
   ]

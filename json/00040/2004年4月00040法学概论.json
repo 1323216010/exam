@@ -27,7 +27,7 @@
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "在我国，全国人大常委会对法律所作的解释，其效力",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "与法律相同",
@@ -40,7 +40,7 @@
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "地方性法规指",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "县以上地方各级人大及其常委会、人民政府制定的规范性文件",
@@ -53,7 +53,7 @@
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "在我国，“公民”是指",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "在我国领域内出生的一切人",
@@ -66,7 +66,7 @@
       "question_number": "5",
       "question_type": "单项选择题",
       "content": "世界上第一部成文宪法出自",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "英国",
@@ -79,7 +79,7 @@
       "question_number": "6",
       "question_type": "单项选择题",
       "content": "依据我国法律的规定，限制人身自由的行政处罚",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "可以由法律、行政法规和地方性法规设定",
@@ -92,7 +92,7 @@
       "question_number": "7",
       "question_type": "单项选择题",
       "content": "对成年精神病人，其法定监护人的顺序是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "配偶，父母，成年子女，其他近亲属",
@@ -105,7 +105,7 @@
       "question_number": "8",
       "question_type": "单项选择题",
       "content": "下列属于不得抵押的财产是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "民用航空器",
@@ -118,7 +118,7 @@
       "question_number": "9",
       "question_type": "单项选择题",
       "content": "在诉讼时效期间的最后6个月内，因不可抗力或者其他障碍不能行使请求权的，诉讼时效",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "中断",
@@ -131,7 +131,7 @@
       "question_number": "10",
       "question_type": "单项选择题",
       "content": "依据我国法律的规定，养子女和生父母之间的权利义务，因收养关系的成立而",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "继续存在",
@@ -144,7 +144,7 @@
       "question_number": "11",
       "question_type": "单项选择题",
       "content": "因产品存在缺陷造成人身、财产损害的，受害人",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "可以向产品销售者要求赔偿，也可以向产品生产者要求赔偿",
@@ -157,7 +157,7 @@
       "question_number": "12",
       "question_type": "单项选择题",
       "content": "税收是国家取得财政收入的一种重要形式，其显著特征是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "强制性、固定性、无偿性",
@@ -170,7 +170,7 @@
       "question_number": "13",
       "question_type": "单项选择题",
       "content": "依据我国保险法的规定，人寿保险的被保险人或者受益人向保险人请求给付保险金的权利，如果不及时行使，而致使该权利消灭的期限是：自其知道保险事故发生之日起",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "2年",
@@ -196,7 +196,7 @@
       "question_number": "15",
       "question_type": "单项选择题",
       "content": "破产案件的管辖法院是",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "债权人所在地法院",
@@ -209,7 +209,7 @@
       "question_number": "16",
       "question_type": "单项选择题",
       "content": "依据我国刑法的规定，外国人在我国领域内犯罪的",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "一律适用我国刑法",
@@ -222,7 +222,7 @@
       "question_number": "17",
       "question_type": "单项选择题",
       "content": "在下列各项中属于犯罪构成的必要条件的是",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "犯罪动机",
@@ -235,7 +235,7 @@
       "question_number": "18",
       "question_type": "单项选择题",
       "content": "依据我国刑法的规定",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "对于累犯，不得适用缓刑，也不得适用假释",
@@ -248,7 +248,7 @@
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "依据我国刑法的规定，对于犯罪后自首又有重大立功表现的",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "可以从轻或者减轻处罚",
@@ -261,7 +261,7 @@
       "question_number": "20",
       "question_type": "单项选择题",
       "content": "依据刑法的规定，下列各项中，可以附加剥夺政治权利的是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "被判处死刑的犯罪分子",
@@ -274,7 +274,7 @@
       "question_number": "21",
       "question_type": "单项选择题",
       "content": "依据我国法律的规定，对于下列何种人上诉的案件，第二审人民法院审理后可以加重被告人的刑罚",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "被告人上诉的案件",
@@ -287,7 +287,7 @@
       "question_number": "22",
       "question_type": "单项选择题",
       "content": "依据我国法律的规定，在刑事诉讼中只有被告人的供述而没有其他证据的",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "可以认定被告人有罪和处以刑罚",
@@ -300,7 +300,7 @@
       "question_number": "23",
       "question_type": "单项选择题",
       "content": "依据我国刑事诉讼法的规定，每次拘传的时间不得超过",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "6小时",
@@ -313,7 +313,7 @@
       "question_number": "24",
       "question_type": "单项选择题",
       "content": "在民事诉讼中重大涉外案件的第一审管辖权应由",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "基层人民法院行使",
@@ -326,7 +326,7 @@
       "question_number": "25",
       "question_type": "单项选择题",
       "content": "人民法院审理民事案件时，经当事人申请不公开审理，可以不公开审理的是",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "离婚案件和解除收养关系案件",
@@ -339,7 +339,7 @@
       "question_number": "26",
       "question_type": "单项选择题",
       "content": "人民法院审理上诉的行政案件，对于原判决认定事实清楚，但是适用法律、法规错误的情况，应当",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "维持原判",
@@ -352,7 +352,7 @@
       "question_number": "27",
       "question_type": "单项选择题",
       "content": "中华人民共和国领海的宽度从领海基线量起为",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "3海里",
@@ -365,7 +365,7 @@
       "question_number": "28",
       "question_type": "单项选择题",
       "content": "对于识别，正确的说法应是",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "识别是解决援用哪一冲突规范的前提",
@@ -378,7 +378,7 @@
       "question_number": "29",
       "question_type": "单项选择题",
       "content": "在我国，遗产的法定继承中，关于动产的继承应适用",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "财产所在地法",
@@ -391,13 +391,13 @@
       "question_number": "30",
       "question_type": "单项选择题",
       "content": "依据我国民事诉讼法的规定，外国人、无国籍人、外国企业和组织在人民法院起诉、应诉、需要委托律师代理诉讼的",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "可以委托中华人民共和国律师",
         "B": "可以委托外国律师",
         "C": "必须委托中华人民共和国律师",
-        "D": "必须委托外国律师 二、多项选择题（更多科目请访问"
+        "D": "必须委托外国律师"
       }
     },
     {
