@@ -404,7 +404,7 @@
       "question_number": "31",
       "question_type": "多项选择题",
       "content": "道德规范不同于法律规范之处在于",
-      "answer": "",
+      "answer": "ACD",
       "score": 2,
       "options": {
         "A": "道德规范没有固定的形式",
@@ -418,7 +418,7 @@
       "question_number": "32",
       "question_type": "多项选择题",
       "content": "依据我国宪法，我国公民下列各项基本权利中，同时又是我国公民的基本义务的是",
-      "answer": "",
+      "answer": "BE",
       "score": 2,
       "options": {
         "A": "选举权",
@@ -432,7 +432,7 @@
       "question_number": "33",
       "question_type": "多项选择题",
       "content": "行政法律关系的特点是",
-      "answer": "",
+      "answer": "ABCD",
       "score": 2,
       "options": {
         "A": "行政法律关系主体是一方必定是行政机关或者是根据法律的授权代行某种行政职能的社会组织",
@@ -446,7 +446,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "依据我国民法通则的规定，法人的设立必须具备以下条件",
-      "answer": "",
+      "answer": "ABCDE",
       "score": 2,
       "options": {
         "A": "依法成立",
@@ -460,7 +460,7 @@
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "行政机关的具体行政行为有下列何种情形的，人民法院在审理后可以判决撤销或者部分撤销并且可以判决被告重新作出具体行政行为",
-      "answer": "",
+      "answer": "ABCDE",
       "score": 2,
       "options": {
         "A": "主要证据不足",
