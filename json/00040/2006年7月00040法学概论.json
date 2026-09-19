@@ -15,7 +15,7 @@
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "“法律是一种政治措施，是一种政策。”说这句话的名人是 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "马克思",
@@ -41,10 +41,11 @@
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "提出“依法治国，建设社会主义法治国家”的基本方略是于中国共产党的 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
-        "A": "十五次全国代表大会 R十五届二中全会",
+        "A": "十五次全国代表大会",
+        "B": "十五届二中全会",
         "C": "十六次全国代表大会",
         "D": "十六届二中全会"
       }
@@ -53,7 +54,7 @@
       "question_number": "5",
       "question_type": "单项选择题",
       "content": "全国人民代表大会及其常委会通过的法律，一律由 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "委员长签署命令予以公布",
@@ -79,7 +80,7 @@
       "question_number": "7",
       "question_type": "单项选择题",
       "content": "现行宪法规定社会主义全民所有制经济即国有经济是国民经济中的 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "主导力量",
@@ -92,7 +93,7 @@
       "question_number": "8",
       "question_type": "单项选择题",
       "content": "中国共产党领导下的多党合作和政治协商制度的最高原则是 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "民主党派参政议政",
@@ -105,7 +106,7 @@
       "question_number": "9",
       "question_type": "单项选择题",
       "content": "法律和行政法规都可以设定行政处罚，但下列只能由法律设定的行政处罚是 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "限制人身自由",
@@ -144,7 +145,7 @@
       "question_number": "12",
       "question_type": "单项选择题",
       "content": "我国专利审批采取的制度是 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "“早期公开，延迟审查”",
@@ -170,7 +171,7 @@
       "question_number": "14",
       "question_type": "单项选择题",
       "content": "下列关于人身保险合同特征的正确表述是 【 】",
-      "answer": "",
+      "answer": "A",
       "score": 1,
       "options": {
         "A": "人身保险合同保险费的非讼性",
@@ -183,7 +184,7 @@
       "question_number": "15",
       "question_type": "单项选择题",
       "content": "消费者在展销会上购买商品，其合法权益受到损害的 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "只能向商品的生产者要求赔偿",
@@ -209,7 +210,7 @@
       "question_number": "17",
       "question_type": "单项选择题",
       "content": "我国刑法规定的一般刑事责任年龄为 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "14周岁",
@@ -222,7 +223,7 @@
       "question_number": "18",
       "question_type": "单项选择题",
       "content": "我国刑法的基本原则除法律面前人人平等原则和罪刑相当原则外，还包括 【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "有罪推定原则",
@@ -235,7 +236,7 @@
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "依照我国刑事诉讼法的规定，对刑事案件的侦查、拘留、执行逮捕和预审由 【 】",
-      "answer": "",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "人民法院负责",
@@ -248,7 +249,7 @@
       "question_number": "20",
       "question_type": "单项选择题",
       "content": "依照我国刑事诉讼法的规定，公、检、法机关对犯罪嫌疑人、被告人取保候审最长不得超过 【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "6个月",
@@ -287,7 +288,7 @@
       "question_number": "23",
       "question_type": "单项选择题",
       "content": "当事人因不服行政机关的具体行政行为而向人民法院起诉，在诉讼期间 【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "一律停止原具体行政行为的执行",
@@ -300,7 +301,7 @@
       "question_number": "24",
       "question_type": "单项选择题",
       "content": "在行政诉讼中，确认发明专利权的案件、海关处理的案件由 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "基层人民法院管辖",
@@ -313,7 +314,7 @@
       "question_number": "25",
       "question_type": "单项选择题",
       "content": "申请行政复议的，行政复议机关应当自收到申请书之日起 【 】",
-      "answer": "",
+      "answer": "B",
       "score": 1,
       "options": {
         "A": "1个月内作出决定",
@@ -352,7 +353,7 @@
       "question_number": "28",
       "question_type": "单项选择题",
       "content": "在“婚姻方式适用婚姻举行地法”这一冲突规范中。“婚姻举行地”是 【 】",
-      "answer": "",
+      "answer": "D",
       "score": 1,
       "options": {
         "A": "范围",
@@ -377,21 +378,21 @@
     {
       "question_number": "30",
       "question_type": "单项选择题",
-      "content": "我国规定，涉外动产的法定继承适用",
-      "answer": "",
+      "content": "我国规定，涉外动产的法定继承适用 【 】",
+      "answer": "C",
       "score": 1,
       "options": {
         "A": "被继承人的本国法",
         "B": "被继承人的住所地法",
         "C": "被继承人死亡时的住所地法",
-        "D": "动产所在地法 二、多项选择题（更多科目请访问"
+        "D": "动产所在地法"
       }
     },
     {
       "question_number": "31",
       "question_type": "多项选择题",
       "content": "我国社会主义法律适用总的要求是 【 】",
-      "answer": "",
+      "answer": "ADE",
       "score": 2,
       "options": {
         "A": "正确",
@@ -405,7 +406,7 @@
       "question_number": "32",
       "question_type": "多项选择题",
       "content": "合同的法律特征包括 【 】",
-      "answer": "",
+      "answer": "ABCE",
       "score": 2,
       "options": {
         "A": "合同是一种法律行为",
@@ -419,10 +420,10 @@
       "question_number": "33",
       "question_type": "多项选择题",
       "content": "犯罪具有的基本特征包括 【 】",
-      "answer": "",
+      "answer": "CDE",
       "score": 2,
       "options": {
-        "A": "当违反法律的行为",
+        "A": "是违反法律的行为",
         "B": "是一种故意行为",
         "C": "是危害社会的行为",
         "D": "是触犯刑法的行为",
@@ -433,7 +434,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "我国刑事诉讼法规定的刑事强制措施包括 【 】",
-      "answer": "",
+      "answer": "ABDE",
       "score": 2,
       "options": {
         "A": "拘传",
@@ -447,7 +448,7 @@
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "国际法规定的国家责任形式包括 【 】",
-      "answer": "",
+      "answer": "BCDE",
       "score": 2,
       "options": {
         "A": "割地",
