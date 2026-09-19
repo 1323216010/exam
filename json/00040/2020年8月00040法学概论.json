@@ -89,6 +89,162 @@
       }
     },
     {
+      "question_number": "7",
+      "question_type": "单项选择题",
+      "content": "下列属于危害公共安全罪的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "叛逃罪",
+        "B": "重大责任事故罪",
+        "C": "走私罪",
+        "D": "金融诈骗罪"
+      }
+    },
+    {
+      "question_number": "8",
+      "question_type": "单项选择题",
+      "content": "根据法律规定，对“多次盗窃”理解正确的是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "半年内盗窃2次以上",
+        "B": "一年内盗窃2次以上",
+        "C": "两年内盗窃3次以上",
+        "D": "两年内盗窃5次以上"
+      }
+    },
+    {
+      "question_number": "9",
+      "question_type": "单项选择题",
+      "content": "借贷合同的成立，属于",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "单方法律行为",
+        "B": "要式法律行为",
+        "C": "单务法律行为",
+        "D": "要物法律行为"
+      }
+    },
+    {
+      "question_number": "10",
+      "question_type": "单项选择题",
+      "content": "《民法总则》规定向法院请求保护民事权利的诉讼时效期间为",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "1年",
+        "B": "2年",
+        "C": "3年",
+        "D": "5年"
+      }
+    },
+    {
+      "question_number": "11",
+      "question_type": "单项选择题",
+      "content": "下列属于保险人义务的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "如实告知义务",
+        "B": "说明义务",
+        "C": "维护保险标的安全的义务",
+        "D": "保证义务"
+      }
+    },
+    {
+      "question_number": "12",
+      "question_type": "单项选择题",
+      "content": "只存在于汇票关系中的票据行为是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "保证",
+        "B": "出票",
+        "C": "提示",
+        "D": "承兑"
+      }
+    },
+    {
+      "question_number": "13",
+      "question_type": "单项选择题",
+      "content": "下列属于纵向垄断协议的是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "固定商品价格",
+        "B": "限制商品生产数量",
+        "C": "限定转售价格",
+        "D": "分割市场"
+      }
+    },
+    {
+      "question_number": "14",
+      "question_type": "单项选择题",
+      "content": "下列要素属于税收程序法要素的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "税法主体",
+        "B": "纳税地点",
+        "C": "税目",
+        "D": "税率"
+      }
+    },
+    {
+      "question_number": "15",
+      "question_type": "单项选择题",
+      "content": "环境污染侵权责任采用的归责原则是",
+      "answer": "C",
+      "score": 1,
+      "options": {
+        "A": "过错责任原则",
+        "B": "过错推定原则",
+        "C": "无过错责任原则",
+        "D": "举证责任倒置原则"
+      }
+    },
+    {
+      "question_number": "16",
+      "question_type": "单项选择题",
+      "content": "下列制度属于自然资源保护法范畴的是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "环境影响评价制度",
+        "B": "限期治理制度",
+        "C": "“三同时”制度",
+        "D": "权属制度"
+      }
+    },
+    {
+      "question_number": "17",
+      "question_type": "单项选择题",
+      "content": "根据我国法律规定，不属于自然资源使用权的取得方式的是",
+      "answer": "B",
+      "score": 1,
+      "options": {
+        "A": "确认取得",
+        "B": "先占取得",
+        "C": "授予取得",
+        "D": "开发取得"
+      }
+    },
+    {
+      "question_number": "18",
+      "question_type": "单项选择题",
+      "content": "下列理念不为我国刑事诉讼法所秉持的是",
+      "answer": "D",
+      "score": 1,
+      "options": {
+        "A": "控审分离",
+        "B": "程序公正与实体公正并重",
+        "C": "惩罚犯罪与保障人权相结合",
+        "D": "诉辩交易"
+      }
+    },
+    {
       "question_number": "19",
       "question_type": "单项选择题",
       "content": "有权决定审判人员回避的是",

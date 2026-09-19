@@ -418,7 +418,7 @@
       "question_number": "32",
       "question_type": "多项选择题",
       "content": "以下公司类型受我国《公司法》调整的有",
-      "answer": "",
+      "answer": "ABD",
       "score": 8,
       "options": {
         "A": "股份有限公司",
@@ -446,7 +446,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "以下关于我国行政诉讼的说法正确的有",
-      "answer": "",
+      "answer": "ACD",
       "score": 8,
       "options": {
         "A": "法院在行政诉讼中只审查行政行为的合法性，一般情况下不审查合理性",
@@ -460,7 +460,7 @@
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "对于国际私法中的冲突规范，以下表述正确的有",
-      "answer": "",
+      "answer": "ABCDE",
       "score": 8,
       "options": {
         "A": "不是实体法规范",
