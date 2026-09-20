@@ -79,10 +79,12 @@
       const content = document.getElementById("content");
       content.innerHTML = window.marked ? marked.parse(markdown) : fallback(markdown);
       const toc = [];
-      content.querySelectorAll("h2, h3").forEach((h, i) => {
+      content.querySelectorAll("h2").forEach((h, i) => {
+        const text = (h.textContent || "").trim();
+        if (!/^(第[一二三四五六七八九十]+章\s+\S|[IVXⅠⅡⅢⅣ]+|第[一二三四五六七八九十]+部分|题型举例)/.test(text)) return;
         const id = h.id || `h-${i}`;
         h.id = id;
-        toc.push(`<a class="${h.tagName.toLowerCase()}" href="#${id}">${esc(h.textContent)}</a>`);
+        toc.push(`<a href="#${id}">${esc(text)}</a>`);
       });
       document.getElementById("toc").innerHTML = toc.join("") || "本章没有目录";
     }

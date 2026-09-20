@@ -63,7 +63,7 @@ function setPage(html) {
 }
 function sourceLink(path) {
     if (typeof path !== 'string' || path.includes('..')) return '';
-    if (/^(knowledge\/|json\/|outline\.html)/.test(path)) return encodeURI(path);
+    if (/^(knowledge\/|json\/|outline\.html|paper\.html)/.test(path)) return encodeURI(path);
     return '';
 }
 function paperLabel(kind) {
@@ -72,10 +72,15 @@ function paperLabel(kind) {
     if (k.includes('章节练习')) return '章节练习';
     return '关联练习';
 }
+function paperView(path, number) {
+    if (typeof path !== 'string' || !path.startsWith('json/') || path.includes('..')) return '';
+    const q = number ? `&q=${encodeURIComponent(number)}` : '';
+    return `paper.html?file=${encodeURIComponent(path)}${q}`;
+}
 function citeLearn(u, course) {
     const q = u.question;
     const outline = sourceLink(course.outline);
-    const paper = sourceLink(q?.sourcePath);
+    const paper = paperView(q?.sourcePath);
     const bits = [];
     bits.push(outline ? `<a href="${outline}">课程大纲</a>` : '课程大纲');
     if (paper) bits.push(`<a href="${paper}">${esc(paperLabel(q.kind))}</a>`);
@@ -271,7 +276,7 @@ function openUnit(index) {
 function renderUnit() {
     const u = units[current];
     const q = u.question;
-    const qSource = q ? sourceLink(q.sourcePath) : '';
+    const qSource = q ? paperView(q.sourcePath, q.sourceNumber) : '';
     const c = catalog[courseCode].course;
     let body = '';
     if (stage === 'learn') {
@@ -364,7 +369,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3j';
+        const v = 'jan3k';
         const [pilot, ch02, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
             fetch(`knowledge/ch02-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('第二章精讲加载失败'); return r.json(); }),

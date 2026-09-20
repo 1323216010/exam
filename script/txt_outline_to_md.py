@@ -21,6 +21,9 @@ HEADING_TITLES = (
     "课程自学考试大纲与教材的关系",
     "关于自学教材",
     "关于自学要求和自学方法的指导",
+    "对社会助学的要求",
+    "对考核内容的说明",
+    "关于考试命题的若干规定",
 )
 
 
@@ -33,20 +36,27 @@ def is_page_num(s: str) -> bool:
     return bool(re.fullmatch(r"-?\d+-?", s or ""))
 
 
+def is_junk(s: str) -> bool:
+    return bool(re.search(r"MERGEFORMAT|PAGEREF|TOC \\|HYPERLINK", s, re.I))
+
+
 def is_heading_line(s: str) -> bool:
+    if is_junk(s):
+        return False
     return bool(
         re.match(r"^(第[一二三四五六七八九十]+(部分|章)|[IVXⅠⅡⅢⅣⅤ]+[、.．]?\s)", s)
-        or re.match(r"^[一二三四]、", s)
+        or re.match(r"^[一二四五六七]、", s)
         or re.match(r"^（[一二三四五六七八九十]+）", s)
         or re.match(r"^第[一二三四五六七八九十]+节", s)
         or re.match(r"^\d+\.\d+", s)
         or re.match(r"^(识记|领会|应用)[：:]?", s)
+        or re.match(r"^题型举例", s)
     )
 
 
 def split_known_headings(s: str) -> list[str]:
     for title in HEADING_TITLES:
-        m = re.match(rf"^([一二三四]、){title}(.+)$", s)
+        m = re.match(rf"^([一二四五六七]、){title}(.+)$", s)
         if m and m.group(2):
             rest = m.group(2).strip()
             rest = re.sub(r"(第[一二三四五六七八九十]+节)", r"\n\1", rest)
@@ -103,22 +113,43 @@ def to_md(text: str, title: str, code: str) -> str:
         "",
     ]
     seen_chapter = set()
+    hours_mode = False
+    hour_rows: list[str] = []
     for line in body:
+        if is_junk(line):
+            continue
+        if "建议学时" in line or line in {"章次", "标题", "学时"} or line == "章次标题学时":
+            hours_mode = True
+            continue
+        if hours_mode:
+            if re.match(r"^[四五六七]、", line) or "考核内容" in line or "命题" in line or line.startswith("题型举例"):
+                hours_mode = False
+            else:
+                continue
         if not line:
             lines.append("")
+            continue
+        if re.match(r"^题型举例", line):
+            lines.append("## 题型举例")
             continue
         if re.match(r"^[IVXⅠⅡⅢⅣⅤ]+[、.．]?\s*", line) or re.match(r"^第[一二三四五六七八九十]+部分", line):
             lines.append(f"## {line}")
             continue
-        ch = re.match(r"^(第[一二三四五六七八九十]+章\s*.{0,40})$", line)
-        if ch and "本章" not in line and len(line) < 40:
+        ch = re.match(r"^(第[一二三四五六七八九十]+章(?:\s+\S.{0,30})?)$", line)
+        if ch and "本章" not in line and "学时" not in line and len(line) < 40:
+            if re.fullmatch(r"第[一二三四五六七八九十]+章", line):
+                continue
             key = re.sub(r"\s+", "", line)
             if key in seen_chapter:
                 continue
             seen_chapter.add(key)
             lines.append(f"## {line}")
             continue
-        if re.match(r"^[一二三四]、", line):
+        if re.match(r"^[一二四五六七]、", line):
+            if re.search(r"单项选择题|名词解释题|简答题|论述题|案例分析题", line) and not any(
+                x.startswith("## 题型举例") for x in lines
+            ):
+                lines.append("## 题型举例")
             lines.append(f"### {line}")
             continue
         if re.match(r"^第[一二三四五六七八九十]+节", line):
