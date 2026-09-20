@@ -335,7 +335,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3f';
+        const v = 'jan3g';
         const [pilot, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
             Promise.all(COURSES.map(async c => {

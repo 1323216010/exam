@@ -296,6 +296,8 @@ XIE_MCQ_NEEDLES = {
 
 def build_13672():
     raw = load(KNOW / "13672-knowledge.json")
+    wenku = load(KNOW / "wenku-13672.json")
+    wenku_chapters = wenku.get("chapters") or {}
     chapters = raw["official_outline_xieming"]["chapters"]
     suji = jiaofu_map(raw.get("qa_points"))
     jiaofu = jiaofu_map(raw.get("jiaofu_qa"))
@@ -307,14 +309,15 @@ def build_13672():
         remember = tidy_terms(ch.get("remember") or [])
         understand = tidy_terms(ch.get("understand") or [], min_len=4)
         apply = tidy_terms(ch.get("apply") or [], min_len=6)
+        curated = wenku_chapters.get(title) or {}
         qa = find_qa(suji + jiaofu, XIE_QA_KEYS.get(title) or [title] + remember[:2])
-        exam = (qa["answer"] if qa else "\n".join(
+        exam = curated.get("examAnswer") or (qa["answer"] if qa else "\n".join(
             [f"识记：{x}" for x in remember[:8]] + [f"领会：{x}" for x in understand[:5]]
         ))
         needles = XIE_MCQ_NEEDLES.get(title) or ([title] + remember[:4])
         rel, best = pick_mcq(bank, needles, used, min_score=2, allow_fallback=True, chapter_title=title)
         question = pack_question(best, rel, "题库练习（00318）") if best else None
-        explain = (
+        explain = curated.get("explain") or (
             f"按谢明《公共政策导论》最新大纲学习「{title}」。"
             f"{'内容包括：' + '、'.join(ch.get('sections') or []) + '。' if ch.get('sections') else ''}"
             f"{'先识记：' + '；'.join(remember[:6]) + '。' if remember else ''}"
@@ -327,23 +330,23 @@ def build_13672():
             explain,
             exam or title,
             f"用一条最近的公共事务（交通、住房、环保均可）套本章：{apply[0] if apply else '它属于哪一类政策、经过了哪个环节'}。",
-            "本章按 13672 谢明大纲，不要用旧课 00318 教辅那套「理解公共政策…调整与终结」目录来记章名。",
+            "本章按 13672 谢明大纲，不要用旧课 00318 教辅那套「理解公共政策…调整与终结」目录来记章名。文库旧纲要只核对稳定概念；练习题来自 00318，不称为 13672 历年真题。",
             f"不看讲解，列出「{title}」的主要识记点。",
             [f"能说出：{x}" for x in (remember[:4] or [title])],
             {
-                "label": "谢明《公共政策导论》大纲转载",
-                "path": "knowledge/13672-gzyszxy-outline.txt",
+                "label": "谢明大纲 + 百度文库会员资料（第三版纲要仅核概念）+ 00318题库练习",
+                "path": "knowledge/wenku-13672.json",
                 "location": f"{ch.get('heading')} {title}",
             },
             question,
-            "local" if question else "outline",
+            "curated",
             f"{ch.get('heading', '')} {title}".strip(),
         ))
     return {
         "code": "13672",
         "name": "公共政策导论",
         "notes": [
-            "章节按 13672 谢明最新大纲。关联选择题来自题库中的 00318 试卷，只作练习，不称为 13672 历年真题。",
+            "章节按 13672 谢明最新大纲。文库2014第三版纲要只核对稳定概念和答题层次。关联选择题来自题库中的 00318 试卷，只作练习，不称为 13672 历年真题。",
         ],
         "units": units,
     }
