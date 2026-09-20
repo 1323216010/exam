@@ -50,13 +50,28 @@ let current = 0;
 let stage = 'learn';
 let revealed = false;
 let checks = new Set();
-let draft = '';
 let selected = '';
 let submitted = false;
 let storageOK = true;
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const btn = (action, text, style = '') => `<button type="button" data-action="${action}" class="study-btn ${style}">${text}</button>`;
+
+// 自动生成的单元会带上同一句模板填充（「用一个政务场景套上…」之类）。
+// 这类块没有信息量，渲染时直接跳过，避免整页都是套话。
+const FILLER = [
+    '用一个政务场景套上这个考点',
+    '套本章：',
+    '看到案例或新闻时，先判断它属于',
+    '和相邻章节混为一谈',
+    '与相邻部门法混用',
+    '本章按 13672 谢明大纲'
+];
+function isFiller(text) {
+    const t = String(text || '').trim();
+    if (!t) return true;
+    return FILLER.some(mark => t.includes(mark));
+}
 function save() {
     try { localStorage.setItem(KEY, JSON.stringify(progress)); } catch { storageOK = false; }
 }
@@ -207,9 +222,9 @@ function courseStats(code) {
 function courseHome() {
     courseCode = null;
     units = [];
-    setPage(`<div class="study-topline"><span>学习工作台</span><span class="study-badge">2026 年 1 月 · 三门</span></div>
-      <header class="study-hero"><div><p class="study-eyebrow">先选一门，再学一个考点</p><h1>一月要考的三门都在这里</h1><p>公共政策导论、电子政务概论、法学概论。<br>各科都有「学懂 → 回忆」；挂了关联题的单元再加一道练习。电子政务第一至三章是精讲。</p></div>
-      <div class="study-progress"><span>本机进度</span><small>不自动跨设备同步。通过一次不等于长期掌握。</small></div></header>
+    setPage(`<div class="study-topline"><span>考点学习</span><span class="study-badge">2026 年 1 月 · 三门</span></div>
+      <header class="study-hero"><div><h1>一月要考的三门</h1><p>各科按「学懂 → 回忆 → 练习」走；挂得上关联题的单元多一道练习。</p></div>
+      <div class="study-progress"><span>进度</span><small>只存在本机浏览器，不跨设备同步。通过一次不等于长期掌握。</small></div></header>
       <div class="study-course-grid">${COURSES.map(c => {
         const s = courseStats(c.code);
         return `<button type="button" class="study-course-card" data-course="${c.code}">
@@ -218,8 +233,7 @@ function courseHome() {
           <p>${esc(c.blurb)}</p>
           <p class="study-muted">${s.passed}/${s.total} 单元通过自查${s.dueN ? ` · ${s.dueN} 待复习` : s.seen ? ` · 已看过 ${s.seen}` : ''}${progress.lastCourse === c.code ? ' · 上次学到这里' : ''}</p>
         </button>`;
-    }).join('')}</div>
-      <p class="study-safety">${storageOK ? '进度仅保存在当前浏览器。' : '浏览器存储不可用，本次进度可能无法保存。'} 讲解是依据大纲重新组织的学习说明，不是整本教材。</p>`);
+    }).join('')}</div>`);
     root.querySelectorAll('[data-course]').forEach(b => b.onclick = () => openCourse(b.dataset.course));
 }
 function openCourse(code) {
@@ -246,40 +260,26 @@ function courseDashboard() {
         groups[groups.length - 1].items.push(u);
     }
     setPage(`<div class="study-topline">${btn('home', '← 一月三门')}<span>${esc(c.label)} / ${esc(c.examCode)}</span></div>
-      <header class="study-hero"><div><p class="study-eyebrow">${esc(c.blurb)}</p><h1>${esc(c.label)}</h1><p>${esc(pack.textbook || '')}</p>${pack.note ? `<p class="study-muted">${esc(pack.note)}</p>` : ''}${btn('continue', '继续学习 →', 'primary')}</div>
-      <div class="study-progress"><strong>${s.passed}<small> / ${s.total}</small></strong><span>单元通过自查</span><progress max="${s.total}" value="${s.passed}"></progress><small>有关联题的单元走学懂·回忆·练习；没有的先回忆大纲要点。</small></div></header>
-      <div class="study-dashboard-grid"><section class="study-panel"><h2>章节学习路线</h2>
+      <header class="study-hero"><div><h1>${esc(c.label)}</h1><p>${esc(pack.textbook || '')}</p>${pack.note ? `<p class="study-muted">${esc(pack.note)}</p>` : ''}
+        <div class="study-actions">${btn('continue', '继续学习 →', 'primary')}${c.outline ? `<a class="study-btn" href="${esc(c.outline)}">课程大纲</a>` : ''}</div></div>
+      <div class="study-progress"><strong>${s.passed}<small> / ${s.total}</small></strong><span>单元已通过</span><progress max="${s.total}" value="${s.passed}"></progress></div></header>
+      ${dueUnits.length ? `<div class="study-due"><b>${dueUnits.length} 个单元到复习时间</b>${dueUnits.map(u => `<button type="button" class="study-review" data-unit="${units.indexOf(u)}">${esc(u.title)} →</button>`).join('')}</div>` : ''}
+      <section class="study-panel"><h2>章节路线</h2>
         ${groups.map(g => `<h3 class="study-chapter-label">${esc(g.title)}</h3><ol class="study-route">${g.items.map(u => {
             const i = units.indexOf(u);
-            const st = rec(u.id).passed ? '已通过一次' : rec(u.id).seen ? '已阅读，待检验' : '尚未开始';
-            const tag = u.question ? '学懂·回忆·练习' : '学懂·回忆';
-            return `<li><span class="study-number">${String(i + 1).padStart(2, '0')}</span><div><h3>${esc(u.title)}</h3><p>${u.minutes} 分钟 · ${tag} · ${st}</p></div><button type="button" class="study-btn" data-unit="${i}">学习</button></li>`;
+            const st = rec(u.id).passed ? '已通过' : rec(u.id).seen ? '待检验' : '未开始';
+            return `<li><span class="study-number">${String(i + 1).padStart(2, '0')}</span><div><h3>${esc(u.title)}</h3><p>${st}</p></div><button type="button" class="study-btn" data-unit="${i}">学习</button></li>`;
         }).join('')}</ol>`).join('')}
-      </section>
-      <section class="study-panel"><h2>待复习 <span class="study-badge">${dueUnits.length}</span></h2>
-        <p>${dueUnits.length ? '这些内容到复习时间了。重新回忆，比再读一遍更有用。' : '目前没有到期任务。完成一个单元后，系统会安排回访。'}</p>
-        ${dueUnits.map(u => `<button type="button" class="study-review" data-unit="${units.indexOf(u)}">${esc(u.title)} →</button>`).join('')}
-        <p class="study-muted">漏点或答错：10 分钟后复习；通过一次：1 天后；连续通过：3 天后。</p>
-        ${c.outline ? `<p><a href="${esc(c.outline)}">阅读课程大纲</a></p>` : ''}
-        ${btn('export', '导出学习记录')}
-      </section></div>
-      <p class="study-safety">${storageOK ? '进度仅保存在本机，不自动跨设备同步。' : '浏览器存储不可用。'} 自查不是正式评分。</p>`);
+      </section>`);
     root.querySelector('[data-action="home"]').onclick = courseHome;
     root.querySelector('[data-action="continue"]').onclick = () => openUnit(next);
     root.querySelectorAll('[data-unit]').forEach(b => b.onclick = () => openUnit(Number(b.dataset.unit)));
-    const exp = root.querySelector('[data-action="export"]');
-    if (exp) exp.onclick = () => {
-        const blob = new Blob([JSON.stringify({ version: 2, exportedAt: new Date().toISOString(), progress }, null, 2)], { type: 'application/json' });
-        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'study-progress.json'; a.click();
-        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    };
 }
 function openUnit(index) {
     current = index;
     stage = 'learn';
     revealed = false;
     checks = new Set();
-    draft = '';
     selected = '';
     submitted = false;
     progress.lastCourse = courseCode;
@@ -294,46 +294,42 @@ function renderUnit() {
     const c = catalog[courseCode].course;
     let body = '';
     if (stage === 'learn') {
-        const qualityLabel = u.quality === 'pilot' ? ' · 精讲单元' : u.quality === 'curated' ? ' · 文库核对单元' : ' · 大纲单元';
-        body = `<p class="study-eyebrow">01 / 学懂${qualityLabel}</p><h2>${esc(u.title)}</h2>
+        const qualityLabel = u.quality === 'pilot' ? '精讲' : u.quality === 'curated' ? '文库核对' : '大纲';
+        body = `<h2>${esc(u.title)} <span class="study-badge">${qualityLabel}</span></h2>
           <div class="study-explain">${esc(u.explain)}</div>
-          <div class="study-example"><h3>怎么用</h3><p>${esc(u.example)}</p></div>
-          <div class="study-contrast"><h3>别混淆</h3><p>${esc(u.contrast)}</p></div>
+          ${isFiller(u.example) ? '' : `<div class="study-example"><h3>怎么用</h3><p>${esc(u.example)}</p></div>`}
+          ${isFiller(u.contrast) ? '' : `<div class="study-contrast"><h3>别混淆</h3><p>${esc(u.contrast)}</p></div>`}
           <details class="study-answer"><summary>考试表述与依据</summary><p>${esc(u.examAnswer)}</p>
             ${citeLearn(u, c)}</details>
           ${btn('recall', '合上讲解，试着回忆 →', 'primary')}`;
     }
     if (stage === 'recall') {
-        body = `<p class="study-eyebrow">02 / 主动回忆</p><h2>${esc(u.recallPrompt)}</h2>
-          <p class="study-muted">先不看答案。不会也没关系。</p>
-          <label for="study-draft">我的回忆（可选）</label>
-          <textarea id="study-draft" placeholder="用自己的话写几个关键词…">${esc(draft)}</textarea>
+        body = `<h2>${esc(u.recallPrompt)}</h2>
+          <p class="study-muted">先自己回想，再对照要点。</p>
           ${!revealed ? btn('reveal', '我想好了，对照要点', 'primary') : `<div class="study-answer"><h3>逐项自查：哪些是刚才独立想起来的？</h3>
             ${u.checkpoints.map((p, i) => `<label class="study-check"><input type="checkbox" data-check="${i}" ${checks.has(i) ? 'checked' : ''}><span>${esc(p)}</span></label>`).join('')}
             <p class="study-muted">没勾选的记为待巩固，不是扣分。</p></div>
-            ${q ? btn('quiz', '保存自查，做一道题 →', 'primary') : btn('finish', '记录回忆结果 →', 'primary')}`}`;
+            ${q ? btn('quiz', '做一道关联题 →', 'primary') : btn('finish', '记录结果 →', 'primary')}`}`;
     }
     if (stage === 'quiz' && q) {
-        body = `<p class="study-eyebrow">03 / 关联练习 · ${esc(q.kind)}</p><h2>${esc(q.stem)}</h2>
+        body = `<h2>${esc(q.stem)}</h2>
           <fieldset class="study-options" ${submitted ? 'disabled' : ''}><legend>选择一个答案</legend>
             ${Object.entries(q.options).map(([key, value]) => `<label class="study-option ${submitted && key === q.answer ? 'correct' : ''}"><input type="radio" name="study-option" value="${esc(key)}" ${selected === key ? 'checked' : ''} aria-label="${esc(`${key}. ${value}`)}"><b aria-hidden="true">${esc(key)}</b><span>${esc(value)}</span></label>`).join('')}
           </fieldset>
-          ${submitted ? `<div class="study-feedback ${selected === q.answer ? 'good' : 'retry'}" role="status"><h3>${selected === q.answer ? '这道题答对了' : '再辨析一次'} · 答案 ${esc(q.answer)}</h3><p>${esc(q.explanation)}</p><p>你这次回忆了 ${checks.size} / ${u.checkpoints.length} 个要点。</p></div>${btn('finish', '记录结果，查看下一步 →', 'primary')}` : btn('submit', '提交答案', 'primary')}
-          <p class="study-muted">${esc(q.kind)}${q.sourceNumber ? ` · 第 ${esc(q.sourceNumber)} 题` : ''}${qSource ? ` · <a href="${qSource}" target="_blank" rel="noopener">用整卷模拟打开</a>` : ''}。章节练习和 00318 练习都不冒充本课历年真题。</p>`;
+          ${submitted ? `<div class="study-feedback ${selected === q.answer ? 'good' : 'retry'}" role="status"><h3>${selected === q.answer ? '答对了' : '再辨析一次'} · 答案 ${esc(q.answer)}</h3><p>${esc(q.explanation)}</p></div>${btn('finish', '记录结果 →', 'primary')}` : btn('submit', '提交答案', 'primary')}
+          <p class="study-muted">${esc(q.kind)}${q.sourceNumber ? ` · 第 ${esc(q.sourceNumber)} 题` : ''} · 不是历年真题${qSource ? ` · <a href="${qSource}" target="_blank" rel="noopener">在整卷模拟里打开</a>` : ''}</p>`;
     }
     if (stage === 'done') {
-        body = `<p class="study-eyebrow">本次学习已记录</p>
-          <h2>${record().passed ? '完成了一次有效检验' : '发现薄弱点，就是这次的收获'}</h2>
-          <p>独立回忆 ${checks.size} / ${u.checkpoints.length} 个要点${q ? `；练习${selected === q.answer ? '正确' : '需要重练'}` : '。本章暂无核对过的关联选择题'}。</p>
-          <p>下次复习：${new Date(record().due).toLocaleString('zh-CN')}</p>
-          <div class="study-actions">${btn('dashboard', '返回本科目', 'primary')}${current < units.length - 1 ? btn('next', '学习下一个单元 →') : ''}${btn('restart', '再学一次')}</div>`;
+        body = `<h2>${record().passed ? '这次算通过' : '发现薄弱点，就是这次的收获'}</h2>
+          <p>独立回忆 ${checks.size} / ${u.checkpoints.length} 个要点${q ? `；练习${selected === q.answer ? '正确' : '需要重练'}` : ''}。</p>
+          <p class="study-muted">下次复习：${new Date(record().due).toLocaleString('zh-CN')}</p>
+          <div class="study-actions">${current < units.length - 1 ? btn('next', '下一个单元 →', 'primary') : ''}${btn('dashboard', '返回本科目')}${btn('restart', '再学一次')}</div>`;
     }
     setPage(`<div class="study-topline">${btn('dashboard', '← ' + c.label)}<span>${esc(c.label)} · ${current + 1}/${units.length}</span></div>
       <div class="study-steps" aria-label="学习步骤">${['学懂', '回忆', q ? '练习' : '记录'].map((label, i) => `<span class="${['learn', 'recall', q ? 'quiz' : 'done'][i] === stage ? 'active' : ''}">${i + 1} ${label}</span>`).join('')}</div>
       <article class="study-lesson">${body}</article>
-      <p class="study-safety">自查是学习反馈，不是正式考试评分。进度${storageOK ? '仅保存在本机' : '暂时无法持久保存'}。</p>`);
+      <p class="study-safety">自查是学习反馈，不是正式考试评分。</p>`);
     root.querySelectorAll('[data-action]').forEach(b => b.onclick = () => act(b.dataset.action));
-    root.querySelector('#study-draft')?.addEventListener('input', e => { draft = e.target.value; });
     root.querySelectorAll('[data-check]').forEach(box => {
         box.onchange = () => (box.checked ? checks.add(Number(box.dataset.check)) : checks.delete(Number(box.dataset.check)));
     });
@@ -383,7 +379,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3m';
+        const v = 'jan3n';
         const [curated03333, packs, extras] = await Promise.all([
             Promise.all(CURATED_03333.map(async file => {
                 const r = await fetch(`${file}?v=${v}`);

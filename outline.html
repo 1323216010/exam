@@ -43,7 +43,6 @@
       </div>
       <div class="actions">
         <a class="btn" id="back" href="./">返回考点学习</a>
-        <a class="btn" id="original" href="#" hidden>下载原件</a>
       </div>
     </div>
   </div>
@@ -54,9 +53,9 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     const COURSES = {
-      "03333": { title: "电子政务概论 考试大纲", file: "knowledge/03333-gd-outline.md", original: "knowledge/03333-gd-outline.docx" },
-      "13672": { title: "公共政策导论 考试大纲", file: "knowledge/13672-gzyszxy-outline.md", original: "knowledge/13672-gzyszxy-outline.pdf" },
-      "00040": { title: "法学概论 考试大纲", file: "knowledge/00040-gd-outline.md", original: "knowledge/00040-gd-outline.docx" }
+      "03333": { title: "电子政务概论 考试大纲", file: "knowledge/03333-gd-outline.md" },
+      "13672": { title: "公共政策导论 考试大纲", file: "knowledge/13672-gzyszxy-outline.md" },
+      "00040": { title: "法学概论 考试大纲", file: "knowledge/00040-gd-outline.md" }
     };
     const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
     function fallback(md) {
@@ -68,7 +67,7 @@
       const useFile = fileParam && /^knowledge\/[\w\-./\u4e00-\u9fff]+\.md$/.test(fileParam) && !fileParam.includes("..");
       const code = params.get("code") || "03333";
       const course = useFile
-        ? { title: params.get("title") || "素材原文", file: fileParam, original: "" }
+        ? { title: params.get("title") || "素材原文", file: fileParam }
         : (COURSES[code] || COURSES["03333"]);
       document.title = course.title;
       document.getElementById("title").textContent = course.title;
@@ -76,12 +75,6 @@
         ? `课程代码 ${code} · 本地素材摘录，供学习整理使用`
         : `课程代码 ${code} · 阅读转载，不是整本教材`;
       document.getElementById("back").href = "./";
-      const original = document.getElementById("original");
-      if (course.original) {
-        original.hidden = false;
-        original.href = course.original;
-        original.textContent = course.original.endsWith(".pdf") ? "下载 PDF 原件" : "下载 Word 原件";
-      }
       const res = await fetch(course.file);
       if (!res.ok) throw new Error("无法加载内容");
       const markdown = await res.text();
