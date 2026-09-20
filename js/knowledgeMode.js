@@ -295,12 +295,14 @@ function renderUnit() {
     let body = '';
     if (stage === 'learn') {
         const qualityLabel = u.quality === 'pilot' ? '精讲' : u.quality === 'curated' ? '文库核对' : '大纲';
+        // 自动生成的单元常把同一段摘要既当讲解又当考试表述，重复渲染没有意义。
+        const sameAsExplain = (u.examAnswer || '').trim() === (u.explain || '').trim();
+        const cite = citeLearn(u, c);
         body = `<h2>${esc(u.title)} <span class="study-badge">${qualityLabel}</span></h2>
           <div class="study-explain">${esc(u.explain)}</div>
           ${isFiller(u.example) ? '' : `<div class="study-example"><h3>怎么用</h3><p>${esc(u.example)}</p></div>`}
           ${isFiller(u.contrast) ? '' : `<div class="study-contrast"><h3>别混淆</h3><p>${esc(u.contrast)}</p></div>`}
-          <details class="study-answer"><summary>考试表述与依据</summary><p>${esc(u.examAnswer)}</p>
-            ${citeLearn(u, c)}</details>
+          ${sameAsExplain ? cite : `<details class="study-answer"><summary>考试表述与依据</summary><p>${esc(u.examAnswer)}</p>${cite}</details>`}
           ${btn('recall', '合上讲解，试着回忆 →', 'primary')}`;
     }
     if (stage === 'recall') {
@@ -379,7 +381,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3n';
+        const v = 'jan3o';
         const [curated03333, packs, extras] = await Promise.all([
             Promise.all(CURATED_03333.map(async file => {
                 const r = await fetch(`${file}?v=${v}`);
