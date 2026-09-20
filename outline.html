@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课程大纲</title>
+  <style>
+    :root { --ink:#17382f; --muted:#62776f; --line:#dbe6df; --green:#12684e; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI","Microsoft YaHei",sans-serif; background:#eef6f1; color:var(--ink); }
+    .top { position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); }
+    .top-inner { max-width:1200px; margin:auto; padding:14px 20px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    h1 { margin:0; font-size:20px; }
+    .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    .actions { display:flex; gap:8px; flex-shrink:0; }
+    .btn { display:inline-flex; align-items:center; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; padding:7px 12px; text-decoration:none; font-size:13px; }
+    .layout { max-width:1200px; margin:auto; padding:20px; display:grid; grid-template-columns:250px minmax(0,1fr); gap:18px; }
+    .toc, .paper { background:#fff; border:1px solid var(--line); border-radius:16px; }
+    .toc { position:sticky; top:78px; height:calc(100vh - 98px); overflow:auto; padding:14px; }
+    .toc a { display:block; color:#146b54; text-decoration:none; padding:6px 8px; border-radius:8px; font-size:14px; }
+    .toc a:hover, .toc a.active { background:#e7f2ec; }
+    .paper { padding:28px 32px 48px; line-height:1.8; }
+    .paper h1 { font-size:28px; margin:0 0 16px; }
+    .paper h2 { font-size:22px; margin:28px 0 12px; }
+    .paper h3 { font-size:18px; margin:22px 0 8px; }
+    .paper h4 { font-size:16px; margin:16px 0 8px; }
+    .paper p, .paper li { margin:8px 0; }
+    .paper blockquote { margin:12px 0 20px; padding:10px 14px; background:#f5faf3; border-left:4px solid var(--green); color:var(--muted); }
+    .notice { padding:20px; color:var(--muted); }
+    @media (max-width:800px) {
+      .layout { grid-template-columns:1fr; }
+      .toc { position:static; height:auto; max-height:220px; }
+      .paper { padding:20px 16px 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="top-inner">
+      <div>
+        <h1 id="title">课程大纲</h1>
+        <div class="meta" id="meta">对照考核范围用的阅读转载</div>
+      </div>
+      <div class="actions">
+        <a class="btn" id="back" href="./">返回考点学习</a>
+        <a class="btn" id="original" href="#" hidden>下载原件</a>
+      </div>
+    </div>
+  </div>
+  <div class="layout">
+    <nav class="toc" id="toc">目录加载中…</nav>
+    <article class="paper" id="content"><div class="notice">正在加载大纲…</div></article>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const COURSES = {
+      "03333": { title: "电子政务概论 考试大纲", file: "knowledge/03333-gd-outline.md", original: "knowledge/03333-gd-outline.docx" },
+      "13672": { title: "公共政策导论 考试大纲", file: "knowledge/13672-gzyszxy-outline.md", original: "knowledge/13672-gzyszxy-outline.pdf" },
+      "00040": { title: "法学概论 考试大纲", file: "knowledge/00040-gd-outline.md", original: "knowledge/00040-gd-outline.docx" }
+    };
+    const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+    function fallback(md) {
+      return esc(md).replace(/^### (.+)$/gm, "<h3>$1</h3>").replace(/^## (.+)$/gm, "<h2>$1</h2>").replace(/^# (.+)$/gm, "<h1>$1</h1>").replace(/\n\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>");
+    }
+    async function main() {
+      const code = new URLSearchParams(location.search).get("code") || "03333";
+      const course = COURSES[code] || COURSES["03333"];
+      document.title = course.title;
+      document.getElementById("title").textContent = course.title;
+      document.getElementById("meta").textContent = `课程代码 ${code} · 阅读转载，不是整本教材`;
+      document.getElementById("back").href = "./";
+      const original = document.getElementById("original");
+      original.hidden = false;
+      original.href = course.original;
+      original.textContent = course.original.endsWith(".pdf") ? "下载 PDF 原件" : "下载 Word 原件";
+      const res = await fetch(course.file);
+      if (!res.ok) throw new Error("无法加载大纲");
+      const markdown = await res.text();
+      const content = document.getElementById("content");
+      content.innerHTML = window.marked ? marked.parse(markdown) : fallback(markdown);
+      const toc = [];
+      content.querySelectorAll("h2, h3").forEach((h, i) => {
+        const id = h.id || `h-${i}`;
+        h.id = id;
+        toc.push(`<a class="${h.tagName.toLowerCase()}" href="#${id}">${esc(h.textContent)}</a>`);
+      });
+      document.getElementById("toc").innerHTML = toc.join("") || "本章没有目录";
+    }
+    main().catch(err => {
+      document.getElementById("content").innerHTML = `<div class="notice">${esc(err.message)}</div>`;
+    });
+  </script>
+</body>
+</html>

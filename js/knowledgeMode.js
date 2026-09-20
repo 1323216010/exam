@@ -8,7 +8,8 @@ const COURSES = [
         examCode: '03333',
         file: 'knowledge/03333-knowledge.json',
         unitsFile: 'knowledge/units-03333.json',
-        outline: 'knowledge/03333-gd-outline.docx',
+        outline: 'outline.html?code=03333',
+        outlineFile: 'knowledge/03333-gd-outline.md',
         blurb: '政府上网怎么管、怎么服务。各章可学，第一、二章是精讲。'
     },
     {
@@ -17,7 +18,8 @@ const COURSES = [
         examCode: '13672',
         file: 'knowledge/13672-knowledge.json',
         unitsFile: 'knowledge/units-13672.json',
-        outline: 'knowledge/13672-gzyszxy-outline.pdf',
+        outline: 'outline.html?code=13672',
+        outlineFile: 'knowledge/13672-gzyszxy-outline.md',
         blurb: '政策从议程到终结。按谢明《公共政策导论》最新大纲 8 章。'
     },
     {
@@ -26,7 +28,8 @@ const COURSES = [
         examCode: '00040',
         file: 'knowledge/00040-knowledge.json',
         unitsFile: 'knowledge/units-00040.json',
-        outline: 'knowledge/00040-gd-outline.docx',
+        outline: 'outline.html?code=00040',
+        outlineFile: 'knowledge/00040-gd-outline.md',
         blurb: '法理到诉讼法 11 章。定义以指定教材为准。'
     }
 ];
@@ -59,7 +62,27 @@ function setPage(html) {
     if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
 }
 function sourceLink(path) {
-    return typeof path === 'string' && /^(knowledge\/|json\/)/.test(path) && !path.includes('..') ? encodeURI(path) : '';
+    if (typeof path !== 'string' || path.includes('..')) return '';
+    if (/^(knowledge\/|json\/|outline\.html)/.test(path)) return encodeURI(path);
+    return '';
+}
+function paperLabel(kind) {
+    const k = String(kind || '');
+    if (k.includes('00318')) return '题库练习（00318）';
+    if (k.includes('章节练习')) return '章节练习';
+    return '关联练习';
+}
+function citeLearn(u, course) {
+    const q = u.question;
+    const outline = sourceLink(course.outline);
+    const paper = sourceLink(q?.sourcePath);
+    const bits = [];
+    bits.push(outline ? `<a href="${outline}">课程大纲</a>` : '课程大纲');
+    if (paper) bits.push(`<a href="${paper}">${esc(paperLabel(q.kind))}</a>`);
+    const where = (u.chapterTitle && u.chapterTitle !== u.title)
+        ? `${u.chapterTitle} · ${u.title}`
+        : (u.chapterTitle || u.title || '');
+    return `<p class="study-cite">出处：${bits.join(' · ')}${where ? ` · ${esc(where)}` : ''}。讲解是学习整理，不是整本教材原文。</p>`;
 }
 function sectionTitles(ch) {
     const raw = ch.sections?.length ? ch.sections : (ch.toc_numbered || []);
@@ -218,7 +241,7 @@ function courseDashboard() {
         <p>${dueUnits.length ? '这些内容到复习时间了。重新回忆，比再读一遍更有用。' : '目前没有到期任务。完成一个单元后，系统会安排回访。'}</p>
         ${dueUnits.map(u => `<button type="button" class="study-review" data-unit="${units.indexOf(u)}">${esc(u.title)} →</button>`).join('')}
         <p class="study-muted">漏点或答错：10 分钟后复习；通过一次：1 天后；连续通过：3 天后。</p>
-        ${c.outline ? `<p><a href="${esc(c.outline)}">大纲转载原件</a></p>` : ''}
+        ${c.outline ? `<p><a href="${esc(c.outline)}">阅读课程大纲</a></p>` : ''}
         ${btn('export', '导出学习记录')}
       </section></div>
       <p class="study-safety">${storageOK ? '进度仅保存在本机，不自动跨设备同步。' : '浏览器存储不可用。'} 自查不是正式评分。</p>`);
@@ -248,7 +271,6 @@ function openUnit(index) {
 function renderUnit() {
     const u = units[current];
     const q = u.question;
-    const source = sourceLink(u.source?.path);
     const qSource = q ? sourceLink(q.sourcePath) : '';
     const c = catalog[courseCode].course;
     let body = '';
@@ -259,7 +281,7 @@ function renderUnit() {
           <div class="study-example"><h3>怎么用</h3><p>${esc(u.example)}</p></div>
           <div class="study-contrast"><h3>别混淆</h3><p>${esc(u.contrast)}</p></div>
           <details class="study-answer"><summary>考试表述与依据</summary><p>${esc(u.examAnswer)}</p>
-            <small>${esc(u.source?.label || '')} · ${esc(u.source?.location || '')} ${source ? `<a href="${source}">查看来源</a>` : ''}</small></details>
+            ${citeLearn(u, c)}</details>
           ${btn('recall', '合上讲解，试着回忆 →', 'primary')}`;
     }
     if (stage === 'recall') {
@@ -278,7 +300,7 @@ function renderUnit() {
             ${Object.entries(q.options).map(([key, value]) => `<label class="study-option ${submitted && key === q.answer ? 'correct' : ''}"><input type="radio" name="study-option" value="${esc(key)}" ${selected === key ? 'checked' : ''} aria-label="${esc(`${key}. ${value}`)}"><b aria-hidden="true">${esc(key)}</b><span>${esc(value)}</span></label>`).join('')}
           </fieldset>
           ${submitted ? `<div class="study-feedback ${selected === q.answer ? 'good' : 'retry'}" role="status"><h3>${selected === q.answer ? '这道题答对了' : '再辨析一次'} · 答案 ${esc(q.answer)}</h3><p>${esc(q.explanation)}</p><p>你这次回忆了 ${checks.size} / ${u.checkpoints.length} 个要点。</p></div>${btn('finish', '记录结果，查看下一步 →', 'primary')}` : btn('submit', '提交答案', 'primary')}
-          <p class="study-muted">${esc(q.kind)} · 原题编号 ${esc(q.sourceNumber)} ${qSource ? `<a href="${qSource}">查看关联题源</a>` : ''}。章节练习不冒充历年真题。</p>`;
+          <p class="study-muted">${esc(q.kind)}${q.sourceNumber ? ` · 第 ${esc(q.sourceNumber)} 题` : ''}${qSource ? ` · <a href="${qSource}">打开原题</a>` : ''}。章节练习和 00318 练习都不冒充本课历年真题。</p>`;
     }
     if (stage === 'done') {
         body = `<p class="study-eyebrow">本次学习已记录</p>
@@ -342,7 +364,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3h';
+        const v = 'jan3j';
         const [pilot, ch02, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
             fetch(`knowledge/ch02-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('第二章精讲加载失败'); return r.json(); }),
