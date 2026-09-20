@@ -6,6 +6,7 @@
     <title>自测系统</title>
     <link rel="stylesheet" href="css/common.css?v=20260823">
     <link rel="stylesheet" href="css/pages.css?v=20260920k">
+    <link rel="stylesheet" href="css/study.css?v=pilot1">
 </head>
 <body>
     <div class="app-container">
@@ -38,11 +39,11 @@
                         <div class="mode-desc">按科目、题型自由刷题，也可按数量精细组卷</div>
                     </div>
 
-                    <div class="mode-card" data-mode="knowledge">
-                        <div class="mode-icon" data-icon="lightbulb"></div>
-                        <div class="mode-title">考点复习</div>
-                        <div class="mode-desc">按大纲章节过识记/领会/应用，一月三门先用</div>
-                    </div>
+                    <button type="button" class="mode-card" data-mode="knowledge">
+                        <span class="mode-icon" data-icon="lightbulb"></span>
+                        <span class="mode-title">考点学习</span>
+                        <span class="mode-desc">学懂、回忆、练习 · 从一个知识点开始</span>
+                    </button>
                 </div>
             </div>
 
@@ -52,21 +53,10 @@
                     <nav class="breadcrumb">
                         <a href="#" class="breadcrumb-item" id="breadcrumb-home-knowledge"><i data-icon="home"></i> 首页</a>
                         <span class="breadcrumb-separator">›</span>
-                        <span class="breadcrumb-item active">考点复习</span>
+                        <span class="breadcrumb-item active">考点学习</span>
                     </nav>
                 </div>
-                <div class="knowledge-body">
-                    <div class="knowledge-toolbar">
-                        <div class="knowledge-subject-tabs" id="knowledge-subject-tabs" role="tablist" aria-label="科目"></div>
-                        <p class="knowledge-note" id="knowledge-note"></p>
-                    </div>
-                    <div class="knowledge-layout">
-                        <aside class="knowledge-chapter-list" id="knowledge-chapter-list" aria-label="章节"></aside>
-                        <section class="knowledge-detail" id="knowledge-detail">
-                            <p class="knowledge-placeholder">选择科目和章节，查看考核知识点。</p>
-                        </section>
-                    </div>
-                </div>
+                <div id="study-workspace" class="study-workspace" aria-live="polite"><p>正在准备学习单元…</p></div>
             </div>
 
             <!-- 文件上传 -->
@@ -390,6 +380,6 @@
         </div>
     </div>
 
-    <script type="module" src="js/home.js?v=20260920k"></script>
+    <script type="module" src="js/home.js?v=pilot1"></script>
 </body>
 </html>

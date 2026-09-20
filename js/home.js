@@ -12,7 +12,7 @@ import {
 } from './settings.js';
 import { resetPromptTemplates } from './api.js';
 import { initIcons } from './icons.js';
-import { initKnowledgeMode } from './knowledgeMode.js?v=20260920k';
+import { initKnowledgeMode } from './knowledgeMode.js?v=pilot1';
 
 // ==================== 模式选择 ====================
 
