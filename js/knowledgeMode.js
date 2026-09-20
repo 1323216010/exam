@@ -7,14 +7,16 @@ const COURSES = [
         label: '电子政务概论',
         examCode: '03333',
         file: 'knowledge/03333-knowledge.json',
+        unitsFile: 'knowledge/units-03333.json',
         outline: 'knowledge/03333-gd-outline.docx',
-        blurb: '政府上网怎么管、怎么服务。第一章可练到题。'
+        blurb: '政府上网怎么管、怎么服务。各章可学，第一章是精讲。'
     },
     {
         code: '13672',
         label: '公共政策导论',
         examCode: '13672',
         file: 'knowledge/13672-knowledge.json',
+        unitsFile: 'knowledge/units-13672.json',
         outline: 'knowledge/13672-gzyszxy-outline.pdf',
         blurb: '政策从议程到终结。按谢明《公共政策导论》最新大纲 8 章。'
     },
@@ -23,6 +25,7 @@ const COURSES = [
         label: '法学概论',
         examCode: '00040',
         file: 'knowledge/00040-knowledge.json',
+        unitsFile: 'knowledge/units-00040.json',
         outline: 'knowledge/00040-gd-outline.docx',
         blurb: '法理到诉讼法 11 章。定义以指定教材为准。'
     }
@@ -107,32 +110,28 @@ function unitFromChapter(course, ch) {
         quality: 'outline'
     };
 }
-function buildCourse(course, raw, pilot) {
-    let chapters = [];
-    if (course.code === '13672' && raw.official_outline_xieming?.chapters?.length) {
-        chapters = raw.official_outline_xieming.chapters;
-    } else if (Array.isArray(raw.chapters) && raw.chapters.length) {
-        chapters = raw.chapters;
-    } else if (raw.official_outline_xieming?.chapters?.length) {
-        chapters = raw.official_outline_xieming.chapters;
-    } else if (raw.jiaofu_toc?.length) {
-        chapters = raw.jiaofu_toc;
-    }
+function buildCourse(course, raw, extra, pilot) {
     const list = [];
-    for (const ch of chapters) {
-        const isPilotChapter = course.code === '03333' && (ch.id === '03333-ch01' || ch.title === '电子政务的基本概念');
-        if (isPilotChapter && pilot?.units?.length) {
-            for (const u of pilot.units) list.push({ ...u, course: course.code, chapterTitle: pilot.title || '第一章 电子政务的基本概念', quality: 'pilot' });
-            continue;
+    if (course.code === '03333' && pilot?.units?.length) {
+        for (const u of pilot.units) {
+            list.push({ ...u, course: course.code, chapterTitle: pilot.title || '第一章 电子政务的基本概念', quality: 'pilot' });
         }
-        list.push(unitFromChapter(course, ch));
+    }
+    for (const u of extra?.units || []) {
+        list.push({ ...u, course: course.code, chapterTitle: u.chapterTitle || u.title });
+    }
+    if (!list.length) {
+        let chapters = [];
+        if (course.code === '13672' && raw.official_outline_xieming?.chapters?.length) chapters = raw.official_outline_xieming.chapters;
+        else if (Array.isArray(raw.chapters) && raw.chapters.length) chapters = raw.chapters;
+        for (const ch of chapters) list.push(unitFromChapter(course, ch));
     }
     const textbook = course.code === '13672'
-        ? (raw.official_outline_xieming?.textbook || raw.textbook_xieming || '谢明《公共政策导论》中国人民大学出版社 2020 年版')
-        : (raw.textbook || raw.textbook_xieming || '');
+        ? (raw.official_outline_xieming?.textbook || '谢明《公共政策导论》中国人民大学出版社 2020 年版')
+        : (raw.textbook || '');
     const note = course.code === '13672'
-        ? '学习路径按 13672 最新大纲（谢明）。整卷模拟题库里仍有 00318 试卷，那是旧课码资料，不作为本章目录。'
-        : (raw.not_examined || '');
+        ? '按 13672 谢明最新大纲。关联题来自题库里的 00318 试卷，只作练习，不称为 13672 历年真题。'
+        : (raw.not_examined || extra?.notes?.[0] || '');
     return { course, raw, units: list, textbook, note };
 }
 function loadProgress() {
@@ -160,7 +159,7 @@ function courseHome() {
     courseCode = null;
     units = [];
     setPage(`<div class="study-topline"><span>学习工作台</span><span class="study-badge">2026 年 1 月 · 三门</span></div>
-      <header class="study-hero"><div><p class="study-eyebrow">先选一门，再学一个考点</p><h1>一月要考的三门都在这里</h1><p>公共政策导论、电子政务概论、法学概论。<br>电子政务第一章有完整「学懂 → 回忆 → 练习」；其余章节先按大纲走学懂和回忆。</p></div>
+      <header class="study-hero"><div><p class="study-eyebrow">先选一门，再学一个考点</p><h1>一月要考的三门都在这里</h1><p>公共政策导论、电子政务概论、法学概论。<br>各科都有「学懂 → 回忆」；挂了关联题的单元再加一道练习。电子政务第一章是精讲。</p></div>
       <div class="study-progress"><span>本机进度</span><small>不自动跨设备同步。通过一次不等于长期掌握。</small></div></header>
       <div class="study-course-grid">${COURSES.map(c => {
         const s = courseStats(c.code);
@@ -199,7 +198,7 @@ function courseDashboard() {
     }
     setPage(`<div class="study-topline">${btn('home', '← 一月三门')}<span>${esc(c.label)} / ${esc(c.examCode)}</span></div>
       <header class="study-hero"><div><p class="study-eyebrow">${esc(c.blurb)}</p><h1>${esc(c.label)}</h1><p>${esc(pack.textbook || '')}</p>${pack.note ? `<p class="study-muted">${esc(pack.note)}</p>` : ''}${btn('continue', '继续学习 →', 'primary')}</div>
-      <div class="study-progress"><strong>${s.passed}<small> / ${s.total}</small></strong><span>单元通过自查</span><progress max="${s.total}" value="${s.passed}"></progress><small>电子政务第一章可练到章节练习；其余章先回忆大纲要点。</small></div></header>
+      <div class="study-progress"><strong>${s.passed}<small> / ${s.total}</small></strong><span>单元通过自查</span><progress max="${s.total}" value="${s.passed}"></progress><small>有关联题的单元走学懂·回忆·练习；没有的先回忆大纲要点。</small></div></header>
       <div class="study-dashboard-grid"><section class="study-panel"><h2>章节学习路线</h2>
         ${groups.map(g => `<h3 class="study-chapter-label">${esc(g.title)}</h3><ol class="study-route">${g.items.map(u => {
             const i = units.indexOf(u);
@@ -335,17 +334,25 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const pilotP = fetch('knowledge/pilot-03333.json?v=jan3c').then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); });
-        const packs = await Promise.all(COURSES.map(async c => {
-            const r = await fetch(`${c.file}?v=jan3c`);
-            if (!r.ok) throw new Error(`无法加载 ${c.label}`);
-            return [c.code, await r.json()];
-        }));
-        const pilot = await pilotP.catch(() => null);
+        const v = 'jan3e';
+        const [pilot, packs, extras] = await Promise.all([
+            fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
+            Promise.all(COURSES.map(async c => {
+                const r = await fetch(`${c.file}?v=${v}`);
+                if (!r.ok) throw new Error(`无法加载 ${c.label}`);
+                return [c.code, await r.json()];
+            })),
+            Promise.all(COURSES.map(async c => {
+                const r = await fetch(`${c.unitsFile}?v=${v}`);
+                if (!r.ok) throw new Error(`无法加载 ${c.label} 学习单元`);
+                return [c.code, await r.json()];
+            }))
+        ]);
         catalog = {};
         for (const c of COURSES) {
             const raw = packs.find(p => p[0] === c.code)[1];
-            catalog[c.code] = buildCourse(c, raw, c.code === '03333' ? pilot : null);
+            const extra = extras.find(p => p[0] === c.code)[1];
+            catalog[c.code] = buildCourse(c, raw, extra, c.code === '03333' ? pilot : null);
         }
         courseHome();
     } catch (error) {
