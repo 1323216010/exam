@@ -168,7 +168,7 @@ function courseHome() {
           <span class="study-badge">${esc(c.examCode)}${c.bank ? ` · ${esc(c.bank)}` : ''}</span>
           <h2>${esc(c.label)}</h2>
           <p>${esc(c.blurb)}</p>
-          <p class="study-muted">${s.passed}/${s.total} 单元通过自查${s.dueN ? ` · ${s.dueN} 待复习` : s.seen ? ` · 已看过 ${s.seen}` : ''}</p>
+          <p class="study-muted">${s.passed}/${s.total} 单元通过自查${s.dueN ? ` · ${s.dueN} 待复习` : s.seen ? ` · 已看过 ${s.seen}` : ''}${progress.lastCourse === c.code ? ' · 上次学到这里' : ''}</p>
         </button>`;
     }).join('')}</div>
       <p class="study-safety">${storageOK ? '进度仅保存在当前浏览器。' : '浏览器存储不可用，本次进度可能无法保存。'} 讲解是依据大纲重新组织的学习说明，不是整本教材。</p>`);
@@ -335,9 +335,9 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const pilotP = fetch('knowledge/pilot-03333.json?v=jan3b').then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); });
+        const pilotP = fetch('knowledge/pilot-03333.json?v=jan3c').then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); });
         const packs = await Promise.all(COURSES.map(async c => {
-            const r = await fetch(`${c.file}?v=jan3b`);
+            const r = await fetch(`${c.file}?v=jan3c`);
             if (!r.ok) throw new Error(`无法加载 ${c.label}`);
             return [c.code, await r.json()];
         }));
@@ -347,8 +347,7 @@ export async function initKnowledgeMode() {
             const raw = packs.find(p => p[0] === c.code)[1];
             catalog[c.code] = buildCourse(c, raw, c.code === '03333' ? pilot : null);
         }
-        if (progress.lastCourse && catalog[progress.lastCourse]) openCourse(progress.lastCourse);
-        else courseHome();
+        courseHome();
     } catch (error) {
         root.innerHTML = `<section class="study-panel"><h2>暂时无法打开学习内容</h2><p>${esc(error.message)}</p>${btn('retry', '重试')}</section>`;
         const retry = root.querySelector('[data-action="retry"]');
