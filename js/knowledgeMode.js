@@ -63,7 +63,7 @@ function setPage(html) {
 }
 function sourceLink(path) {
     if (typeof path !== 'string' || path.includes('..')) return '';
-    if (/^(knowledge\/|json\/|outline\.html|paper\.html)/.test(path)) return encodeURI(path);
+    if (/^(knowledge\/|json\/|outline\.html|exam\.html)/.test(path)) return encodeURI(path);
     return '';
 }
 function paperLabel(kind) {
@@ -72,15 +72,15 @@ function paperLabel(kind) {
     if (k.includes('章节练习')) return '章节练习';
     return '关联练习';
 }
-function paperView(path, number) {
+function examView(path, title) {
     if (typeof path !== 'string' || !path.startsWith('json/') || path.includes('..')) return '';
-    const q = number ? `&q=${encodeURIComponent(number)}` : '';
-    return `paper.html?file=${encodeURIComponent(path)}${q}`;
+    const name = title || paperLabel() || '练习';
+    return `exam.html?exam=${encodeURIComponent(path)}&filename=${encodeURIComponent(name)}`;
 }
 function citeLearn(u, course) {
     const q = u.question;
     const outline = sourceLink(course.outline);
-    const paper = paperView(q?.sourcePath);
+    const paper = examView(q?.sourcePath, paperLabel(q?.kind));
     const bits = [];
     bits.push(outline ? `<a href="${outline}">课程大纲</a>` : '课程大纲');
     if (paper) bits.push(`<a href="${paper}">${esc(paperLabel(q.kind))}</a>`);
@@ -276,7 +276,7 @@ function openUnit(index) {
 function renderUnit() {
     const u = units[current];
     const q = u.question;
-    const qSource = q ? paperView(q.sourcePath, q.sourceNumber) : '';
+    const qSource = q ? examView(q.sourcePath, q.kind || '练习') : '';
     const c = catalog[courseCode].course;
     let body = '';
     if (stage === 'learn') {
@@ -305,7 +305,7 @@ function renderUnit() {
             ${Object.entries(q.options).map(([key, value]) => `<label class="study-option ${submitted && key === q.answer ? 'correct' : ''}"><input type="radio" name="study-option" value="${esc(key)}" ${selected === key ? 'checked' : ''} aria-label="${esc(`${key}. ${value}`)}"><b aria-hidden="true">${esc(key)}</b><span>${esc(value)}</span></label>`).join('')}
           </fieldset>
           ${submitted ? `<div class="study-feedback ${selected === q.answer ? 'good' : 'retry'}" role="status"><h3>${selected === q.answer ? '这道题答对了' : '再辨析一次'} · 答案 ${esc(q.answer)}</h3><p>${esc(q.explanation)}</p><p>你这次回忆了 ${checks.size} / ${u.checkpoints.length} 个要点。</p></div>${btn('finish', '记录结果，查看下一步 →', 'primary')}` : btn('submit', '提交答案', 'primary')}
-          <p class="study-muted">${esc(q.kind)}${q.sourceNumber ? ` · 第 ${esc(q.sourceNumber)} 题` : ''}${qSource ? ` · <a href="${qSource}">打开原题</a>` : ''}。章节练习和 00318 练习都不冒充本课历年真题。</p>`;
+          <p class="study-muted">${esc(q.kind)}${q.sourceNumber ? ` · 第 ${esc(q.sourceNumber)} 题` : ''}${qSource ? ` · <a href="${qSource}" target="_blank" rel="noopener">用整卷模拟打开</a>` : ''}。章节练习和 00318 练习都不冒充本课历年真题。</p>`;
     }
     if (stage === 'done') {
         body = `<p class="study-eyebrow">本次学习已记录</p>
@@ -369,7 +369,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3k';
+        const v = 'jan3l';
         const [pilot, ch02, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
             fetch(`knowledge/ch02-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('第二章精讲加载失败'); return r.json(); }),
