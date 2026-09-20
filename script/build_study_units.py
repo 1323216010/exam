@@ -189,7 +189,7 @@ def build_03333():
     for i, ch in enumerate(chapters):
         title = ch["title"]
         cid = ch["id"]
-        if cid == "03333-ch01":
+        if cid in {"03333-ch01", "03333-ch02"}:
             continue
         points = kao.get(title) or []
         path = paper_for(title)
@@ -251,6 +251,7 @@ def build_03333():
         "name": "电子政务概论",
         "notes": [
             "第一章仍用 knowledge/pilot-03333.json 的精讲三单元。",
+            "第二章用 knowledge/ch02-03333.json 的精讲三单元。",
             "其余章用大纲识记/领会 + 考前资料摘要；有章节练习则挂一道选择题，标注为章节练习而非历年真题。",
         ],
         "units": units,

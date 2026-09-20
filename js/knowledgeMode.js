@@ -9,7 +9,7 @@ const COURSES = [
         file: 'knowledge/03333-knowledge.json',
         unitsFile: 'knowledge/units-03333.json',
         outline: 'knowledge/03333-gd-outline.docx',
-        blurb: '政府上网怎么管、怎么服务。各章可学，第一章是精讲。'
+        blurb: '政府上网怎么管、怎么服务。各章可学，第一、二章是精讲。'
     },
     {
         code: '13672',
@@ -112,12 +112,19 @@ function unitFromChapter(course, ch) {
 }
 function buildCourse(course, raw, extra, pilot) {
     const list = [];
-    if (course.code === '03333' && pilot?.units?.length) {
-        for (const u of pilot.units) {
-            list.push({ ...u, course: course.code, chapterTitle: pilot.title || '第一章 电子政务的基本概念', quality: 'pilot' });
+    if (course.code === '03333' && (pilot?.pilot || pilot)?.units?.length) {
+        const p = pilot.pilot || pilot;
+        for (const u of p.units) {
+            list.push({ ...u, course: course.code, chapterTitle: p.title || '第一章 电子政务的基本概念', quality: 'pilot' });
+        }
+    }
+    if (course.code === '03333' && pilot?.ch02?.units?.length) {
+        for (const u of pilot.ch02.units) {
+            list.push({ ...u, course: course.code, chapterTitle: pilot.ch02.title || '第二章 电子政务的技术基础', quality: 'pilot' });
         }
     }
     for (const u of extra?.units || []) {
+        if (course.code === '03333' && String(u.id || '').startsWith('03333-ch02-')) continue;
         list.push({ ...u, course: course.code, chapterTitle: u.chapterTitle || u.title });
     }
     if (!list.length) {
@@ -159,7 +166,7 @@ function courseHome() {
     courseCode = null;
     units = [];
     setPage(`<div class="study-topline"><span>学习工作台</span><span class="study-badge">2026 年 1 月 · 三门</span></div>
-      <header class="study-hero"><div><p class="study-eyebrow">先选一门，再学一个考点</p><h1>一月要考的三门都在这里</h1><p>公共政策导论、电子政务概论、法学概论。<br>各科都有「学懂 → 回忆」；挂了关联题的单元再加一道练习。电子政务第一章是精讲。</p></div>
+      <header class="study-hero"><div><p class="study-eyebrow">先选一门，再学一个考点</p><h1>一月要考的三门都在这里</h1><p>公共政策导论、电子政务概论、法学概论。<br>各科都有「学懂 → 回忆」；挂了关联题的单元再加一道练习。电子政务第一、二章是精讲。</p></div>
       <div class="study-progress"><span>本机进度</span><small>不自动跨设备同步。通过一次不等于长期掌握。</small></div></header>
       <div class="study-course-grid">${COURSES.map(c => {
         const s = courseStats(c.code);
@@ -335,9 +342,10 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3g';
-        const [pilot, packs, extras] = await Promise.all([
+        const v = 'jan3h';
+        const [pilot, ch02, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
+            fetch(`knowledge/ch02-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('第二章精讲加载失败'); return r.json(); }),
             Promise.all(COURSES.map(async c => {
                 const r = await fetch(`${c.file}?v=${v}`);
                 if (!r.ok) throw new Error(`无法加载 ${c.label}`);
@@ -353,7 +361,7 @@ export async function initKnowledgeMode() {
         for (const c of COURSES) {
             const raw = packs.find(p => p[0] === c.code)[1];
             const extra = extras.find(p => p[0] === c.code)[1];
-            catalog[c.code] = buildCourse(c, raw, extra, c.code === '03333' ? pilot : null);
+            catalog[c.code] = buildCourse(c, raw, extra, c.code === '03333' ? { pilot, ch02 } : null);
         }
         courseHome();
     } catch (error) {
