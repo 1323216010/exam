@@ -83,6 +83,27 @@ function setPage(html) {
     const h = root.querySelector('h1,h2');
     if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
 }
+// 面包屑承担返回：考点学习 › 科目 › 单元位置。中间层级可点，不再额外放一排返回按钮。
+function setCrumb(items) {
+    const box = document.getElementById('study-crumb');
+    if (!box) return;
+    box.innerHTML = items.map((it, i) => {
+        const last = i === items.length - 1;
+        const cls = `breadcrumb-item${last ? ' active' : ''}`;
+        return (i ? '<span class="breadcrumb-separator">›</span>' : '')
+            + (last || !it.action
+                ? `<span class="${cls}">${esc(it.label)}</span>`
+                : `<a href="#" class="${cls}" data-crumb="${esc(it.action)}">${esc(it.label)}</a>`);
+    }).join('');
+    box.querySelectorAll('[data-crumb]').forEach(a => {
+        a.onclick = e => {
+            e.preventDefault();
+            const to = a.dataset.crumb;
+            if (to === 'courses') courseHome();
+            else if (to === 'course' && courseCode) courseDashboard();
+        };
+    });
+}
 function sourceLink(path) {
     if (typeof path !== 'string' || path.includes('..')) return '';
     if (/^(knowledge\/|json\/|outline\.html|exam\.html)/.test(path)) return encodeURI(path);
@@ -110,8 +131,8 @@ function citeLearn(u, course) {
     const paper = examView(q?.sourcePath, paperLabel(q?.kind));
     const raw = docView(u.source?.path, u.source?.location || `${u.chapterTitle || u.title} 素材原文`);
     const bits = [];
-    bits.push(outline ? `<a href="${outline}">课程大纲</a>` : '课程大纲');
-    if (raw) bits.push(`<a href="${raw}">素材原文</a>`);
+    bits.push(outline ? `<a href="${outline}" target="_blank" rel="noopener">课程大纲</a>` : '课程大纲');
+    if (raw) bits.push(`<a href="${raw}" target="_blank" rel="noopener">素材原文</a>`);
     if (paper) bits.push(`<a href="${paper}">${esc(paperLabel(q.kind))}</a>`);
     const where = (u.chapterTitle && u.chapterTitle !== u.title)
         ? `${u.chapterTitle} · ${u.title}`
@@ -222,8 +243,8 @@ function courseStats(code) {
 function courseHome() {
     courseCode = null;
     units = [];
-    setPage(`<div class="study-topline"><span>考点学习</span><span class="study-badge">2026 年 1 月 · 三门</span></div>
-      <header class="study-hero"><div><h1>一月要考的三门</h1><p>各科按「学懂 → 回忆 → 练习」走；挂得上关联题的单元多一道练习。</p></div>
+    setCrumb([{ label: '考点学习' }]);
+    setPage(`<header class="study-hero"><div><p class="study-badge">2026 年 1 月 · 三门</p><h1>一月要考的三门</h1><p>各科按「学懂 → 回忆 → 练习」走；挂得上关联题的单元多一道练习。</p></div>
       <div class="study-progress"><span>进度</span><small>只存在本机浏览器，不跨设备同步。通过一次不等于长期掌握。</small></div></header>
       <div class="study-course-grid">${COURSES.map(c => {
         const s = courseStats(c.code);
@@ -259,9 +280,9 @@ function courseDashboard() {
         if (!groups.length || groups[groups.length - 1].title !== g) groups.push({ title: g, items: [] });
         groups[groups.length - 1].items.push(u);
     }
-    setPage(`<div class="study-topline">${btn('home', '← 一月三门')}<span>${esc(c.label)} / ${esc(c.examCode)}</span></div>
-      <header class="study-hero"><div><h1>${esc(c.label)}</h1><p>${esc(pack.textbook || '')}</p>${pack.note ? `<p class="study-muted">${esc(pack.note)}</p>` : ''}
-        <div class="study-actions">${btn('continue', '继续学习 →', 'primary')}${c.outline ? `<a class="study-btn" href="${esc(c.outline)}">课程大纲</a>` : ''}</div></div>
+    setCrumb([{ label: '考点学习', action: 'courses' }, { label: c.label }]);
+    setPage(`<header class="study-hero"><div><h1>${esc(c.label)}</h1><p>${esc(pack.textbook || '')}</p>${pack.note ? `<p class="study-muted">${esc(pack.note)}</p>` : ''}
+        <div class="study-actions">${btn('continue', '继续学习 →', 'primary')}${c.outline ? `<a class="study-btn" href="${esc(c.outline)}" target="_blank" rel="noopener">课程大纲</a>` : ''}</div></div>
       <div class="study-progress"><strong>${s.passed}<small> / ${s.total}</small></strong><span>单元已通过</span><progress max="${s.total}" value="${s.passed}"></progress></div></header>
       ${dueUnits.length ? `<div class="study-due"><b>${dueUnits.length} 个单元到复习时间</b>${dueUnits.map(u => `<button type="button" class="study-review" data-unit="${units.indexOf(u)}">${esc(u.title)} →</button>`).join('')}</div>` : ''}
       <section class="study-panel"><h2>章节路线</h2>
@@ -271,7 +292,6 @@ function courseDashboard() {
             return `<li><span class="study-number">${String(i + 1).padStart(2, '0')}</span><div><h3>${esc(u.title)}</h3><p>${st}</p></div><button type="button" class="study-btn" data-unit="${i}">学习</button></li>`;
         }).join('')}</ol>`).join('')}
       </section>`);
-    root.querySelector('[data-action="home"]').onclick = courseHome;
     root.querySelector('[data-action="continue"]').onclick = () => openUnit(next);
     root.querySelectorAll('[data-unit]').forEach(b => b.onclick = () => openUnit(Number(b.dataset.unit)));
 }
@@ -327,8 +347,12 @@ function renderUnit() {
           <p class="study-muted">下次复习：${new Date(record().due).toLocaleString('zh-CN')}</p>
           <div class="study-actions">${current < units.length - 1 ? btn('next', '下一个单元 →', 'primary') : ''}${btn('dashboard', '返回本科目')}${btn('restart', '再学一次')}</div>`;
     }
-    setPage(`<div class="study-topline">${btn('dashboard', '← ' + c.label)}<span>${esc(c.label)} · ${current + 1}/${units.length}</span></div>
-      <div class="study-steps" aria-label="学习步骤">${['学懂', '回忆', q ? '练习' : '记录'].map((label, i) => `<span class="${['learn', 'recall', q ? 'quiz' : 'done'][i] === stage ? 'active' : ''}">${i + 1} ${label}</span>`).join('')}</div>
+    setCrumb([
+        { label: '考点学习', action: 'courses' },
+        { label: c.label, action: 'course' },
+        { label: `${current + 1}/${units.length}` }
+    ]);
+    setPage(`<div class="study-steps" aria-label="学习步骤">${['学懂', '回忆', q ? '练习' : '记录'].map((label, i) => `<span class="${['learn', 'recall', q ? 'quiz' : 'done'][i] === stage ? 'active' : ''}">${i + 1} ${label}</span>`).join('')}</div>
       <article class="study-lesson">${body}</article>
       <p class="study-safety">自查是学习反馈，不是正式考试评分。</p>`);
     root.querySelectorAll('[data-action]').forEach(b => b.onclick = () => act(b.dataset.action));
@@ -381,7 +405,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3o';
+        const v = 'jan3p';
         const [curated03333, packs, extras] = await Promise.all([
             Promise.all(CURATED_03333.map(async file => {
                 const r = await fetch(`${file}?v=${v}`);
