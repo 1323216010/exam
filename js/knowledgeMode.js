@@ -84,12 +84,19 @@ function examView(path, title) {
     const name = title || paperLabel() || '练习';
     return `exam.html?exam=${encodeURIComponent(path)}&filename=${encodeURIComponent(name)}`;
 }
+function docView(path, title) {
+    if (typeof path !== 'string' || path.includes('..')) return '';
+    if (!/^knowledge\/[\w\-./\u4e00-\u9fff]+\.md$/.test(path)) return '';
+    return `outline.html?file=${encodeURIComponent(path)}&title=${encodeURIComponent(title || '素材原文')}`;
+}
 function citeLearn(u, course) {
     const q = u.question;
     const outline = sourceLink(course.outline);
     const paper = examView(q?.sourcePath, paperLabel(q?.kind));
+    const raw = docView(u.source?.path, u.source?.location || `${u.chapterTitle || u.title} 素材原文`);
     const bits = [];
     bits.push(outline ? `<a href="${outline}">课程大纲</a>` : '课程大纲');
+    if (raw) bits.push(`<a href="${raw}">素材原文</a>`);
     if (paper) bits.push(`<a href="${paper}">${esc(paperLabel(q.kind))}</a>`);
     const where = (u.chapterTitle && u.chapterTitle !== u.title)
         ? `${u.chapterTitle} · ${u.title}`

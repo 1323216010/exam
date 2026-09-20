@@ -63,30 +63,41 @@
       return esc(md).replace(/^### (.+)$/gm, "<h3>$1</h3>").replace(/^## (.+)$/gm, "<h2>$1</h2>").replace(/^# (.+)$/gm, "<h1>$1</h1>").replace(/\n\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>");
     }
     async function main() {
-      const code = new URLSearchParams(location.search).get("code") || "03333";
-      const course = COURSES[code] || COURSES["03333"];
+      const params = new URLSearchParams(location.search);
+      const fileParam = params.get("file");
+      const useFile = fileParam && /^knowledge\/[\w\-./\u4e00-\u9fff]+\.md$/.test(fileParam) && !fileParam.includes("..");
+      const code = params.get("code") || "03333";
+      const course = useFile
+        ? { title: params.get("title") || "素材原文", file: fileParam, original: "" }
+        : (COURSES[code] || COURSES["03333"]);
       document.title = course.title;
       document.getElementById("title").textContent = course.title;
-      document.getElementById("meta").textContent = `课程代码 ${code} · 阅读转载，不是整本教材`;
+      document.getElementById("meta").textContent = useFile
+        ? `课程代码 ${code} · 本地素材摘录，供学习整理使用`
+        : `课程代码 ${code} · 阅读转载，不是整本教材`;
       document.getElementById("back").href = "./";
       const original = document.getElementById("original");
-      original.hidden = false;
-      original.href = course.original;
-      original.textContent = course.original.endsWith(".pdf") ? "下载 PDF 原件" : "下载 Word 原件";
+      if (course.original) {
+        original.hidden = false;
+        original.href = course.original;
+        original.textContent = course.original.endsWith(".pdf") ? "下载 PDF 原件" : "下载 Word 原件";
+      }
       const res = await fetch(course.file);
-      if (!res.ok) throw new Error("无法加载大纲");
+      if (!res.ok) throw new Error("无法加载内容");
       const markdown = await res.text();
       const content = document.getElementById("content");
       content.innerHTML = window.marked ? marked.parse(markdown) : fallback(markdown);
+      const docTitle = (content.querySelector("h1")?.textContent || "").trim();
       const toc = [];
       content.querySelectorAll("h2").forEach((h, i) => {
         const text = (h.textContent || "").trim();
-        if (!/^(第[一二三四五六七八九十]+章\s+\S|[IVXⅠⅡⅢⅣ]+|第[一二三四五六七八九十]+部分|题型举例)/.test(text)) return;
+        if (docTitle && text === docTitle) return;
+        if (!/^(第[一二三四五六七八九十]+[章节篇]\s*\S|[IVXⅠⅡⅢⅣ]+|第[一二三四五六七八九十]+部分|题型举例)/.test(text)) return;
         const id = h.id || `h-${i}`;
         h.id = id;
         toc.push(`<a href="#${id}">${esc(text)}</a>`);
       });
-      document.getElementById("toc").innerHTML = toc.join("") || "本章没有目录";
+      document.getElementById("toc").innerHTML = toc.join("") || "没有可用目录";
     }
     main().catch(err => {
       document.getElementById("content").innerHTML = `<div class="notice">${esc(err.message)}</div>`;
