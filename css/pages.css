@@ -203,6 +203,15 @@ input[type="file"] {
     user-select: none;
 }
 
+/* 动态层级容器：自身也按 flex 排。否则 .breadcrumb-item 的 display:flex
+   会在 inline 上下文里被当成块级元素，各级标题各占一行。 */
+#study-crumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
 .exam-count-badge {
     background: rgba(255, 255, 255, 0.2);
     padding: 8px 16px;
@@ -804,6 +813,12 @@ input[type="file"] {
     }
 
     .breadcrumb {
+        flex-wrap: wrap;
+        column-gap: 7px;
+        row-gap: 4px;
+    }
+
+    #study-crumb {
         flex-wrap: wrap;
         column-gap: 7px;
         row-gap: 4px;
