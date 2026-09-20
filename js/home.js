@@ -12,6 +12,7 @@ import {
 } from './settings.js';
 import { resetPromptTemplates } from './api.js';
 import { initIcons } from './icons.js';
+import { initKnowledgeMode } from './knowledgeMode.js?v=20260920k';
 
 // ==================== 模式选择 ====================
 
@@ -30,6 +31,10 @@ function selectMode(mode) {
             document.getElementById('practice-config-container').classList.remove('hidden');
             initPracticeSubjectFilter();
             break;
+        case 'knowledge':
+            document.getElementById('knowledge-container').classList.remove('hidden');
+            initKnowledgeMode();
+            break;
     }
 }
 
@@ -38,6 +43,7 @@ function backToModeSelection() {
     document.getElementById('upload-container').classList.add('hidden');
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
+    document.getElementById('knowledge-container')?.classList.add('hidden');
     
     // 显示模式选择页面
     document.getElementById('mode-selection').classList.remove('hidden');
@@ -79,6 +85,7 @@ async function initializeApp() {
     document.getElementById('upload-container').classList.add('hidden');
     document.getElementById('exam-list-container').classList.add('hidden');
     document.getElementById('practice-config-container').classList.add('hidden');
+    document.getElementById('knowledge-container')?.classList.add('hidden');
     
     // 文件上传
     document.getElementById('file-input').addEventListener('change', handleFileUpload);
