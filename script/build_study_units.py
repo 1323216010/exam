@@ -366,6 +366,8 @@ LAW_MCQ_NEEDLES = {
 
 def build_00040():
     raw = load(KNOW / "00040-knowledge.json")
+    wenku = load(KNOW / "wenku-00040.json")
+    wenku_chapters = wenku.get("chapters") or {}
     chapters = raw["chapters"]
     bank = collect_bank_mcqs("00040")
     bank.sort(key=lambda x: x[0], reverse=True)
@@ -376,41 +378,84 @@ def build_00040():
         remember = tidy_terms(ch.get("remember") or [])
         understand = tidy_terms(ch.get("understand") or [], min_len=4)
         subs = [s.get("title") for s in (ch.get("toc_numbered") or []) if s.get("title")]
+        chapter_title = f"{ch.get('heading', '')} {title}".strip()
+        curated = wenku_chapters.get(title) or {}
         needles = LAW_MCQ_NEEDLES.get(title) or ([title] + remember[:4] + subs[:3])
-        rel, best = pick_mcq(bank, needles, used, min_score=2, allow_fallback=True, chapter_title=title)
-        question = pack_question(best, rel, "题库练习") if best else None
-        explain = (
-            f"这一章是「{title}」。"
-            f"{'先掌握：' + '、'.join(subs[:5]) + '。' if subs else ''}"
-            f"{'识记：' + '；'.join(remember[:6]) + '。' if remember else ''}"
-            f"{'领会：' + '；'.join(understand[:4]) + '。' if understand else ''}"
-            "定义以夏锦文《法学概论》为准，注意法律修订后以考试日前有效规定为准。"
-        )
-        exam = "\n".join([f"识记：{x}" for x in remember[:8]] + [f"领会：{x}" for x in understand[:5]])
-        units.append(unit(
-            ch["id"],
-            f"{ch.get('heading', '')} {title}".strip(),
-            8 if question else 7,
-            explain,
-            exam or title,
-            f"看到新闻里的案子，先问：它更靠近本章的哪一块（{('、'.join(subs[:3]) or title)}）？",
-            f"不要把「{title}」和其他部门法的相似术语混用。难点：{ch.get('hard') or '先记概念再套案例'}。",
-            f"不看讲解，说出「{title}」这一章至少三个识记点。",
-            [f"能说出：{x}" for x in (remember[:4] or subs[:3] or [title])],
+        items = [
             {
-                "label": "广东法学概论大纲转载 + 题库已有试卷",
-                "path": "knowledge/00040-gd-outline.txt",
-                "location": f"{ch.get('heading')} {title}",
+                "suffix": "concept",
+                "title": curated.get("conceptTitle") or f"{title}：核心概念",
+                "explain": curated.get("conceptExplain") or (
+                    f"先掌握「{title}」的核心概念。"
+                    f"{'识记：' + '；'.join(remember[:6]) + '。' if remember else ''}"
+                ),
+                "exam": curated.get("conceptAnswer") or "\n".join(f"识记：{x}" for x in remember[:8]),
+                "checks": remember[:4] or subs[:3] or [title],
             },
-            question,
-            "local" if question else "outline",
-            f"{ch.get('heading', '')} {title}".strip(),
-        ))
+            {
+                "suffix": "answer",
+                "title": curated.get("answerTitle") or f"{title}：简答与应用",
+                "explain": curated.get("answerExplain") or (
+                    f"这一单元练习把「{title}」写成完整答案。"
+                    f"{'领会：' + '；'.join(understand[:5]) + '。' if understand else ''}"
+                ),
+                "exam": curated.get("answerText") or "\n".join(f"领会：{x}" for x in understand[:6]),
+                "checks": understand[:4] or remember[4:8] or subs[:3] or [title],
+            },
+        ]
+        for idx, item in enumerate(items):
+            unit_needles = {
+                ("行政法", "concept"): ["行政复议", "行政行为", "行政强制"],
+                ("行政法", "answer"): ["行政程序", "说明理由", "陈述和申辩", "行政许可", "公开公平公正"],
+                ("刑法", "concept"): ["犯罪构成", "罪刑法定", "犯罪"],
+                ("刑法", "answer"): ["正当防卫", "紧急避险", "防卫过当"],
+                ("民法", "concept"): ["民事法律关系", "民事法律行为", "意思表示"],
+                ("民法", "answer"): ["民法典", "基本原则", "侵权责任", "定金"],
+                ("国际私法", "concept"): ["冲突规范", "准据法", "连接点"],
+                ("国际私法", "answer"): ["反致", "转致", "法律规避"],
+            }.get((title, item["suffix"])) or []
+            extra_needles = unit_needles + [item["title"]] + remember[idx * 3:(idx + 1) * 3] + understand[idx * 2:(idx + 1) * 2]
+            candidates = bank
+            if unit_needles:
+                focused = [
+                    (p, q) for p, q in bank
+                    if any(k in str(q.get("content") or "") for k in unit_needles)
+                ]
+                if focused:
+                    candidates = focused
+            rel, best = pick_mcq(
+                candidates,
+                extra_needles + needles,
+                used,
+                min_score=2,
+                allow_fallback=True,
+                chapter_title=title,
+            )
+            question = pack_question(best, rel, "题库练习") if best else None
+            units.append(unit(
+                f"{ch['id']}-{item['suffix']}",
+                item["title"],
+                8 if question else 7,
+                item["explain"],
+                item["exam"] or title,
+                f"看到案例或新闻时，先判断它属于「{title}」的哪个概念，再按构成要件或答题层次展开。",
+                f"不要把「{title}」与相邻部门法混用。旧文库资料只核对基本概念；具体规则以2022年第5版教材、广东大纲及考试日前有效法律为准。",
+                f"不看讲解，先说出「{item['title']}」的定义或答题层次。",
+                [f"能说出：{x}" for x in item["checks"]],
+                {
+                    "label": "广东大纲 + 百度文库会员资料（旧版仅核概念）+ 入库试题",
+                    "path": "knowledge/wenku-00040.json",
+                    "location": f"{chapter_title} · {item['title']}",
+                },
+                question,
+                "curated",
+                chapter_title,
+            ))
     return {
         "code": "00040",
         "name": "法学概论",
         "notes": [
-            "11 章按广东大纲。关联题来自已入库试卷，标为题库练习；法律修订后以考试日前有效规定为准。",
+            "11 章按广东大纲，每章拆成核心概念与简答应用两个单元。文库2015旧资料只核对稳定概念和知识组织；具体法条与程序规则以2022年第5版教材、近年入库试题及考试日前有效法律为准。",
         ],
         "units": units,
     }

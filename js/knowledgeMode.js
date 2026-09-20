@@ -246,7 +246,8 @@ function renderUnit() {
     const c = catalog[courseCode].course;
     let body = '';
     if (stage === 'learn') {
-        body = `<p class="study-eyebrow">01 / 学懂${u.quality === 'pilot' ? ' · 精讲单元' : ' · 大纲单元'}</p><h2>${esc(u.title)}</h2>
+        const qualityLabel = u.quality === 'pilot' ? ' · 精讲单元' : u.quality === 'curated' ? ' · 文库核对单元' : ' · 大纲单元';
+        body = `<p class="study-eyebrow">01 / 学懂${qualityLabel}</p><h2>${esc(u.title)}</h2>
           <div class="study-explain">${esc(u.explain)}</div>
           <div class="study-example"><h3>怎么用</h3><p>${esc(u.example)}</p></div>
           <div class="study-contrast"><h3>别混淆</h3><p>${esc(u.contrast)}</p></div>
@@ -334,7 +335,7 @@ export async function initKnowledgeMode() {
     if (!root) return;
     try {
         progress = loadProgress();
-        const v = 'jan3e';
+        const v = 'jan3f';
         const [pilot, packs, extras] = await Promise.all([
             fetch(`knowledge/pilot-03333.json?v=${v}`).then(r => { if (!r.ok) throw new Error('试学单元加载失败'); return r.json(); }),
             Promise.all(COURSES.map(async c => {
