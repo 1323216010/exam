@@ -529,8 +529,15 @@
     {
       "question_number": "39",
       "question_type": "名词解释",
-      "content": "共同犯罪 4o.行政诉讼的被告 四、简答题（更多科目请访问http://zk.ikaoti.cn/zikao.htm）(本大题共3小题，每小题5分，共15分)",
-      "answer": "共同犯罪是指两人以上共同故意犯罪。",
+      "content": "共同犯罪",
+      "answer": "共同犯罪是指二人以上共同故意犯罪。",
+      "score": 3
+    },
+    {
+      "question_number": "40",
+      "question_type": "名词解释",
+      "content": "行政诉讼的被告",
+      "answer": "行政诉讼的被告是指原告诉称其具体行政行为违法，侵犯原告的合法权益，由受诉人民法院通知其应诉的行政机关。",
       "score": 3
     },
     {
