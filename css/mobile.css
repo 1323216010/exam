@@ -832,8 +832,22 @@
     /* ---- 结果页 ---- */
     .result-container {
         margin: 0;
-        padding: var(--m-6) var(--m-4) calc(var(--m-6) + var(--safe-b));
+        padding: var(--m-5) var(--m-4) calc(var(--m-6) + var(--safe-b));
         min-height: 100dvh;
+    }
+
+    /* 桌面端的奖杯图标在手机上会占掉半屏，压到合适尺寸让分数首屏可见 */
+    .result-icon svg {
+        width: 64px;
+        height: 64px;
+    }
+
+    .result-icon {
+        margin-bottom: var(--m-3);
+    }
+
+    .result-title {
+        font-size: var(--fs-title);
     }
 
     .result-score {
