@@ -1,0 +1,1016 @@
+/* ============================================================================
+   移动端设计系统（整站）
+   ----------------------------------------------------------------------------
+   目标：在手机上把阅读与作答体验做到接近原生刷题 App 的水准。
+   原则：
+     1. 单一来源：所有移动端规则集中在本文件，页面 CSS 保持不动，便于回退。
+     2. 触控优先：可点元素 ≥44px，且互不粘连。
+     3. 字号分层：题干 > 选项 > 辅助信息，避免所有文字一样大。
+     4. 操作吸底：答题的主操作常驻屏幕底部，不需要滚到底才能点。
+     5. 安全区：适配 iPhone 刘海/小白条（env(safe-area-inset-*)）。
+   加载顺序：本文件必须在各页原有 CSS 之后引入，才能覆盖。
+   ========================================================================= */
+
+/* ---------------------------------------------------------------- 设计令牌 */
+:root {
+    /* 间距阶梯 */
+    --m-1: 4px;
+    --m-2: 8px;
+    --m-3: 12px;
+    --m-4: 16px;
+    --m-5: 20px;
+    --m-6: 24px;
+
+    /* 字号阶梯（移动端） */
+    --fs-hero: 22px;
+    --fs-title: 19px;
+    --fs-stem: 17px;   /* 题干：要显眼 */
+    --fs-body: 16px;   /* 选项/正文 */
+    --fs-meta: 13px;
+    --fs-cap: 12px;
+
+    /* 行高 */
+    --lh-tight: 1.45;
+    --lh-body: 1.7;
+
+    /* 触控 */
+    --tap: 44px;
+
+    /* 圆角 */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+
+    /* 品牌色（沿用站点绿，不改成蓝色） */
+    --brand: #10B981;
+    --brand-deep: #059669;
+    --brand-grad: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+
+    /* 文本与描边 */
+    --t-strong: #111827;
+    --t-body: #1F2937;
+    --t-muted: #6B7280;
+    --t-faint: #9CA3AF;
+    --bd: #E5E7EB;
+    --bg-soft: #F9FAFB;
+
+    /* 安全区 */
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-l: env(safe-area-inset-left, 0px);
+    --safe-r: env(safe-area-inset-right, 0px);
+}
+
+/* ============================================================================
+   1. 全局移动端基线
+   ========================================================================= */
+@media (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        /* 移动端统一用系统字体栈，中文渲染更接近原生 App */
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+            "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+        color: var(--t-body);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* 去掉 iOS 点击高亮，改用 :active 反馈 */
+    button, a, .option, .mode-card, .exam-card, .question-item, .subject-tab {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 所有可点元素统一最小触控高度 */
+    button,
+    .btn,
+    .subject-tab,
+    .view-btn,
+    .mode-card,
+    .exam-card,
+    .toc a,
+    .practice-tab,
+    .exam-multiselect-trigger {
+        min-height: var(--tap);
+    }
+
+    /* 平滑滚动容器 */
+    .main-content,
+    #exam-interface,
+    .question-nav,
+    .toc {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ============================================================================
+   2. 页面外壳与面包屑
+   ========================================================================= */
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: var(--safe-l);
+        padding-right: var(--safe-r);
+    }
+
+    /* 面包屑：从装饰性小字变成可点的返回入口 */
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        gap: var(--m-1);
+        padding: var(--m-2) 0;
+        font-size: var(--fs-meta);
+    }
+
+    .breadcrumb::-webkit-scrollbar {
+        display: none;
+    }
+
+    .breadcrumb-item {
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--tap);
+        padding: 0 var(--m-3);
+        border-radius: var(--r-sm);
+        background: rgba(255, 255, 255, 0.18);
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .page-title-section {
+        padding: var(--m-4) var(--m-4) var(--m-3);
+    }
+
+    .exam-count-badge {
+        font-size: var(--fs-cap);
+        padding: 4px 10px;
+    }
+}
+
+/* ============================================================================
+   3. 首页模式选择
+   ========================================================================= */
+@media (max-width: 768px) {
+    .mode-selection {
+        padding: var(--m-4);
+        padding-top: calc(var(--m-5) + var(--safe-t));
+    }
+
+    .mode-header h1 {
+        font-size: var(--fs-hero);
+        letter-spacing: 0.5px;
+    }
+
+    .mode-subtitle {
+        font-size: var(--fs-meta);
+        margin-top: var(--m-2);
+    }
+
+    .mode-cards {
+        gap: var(--m-3);
+        margin-top: var(--m-5);
+    }
+
+    /* 卡片：图标与文字横向排布，比竖排更省高度、更好扫读 */
+    .mode-card {
+        display: flex;
+        align-items: center;
+        gap: var(--m-4);
+        padding: var(--m-4);
+        border-radius: var(--r-lg);
+        text-align: left;
+    }
+
+    /* 文字区允许收缩，标题不折行 */
+    .mode-card > *:not(.mode-icon) {
+        min-width: 0;
+    }
+
+    .mode-card .mode-icon {
+        font-size: 26px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--r-md);
+        background: var(--brand-grad);
+        color: #fff;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .mode-card .mode-title {
+        font-size: var(--fs-body);
+        font-weight: 600;
+        margin: 0 0 2px;
+        white-space: nowrap; /* 「整卷模拟」「考点学习」不拆成两行 */
+    }
+
+    .mode-card .mode-desc {
+        font-size: var(--fs-cap);
+        color: var(--t-muted);
+        line-height: var(--lh-tight);
+        margin: 0;
+    }
+
+    /* 设置按钮safe area 内缩 */
+    .settings-btn-home {
+        top: calc(var(--m-3) + var(--safe-t));
+        right: calc(var(--m-3) + var(--safe-r));
+    }
+}
+
+/* ============================================================================
+   4. 试卷列表 / 整卷模拟
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* 科目筛选：改成横向滚动的胶囊行，不再换行占掉半屏 */
+    .subject-tabs,
+    .exam-list-filters {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: var(--m-2);
+        padding: var(--m-2) var(--m-4);
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .subject-tabs::-webkit-scrollbar,
+    .exam-list-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .subject-tab {
+        flex: 0 0 auto;
+        min-height: var(--tap);
+        padding: 0 var(--m-4);
+        border-radius: 999px;
+        font-size: var(--fs-meta);
+        white-space: nowrap;
+    }
+
+    /* 工具条：搜索独占一行，排序 / 清空 / 视图切换共用一行
+       注意：.exam-list-filters 与 .view-switcher 在 HTML 里是兄弟节点，
+       用 display:contents 把 filters 的包裹层“溶解”，再用显式 3 列 grid
+       把排序、清空、视图切换钉在同一行，避免自动换行多出一整行高度。 */
+    .exam-list-toolbar {
+        padding: var(--m-3) var(--m-4);
+        gap: var(--m-3);
+        /* 手机上不再吸顶：两行筛选已占约 150px，吸顶会长期挤掉内容区 */
+        position: static;
+    }
+
+    .exam-list-toolbar-main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: var(--m-2);
+    }
+
+    .exam-list-filters {
+        display: contents;
+    }
+
+    /* 搜索框横跨整行 */
+    .exam-list-filters .filter-item-actions {
+        grid-column: 1 / -1;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .exam-list-filters .filter-item {
+        min-width: 0;
+        margin: 0;
+    }
+
+    /* 排序下拉要能显示完整选项文字，太窄会只剩箭头 */
+    .exam-list-filters .filter-item select {
+        min-width: 92px;
+    }
+
+    /* 「清空聊天记录」在手机上收成纯图标按钮：文字用 font-size:0 隐藏，
+       SVG 单独恢复尺寸。按钮自带 title，无障碍与长按提示不受影响。
+       注意：#clear-all-chats-btn 是 ID 选择器，特异性高于 :has()，
+       因此这里必须用同样的 ID 选择器才能覆盖上面的 font-size。 */
+    #clear-all-chats-btn {
+        font-size: 0;
+        gap: 0;
+        padding: 0 var(--m-2);
+        min-width: var(--tap);
+        justify-content: center;
+    }
+
+    #clear-all-chats-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .exam-list-filters .filter-item label {
+        font-size: var(--fs-meta);
+    }
+
+    .exam-list-filters .filter-item input,
+    .exam-list-filters .filter-item select {
+        width: 100%;
+    }
+
+    /* 视图切换并入第二行，去掉竖分割线与额外上边距 */
+    .view-switcher {
+        display: flex;
+        gap: var(--m-2);
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+
+    /* 搜索框与下拉至少 44px 高 */
+    .exam-list-toolbar input[type="search"],
+    .exam-list-toolbar input[type="text"],
+    .exam-list-toolbar select,
+    .exam-list-filters select {
+        min-height: var(--tap);
+        font-size: var(--fs-body);
+    }
+
+    /* 视图切换按钮 44×44 */
+    .view-switcher {
+        gap: var(--m-2);
+    }
+
+    .view-btn {
+        min-width: var(--tap);
+        min-height: var(--tap);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 「清空聊天记录」这类次要操作在手机上折叠为普通文字按钮，不占大块 */
+    .exam-list-toolbar .btn-text {
+        min-height: var(--tap);
+        font-size: var(--fs-cap);
+        justify-content: center;
+    }
+
+    /* 试卷卡片：信息密度提高 */
+    .exam-card {
+        padding: var(--m-4);
+        border-radius: var(--r-md);
+    }
+
+    .exam-card-header {
+        align-items: flex-start;
+        gap: var(--m-2);
+    }
+
+    .exam-card-title {
+        font-size: var(--fs-body);
+        line-height: var(--lh-tight);
+    }
+
+    .exam-card-footer {
+        margin-top: var(--m-3);
+        padding-top: var(--m-3);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .exam-card-start {
+        min-height: var(--tap);
+        display: inline-flex;
+        align-items: center;
+        padding: 0 var(--m-3);
+    }
+
+    .exam-subject-heading {
+        padding: var(--m-3) var(--m-4) var(--m-2);
+        font-size: var(--fs-meta);
+    }
+
+    /* 卡片列表在手机上单列，并收紧间距 */
+    .exam-list-grid,
+    #exam-list-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--m-3);
+        padding: 0 var(--m-4) var(--m-6);
+    }
+}
+
+/* ============================================================================
+   4b. 上传试卷
+   ========================================================================= */
+@media (max-width: 768px) {
+    .upload-container {
+        padding: var(--m-4);
+    }
+
+    /* 桌面端的 60/80px 内边距在手机上会把卡片撑得很窄 */
+    .upload-box {
+        padding: var(--m-6) var(--m-4);
+        max-width: none;
+        border-radius: var(--r-lg);
+    }
+
+    .upload-title {
+        font-size: var(--fs-title);
+    }
+
+    .upload-subtitle {
+        font-size: var(--fs-meta);
+        margin-bottom: var(--m-5);
+    }
+
+    .upload-icon {
+        font-size: 44px;
+    }
+
+    /* 上传按钮整行，避免「浏览文件」被拆成两行 */
+    .btn-upload {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        padding: 0 var(--m-4);
+        font-size: var(--fs-body);
+        white-space: nowrap;
+    }
+}
+
+/* ============================================================================
+   5. 自由刷题配置
+   ========================================================================= */@media (max-width: 768px) {
+    .practice-config-body {
+        padding: var(--m-4);
+    }
+
+    .practice-config-topbar {
+        flex-wrap: wrap;
+        gap: var(--m-2);
+    }
+
+    .practice-config-title {
+        font-size: var(--fs-title);
+    }
+
+    /* 试卷多选：触发条与下拉在手机上占满整行 */
+    .exam-multiselect,
+    .exam-multiselect-trigger {
+        width: 100%;
+        min-height: var(--tap);
+        font-size: var(--fs-body);
+    }
+
+    .exam-multiselect-dropdown {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    /* 试卷复选框列表：单列、每行可整行点击 */
+    .practice-exam-checkbox-grid,
+    #practice-exam-checkbox-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--m-1);
+    }
+
+    .exam-multiselect-item {
+        min-height: var(--tap);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--m-3);
+    }
+
+    /* 题型筛选：两列排布，复选框放大到易点 */
+    .practice-type-filters,
+    #practice-type-filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--m-2) var(--m-3);
+    }
+
+    .practice-type-filters .config-label,
+    #practice-type-filters .config-label {
+        min-height: var(--tap);
+        display: flex;
+        align-items: center;
+        gap: var(--m-2);
+        padding: 0 var(--m-2);
+        border-radius: var(--r-sm);
+        background: var(--bg-soft);
+        font-size: var(--fs-meta);
+        /* 题型名不折行，避免「单项选择题」被拆成两行 */
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .practice-type-filters .config-label > span,
+    #practice-type-filters .config-label > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+    }
+
+    .config-label input[type="checkbox"],
+    .setting-checkbox-label input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+
+    /* 数量输入在手机上不要太窄 */
+    .practice-type-count-input,
+    .type-count-input {
+        min-width: 56px;
+        min-height: var(--tap);
+        font-size: var(--fs-body);
+    }
+
+    /* 主操作（开始练习）吸底常驻 */
+    #start-practice-btn,
+    .practice-start-btn {
+        position: sticky;
+        bottom: calc(var(--m-3) + var(--safe-b));
+        z-index: 20;
+        min-height: 52px;
+        font-size: var(--fs-body);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    }
+
+    .practice-tabs {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        gap: var(--m-2);
+    }
+
+    .practice-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .practice-tab {
+        flex: 0 0 auto;
+        min-height: var(--tap);
+        padding: 0 var(--m-4);
+        font-size: var(--fs-meta);
+        white-space: nowrap;
+    }
+}
+
+/* ============================================================================
+   6. 答题页（核心）
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* ---- 题目容器：给吸底操作栏留出空间，避免遮住最后一屏 ---- */
+    .question-container {
+        padding: 0 var(--m-4) var(--m-6);
+    }
+
+    .question-card {
+        padding: var(--m-4) 0 0;
+        max-width: none;
+    }
+
+    /* ---- 题头：题号 + 题型 + 分值压成一行，左侧让开汉堡按钮 ---- */
+    .question-header {
+        display: flex;
+        align-items: center;
+        gap: var(--m-2);
+        padding: 0 0 var(--m-3) 58px;
+        margin-bottom: var(--m-3);
+        border-bottom: 1px solid var(--bd);
+        min-height: var(--tap);
+    }
+
+    .question-number {
+        min-width: 34px;
+        height: 34px;
+        font-size: var(--fs-meta);
+        border-radius: var(--r-sm);
+        margin-right: 0;
+        box-shadow: none;
+    }
+
+    .question-meta {
+        display: flex;
+        align-items: center;
+        gap: var(--m-2);
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .question-type-badge,
+    .question-score-badge {
+        font-size: var(--fs-cap);
+        padding: 4px 10px;
+        white-space: nowrap;
+    }
+
+    /* ---- 题干：全页最醒目的文字 ---- */
+    .question-content {
+        font-size: var(--fs-stem);
+        line-height: var(--lh-body);
+        font-weight: 500;
+        color: var(--t-strong);
+        margin-bottom: var(--m-4);
+    }
+
+    /* ---- 选项：整行可点，选中态清晰 ---- */
+    .options {
+        margin: 0;
+    }
+
+    .option {
+        min-height: var(--tap);
+        padding: var(--m-3) var(--m-3);
+        margin: 0 0 var(--m-2);
+        border-radius: var(--r-md);
+        border-width: 1.5px;
+        align-items: flex-start;
+    }
+
+    .option:last-child {
+        margin-bottom: 0;
+    }
+
+    .option input[type="radio"],
+    .option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin: 2px var(--m-3) 0 0;
+        flex-shrink: 0;
+    }
+
+    .option-text {
+        font-size: var(--fs-body);
+        line-height: 1.55;
+    }
+
+    /* 去掉左侧色条（手机上显得脏），改用边框与底色表达状态 */
+    .option::before {
+        display: none !important;
+    }
+
+    .option.selected {
+        border-color: var(--brand);
+        border-width: 2px;
+        background: #ECFDF5;
+    }
+
+    .option.correct {
+        border-color: var(--brand-deep);
+        border-width: 2px;
+        background: #ECFDF5;
+    }
+
+    .option.wrong {
+        border-color: #EF4444;
+        border-width: 2px;
+        background: #FEF2F2;
+    }
+
+    /* 对错标记改为文字前缀，避免 ::before 与内容错位 */
+    .option.correct::before,
+    .option.wrong::before {
+        position: static;
+        display: inline;
+        width: auto;
+        background: none;
+        font-size: var(--fs-body);
+        margin-right: var(--m-1);
+    }
+
+    /* ---- 主观题输入框：高度自适应，字号 ≥16px 防 iOS 自动放大 ---- */
+    .textarea-answer {
+        min-height: 132px;
+        padding: var(--m-3);
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
+        border-radius: var(--r-md);
+        resize: none;
+    }
+
+    /* ---- 参考答案：做成独立卡片，与选项区分开 ---- */
+    .answer-section {
+        margin-top: var(--m-4);
+        padding: var(--m-4);
+        border-radius: var(--r-md);
+        border-left: 4px solid var(--brand);
+        background: #ECFDF5;
+    }
+
+    .answer-label {
+        font-size: var(--fs-meta);
+        font-weight: 600;
+        color: var(--brand-deep);
+        margin-bottom: var(--m-2);
+    }
+
+    .answer-content {
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
+        color: var(--t-body);
+    }
+
+    /* ---- 主操作吸底：上一题 / 下一题 / 显示答案 常驻屏幕底部 ----
+       注意：这里必须用 fixed 而不是 sticky。sticky 只在滚动到该元素时才吸附，
+       题目较短时按钮会停在正文下方、屏幕中部留出大片空白。 */
+    .navigation-buttons {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--m-2);
+        margin: 0;
+        padding: var(--m-3) var(--m-4) calc(var(--m-3) + var(--safe-b));
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--bd);
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 给固定的操作栏预留高度，避免遮住最后一屏内容 */
+    .question-container {
+        padding-bottom: 150px;
+    }
+
+    .navigation-buttons .btn-nav {
+        min-height: 48px;
+        font-size: var(--fs-body);
+        border-radius: var(--r-md);
+        width: 100%;
+    }
+
+    /* 中间两个次要操作放到第二行，视觉上弱于翻页 */
+    .nav-center-actions {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--m-2);
+        order: 0;
+    }
+
+    .nav-center-actions > button {
+        min-height: var(--tap);
+        font-size: var(--fs-meta);
+        border-radius: var(--r-md);
+    }
+
+    /* 让「上一题/下一题」排在下半行，操作重心靠近拇指 */
+    .navigation-buttons > .btn-prev {
+        order: 1;
+    }
+
+    .navigation-buttons > .btn-next {
+        order: 2;
+    }
+
+    /* ---- 侧栏抽屉：加宽、圆角、可关 ---- */
+    .sidebar {
+        width: min(88vw, 360px);
+        border-radius: 0 var(--r-lg) var(--r-lg) 0;
+    }
+
+    .sidebar-header {
+        padding: calc(var(--m-5) + var(--safe-t)) var(--m-4) var(--m-4);
+        border-radius: 0 var(--r-lg) 0 0;
+    }
+
+    .sidebar-header h2 {
+        font-size: var(--fs-body);
+    }
+
+    .question-nav {
+        padding: var(--m-4) var(--m-3);
+    }
+
+    /* 答题卡格子：保证 ≥44px 触控 */
+    .question-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: var(--m-2);
+    }
+
+    .question-item {
+        min-height: var(--tap);
+        font-size: var(--fs-meta);
+        border-radius: var(--r-sm);
+    }
+
+    .sidebar-footer {
+        padding: var(--m-3) var(--m-4) calc(var(--m-4) + var(--safe-b));
+    }
+
+    .progress-info {
+        font-size: var(--fs-meta);
+        margin-bottom: var(--m-3);
+    }
+
+    /* 次要操作并排两列，不再各占一行 */
+    .sidebar-footer-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--m-2);
+        margin-top: var(--m-2);
+    }
+
+    .sidebar-footer-actions .btn-text {
+        min-height: var(--tap);
+        justify-content: center;
+        font-size: var(--fs-cap);
+    }
+
+    /* ---- 结果页 ---- */
+    .result-container {
+        margin: 0;
+        padding: var(--m-6) var(--m-4) calc(var(--m-6) + var(--safe-b));
+        min-height: 100dvh;
+    }
+
+    .result-score {
+        font-size: 56px;
+        line-height: 1.1;
+    }
+
+    .result-buttons {
+        flex-direction: column;
+        gap: var(--m-3);
+        margin-top: var(--m-5);
+    }
+
+    .result-buttons .btn {
+        width: 100%;
+        min-height: 50px;
+        font-size: var(--fs-body);
+    }
+
+    .result-stats {
+        gap: var(--m-3);
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .stat-label {
+        font-size: var(--fs-cap);
+    }
+}
+
+/* ============================================================================
+   7. 考点学习
+   ========================================================================= */
+@media (max-width: 768px) {
+    .study-workspace,
+    .knowledge-container {
+        padding: var(--m-4) !important;
+        width: 100%;
+    }
+
+    .study-tabs,
+    .study-steps {
+        display: flex;
+        overflow-x: auto;
+        gap: var(--m-2);
+        scrollbar-width: none;
+    }
+
+    .study-tabs::-webkit-scrollbar,
+    .study-steps::-webkit-scrollbar {
+        display: none;
+    }
+
+    .study-btn,
+    .study-tab {
+        min-height: var(--tap);
+        font-size: var(--fs-body);
+    }
+
+    /* 选项式自查条目：整行可点 */
+    .study-option {
+        min-height: var(--tap);
+        font-size: var(--fs-body);
+        line-height: var(--lh-tight);
+        padding: var(--m-3);
+        border-radius: var(--r-md);
+    }
+
+    .study-explain {
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
+    }
+
+    /* 「记录结果」等推进按钮吸底 */
+    .study-lesson > .study-btn.primary {
+        position: sticky;
+        bottom: calc(var(--m-3) + var(--safe-b));
+        z-index: 20;
+        min-height: 50px;
+        box-shadow: 0 6px 20px rgba(18, 104, 78, 0.28);
+    }
+}
+
+/* ============================================================================
+   8. 大纲阅读页
+   ========================================================================= */
+@media (max-width: 800px) {
+    /* 顶栏收窄，标题与返回按钮同一行 */
+    .top-inner {
+        padding: var(--m-3) var(--m-4);
+        gap: var(--m-3);
+        align-items: center;
+    }
+
+    .top-inner h1 {
+        font-size: var(--fs-title);
+    }
+
+    .meta {
+        font-size: var(--fs-cap);
+        margin-top: 2px;
+    }
+
+    .btn {
+        min-height: var(--tap);
+        padding: 0 var(--m-3);
+        font-size: var(--fs-meta);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .layout {
+        padding: var(--m-3) var(--m-3) var(--m-6);
+        gap: var(--m-3);
+    }
+
+    /* 目录：可滚动、每项 ≥44px，限高避免把正文挤到屏幕外 */
+    .toc {
+        position: static;
+        height: auto;
+        max-height: 38vh;
+        padding: var(--m-3);
+        border-radius: var(--r-md);
+    }
+
+    .toc a {
+        min-height: var(--tap);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--m-3);
+        font-size: var(--fs-body);
+        border-radius: var(--r-sm);
+    }
+
+    /* 正文：手机阅读以字号与行距为先 */
+    .paper {
+        padding: var(--m-5) var(--m-4) var(--m-6);
+        border-radius: var(--r-md);
+        font-size: var(--fs-body);
+        line-height: var(--lh-body);
+    }
+
+    .paper h1 { font-size: 22px; }
+    .paper h2 { font-size: 19px; margin: var(--m-5) 0 var(--m-3); }
+    .paper h3 { font-size: var(--fs-body); margin: var(--m-4) 0 var(--m-2); }
+    .paper h4 { font-size: var(--fs-meta); }
+
+    .paper blockquote {
+        padding: var(--m-3);
+        margin: var(--m-3) 0 var(--m-4);
+    }
+}
+
+/* ============================================================================
+   9. 小屏（≤360px）兜底
+   ========================================================================= */
+@media (max-width: 360px) {
+    :root {
+        --fs-stem: 16px;
+        --fs-body: 15px;
+    }
+
+    .question-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .navigation-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-center-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .mode-card .mode-desc {
+        display: none; /* 极小屏优先保证标题可读 */
+    }
+}
