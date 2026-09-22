@@ -3,6 +3,8 @@ import { EXAM_LIST } from './config.js';
 import { getActiveConfig } from './api.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, shuffleArray } from './utils.js';
 import { saveAiGeneratedExam } from './aiChatStorage.js';
+import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
+
 import { bindSubjectTabs, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
 // ==================== 练习模式基础 ====================
@@ -57,7 +59,7 @@ export function startPracticeMode() {
         params.set('exams', selectedExams.join(','));
     }
 
-    window.open(`exam.html?${params.toString()}`, '_blank');
+    navigateTo(`exam.html?${params.toString()}`);
 }
 
 export async function initPracticeSubjectFilter() {
@@ -339,7 +341,7 @@ export async function startAiGeneration() {
             filename: id, exam_info: { title }, questions: allQuestions
         }));
         setAiGenerateStatus(statusEl, null, null, `✅ 已生成 ${allQuestions.length} 道题目，即将打开...`);
-        window.open('exam.html?mode=upload', '_blank');
+        navigateTo('exam.html?mode=upload');
     } catch (e) {
         setAiGenerateStatus(statusEl, null, null, `❌ 生成失败：${e.message}`, true);
     } finally {

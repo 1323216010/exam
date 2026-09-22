@@ -3,6 +3,7 @@ import { state } from './state.js';
 import { saveProgress } from './examProgress.js';
 import { openAiChatPanel } from './aiChat.js';
 import { Icons } from './icons.js';
+import { playQuestionEnter } from './interaction.js?v=1';
 
 // ==================== 题目导航 ====================
 
@@ -232,7 +233,17 @@ export function showQuestion(index) {
     `;
 
     html += '</div>';
+    const prevIndex = container.querySelector('.question-card')?.dataset.qIndex;
     container.innerHTML = html;
+
+    // 题目切换时播放方向感动画（首屏不播，避免与页面淡入叠加）
+    const card = container.querySelector('.question-card');
+    if (card) {
+        card.dataset.qIndex = String(index);
+        if (prevIndex !== undefined && prevIndex !== String(index)) {
+            playQuestionEnter(card, index >= parseInt(prevIndex, 10) ? 1 : -1);
+        }
+    }
 
     // 绑定选项点击事件
     document.querySelectorAll('.option').forEach(option => {

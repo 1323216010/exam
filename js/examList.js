@@ -3,6 +3,8 @@ import { EXAM_LIST } from './config.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, getFilenameFromPath, getSubjectDisplayName } from './utils.js';
 import { clearAllChatDatabase, getChatStats } from './aiChatStorage.js';
 import { Icons } from './icons.js';
+import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
+
 import { bindSubjectTabs, getSubjectChip, groupExamsBySubject, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
 export function renderExamList() {
@@ -110,11 +112,8 @@ function createExamCard(exam) {
 
     const openExam = () => {
         const url = `exam.html?exam=${encodeURIComponent(examPath)}&filename=${encodeURIComponent(displayName)}`;
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            window.location.assign(url);
-        } else {
-            window.open(url, '_blank');
-        }
+        // 触屏同页转场（新标签页会打断手机返回手势）；桌面保留新标签
+        navigateTo(url, { newTabOnDesktop: true });
     };
 
     card.setAttribute('aria-label', `开始模拟：${displayName}`);
@@ -161,7 +160,13 @@ async function handleClearAllChats() {
             return;
         }
 
-        if (!confirm(`确定要清除所有试卷的 AI 聊天记录吗？\n\n共有 ${totalRecords} 条记录将被删除，此操作不可恢复。`)) {
+        const ok = await confirmSheet({
+            title: '清除聊天记录',
+            message: `共有 ${totalRecords} 条记录将被删除，此操作不可恢复。`,
+            okText: '清除',
+            danger: true,
+        });
+        if (!ok) {
             return;
         }
 

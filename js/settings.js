@@ -7,6 +7,7 @@ import {
     savePromptTemplates, resetPromptTemplates,
     getShuffleOptions, setShuffleOptions 
 } from './api.js';
+import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
 import { Icons } from './icons.js';
 
 export function showSettings() {
@@ -135,7 +136,7 @@ function bindConfigEvents() {
     });
     
     container.querySelectorAll('.config-delete-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', async function() {
             const configId = this.closest('.config-item').dataset.configId;
             const configs = getAllConfigs();
             
@@ -144,7 +145,7 @@ function bindConfigEvents() {
                 return;
             }
             
-            if (confirm('确定要删除这个配置吗？')) {
+            if (await confirmSheet({ title: '删除配置', okText: '删除', danger: true })) {
                 deleteConfig(configId);
                 renderConfigList();
             }

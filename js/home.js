@@ -1,5 +1,10 @@
 // 首页逻辑：模式选择、文件上传、面包屑导航
 import { loadExamList } from './config.js';
+import {
+    toast, confirmSheet, haptic, navigateTo,
+    installNativeDialogShims, installLinkInterceptor, initPressFeedback, playPageEnter
+} from './interaction.js?v=1';
+
 import { renderExamList, filterExamList } from './examList.js?v=20260914b';
 import { 
     initPracticeSubjectFilter, startPracticeMode, updateSourceSummary, 
@@ -62,7 +67,7 @@ function handleFileUpload(e) {
             // 存储到 localStorage，由 exam.html 读取
             localStorage.setItem('uploadedExamData', JSON.stringify(examData));
             // 打开答题页面
-            window.open('exam.html?mode=upload', '_blank');
+            navigateTo('exam.html?mode=upload');
         } catch (error) {
             alert('JSON 文件格式错误：' + error.message);
         }
@@ -145,8 +150,8 @@ async function initializeApp() {
     // 提示词模板保存
     document.getElementById('choice-prompt-template')?.addEventListener('blur', savePromptTemplatesFromUI);
     document.getElementById('subjective-prompt-template')?.addEventListener('blur', savePromptTemplatesFromUI);
-    document.getElementById('reset-templates-btn')?.addEventListener('click', () => {
-        if (confirm('确定要恢复默认提示词模板吗？')) {
+    document.getElementById('reset-templates-btn')?.addEventListener('click', async () => {
+        if (await confirmSheet({ title: '恢复默认模板', okText: '恢复' })) {
             resetPromptTemplates();
             loadPromptTemplates();
         }
@@ -245,8 +250,21 @@ async function initializeApp() {
 }
 
 // 页面加载完成后初始化
+function bootstrapHome() {
+    // 原生弹窗 → 应用内 Toast / 底部确认弹层
+    installNativeDialogShims();
+    // 全局按压反馈与触觉
+    initPressFeedback();
+    // 触屏上把 target="_blank" 链接改为同页跳转
+    installLinkInterceptor();
+    // 页面淡入，避免硬切
+    playPageEnter();
+    initializeApp();
+    initIcons();
+}
+
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { initializeApp(); initIcons(); });
+    document.addEventListener('DOMContentLoaded', bootstrapHome);
 } else {
-    initializeApp(); initIcons();
+    bootstrapHome();
 }

@@ -1,6 +1,8 @@
 // AI 生成题目历史记录 UI 管理
 import { getAllAiGeneratedExams, deleteAiGeneratedExam, clearAllAiGeneratedExams } from './aiChatStorage.js';
 import { Icons } from './icons.js';
+import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
+
 
 // 渲染 AI 历史列表
 export async function renderAiHistory() {
@@ -32,7 +34,12 @@ export async function renderAiHistory() {
         `;
 
         document.getElementById('ai-history-clear-all').addEventListener('click', async () => {
-            if (confirm(`确定要清空全部 ${records.length} 条 AI 生成记录吗？此操作不可恢复。`)) {
+            if (await confirmSheet({
+                title: '清空生成记录',
+                message: `全部 ${records.length} 条记录将被删除，此操作不可恢复。`,
+                okText: '清空',
+                danger: true,
+            })) {
                 await clearAllAiGeneratedExams();
                 renderAiHistory();
             }
@@ -86,7 +93,7 @@ function createHistoryItem(record) {
     item.querySelector('.btn-continue').addEventListener('click', () => continueExam(record));
     item.querySelector('.btn-restart').addEventListener('click', () => restartExam(record));
     item.querySelector('.btn-delete').addEventListener('click', async () => {
-        if (!confirm(`确定删除「${record.title}」的记录吗？`)) return;
+        if (!await confirmSheet({ title: '删除记录', message: `「${record.title}」`, okText: '删除', danger: true })) return;
         await deleteAiGeneratedExam(record.id);
         item.remove();
         // 更新计数
@@ -113,12 +120,12 @@ function getProgressKey(record) {
 
 function continueExam(record) {
     localStorage.setItem('uploadedExamData', JSON.stringify(buildExamPayload(record)));
-    window.open('exam.html?mode=upload', '_blank');
+    navigateTo('exam.html?mode=upload');
 }
 
 function restartExam(record) {
     // 清除 localStorage 中的答题进度
     localStorage.removeItem(getProgressKey(record));
     localStorage.setItem('uploadedExamData', JSON.stringify(buildExamPayload(record)));
-    window.open('exam.html?mode=upload', '_blank');
+    navigateTo('exam.html?mode=upload');
 }

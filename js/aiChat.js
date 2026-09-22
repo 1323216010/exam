@@ -1,7 +1,9 @@
-﻿// AI 聊天侧边栏功能模块
+// AI 聊天侧边栏功能模块
 import { state } from './state.js';
 import { getApiKey, getApiUrl, getApiModel, getChoicePromptTemplate, getSubjectivePromptTemplate } from './api.js';
 import { saveChatRecord, clearAllChatRecords } from './aiChatStorage.js';
+import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
+
 
 // ==================== 模板替换引擎 ====================
 
@@ -880,7 +882,12 @@ export function initAiChat() {
                 alert('请先加载试卷');
                 return;
             }
-            const confirmed = confirm('确定要清空当前试卷的所有 AI 聊天记录吗？此操作不可恢复。');
+            const confirmed = await confirmSheet({
+                title: '清空聊天记录',
+                message: '当前试卷的 AI 聊天记录将被删除，此操作不可恢复。',
+                okText: '清空',
+                danger: true,
+            });
             if (!confirmed) return;
 
             try {

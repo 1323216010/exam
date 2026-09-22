@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>自测系统 - 答题</title>
     <!-- Vditor for Markdown rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@3.10.7/dist/index.css">
@@ -11,6 +11,34 @@
     <link rel="stylesheet" href="css/exam.css?v=20260823c">
     <link rel="stylesheet" href="css/ai-chat.css?v=20260823">
     <link rel="stylesheet" href="css/mobile.css?v=1">
+    <style>
+        /* 骨架屏关键样式内联，保证在 JS 加载前就能显示，避免白屏 */
+        #exam-loading {
+            padding: 20px 18px;
+            padding-top: calc(20px + env(safe-area-inset-top, 0px));
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .exam-loading-skel {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .dsh-skeleton {
+            background: linear-gradient(90deg, #EEF1F4 25%, #F7F9FB 37%, #EEF1F4 63%);
+            background-size: 400% 100%;
+            animation: dsh-shimmer 1.25s ease-in-out infinite;
+            border-radius: 8px;
+        }
+        @keyframes dsh-shimmer {
+            0%   { background-position: 100% 50%; }
+            100% { background-position: 0 50%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .dsh-skeleton { animation: none; }
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -71,11 +99,18 @@
             </button>
 
             <!-- 加载提示 -->
-            <div id="exam-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: #6B7280; gap: 16px; font-size: 16px;">
-                <div style="font-size: 48px; display:flex; align-items:center; justify-content:center; color:#9CA3AF;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <div id="exam-loading" class="exam-loading">
+                <div class="exam-loading-skel">
+                    <div class="dsh-skeleton" style="width:42px;height:42px;border-radius:10px"></div>
+                    <div class="dsh-skeleton" style="width:84px;height:22px;border-radius:11px"></div>
+                    <div class="dsh-skeleton" style="width:56px;height:22px;border-radius:11px"></div>
                 </div>
-                <div>正在加载试题...</div>
+                <div class="dsh-skeleton" style="height:18px;width:90%;margin:22px 0 10px"></div>
+                <div class="dsh-skeleton" style="height:18px;width:64%;margin-bottom:28px"></div>
+                <div class="dsh-skeleton" style="height:52px;border-radius:12px;margin-bottom:10px"></div>
+                <div class="dsh-skeleton" style="height:52px;border-radius:12px;margin-bottom:10px"></div>
+                <div class="dsh-skeleton" style="height:52px;border-radius:12px;margin-bottom:10px"></div>
+                <div class="dsh-skeleton" style="height:52px;border-radius:12px"></div>
             </div>
 
             <!-- 答题布局：包含答题界面和 AI 面板 -->
@@ -214,6 +249,6 @@
     <!-- 移动端遮罩层 -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
 
-    <script type="module" src="js/exam.js?v=20260914d"></script>
+    <script type="module" src="js/exam.js?v=20260921a"></script>
 </body>
 </html>

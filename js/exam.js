@@ -22,6 +22,11 @@ import {
 } from './examDisplay.js';
 import { getShuffleOptions } from './api.js';
 import { initIcons } from './icons.js';
+import {
+    toast, confirmSheet, haptic, navigateTo,
+    installNativeDialogShims, initPressFeedback, playQuestionEnter,
+    playPageEnter, installLinkInterceptor, skeletonQuestion
+} from './interaction.js?v=1';
 
 // 计时器实例
 let timer = null;
@@ -229,7 +234,12 @@ async function handleSubmit() {
                !(Array.isArray(answer) && answer.length === 0);
     }).length;
 
-    if (!confirm(`确定要提交答案吗？\n\n已答题数：${answeredCount} / ${state.examData.questions.length}`)) {
+    const ok = await confirmSheet({
+        title: '提交答卷',
+        message: `已答题数：${answeredCount} / ${state.examData.questions.length}`,
+        okText: '提交',
+    });
+    if (!ok) {
         return;
     }
 
@@ -396,8 +406,14 @@ function handleReview() {
     closeMobileSidebar();
 }
 
-function restartExam() {
-    if (confirm('确定要重新开始吗？当前答题记录将被清除。')) {
+async function restartExam() {
+    const ok = await confirmSheet({
+        title: '重新开始',
+        message: '当前答题记录将被清除。',
+        okText: '重新开始',
+        danger: true,
+    });
+    if (ok) {
         initExam(true); // 跳过进度检查
     }
 }
@@ -806,12 +822,20 @@ async function initializeExamApp() {
 // 页面加载完成后初始化
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', async () => {
+        installNativeDialogShims();
+        initPressFeedback();
+        installLinkInterceptor();
+        playPageEnter();
         initIcons();
         await initChatDB().catch(err => console.error('IndexedDB 初始化失败:', err));
         initializeExamApp();
     });
 } else {
     (async () => {
+        installNativeDialogShims();
+        initPressFeedback();
+        installLinkInterceptor();
+        playPageEnter();
         initIcons();
         await initChatDB().catch(err => console.error('IndexedDB 初始化失败:', err));
         initializeExamApp();
