@@ -70,6 +70,7 @@ async function resetForRestart() {
     state.userAnswers = {};
     state.aiGradingDetails = {};
     state.aiExplainDetails = {};
+    state.revealedAnswers = new Set();
     state.currentQuestionIndex = 0;
     state.showingResults = false;
     state.startTime = new Date();
@@ -172,6 +173,7 @@ async function continueInitExam() {
         state.userAnswers = {};
         state.aiGradingDetails = {};
         state.aiExplainDetails = {};
+        state.revealedAnswers = new Set();
         state.currentQuestionIndex = 0;
         state.showingResults = false;
         state.startTime = new Date();
@@ -784,6 +786,24 @@ async function initializeExamApp() {
     // 移动端菜单控制
     document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileSidebar);
     document.getElementById('mobile-overlay').addEventListener('click', closeMobileSidebar);
+
+    // 侧栏返回入口：答题页此前没有返回/退出路径，手机用户只能靠系统返回键
+    document.getElementById('sidebar-back-btn')?.addEventListener('click', async () => {
+        const answered = Object.keys(state.userAnswers || {}).filter((k) => {
+            const v = state.userAnswers[k];
+            return v !== undefined && v !== '' && !(Array.isArray(v) && v.length === 0);
+        }).length;
+        // 已作答时先确认，避免误触丢失进度（进度本身有本地保存）
+        if (answered > 0) {
+            const ok = await confirmSheet({
+                title: '返回试卷列表',
+                message: `已答 ${answered} 题，答题进度会保留在本机，下次可继续。`,
+                okText: '返回',
+            });
+            if (!ok) return;
+        }
+        navigateTo('index.html');
+    });
     
     document.addEventListener('click', function(e) {
         if (e.target.closest('.question-item') && window.innerWidth <= 768) {

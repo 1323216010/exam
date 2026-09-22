@@ -5,7 +5,8 @@ import {
     DEFAULT_API_URL, DEFAULT_API_MODEL,
     getChoicePromptTemplate, getSubjectivePromptTemplate, 
     savePromptTemplates, resetPromptTemplates,
-    getShuffleOptions, setShuffleOptions 
+    getShuffleOptions, setShuffleOptions,
+    getInstantAnswer, setInstantAnswer
 } from './api.js';
 import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
 import { Icons } from './icons.js';
@@ -55,12 +56,22 @@ function loadExamSettings() {
     if (checkbox) {
         checkbox.checked = shuffleOptions;
     }
+    // 「答完立即显示答案」以前只有复选框、没有读写逻辑，勾了不生效
+    const instant = getInstantAnswer();
+    const instantBox = document.getElementById('show-answer-immediately');
+    if (instantBox) {
+        instantBox.checked = instant;
+    }
 }
 
 function saveExamSettingsFromUI() {
     const checkbox = document.getElementById('shuffle-options-checkbox');
     if (checkbox) {
         setShuffleOptions(checkbox.checked);
+    }
+    const instantBox = document.getElementById('show-answer-immediately');
+    if (instantBox) {
+        setInstantAnswer(instantBox.checked);
     }
 }
 

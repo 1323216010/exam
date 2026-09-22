@@ -675,6 +675,40 @@
         background: #FEF2F2;
     }
 
+    /* 多选题里「是正确答案但没选」的项：虚线绿框，和已选中的实心绿区分开 */
+    .option.missed {
+        border-color: var(--brand-deep);
+        border-width: 2px;
+        border-style: dashed;
+        background: #F0FDF4;
+    }
+
+    .option.missed::after {
+        content: '漏选';
+        flex-shrink: 0;
+        margin-left: var(--m-2);
+        align-self: center;
+        font-size: var(--fs-cap);
+        color: var(--brand-deep);
+        border: 1px solid currentColor;
+        border-radius: 4px;
+        padding: 0 4px;
+        line-height: 1.5;
+    }
+
+    .option.wrong::after {
+        content: '错选';
+        flex-shrink: 0;
+        margin-left: var(--m-2);
+        align-self: center;
+        font-size: var(--fs-cap);
+        color: #DC2626;
+        border: 1px solid currentColor;
+        border-radius: 4px;
+        padding: 0 4px;
+        line-height: 1.5;
+    }
+
     /* 对错标记改为文字前缀，避免 ::before 与内容错位 */
     .option.correct::before,
     .option.wrong::before {
@@ -746,34 +780,42 @@
 
     .navigation-buttons .btn-nav {
         min-height: 48px;
-        font-size: var(--fs-body);
+        font-size: var(--fs-meta);
         border-radius: var(--r-md);
         width: 100%;
+        /* 必须显式 nowrap：否则 4 键单行时「上一题」会被折成两行 */
+        white-space: nowrap;
+        padding: 0 var(--m-1);
     }
 
-    /* 中间两个次要操作放到第二行，视觉上弱于翻页 */
+    /* 操作栏压成单行 4 键：上一题 / 显示答案 / AI 解析 / 下一题。
+       原先是两行共 125px（占 844px 屏幕 15%），单行后约 64px，
+       把省下的高度还给题目本身，同时仍在拇指可达区内。 */
     .nav-center-actions {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--m-2);
+        grid-column: auto;
+        display: contents;
         order: 0;
     }
 
     .nav-center-actions > button {
-        min-height: var(--tap);
+        min-height: 48px;
         font-size: var(--fs-meta);
         border-radius: var(--r-md);
+        padding: 0 var(--m-2);
+        white-space: nowrap;
     }
 
-    /* 让「上一题/下一题」排在下半行，操作重心靠近拇指 */
-    .navigation-buttons > .btn-prev {
-        order: 1;
+    /* 上/下一题各占 1 份，中间两个次要键各占 0.9 份，视觉上主次分明 */
+    .navigation-buttons {
+        grid-template-columns: 1fr 0.95fr 0.95fr 1fr;
+        gap: var(--m-1);
+        align-items: stretch;
     }
 
-    .navigation-buttons > .btn-next {
-        order: 2;
-    }
+    .navigation-buttons > .btn-prev { order: 1; }
+    .navigation-buttons > .btn-next { order: 4; }
+    .nav-center-actions > .btn-show-answer { order: 2; }
+    .nav-center-actions > .btn-ai-explain { order: 3; }
 
     /* ---- 侧栏抽屉：加宽、圆角、可关 ---- */
     .sidebar {
@@ -783,11 +825,31 @@
 
     .sidebar-header {
         padding: calc(var(--m-5) + var(--safe-t)) var(--m-4) var(--m-4);
+        /* 左上角有悬浮的关闭键（48px + 12px 边距），内容需避让，
+           否则返回按钮与试卷标题会被压住 */
+        padding-left: calc(68px + var(--safe-l));
         border-radius: 0 var(--r-lg) 0 0;
     }
 
     .sidebar-header h2 {
         font-size: var(--fs-body);
+    }
+
+    /* 手机上把返回入口显示出来（桌面保留侧栏常驻，无需此按钮） */
+    .sidebar-back-btn {
+        display: inline-flex;
+        min-height: var(--tap);
+        font-size: var(--fs-meta);
+    }
+
+    /* 「重置宽度」只在桌面拖拽调宽时有意义，手机上隐藏避免占位 */
+    #reset-sidebar-width-btn {
+        display: none !important;
+    }
+
+    /* 只剩「清空聊天记录」时让它占满整行，不再留一个空列 */
+    .sidebar-footer-actions {
+        grid-template-columns: 1fr;
     }
 
     .question-nav {
@@ -1006,7 +1068,7 @@
 /* ============================================================================
    9. 小屏（≤360px）兜底
    ========================================================================= */
-@media (max-width: 360px) {
+@media (max-width: 380px) {
     :root {
         --fs-stem: 16px;
         --fs-body: 15px;
@@ -1016,12 +1078,22 @@
         grid-template-columns: repeat(4, 1fr);
     }
 
+    /* 4 键单行在窄屏会被挤到每键独占一行（实测 320/360px 下底栏 229px 高）。
+       退回 2×2：上排翻页，下排显示答案 / AI 解析。 */
     .navigation-buttons {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--m-2);
     }
 
-    .nav-center-actions {
-        grid-template-columns: 1fr;
+    .navigation-buttons > .btn-prev { order: 1; }
+    .navigation-buttons > .btn-next { order: 2; }
+    .nav-center-actions > .btn-show-answer { order: 3; }
+    .nav-center-actions > .btn-ai-explain { order: 4; }
+
+    .navigation-buttons .btn-nav,
+    .nav-center-actions > button {
+        font-size: var(--fs-body);
+        min-height: 52px;
     }
 
     .mode-card .mode-desc {

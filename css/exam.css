@@ -186,6 +186,48 @@
     font-size: 18px;
 }
 
+/* 多选题中「是正确答案但未选中」的项：虚线绿框 + 漏选标记 */
+.option.missed {
+    border-color: #10B981;
+    border-style: dashed;
+    border-width: 2.5px;
+    background: #F0FDF4;
+}
+
+.option.missed::before {
+    content: '○';
+    color: #059669;
+    font-weight: bold;
+    margin-right: 8px;
+    position: static;
+    opacity: 1;
+    width: auto;
+    background: none;
+    font-size: 16px;
+}
+
+.option.missed::after,
+.option.wrong::after {
+    flex-shrink: 0;
+    margin-left: 8px;
+    align-self: center;
+    font-size: 12px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    padding: 0 4px;
+    line-height: 1.6;
+}
+
+.option.missed::after {
+    content: '漏选';
+    color: #059669;
+}
+
+.option.wrong::after {
+    content: '错选';
+    color: #DC2626;
+}
+
 /* 答案区域 */
 .textarea-answer {
     width: 100%;

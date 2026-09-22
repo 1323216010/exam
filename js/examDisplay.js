@@ -4,6 +4,7 @@ import { saveProgress } from './examProgress.js';
 import { openAiChatPanel } from './aiChat.js';
 import { Icons } from './icons.js';
 import { playQuestionEnter } from './interaction.js?v=1';
+import { getInstantAnswer } from './api.js';
 
 // ==================== 题目导航 ====================
 
@@ -120,6 +121,12 @@ export function showQuestion(index) {
         const inputType = isMultiple ? 'checkbox' : 'radio';
         const userAnswer = state.userAnswers[index] || (isMultiple ? [] : '');
 
+        // 对错反馈出现的时机：交卷后，或本题已经点过「显示答案」。
+        // 之前只有交卷后才标对错，导致平时点「显示答案」只能看到一行答案文字，
+        // 选项本身没有绿色/红色反馈 —— 这是刷题类应用最核心的反馈缺失。
+        const showFeedback = (state.showingResults || state.revealedAnswers?.has(index))
+            && !!question.answer;
+
         html += '<div class="options">';
         for (const [key, value] of Object.entries(question.options)) {
             const isChecked = isMultiple ? userAnswer.includes(key) : userAnswer === key;
@@ -127,10 +134,13 @@ export function showQuestion(index) {
             const selectedClass = isChecked ? 'selected' : '';
 
             let resultClass = '';
-            if (state.showingResults && question.answer) {
+            if (showFeedback) {
                 if (isMultiple) {
+                    // 多选题：正确项标绿；选错的多余项标红
                     if (question.answer.includes(key)) {
-                        resultClass = 'correct';
+                        resultClass = userAnswer.includes(key) ? 'correct' : 'missed';
+                    } else if (userAnswer.includes(key)) {
+                        resultClass = 'wrong';
                     }
                 } else {
                     if (question.answer === key) {
@@ -161,7 +171,8 @@ export function showQuestion(index) {
 
     // 答案区域
     if (question.answer) {
-        const showAnswer = state.showingResults;
+        // 交卷后，或本题已揭晓（点过「显示答案」/开启即时答案）时默认展开
+        const showAnswer = state.showingResults || state.revealedAnswers?.has(index);
         html += `
             <div class="answer-section ${showAnswer ? 'show' : ''}" id="answer-${index}">
                 <div class="answer-label">参考答案</div>
@@ -220,7 +231,9 @@ export function showQuestion(index) {
             <div class="nav-center-actions">
                 <button class="btn-show-answer" id="btn-show-answer" 
                     ${!question.answer ? 'style="display:none"' : ''}>
-                    ${state.showingResults ? '已显示答案' : '显示答案'}
+                    ${state.showingResults
+                        ? '已显示答案'
+                        : (state.revealedAnswers?.has(index) ? '隐藏答案' : '显示答案')}
                 </button>
                 <button class="btn-ai-explain" id="btn-ai-explain" 
                     ${!question.answer ? 'style="display:none"' : ''}>
@@ -276,9 +289,21 @@ export function showQuestion(index) {
 
     document.getElementById('btn-show-answer')?.addEventListener('click', function() {
         const answerSection = document.getElementById(`answer-${index}`);
-        if (answerSection) {
-            answerSection.classList.toggle('show');
-            this.textContent = answerSection.classList.contains('show') ? '隐藏答案' : '显示答案';
+        if (!answerSection) return;
+
+        const willShow = !answerSection.classList.contains('show');
+
+        if (willShow) {
+            // 记录本题已看过答案：选项立即标出对错（核心反馈）
+            if (!state.revealedAnswers) state.revealedAnswers = new Set();
+            state.revealedAnswers.add(index);
+            answerSection.classList.add('show');
+            this.textContent = '隐藏答案';
+            // 就地更新选项样式，不整题重渲染，避免长题滚动位置被重置
+            applyAnswerFeedback(index);
+        } else {
+            answerSection.classList.remove('show');
+            this.textContent = '显示答案';
         }
     });
 
@@ -295,6 +320,38 @@ export function showQuestion(index) {
 }
 
 // ==================== 答案处理 ====================
+
+/**
+ * 就地给当前题的选项加上对错标记。
+ * 用于「显示答案」而不重渲染整题（长材料题重渲染会丢滚动位置）。
+ */
+export function applyAnswerFeedback(questionIndex) {
+    if (!state.examData) return;
+    const question = state.examData.questions[questionIndex];
+    if (!question || !question.options || !question.answer) return;
+
+    const isMultiple = question.question_type.includes('多项');
+    const userAnswer = state.userAnswers[questionIndex] || (isMultiple ? [] : '');
+    const correct = String(question.answer);
+
+    document.querySelectorAll('.option').forEach((el) => {
+        if (parseInt(el.dataset.questionIndex, 10) !== questionIndex) return;
+        const key = el.dataset.option;
+        el.classList.remove('correct', 'wrong', 'missed');
+
+        if (isMultiple) {
+            if (correct.includes(key)) {
+                el.classList.add(userAnswer.includes(key) ? 'correct' : 'missed');
+            } else if (userAnswer.includes(key)) {
+                el.classList.add('wrong');
+            }
+        } else if (correct === key) {
+            el.classList.add('correct');
+        } else if (userAnswer === key) {
+            el.classList.add('wrong');
+        }
+    });
+}
 
 export function selectOption(questionIndex, option, isMultiple) {
     if (state.showingResults) return;
@@ -316,8 +373,23 @@ export function selectOption(questionIndex, option, isMultiple) {
 
     // 保存答题进度
     saveProgress();
-    
+
+    // 「答完立即显示答案」：单选题选完即揭晓对错（多选题需选完再点按钮，
+    // 无法判断用户何时算「答完」）。
+    if (!isMultiple && getInstantAnswer()) {
+        if (!state.revealedAnswers) state.revealedAnswers = new Set();
+        state.revealedAnswers.add(questionIndex);
+    }
+
     showQuestion(questionIndex);
+
+    // 单选题揭晓后自动滚动到参考答案，省去手动下拉
+    if (!isMultiple && getInstantAnswer()) {
+        const section = document.getElementById(`answer-${questionIndex}`);
+        if (section && section.classList.contains('show')) {
+            setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+        }
+    }
 }
 
 export function saveTextAnswer(questionIndex, value) {

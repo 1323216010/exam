@@ -125,6 +125,33 @@ body {
     font-weight: 600;
 }
 
+/* 侧栏顶部的返回入口：答题页此前没有任何返回/退出路径 */
+.sidebar-back-btn {
+    display: none;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 10px;
+    padding: 6px 12px 6px 8px;
+    min-height: 34px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, transform .12s ease;
+}
+
+.sidebar-back-btn:hover {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.sidebar-back-btn:active {
+    transform: scale(0.96);
+}
+
 .sidebar-header .exam-name {
     font-size: 13px;
     opacity: 0.95;

@@ -194,7 +194,8 @@ export function resetPromptTemplates() {
 const EXAM_SETTINGS_STORAGE_KEY = 'exam_system_exam_settings';
 
 const DEFAULT_EXAM_SETTINGS = {
-    shuffleOptions: true  // 默认开启打乱选项顺序
+    shuffleOptions: true,  // 默认开启打乱选项顺序
+    instantAnswer: false   // 默认关闭「答完立即显示答案」
 };
 
 // 获取答题设置
@@ -220,5 +221,18 @@ export function getShuffleOptions() {
 export function setShuffleOptions(enabled) {
     const settings = getExamSettings();
     settings.shuffleOptions = enabled;
+    saveExamSettings(settings);
+}
+
+// 获取「答完立即显示答案」
+// 此前 index.html 里存在该复选框，但没有任何读写逻辑，勾选后完全不生效。
+export function getInstantAnswer() {
+    return !!getExamSettings().instantAnswer;
+}
+
+// 设置「答完立即显示答案」
+export function setInstantAnswer(enabled) {
+    const settings = getExamSettings();
+    settings.instantAnswer = enabled;
     saveExamSettings(settings);
 }

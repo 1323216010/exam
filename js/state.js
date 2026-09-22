@@ -5,6 +5,8 @@ export const state = {
     userAnswers: {},
     aiGradingDetails: {},
     aiExplainDetails: {},
+    // 已通过「显示答案」看过解析的题号集合（交卷前的即时反馈）
+    revealedAnswers: new Set(),
     showingResults: false,
     startTime: null,
     timerInterval: null,
@@ -20,6 +22,7 @@ export function resetState() {
     state.userAnswers = {};
     state.aiGradingDetails = {};
     state.aiExplainDetails = {};
+    state.revealedAnswers = new Set();
     state.showingResults = false;
     state.startTime = null;
     state.currentMode = null;
