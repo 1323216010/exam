@@ -3,7 +3,9 @@
     "title": "2018年4月高等教育自学考试市政学试题",
     "subject": "市政学",
     "code": "00292",
-    "date": "2018年4月"
+    "date": "2018年4月",
+    "answers_unreliable": true,
+    "answers_unreliable_note": "本卷开头题目在文档转换中丢失，答案表与题目错位（已用真题原文核对）。为避免教错，本卷不参与判分与答案展示，仅保留题目用于练习。"
   },
   "questions": [
     {
@@ -11,28 +13,32 @@
       "question_type": "单项选择题",
       "content": "本卷所有试题必须在答题卡上作答。答在试卷上无效，试卷空白处和背面均可作草稿纸。",
       "answer": "C",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "第一部分为选择题。必须对应试卷上的题号使用2B铅笔将“答题卡”的相应代码涂黑。",
       "answer": "B",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "第二部分为非选择题。必须注明大、小题号，使用0．5毫米黑色字迹签字笔作答。",
       "answer": "D",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "合理安排答题空间，超出答题区域无效。 第一部分选择题 一、单项选择题：本大题共25小题，每小题l分，共25分。在每小题列出的备选项中 只有一项是最符合题目要求的，请将其选出。",
       "answer": "B",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "5",
@@ -41,9 +47,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "基层群众自治性组织    B．市人民团体",
-        "C": "城市公益性组织        D．政府职能部门"
-      }
+        "A": "基层群众自治性组织",
+        "B": "市人民团体",
+        "C": "城市公益性组织",
+        "D": "政府职能部门"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "6",
@@ -52,8 +61,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "英国    B．日本    C．印度    D．法国"
-      }
+        "A": "英国",
+        "B": "日本",
+        "C": "印度",
+        "D": "法国"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "7",
@@ -62,9 +75,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "武汉    B．上海",
-        "C": "长沙    D．南宁"
-      }
+        "A": "武汉",
+        "B": "上海",
+        "C": "长沙",
+        "D": "南宁"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "8",
@@ -73,9 +89,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "社会职能        B. 规划职能",
-        "C": "文化教育职能    D．经济职能"
-      }
+        "A": "社会职能",
+        "B": "规划职能",
+        "C": "文化教育职能",
+        "D": "经济职能"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "9",
@@ -84,9 +103,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "《城市经济学》    B．《城市化基本理论》",
-        "C": "《城市地理学》    D．《城市管理学》"
-      }
+        "A": "《城市经济学》",
+        "B": "《城市化基本理论》",
+        "C": "《城市地理学》",
+        "D": "《城市管理学》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "10",
@@ -95,9 +117,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "邻里单位理论    B．卫星城理论",
-        "C": "中心地理论      D．田园城市理论"
-      }
+        "A": "邻里单位理论",
+        "B": "卫星城理论",
+        "C": "中心地理论",
+        "D": "田园城市理论"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "13",
@@ -106,9 +131,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "1968年    B．2008年",
-        "C": "1992年    D．2010年"
-      }
+        "A": "1968年",
+        "B": "2008年",
+        "C": "1992年",
+        "D": "2010年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "14",
@@ -117,9 +145,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "《雅典宪章》    B．《马丘比丘宪章》",
-        "C": "《北京宪章》    D．《伦敦宪章》"
-      }
+        "A": "《雅典宪章》",
+        "B": "《马丘比丘宪章》",
+        "C": "《北京宪章》",
+        "D": "《伦敦宪章》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "15",
@@ -128,9 +159,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "生产性    B．公益性",
-        "C": "承载性    D．自然垄断性"
-      }
+        "A": "生产性",
+        "B": "公益性",
+        "C": "承载性",
+        "D": "自然垄断性"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "16",
@@ -139,9 +173,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "5年     B．10年",
-        "C": "15年    D．20年"
-      }
+        "A": "5年",
+        "B": "10年",
+        "C": "15年",
+        "D": "20年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "17",
@@ -150,9 +187,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "社会效益    B．经济效益",
-        "C": "环境效益    D．政治效益"
-      }
+        "A": "社会效益",
+        "B": "经济效益",
+        "C": "环境效益",
+        "D": "政治效益"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "18",
@@ -161,9 +201,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "资源配置职能    B．收入分配职能",
-        "C": "经济稳定职能    D．经济增长职能"
-      }
+        "A": "资源配置职能",
+        "B": "收入分配职能",
+        "C": "经济稳定职能",
+        "D": "经济增长职能"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "19",
@@ -172,9 +215,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "红十字会    B．妇幼保健站",
-        "C": "疾控中心    D．爱国卫生运动委员会"
-      }
+        "A": "红十字会",
+        "B": "妇幼保健站",
+        "C": "疾控中心",
+        "D": "爱国卫生运动委员会"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "20",
@@ -183,9 +229,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "市场交易价    B．政府指导价或政府定价",
-        "C": "市场指导价    D. 中间交易价"
-      }
+        "A": "市场交易价",
+        "B": "政府指导价或政府定价",
+        "C": "市场指导价",
+        "D": "中间交易价"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "21",
@@ -194,9 +243,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "招标出让    B．拍卖出让",
-        "C": "协议出让    D．无偿出让"
-      }
+        "A": "招标出让",
+        "B": "拍卖出让",
+        "C": "协议出让",
+        "D": "无偿出让"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "22",
@@ -205,9 +257,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "环境质量标准制度            B．环境影响评价制度",
-        "C": "环境综合整治定量考核制度    D．环境保护目标责任制度"
-      }
+        "A": "环境质量标准制度",
+        "B": "环境影响评价制度",
+        "C": "环境综合整治定量考核制度",
+        "D": "环境保护目标责任制度"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "23",
@@ -216,9 +271,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "自然社区    B．法定社区",
-        "C": "功能社区    D．自治社区"
-      }
+        "A": "自然社区",
+        "B": "法定社区",
+        "C": "功能社区",
+        "D": "自治社区"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "24",
@@ -227,9 +285,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "社区居民委员会    B．社区业主委员会",
-        "C": "街道办事处        D．物业公司"
-      }
+        "A": "社区居民委员会",
+        "B": "社区业主委员会",
+        "C": "街道办事处",
+        "D": "物业公司"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "25",
@@ -238,9 +299,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "绩效指标的效度    B．绩效指标的信度",
-        "C": "绩效指标一致性    D．绩效指标相关度"
-      }
+        "A": "绩效指标的效度",
+        "B": "绩效指标的信度",
+        "C": "绩效指标一致性",
+        "D": "绩效指标相关度"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "26",
@@ -249,10 +313,13 @@
       "answer": "ACDE",
       "score": 2,
       "options": {
-        "A": "公共性    B．历史性",
-        "C": "双重性    D．综合性",
+        "A": "公共性",
+        "B": "历史性",
+        "C": "双重性",
+        "D": "综合性",
         "E": "动态性"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "27",
@@ -261,10 +328,13 @@
       "answer": "BCDE",
       "score": 2,
       "options": {
-        "A": "市工商联    B．市慈善总会",
-        "C": "市基金会    D．市妇联",
+        "A": "市工商联",
+        "B": "市慈善总会",
+        "C": "市基金会",
+        "D": "市妇联",
         "E": "市共青团"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "28",
@@ -273,10 +343,13 @@
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "产业振兴职能        B．交通运输职能",
-        "C": "社会福利与保障职能  D．文化教育职能",
+        "A": "产业振兴职能",
+        "B": "交通运输职能",
+        "C": "社会福利与保障职能",
+        "D": "文化教育职能",
         "E": "公共安全管理职能"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "29",
@@ -285,10 +358,13 @@
       "answer": "BCDE",
       "score": 2,
       "options": {
-        "A": "生态环境理论     B．田园城市理论",
-        "C": "卫星城理论       D．邻里单位理论",
+        "A": "生态环境理论",
+        "B": "田园城市理论",
+        "C": "卫星城理论",
+        "D": "邻里单位理论",
         "E": "城市功能分区理论"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "30",
@@ -297,10 +373,13 @@
       "answer": "ABDE",
       "score": 2,
       "options": {
-        "A": "位置固定性    B．差异性",
-        "C": "耐久性        D. 稀缺性",
+        "A": "位置固定性",
+        "B": "差异性",
+        "C": "耐久性",
+        "D": "稀缺性",
         "E": "区位效益性"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "31",
@@ -309,10 +388,13 @@
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "排污管理制度        B．城市环境综合整治定量考核制度",
-        "C": "污染物排放标准制度  D．突发环境事件应急处理制度",
+        "A": "排污管理制度",
+        "B": "城市环境综合整治定量考核制度",
+        "C": "污染物排放标准制度",
+        "D": "突发环境事件应急处理制度",
         "E": "限期治理污染源制度"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "32",
@@ -321,10 +403,13 @@
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "社区服务管理    B．社区文化管理",
-        "C": "社区卫生管理    D．社区环境管理",
+        "A": "社区服务管理",
+        "B": "社区文化管理",
+        "C": "社区卫生管理",
+        "D": "社区环境管理",
         "E": "社区治安管理"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "33",
@@ -333,10 +418,13 @@
       "answer": "ABC",
       "score": 2,
       "options": {
-        "A": "城市居民最低生活保障管理    B．城市医疗救助管理",
-        "C": "城市社会优抚管理            D．城市医疗保险管理",
+        "A": "城市居民最低生活保障管理",
+        "B": "城市医疗救助管理",
+        "C": "城市社会优抚管理",
+        "D": "城市医疗保险管理",
         "E": "城市老人社会福利管理"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "34",

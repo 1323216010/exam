@@ -447,7 +447,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "城市基础设施的投资具有的特点是（ ）",
-      "answer": "城市基础设施的投资具有的特点是（          ）\nA．利润大\tB．数额大\nC．建设周期长\tD．资金回收慢\nE．利润率和折旧率低",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "利润大",
@@ -455,13 +455,15 @@
         "C": "建设周期长",
         "D": "资金回收慢",
         "E": "利润率和折旧率低"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "城市政府对城市公共事业的管制，是出于下列何种需要?（ ）",
-      "answer": "城市政府对城市公共事业的管制，是出于下列何种需要?（          ）\nA．保护企业发展\tB．保护正当竞争\nC．维护公共利益\tD．弥补市场机制有限作用\nE．监督财政资金合理使用和确保公共产权保值增值",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "保护企业发展",
@@ -469,13 +471,15 @@
         "C": "维护公共利益",
         "D": "弥补市场机制有限作用",
         "E": "监督财政资金合理使用和确保公共产权保值增值"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "36",
       "question_type": "多项选择题",
       "content": "从城市公共支出的性质看，城市公共支出包括（ ）",
-      "answer": "从城市公共支出的性质看，城市公共支出包括（          ）\nA．公共消耗性支出\tB．个人消费支出\nC．私营企业支出\tD．公共转移性支出\nE．国营企业支出",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "公共消耗性支出",
@@ -483,13 +487,15 @@
         "C": "私营企业支出",
         "D": "公共转移性支出",
         "E": "国营企业支出"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "37",
       "question_type": "多项选择题",
       "content": "生态城市的特点主要有（ ）",
-      "answer": "生态城市的特点主要有（          ）\nA．和谐性\tB．可持续性\nC．整体性\tD．高效性\nE．区域性",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "和谐性",
@@ -497,13 +503,15 @@
         "C": "整体性",
         "D": "高效性",
         "E": "区域性"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "38",
       "question_type": "多项选择题",
       "content": "失业保险管理的特点是（ ）",
-      "answer": "失业保险管理的特点是（          ）\nA．普遍性\tB．特殊性\nC．强制性\tD．互济性\nE．自愿性",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "普遍性",
@@ -511,13 +519,15 @@
         "C": "强制性",
         "D": "互济性",
         "E": "自愿性"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "39",
       "question_type": "多项选择题",
       "content": "城市公共安全管理包括（ ）",
-      "answer": "城市公共安全管理包括（          ）\nA．治理自然灾害的公共安全管理\tB．消防类公共安全管理\nC．城市治安类公共安全管理\tD．卫生防疫类公共安全管理\nE．基础设施类公共安全管理",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "治理自然灾害的公共安全管理",
@@ -525,13 +535,15 @@
         "C": "城市治安类公共安全管理",
         "D": "卫生防疫类公共安全管理",
         "E": "基础设施类公共安全管理"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "40",
       "question_type": "多项选择题",
       "content": "市政绩效指标的设置原则有（ ）",
-      "answer": "市政绩效指标的设置原则有（          ）\nA．客观全面原则\tB．一致性原则\nC．相关性原则\tD．软硬指标相结合原则\nE．动态性原则\n三、简答题(本大题共6小题，每小题6分，共36分)",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "客观全面原则",
@@ -539,7 +551,9 @@
         "C": "相关性原则",
         "D": "软硬指标相结合原则",
         "E": "动态性原则"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "41",

@@ -27,6 +27,7 @@ import {
     installNativeDialogShims, initPressFeedback, playQuestionEnter,
     playPageEnter, installLinkInterceptor, skeletonQuestion
 } from './interaction.js?v=1';
+import { filterValidQuestions } from './questionFilter.js?v=1';
 
 // 计时器实例
 let timer = null;
@@ -449,6 +450,17 @@ async function startExam(filePath, filename = null) {
         if (filename) {
             state.examData.filename = filename;
         }
+        // 剔除结构性损坏、无法作答的题目（不猜答案，只跳过）
+        if (Array.isArray(state.examData.questions)) {
+            const stats = {};
+            const valid = filterValidQuestions(state.examData.questions, stats);
+            const dropped = state.examData.questions.length - valid.length;
+            if (dropped > 0) {
+                console.warn('[试卷清洗] 跳过无法作答的题目', dropped, stats);
+                state.examData.questions = valid;
+                state.examData.droppedCount = dropped;
+            }
+        }
         initExam();
     } catch (error) {
         alert('加载试卷失败：' + error.message);
@@ -476,7 +488,7 @@ async function loadAllQuestions(subjectFilter = null, examIndices = null) {
             const data = await response.json();
             if (data.questions && Array.isArray(data.questions)) {
                 const filename = getExamDisplayName(exam);
-                data.questions.forEach(q => {
+                filterValidQuestions(data.questions).forEach(q => {
                     q.source = filename;
                     allQuestions.push(q);
                 });
@@ -586,7 +598,7 @@ async function handleURLParams() {
                     const data = await response.json();
                     if (data.questions && Array.isArray(data.questions)) {
                         const filename = getExamDisplayName(exam);
-                        data.questions.forEach(q => {
+                        filterValidQuestions(data.questions).forEach(q => {
                             q.source = filename;
                             allQuestions.push(q);
                         });

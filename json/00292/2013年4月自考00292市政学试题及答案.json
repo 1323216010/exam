@@ -447,7 +447,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "我国城市规划的编制原则有",
-      "answer": "我国城市规划的编制原则有\nA.城乡统筹原则\tB.合理布局原则\nC.节约用地原则\tD.集约发展原则\nE.先建设后规划原则",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "城乡统筹原则",
@@ -455,13 +455,15 @@
         "C": "节约用地原则",
         "D": "集约发展原则",
         "E": "先建设后规划原则"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "城市公共财政的主要功能有",
-      "answer": "城市公共财政的主要功能有\nA.维护公共安全\tB.资源配置\nC.收入分配\tD.经济稳定与增长\nE.提高城市基础设施利用率",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "维护公共安全",
@@ -469,13 +471,15 @@
         "C": "收入分配",
         "D": "经济稳定与增长",
         "E": "提高城市基础设施利用率"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "36",
       "question_type": "多项选择题",
       "content": "城市公共卫生管理的社会意义有",
-      "answer": "城市公共卫生管理的社会意义有\nA.促进经济增长\tB.提高人均寿命\nC.保障市场竞争\tD.体现基本人权\nE.维护社会稳定",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "促进经济增长",
@@ -483,13 +487,15 @@
         "C": "保障市场竞争",
         "D": "体现基本人权",
         "E": "维护社会稳定"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "37",
       "question_type": "多项选择题",
       "content": "我国城市公共收入的公平原则具体可分为",
-      "answer": "我国城市公共收入的公平原则具体可分为\nA.人均分摊原则\tB.受益原则\nC.户均分摊原则\tD.单位分摊原则\nE.支付能力原则",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "人均分摊原则",
@@ -497,13 +503,15 @@
         "C": "户均分摊原则",
         "D": "单位分摊原则",
         "E": "支付能力原则"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "38",
       "question_type": "多项选择题",
       "content": "城市社会保险管理包括",
-      "answer": "城市社会保险管理包括\nA.养老保险管理\tB.合作保险管理\nC.医疗保险管理\tD.失业保险管理\nE.商业保险管理",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "养老保险管理",
@@ -511,13 +519,15 @@
         "C": "医疗保险管理",
         "D": "失业保险管理",
         "E": "商业保险管理"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "39",
       "question_type": "多项选择题",
       "content": "市政绩效的特点有",
-      "answer": "市政绩效的特点有\nA.公共性\tB.系统性\nC.技术性\tD.工具性\nE.非人性化",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "公共性",
@@ -525,13 +535,15 @@
         "C": "技术性",
         "D": "工具性",
         "E": "非人性化"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "40",
       "question_type": "多项选择题",
       "content": "市政绩效是一个综合性的概念，包含的方面有 非选择题部分 注意事项： 用黑色字迹的签字笔或钢笔将答案写在答题纸上，不能答在试题卷上。",
-      "answer": "市政绩效是一个综合性的概念，包含的方面有\nA.经济\tB.效率\nC.效益\tD.效果\nE.效能\n非选择题部分\n注意事项：\n用黑色字迹的签字笔或钢笔将答案写在答题纸上，不能答在试题卷上。\n三、简答题(本大题共6小题，每小题6分，共36分)",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "经济",
@@ -539,7 +551,9 @@
         "C": "效益",
         "D": "效果",
         "E": "效能"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "41",

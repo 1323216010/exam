@@ -4,6 +4,7 @@ import { getActiveConfig } from './api.js';
 import { compareExamsByDate, getExamDateLabel, getExamDisplayName, shuffleArray } from './utils.js';
 import { saveAiGeneratedExam } from './aiChatStorage.js';
 import { toast, confirmSheet, haptic, navigateTo } from './interaction.js?v=1';
+import { filterValidQuestions } from './questionFilter.js?v=1';
 
 import { bindSubjectTabs, matchesSubjectFilter } from './subjectFilter.js?v=20260914b';
 
@@ -184,7 +185,7 @@ async function loadPracticeSourceQuestions(subject, examIndices) {
             const res = await fetch(path);
             if (!res.ok) continue;
             const data = await res.json();
-            if (data.questions) allQuestions.push(...data.questions);
+            if (data.questions) allQuestions.push(...filterValidQuestions(data.questions));
         } catch (e) {
             console.error('加载试卷失败:', e);
         }

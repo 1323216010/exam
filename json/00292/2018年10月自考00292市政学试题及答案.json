@@ -3,7 +3,9 @@
     "title": "2018年10月高等教育自学考试市政学试题",
     "subject": "市政学",
     "code": "00292",
-    "date": "2018年10月"
+    "date": "2018年10月",
+    "answers_unreliable": true,
+    "answers_unreliable_note": "本卷开头题目在文档转换中丢失，答案表与题目错位（已用真题原文核对）。为避免教错，本卷不参与判分与答案展示，仅保留题目用于练习。"
   },
   "questions": [
     {
@@ -11,28 +13,32 @@
       "question_type": "单项选择题",
       "content": "本卷所有试题必须在答题卡上作答。答在试卷上无效，试卷空白处和背面均可作草稿纸。",
       "answer": "D",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "第一部分为选择题。必须对应试卷上的题号使用2B铅笔将“答题卡”的相应代码涂黑。",
       "answer": "C",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "第二部分为非选择题。必须注明大、小题号，使用0．5毫米黑色字迹签字笔作答。",
       "answer": "A",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "合理安排答题空间，超出答题区域无效。 第一部分选择题 一、单项选择题：本大题共25小题，每小题l分，共25分。在每小题列出的备选项中 只有一项是最符合题目要求的，请将其选出。",
       "answer": "B",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "5",
@@ -41,8 +47,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "2年    B．3年    C．4年    D．5年"
-      }
+        "A": "2年",
+        "B": "3年",
+        "C": "4年",
+        "D": "5年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "6",
@@ -51,9 +61,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "市经理制      B．市长议会制",
-        "C": "议会市长制    D．市议会制"
-      }
+        "A": "市经理制",
+        "B": "市长议会制",
+        "C": "议会市长制",
+        "D": "市议会制"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "7",
@@ -62,9 +75,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "直辖市         B．副省级市",
-        "C": "地级市         D．县级市"
-      }
+        "A": "直辖市",
+        "B": "副省级市",
+        "C": "地级市",
+        "D": "县级市"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "8",
@@ -73,9 +89,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "城市规划    B．环境保护",
-        "C": "供水照明    D．公共服务"
-      }
+        "A": "城市规划",
+        "B": "环境保护",
+        "C": "供水照明",
+        "D": "公共服务"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "9",
@@ -84,9 +103,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "传统职能和现代职能    B．防御职能和建设职能",
-        "C": "一般职能和专门职能    D．经济职能和社会职能"
-      }
+        "A": "传统职能和现代职能",
+        "B": "防御职能和建设职能",
+        "C": "一般职能和专门职能",
+        "D": "经济职能和社会职能"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "10",
@@ -95,9 +117,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "城市化的质量    B．城市化的速度",
-        "C": "城市化的水平    D．城市化的强度"
-      }
+        "A": "城市化的质量",
+        "B": "城市化的速度",
+        "C": "城市化的水平",
+        "D": "城市化的强度"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "11",
@@ -106,9 +131,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "工业化            B．市场化",
-        "C": "第三产业的发展    D．农业的发展"
-      }
+        "A": "工业化",
+        "B": "市场化",
+        "C": "第三产业的发展",
+        "D": "农业的发展"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "12",
@@ -117,9 +145,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "国际层面            B．国家层面",
-        "C": "省级行政区域层面    D．市县层面"
-      }
+        "A": "国际层面",
+        "B": "国家层面",
+        "C": "省级行政区域层面",
+        "D": "市县层面"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "13",
@@ -128,9 +159,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "霍华德      B．佩里",
-        "C": "柯布西耶    D．昂温"
-      }
+        "A": "霍华德",
+        "B": "佩里",
+        "C": "柯布西耶",
+        "D": "昂温"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "14",
@@ -139,9 +173,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "《雅典宪章》    B．《马丘比丘宪章》",
-        "C": "《理想的城市》  D．《明日之城市》"
-      }
+        "A": "《雅典宪章》",
+        "B": "《马丘比丘宪章》",
+        "C": "《理想的城市》",
+        "D": "《明日之城市》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "15",
@@ -150,9 +187,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "10年    B．15年",
-        "C": "20年    D．30年"
-      }
+        "A": "10年",
+        "B": "15年",
+        "C": "20年",
+        "D": "30年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "16",
@@ -161,9 +201,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "政府扶持模式      B．市场化运营模式",
-        "C": "社会化管理模式    D．产业化运营模式"
-      }
+        "A": "政府扶持模式",
+        "B": "市场化运营模式",
+        "C": "社会化管理模式",
+        "D": "产业化运营模式"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "17",
@@ -172,9 +215,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "公开招标    B．邀请招标",
-        "C": "询价        D．竞争性谈判"
-      }
+        "A": "公开招标",
+        "B": "邀请招标",
+        "C": "询价",
+        "D": "竞争性谈判"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "18",
@@ -183,9 +229,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "协商会    B．座谈会",
-        "C": "听证会    D．论证会"
-      }
+        "A": "协商会",
+        "B": "座谈会",
+        "C": "听证会",
+        "D": "论证会"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "19",
@@ -194,9 +243,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "一级市场    B．二级市场",
-        "C": "三级市场    D．四级市场"
-      }
+        "A": "一级市场",
+        "B": "二级市场",
+        "C": "三级市场",
+        "D": "四级市场"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "20",
@@ -205,9 +257,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "安全环境标准    B．可控环境标准",
-        "C": "适宜环境标准    D．舒适环境标准"
-      }
+        "A": "安全环境标准",
+        "B": "可控环境标准",
+        "C": "适宜环境标准",
+        "D": "舒适环境标准"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "21",
@@ -216,9 +271,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "5％以上     B．7％以上",
-        "C": "10％以上    D．l5％以上"
-      }
+        "A": "5％以上",
+        "B": "7％以上",
+        "C": "10％以上",
+        "D": "l5％以上"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "22",
@@ -227,9 +285,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "投保资助型    B．强制储蓄型",
-        "C": "国家统筹型    D．社会统筹与个人账户相结合"
-      }
+        "A": "投保资助型",
+        "B": "强制储蓄型",
+        "C": "国家统筹型",
+        "D": "社会统筹与个人账户相结合"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "23",
@@ -238,9 +299,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "傅雷      B．费孝通",
-        "C": "梁思成    D．胡适"
-      }
+        "A": "傅雷",
+        "B": "费孝通",
+        "C": "梁思成",
+        "D": "胡适"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "24",
@@ -249,9 +313,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "决策机构    B．执行机构",
-        "C": "咨询机构    D．监控机构"
-      }
+        "A": "决策机构",
+        "B": "执行机构",
+        "C": "咨询机构",
+        "D": "监控机构"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "25",
@@ -260,9 +327,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "市政绩效信息收集系统    B．市政绩效信息处理系统",
-        "C": "市政绩效信息反馈系统    D．市政绩效管理决策系统"
-      }
+        "A": "市政绩效信息收集系统",
+        "B": "市政绩效信息处理系统",
+        "C": "市政绩效信息反馈系统",
+        "D": "市政绩效管理决策系统"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "26",
@@ -271,10 +341,13 @@
       "answer": "ABE",
       "score": 2,
       "options": {
-        "A": "城市规模小，数量少      B．城市功能单一",
-        "C": "城市成为第三产业的中心  D．“城市病”的产生和蔓延",
+        "A": "城市规模小，数量少",
+        "B": "城市功能单一",
+        "C": "城市成为第三产业的中心",
+        "D": "“城市病”的产生和蔓延",
         "E": "城市是一个自给自足的农业聚居区"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "27",
@@ -283,10 +356,13 @@
       "answer": "ABCD",
       "score": 2,
       "options": {
-        "A": "上海    B．北京",
-        "C": "天津    D．重庆",
+        "A": "上海",
+        "B": "北京",
+        "C": "天津",
+        "D": "重庆",
         "E": "广州"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "28",
@@ -295,10 +371,13 @@
       "answer": "ABD",
       "score": 2,
       "options": {
-        "A": "法国巴黎    B．美国纽约",
-        "C": "中国香港    D．日本东京",
+        "A": "法国巴黎",
+        "B": "美国纽约",
+        "C": "中国香港",
+        "D": "日本东京",
         "E": "法国马赛"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "29",
@@ -307,10 +386,13 @@
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "领导控制            B．专门部门的专职控制",
-        "C": "公务员的自我控制    D．媒体监控",
+        "A": "领导控制",
+        "B": "专门部门的专职控制",
+        "C": "公务员的自我控制",
+        "D": "媒体监控",
         "E": "公众监控"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "30",
@@ -324,7 +406,8 @@
         "C": "城市化涉及的领域是多元的",
         "D": "城市化是城市在社会经济生活中逐渐占据主导地位的过程",
         "E": "农业是城市化的基础"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "31",
@@ -333,10 +416,13 @@
       "answer": "ABCD",
       "score": 2,
       "options": {
-        "A": "城市总体规划纲要    B．市域城镇体系规划",
-        "C": "中心城区规划        D．城市总体规划的强制性内容",
+        "A": "城市总体规划纲要",
+        "B": "市域城镇体系规划",
+        "C": "中心城区规划",
+        "D": "城市总体规划的强制性内容",
         "E": "镇域城镇体系规划"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "32",
@@ -345,10 +431,13 @@
       "answer": "ACE",
       "score": 2,
       "options": {
-        "A": "公平原则    B．可行原则",
-        "C": "效率原则    D．普遍原则",
+        "A": "公平原则",
+        "B": "可行原则",
+        "C": "效率原则",
+        "D": "普遍原则",
         "E": "法治原则"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "33",
@@ -357,10 +446,13 @@
       "answer": "AB",
       "score": 2,
       "options": {
-        "A": "成对比较法    B．交错分布法",
-        "C": "图尺度评价法    D．关键事件法",
+        "A": "成对比较法",
+        "B": "交错分布法",
+        "C": "图尺度评价法",
+        "D": "关键事件法",
         "E": "行为锚定法"
-      }
+      },
+      "answer_unreliable": true
     }
   ]
 }

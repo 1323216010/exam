@@ -16,7 +16,7 @@
         "C": "商代后期",
         "D": "西周"
       },
-      "answer": null,
+      "answer": "C",
       "score": 1
     },
     {
@@ -29,7 +29,7 @@
         "C": "30 余种",
         "D": "60 种以上"
       },
-      "answer": null,
+      "answer": "D",
       "score": 1
     },
     {
@@ -42,7 +42,7 @@
         "C": "秘密文件",
         "D": "法规文件"
       },
-      "answer": null,
+      "answer": "B",
       "score": 1
     },
     {
@@ -55,7 +55,7 @@
         "C": "文字表达能力要求",
         "D": "综合素质要求"
       },
-      "answer": null,
+      "answer": "B",
       "score": 1
     },
     {
@@ -68,7 +68,7 @@
         "C": "有特定的发文目的",
         "D": "有特定的时效"
       },
-      "answer": null,
+      "answer": "A",
       "score": 1
     },
     {
@@ -81,7 +81,7 @@
         "C": "形成定稿",
         "D": "形成正本"
       },
-      "answer": null,
+      "answer": "B",
       "score": 1
     },
     {
@@ -94,7 +94,7 @@
         "C": "议论为主",
         "D": "描写为主"
       },
-      "answer": null,
+      "answer": "B",
       "score": 1
     },
     {
@@ -102,12 +102,12 @@
       "question_type": "单项选择题",
       "content": "经会议讨论通过的公文，其成文时间以",
       "options": {
-        "A": "大会",
-        "B": null,
-        "C": null,
-        "D": null
+        "A": "大会主席签发时间为准",
+        "B": "秘书长签发时间为准",
+        "C": "发布之日为准",
+        "D": "会议通过时间为准"
       },
-      "answer": null,
+      "answer": "D",
       "score": 1
     }
   ]

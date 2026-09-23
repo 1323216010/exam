@@ -3,7 +3,9 @@
     "title": "2016年10月高等教育自学考试市政学试题",
     "subject": "市政学",
     "code": "00292",
-    "date": "2016年10月"
+    "date": "2016年10月",
+    "answers_unreliable": true,
+    "answers_unreliable_note": "本卷开头题目在文档转换中丢失，答案表与题目错位（已用真题原文核对）。为避免教错，本卷不参与判分与答案展示，仅保留题目用于练习。"
   },
   "questions": [
     {
@@ -11,28 +13,32 @@
       "question_type": "单项选择题",
       "content": "本卷所有试题必须在答题卡上作答。答在试卷上无效，试卷空白处和背面均可作草稿纸。",
       "answer": "D",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "第一部分为选择题。必须对应试卷上的题号使用2B铅笔将“答题卡”的相应代码涂黑。",
       "answer": "D",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "第二部分为非选择题。必须注明大、小题号，使用0．5毫米黑色字迹签字笔作答。",
       "answer": "B",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "合理安排答题空间，超出答题区域无效。 第一部分 选择题(共41分) 一、单项选择题(本大题共25小题，每小题1分。共25分) 在每小题列出的四个备选项中只有一个是符合题目要求的，请将其选出并将“答 题卡”的相应代码涂黑。错涂、多涂或未涂均无分。",
       "answer": "A",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "5",
@@ -41,9 +47,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "自然属性和社会属性                  B．经济属性和社会属性",
-        "C": "政治属性和经济属性                  D．自然属性和经济属性"
-      }
+        "A": "自然属性和社会属性",
+        "B": "经济属性和社会属性",
+        "C": "政治属性和经济属性",
+        "D": "自然属性和经济属性"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "6",
@@ -52,9 +61,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "市政府                              B．市人大",
-        "C": "市政协                              D．市党委"
-      }
+        "A": "市政府",
+        "B": "市人大",
+        "C": "市政协",
+        "D": "市党委"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "7",
@@ -63,9 +75,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "特别区                              B．超大城市",
-        "C": "大都市区                            D．都市政府联合会"
-      }
+        "A": "特别区",
+        "B": "超大城市",
+        "C": "大都市区",
+        "D": "都市政府联合会"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "8",
@@ -74,9 +89,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "治安防御                            B．道路交通",
-        "C": "环境保护                            D．卫生健康"
-      }
+        "A": "治安防御",
+        "B": "道路交通",
+        "C": "环境保护",
+        "D": "卫生健康"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "9",
@@ -85,9 +103,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "城市规划职能                        B．户籍管理职能",
-        "C": "公共财政职能                        D．基础设施建设与管理职能"
-      }
+        "A": "城市规划职能",
+        "B": "户籍管理职能",
+        "C": "公共财政职能",
+        "D": "基础设施建设与管理职能"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "10",
@@ -96,9 +117,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "集中型城市化                        B．分散型城市化",
-        "C": "低度城市化                         D．过度城市化"
-      }
+        "A": "集中型城市化",
+        "B": "分散型城市化",
+        "C": "低度城市化",
+        "D": "过度城市化"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "11",
@@ -107,9 +131,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "农业发展                           B．第三产业发展",
-        "C": "工业化                             D．市场化"
-      }
+        "A": "农业发展",
+        "B": "第三产业发展",
+        "C": "工业化",
+        "D": "市场化"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "12",
@@ -118,9 +145,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "《明天，和平改革之路》              B．《建筑十书》",
-        "C": "《明日之城市》                      D．《阳光城》"
-      }
+        "A": "《明天，和平改革之路》",
+        "B": "《建筑十书》",
+        "C": "《明日之城市》",
+        "D": "《阳光城》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "13",
@@ -129,9 +159,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "《雅典宪章》                        B．《马丘比丘宪章》",
-        "C": "田园城市理论                       D．邻里单位理论"
-      }
+        "A": "《雅典宪章》",
+        "B": "《马丘比丘宪章》",
+        "C": "田园城市理论",
+        "D": "邻里单位理论"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "14",
@@ -140,9 +173,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "社会效益                           B．经济效益",
-        "C": "生态效益                           D. 系统效益"
-      }
+        "A": "社会效益",
+        "B": "经济效益",
+        "C": "生态效益",
+        "D": "系统效益"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "15",
@@ -151,9 +187,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "承包                               B．公私合作",
-        "C": "授予特许权                         D．专门谈判投入法"
-      }
+        "A": "承包",
+        "B": "公私合作",
+        "C": "授予特许权",
+        "D": "专门谈判投入法"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "16",
@@ -162,9 +201,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "多方投人                           B．社会化模式解决",
-        "C": "以财政拨款为主                     D．以企业融资为主"
-      }
+        "A": "多方投人",
+        "B": "社会化模式解决",
+        "C": "以财政拨款为主",
+        "D": "以企业融资为主"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "17",
@@ -173,9 +215,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "纵向公平                           B．横向公平",
-        "C": "过程公平                           D．结果公平"
-      }
+        "A": "纵向公平",
+        "B": "横向公平",
+        "C": "过程公平",
+        "D": "结果公平"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "18",
@@ -184,9 +229,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "人类和社会经济要素                 B．文化要素",
-        "C": "军事要素                           D．政治要素"
-      }
+        "A": "人类和社会经济要素",
+        "B": "文化要素",
+        "C": "军事要素",
+        "D": "政治要素"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "19",
@@ -195,9 +243,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "生态结构变化                       B．生态物种减少",
-        "C": "生态链断裂                         D．生态环境污染"
-      }
+        "A": "生态结构变化",
+        "B": "生态物种减少",
+        "C": "生态链断裂",
+        "D": "生态环境污染"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "20",
@@ -206,9 +257,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "人口管理                           B．户籍管理",
-        "C": "身份证管理                         D．治安管理"
-      }
+        "A": "人口管理",
+        "B": "户籍管理",
+        "C": "身份证管理",
+        "D": "治安管理"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "21",
@@ -217,9 +271,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "互济性                             B．统一性",
-        "C": "差异性                             D．竞争性"
-      }
+        "A": "互济性",
+        "B": "统一性",
+        "C": "差异性",
+        "D": "竞争性"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "22",
@@ -228,9 +285,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "预防为主、综合治理                 B．预防为主、防治结合",
-        "C": "制度保障、防治结合                 D．社会参与、防治结合"
-      }
+        "A": "预防为主、综合治理",
+        "B": "预防为主、防治结合",
+        "C": "制度保障、防治结合",
+        "D": "社会参与、防治结合"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "23",
@@ -239,9 +299,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "城市政府                           B．政府专业职能部门",
-        "C": "中共市委                           D．市人大"
-      }
+        "A": "城市政府",
+        "B": "政府专业职能部门",
+        "C": "中共市委",
+        "D": "市人大"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "24",
@@ -250,9 +313,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "市政绩效                           B．市政制度",
-        "C": "市政领导                           D．市政体系"
-      }
+        "A": "市政绩效",
+        "B": "市政制度",
+        "C": "市政领导",
+        "D": "市政体系"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "25",
@@ -261,21 +327,27 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "经济                               B．效果",
-        "C": "效益                               D．效率"
-      }
+        "A": "经济",
+        "B": "效果",
+        "C": "效益",
+        "D": "效率"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "26",
       "question_type": "多项选择题",
-      "content": "城市作为一个生态系统，其结构包括 c．资源结构",
+      "content": "城市作为一个生态系统，其结构包括",
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "社会结构                     B．人工结构",
+        "A": "社会结构",
+        "B": "人工结构",
+        "C": "资源结构",
         "D": "环境结构",
         "E": "自然结构"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "27",
@@ -284,10 +356,13 @@
       "answer": "ABCE",
       "score": 2,
       "options": {
-        "A": "高度聚集性                   B．社会性",
-        "C": "经济性                       D．系统性",
+        "A": "高度聚集性",
+        "B": "社会性",
+        "C": "经济性",
+        "D": "系统性",
         "E": "开放性"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "28",
@@ -296,10 +371,13 @@
       "answer": "ABDE",
       "score": 2,
       "options": {
-        "A": "城市化效率指标               B．城市化水平指标",
-        "C": "城市化速度指标               D．城市化质量指标",
+        "A": "城市化效率指标",
+        "B": "城市化水平指标",
+        "C": "城市化速度指标",
+        "D": "城市化质量指标",
         "E": "城市化数量指标"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "29",
@@ -308,10 +386,13 @@
       "answer": "ACD",
       "score": 2,
       "options": {
-        "A": "工业化起步阶段               B．前工业化阶段",
-        "C": "工业化阶段                   D．后工业化阶段",
+        "A": "工业化起步阶段",
+        "B": "前工业化阶段",
+        "C": "工业化阶段",
+        "D": "后工业化阶段",
         "E": "工业化后阶段"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "30",
@@ -320,10 +401,13 @@
       "answer": "ABCD",
       "score": 2,
       "options": {
-        "A": "小城市                       B．中等城市",
-        "C": "大城市                       D．特大城市",
+        "A": "小城市",
+        "B": "中等城市",
+        "C": "大城市",
+        "D": "特大城市",
         "E": "超大城市"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "31",
@@ -332,10 +416,13 @@
       "answer": "ABDE",
       "score": 2,
       "options": {
-        "A": "政策性                       B．综合性",
-        "C": "权威性                       D．地方性",
+        "A": "政策性",
+        "B": "综合性",
+        "C": "权威性",
+        "D": "地方性",
         "E": "科学性"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "32",
@@ -344,10 +431,13 @@
       "answer": "ABCDE",
       "score": 2,
       "options": {
-        "A": "发行债券、股票               B．中央财政拨款",
-        "C": "城市政府财政拨款             D．基础设施的运营收入",
+        "A": "发行债券、股票",
+        "B": "中央财政拨款",
+        "C": "城市政府财政拨款",
+        "D": "基础设施的运营收入",
         "E": "私人投资"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "33",
@@ -356,10 +446,13 @@
       "answer": "ABC",
       "score": 2,
       "options": {
-        "A": "法定社区                     B．自然社区",
-        "C": "功能社区                     D．体育社区",
+        "A": "法定社区",
+        "B": "自然社区",
+        "C": "功能社区",
+        "D": "体育社区",
         "E": "文化社区"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "34",

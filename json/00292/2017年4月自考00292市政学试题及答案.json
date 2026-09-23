@@ -3,7 +3,9 @@
     "title": "2017年4月高等教育自学考试市政学试题",
     "subject": "市政学",
     "code": "00292",
-    "date": "2017年4月"
+    "date": "2017年4月",
+    "answers_unreliable": true,
+    "answers_unreliable_note": "本卷开头题目在文档转换中丢失，答案表与题目错位（已用真题原文核对）。为避免教错，本卷不参与判分与答案展示，仅保留题目用于练习。"
   },
   "questions": [
     {
@@ -11,28 +13,32 @@
       "question_type": "单项选择题",
       "content": "本卷所有试题必须在答题卡上作答。答在试卷上无效，试卷空白处和背面均可作草稿纸。",
       "answer": "C",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "2",
       "question_type": "单项选择题",
       "content": "第一部分为选择题。必须对应试卷上的题号使用2B铅笔将“答题卡”的相应代码涂黑。",
       "answer": "B",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "3",
       "question_type": "单项选择题",
       "content": "第二部分为非选择题。必须注明大、小题号，使用0．5毫米黑色字迹签字笔作答。",
       "answer": "D",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "4",
       "question_type": "单项选择题",
       "content": "合理安排答题空间。超出答题区域无效。 第一部分选择题(共41分) 一、单项选择题(本大题共25小题。每小题l分。共25分) 在每小题列出的四个备选项中只有一个是符合题目要求的，请将其选出并将“答题卡\"的相应代码涂黑。错涂、多涂或未涂均无分。",
       "answer": "A",
-      "score": 1
+      "score": 1,
+      "answer_unreliable": true
     },
     {
       "question_number": "5",
@@ -41,9 +47,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "基层群众自治性组织    B．城市公益性组织",
-        "C": "市人民团体            D．政府职能部门"
-      }
+        "A": "基层群众自治性组织",
+        "B": "城市公益性组织",
+        "C": "市人民团体",
+        "D": "政府职能部门"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "6",
@@ -52,8 +61,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "美国    B．日本    C．法国    D．英国"
-      }
+        "A": "美国",
+        "B": "日本",
+        "C": "法国",
+        "D": "英国"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "7",
@@ -62,9 +75,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "直辖市    B．副省级市",
-        "C": "地级市    D．县级市"
-      }
+        "A": "直辖市",
+        "B": "副省级市",
+        "C": "地级市",
+        "D": "县级市"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "8",
@@ -73,8 +89,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "市政反馈    B．市政控制    C．市政干预    D．市政预测"
-      }
+        "A": "市政反馈",
+        "B": "市政控制",
+        "C": "市政干预",
+        "D": "市政预测"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "9",
@@ -83,8 +103,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "1688年    B．1867年    C．1911年    D．1945年"
-      }
+        "A": "1688年",
+        "B": "1867年",
+        "C": "1911年",
+        "D": "1945年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "10",
@@ -93,9 +117,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "以GDP增长为主导        B．注重经济增长方式转变",
-        "C": "以经济规模赶超为目标    D．以科学发展观为指导"
-      }
+        "A": "以GDP增长为主导",
+        "B": "注重经济增长方式转变",
+        "C": "以经济规模赶超为目标",
+        "D": "以科学发展观为指导"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "11",
@@ -104,9 +131,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "低度城市化      B．过度城市化",
-        "C": "集中性城市化    D．分散性城市化"
-      }
+        "A": "低度城市化",
+        "B": "过度城市化",
+        "C": "集中性城市化",
+        "D": "分散性城市化"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "12",
@@ -115,9 +145,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "花园城市理论    B．卫星城理论",
-        "C": "中心地理论      D．邻里单位理论"
-      }
+        "A": "花园城市理论",
+        "B": "卫星城理论",
+        "C": "中心地理论",
+        "D": "邻里单位理论"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "13",
@@ -126,9 +159,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "《中华人民共和国国土规划法》    B．《中华人民共和国城市规划法》",
-        "C": "《中华人民共和国城乡规划法》    D．《中华人民共和国城镇规戈!|法》"
-      }
+        "A": "《中华人民共和国国土规划法》",
+        "B": "《中华人民共和国城市规划法》",
+        "C": "《中华人民共和国城乡规划法》",
+        "D": "《中华人民共和国城镇规戈!|法》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "14",
@@ -137,9 +173,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "《雅典宪章》    B．《马丘比丘宪章》",
-        "C": "《北京宪章》    D．《伦敦宪章》"
-      }
+        "A": "《雅典宪章》",
+        "B": "《马丘比丘宪章》",
+        "C": "《北京宪章》",
+        "D": "《伦敦宪章》"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "15",
@@ -148,9 +187,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "生产性    B．承载性",
-        "C": "公益性     D．自然垄断性"
-      }
+        "A": "生产性",
+        "B": "承载性",
+        "C": "公益性",
+        "D": "自然垄断性"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "16",
@@ -159,8 +201,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "2年    B．3年    C．4年    D．5年"
-      }
+        "A": "2年",
+        "B": "3年",
+        "C": "4年",
+        "D": "5年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "17",
@@ -169,9 +215,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "政府财政为主    B．私人投入为主",
-        "C": "社会投入为主    D．民众自筹为主"
-      }
+        "A": "政府财政为主",
+        "B": "私人投入为主",
+        "C": "社会投入为主",
+        "D": "民众自筹为主"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "18",
@@ -180,9 +229,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "公平原则    B．增长原则",
-        "C": "效益原则    D．可持续原则"
-      }
+        "A": "公平原则",
+        "B": "增长原则",
+        "C": "效益原则",
+        "D": "可持续原则"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "19",
@@ -191,9 +243,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "卫生与计划生育委员会    B．妇幼保健站",
-        "C": "爱国卫生运动委员会      D．疾病预防与控制中心"
-      }
+        "A": "卫生与计划生育委员会",
+        "B": "妇幼保健站",
+        "C": "爱国卫生运动委员会",
+        "D": "疾病预防与控制中心"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "20",
@@ -202,9 +257,12 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "1989年    B．2003年",
-        "C": "2005年    D．2008年"
-      }
+        "A": "1989年",
+        "B": "2003年",
+        "C": "2005年",
+        "D": "2008年"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "21",
@@ -213,9 +271,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "位置固定性    B．差异性",
-        "C": "区位效益性    D．耐久性"
-      }
+        "A": "位置固定性",
+        "B": "差异性",
+        "C": "区位效益性",
+        "D": "耐久性"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "22",
@@ -224,9 +285,12 @@
       "answer": "D",
       "score": 1,
       "options": {
-        "A": "同时备案    B．同时竣工",
-        "C": "同时验收     D．同时投产使用"
-      }
+        "A": "同时备案",
+        "B": "同时竣工",
+        "C": "同时验收",
+        "D": "同时投产使用"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "23",
@@ -235,9 +299,12 @@
       "answer": "C",
       "score": 1,
       "options": {
-        "A": "功能社区    B．自然社区",
-        "C": "法定社区    D．自治社区"
-      }
+        "A": "功能社区",
+        "B": "自然社区",
+        "C": "法定社区",
+        "D": "自治社区"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "24",
@@ -246,9 +313,12 @@
       "answer": "A",
       "score": 1,
       "options": {
-        "A": "社区业主委员会    B．社区居民委员会",
-        "C": "社区街道办        D．社区自治联盟"
-      }
+        "A": "社区业主委员会",
+        "B": "社区居民委员会",
+        "C": "社区街道办",
+        "D": "社区自治联盟"
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "25",
@@ -257,9 +327,11 @@
       "answer": "B",
       "score": 1,
       "options": {
-        "A": "城市形象    B．城市竞争力",
+        "A": "城市形象",
+        "B": "城市竞争力",
         "D": "市政体制"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "26",
@@ -268,10 +340,13 @@
       "answer": "ABCDE",
       "score": 1,
       "options": {
-        "A": "早期城市    B．中世纪城市",
-        "C": "近代城市    D．现代城市",
+        "A": "早期城市",
+        "B": "中世纪城市",
+        "C": "近代城市",
+        "D": "现代城市",
         "E": "后现代城市"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "27",
@@ -280,10 +355,13 @@
       "answer": "ABDE",
       "score": 1,
       "options": {
-        "A": "市红十字会    B．市慈善总会",
-        "C": "市基金会      D．市志愿者组织",
+        "A": "市红十字会",
+        "B": "市慈善总会",
+        "C": "市基金会",
+        "D": "市志愿者组织",
         "E": "居民委员会"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "28",
@@ -292,10 +370,13 @@
       "answer": "ACDE",
       "score": 1,
       "options": {
-        "A": "规划职能              B．交通运输职能",
-        "C": "社会福利与保障职能    D．文化教育职能",
+        "A": "规划职能",
+        "B": "交通运输职能",
+        "C": "社会福利与保障职能",
+        "D": "文化教育职能",
         "E": "公共卫生与环境保护职能"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "29",
@@ -304,10 +385,13 @@
       "answer": "BCDE",
       "score": 1,
       "options": {
-        "A": "增长极核理论    B．卫星城理论",
-        "C": "邻里单位理论    D．田园城市理论",
+        "A": "增长极核理论",
+        "B": "卫星城理论",
+        "C": "邻里单位理论",
+        "D": "田园城市理论",
         "E": "生态城市理论"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "30",
@@ -316,22 +400,28 @@
       "answer": "ABCDE",
       "score": 1,
       "options": {
-        "A": "出售或买卖    B．交换或互易",
-        "C": "赠与          D．拍卖",
+        "A": "出售或买卖",
+        "B": "交换或互易",
+        "C": "赠与",
+        "D": "拍卖",
         "E": "招标出让"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "31",
       "question_type": "多项选择题",
-      "content": "我国城市环境综合治理的制度有 c．环境监测制度",
+      "content": "我国城市环境综合治理的制度有",
       "answer": "ABCDE",
       "score": 1,
       "options": {
-        "A": "限期治理污染源制度    B．环境影响评价制度",
+        "A": "限期治理污染源制度",
+        "B": "环境影响评价制度",
+        "C": "环境监测制度",
         "D": "污染集中控制制度",
         "E": "排污管理制度"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "32",
@@ -340,64 +430,88 @@
       "answer": "ACDE",
       "score": 1,
       "options": {
-        "A": "自治社区    B．法定社区",
-        "C": "自然社区    D．功能社区",
+        "A": "自治社区",
+        "B": "法定社区",
+        "C": "自然社区",
+        "D": "功能社区",
         "E": "行政社区"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "33",
       "question_type": "多项选择题",
-      "content": "我国的城市社会保险管理包括 c．城市失业保险管理 第二部分 非选择题(共59分)",
+      "content": "我国的城市社会保险管理包括",
       "answer": "ABCDE",
       "score": 1,
       "options": {
-        "A": "城市养老保险管理    B．城市医疗保险管理",
+        "A": "城市养老保险管理",
+        "B": "城市医疗保险管理",
+        "C": "城市失业保险管理 第二部分 非选择题(共59分)",
         "D": "城市社会福利管理",
         "E": "城市社会优抚管理"
-      }
+      },
+      "answer_unreliable": true
     },
     {
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "简述西方国家市政体制的类型。",
-      "answer": "简述西方国家市政体制的类型。",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "简述城市化的主要类型。",
-      "answer": "简述城市化的主要类型。",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "36",
       "question_type": "多项选择题",
       "content": "筒述世界规划史上的《雅典宪章》。",
-      "answer": "筒述世界规划史上的《雅典宪章》。",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "37",
       "question_type": "多项选择题",
       "content": "简述城市基础设施的作用。",
-      "answer": "简述城市基础设施的作用。",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "38",
       "question_type": "多项选择题",
       "content": "简述我国城市人口管理的基本内容。",
-      "answer": "简述我国城市人口管理的基本内容。",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "39",
       "question_type": "多项选择题",
       "content": "简述市政绩效的特点。",
-      "answer": "简述市政绩效的特点。\n四、论述题(本题11分)",
-      "score": 1
+      "answer": null,
+      "score": 1,
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）",
+      "answer_unreliable": true
     },
     {
       "question_number": "40",

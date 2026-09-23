@@ -447,7 +447,7 @@
       "question_number": "34",
       "question_type": "多项选择题",
       "content": "城市公共事业的基础管理包括",
-      "answer": "城市公共事业的基础管理包括【      】\nA.规划管理\tB.准入管理\nC.价格管理\tD.税收管理\nE.安全管理",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "规划管理",
@@ -455,13 +455,15 @@
         "C": "价格管理",
         "D": "税收管理",
         "E": "安全管理"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "35",
       "question_type": "多项选择题",
       "content": "城市公共财政的主要功能有",
-      "answer": "城市公共财政的主要功能有【      】\nA.维护公共安全\tB.资源配置\nC.收入分配\tD.经济稳定与增长\nE.提高城市基础设施利用率",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "维护公共安全",
@@ -469,13 +471,15 @@
         "C": "收入分配",
         "D": "经济稳定与增长",
         "E": "提高城市基础设施利用率"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "36",
       "question_type": "多项选择题",
       "content": "生态城市的特点有",
-      "answer": "生态城市的特点有【      】\nA.和谐性\tB.可持续性\nC.整体性\tD.高效性\nE.区域性",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "和谐性",
@@ -483,13 +487,15 @@
         "C": "整体性",
         "D": "高效性",
         "E": "区域性"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "37",
       "question_type": "多项选择题",
       "content": "从地域特征和管理角度考察，城市社区类型有",
-      "answer": "从地域特征和管理角度考察，城市社区类型有【      】\nA.法定社区\tB.自然社区\nC.功能社区\tD.综合社区\nE.文化社区",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "法定社区",
@@ -497,13 +503,15 @@
         "C": "功能社区",
         "D": "综合社区",
         "E": "文化社区"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "38",
       "question_type": "多项选择题",
       "content": "城市公共安全管理的手段有",
-      "answer": "城市公共安全管理的手段有【      】\nA.法律手段\tB.行政手段\nC.信息手段\tD.宣传手段\nE.经济手段",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "法律手段",
@@ -511,13 +519,15 @@
         "C": "信息手段",
         "D": "宣传手段",
         "E": "经济手段"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "39",
       "question_type": "多项选择题",
       "content": "城市公共安全管理的类型有",
-      "answer": "城市公共安全管理的类型有【      】\nA.自然灾害治理类\tB.城市消防类\nC.社会治安类\tD.卫生防疫类\nE.基础设施类",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "自然灾害治理类",
@@ -525,13 +535,15 @@
         "C": "社会治安类",
         "D": "卫生防疫类",
         "E": "基础设施类"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "40",
       "question_type": "多项选择题",
       "content": "市政绩效评估的方法有",
-      "answer": "市政绩效评估的方法有【      】\nA.主观评估法\tB.客观评估法\nC.数据分析法\tD.目标管理法\nE.专家鉴定法\n三、简答题（本大题共6小题，每小题6分，共36分）",
+      "answer": null,
       "score": 1,
       "options": {
         "A": "主观评估法",
@@ -539,7 +551,9 @@
         "C": "数据分析法",
         "D": "目标管理法",
         "E": "专家鉴定法"
-      }
+      },
+      "answer_missing": true,
+      "answer_note": "源数据缺失标准答案（OCR 把题干与选项写入了答案字段）"
     },
     {
       "question_number": "41",
